@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var InvoiceArchive = function() {
-
-
+var InvoiceArchive = function () {
     //
     // Setup module components
     //
 
     // Datatable
-    var _componentDatatable = function() {
+    var _componentDatatable = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
@@ -36,7 +33,7 @@ var InvoiceArchive = function() {
                     visible: false,
                     targets: 1
                 },
-                { 
+                {
                     orderable: false,
                     width: 120,
                     targets: 7
@@ -54,7 +51,7 @@ var InvoiceArchive = function() {
                     targets: 3
                 }
             ],
-            order: [[ 0, 'desc' ]],
+            order: [[0, 'desc']],
             dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
             language: {
                 search: '<span>Filter:</span> _INPUT_',
@@ -62,19 +59,19 @@ var InvoiceArchive = function() {
                 lengthMenu: '<span>Show:</span> _MENU_',
                 paginate: { 'first': 'First', 'last': 'Last', 'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
             },
-            lengthMenu: [ 25, 50, 75, 100 ],
+            lengthMenu: [25, 50, 75, 100],
             displayLength: 25,
-            drawCallback: function ( settings ) {
+            drawCallback: function (settings) {
                 var api = this.api();
-                var rows = api.rows( {page:'current'} ).nodes();
-                var last=null;
-     
-                api.column(1, {page:'current'} ).data().each( function ( group, i ) {
-                    if ( last !== group ) {
-                        $(rows).eq( i ).before(
-                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
+                var rows = api.rows({ page: 'current' }).nodes();
+                var last = null;
+
+                api.column(1, { page: 'current' }).data().each(function (group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before(
+                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">' + group + '</td></tr>'
                         );
-     
+
                         last = group;
                     }
                 });
@@ -93,7 +90,7 @@ var InvoiceArchive = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -107,23 +104,21 @@ var InvoiceArchive = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatable();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     InvoiceArchive.init();
 });

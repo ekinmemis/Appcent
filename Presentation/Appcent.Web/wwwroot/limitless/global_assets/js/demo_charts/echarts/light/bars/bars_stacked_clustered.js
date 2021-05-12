@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsBarsStackedClusteredLight = function() {
-
-
+var EchartsBarsStackedClusteredLight = function () {
     //
     // Setup module components
     //
 
     // Stacked clustered bar chart
-    var _barsStackedClusteredLightExample = function() {
+    var _barsStackedClusteredLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsBarsStackedClusteredLight = function() {
         // Define element
         var bars_clustered_element = document.getElementById('bars_stacked_clustered');
 
-
         //
         // Charts configuration
         //
 
         if (bars_clustered_element) {
-
             // Initialize chart
             var bars_clustered = echarts.init(bars_clustered_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsBarsStackedClusteredLight = function() {
 
             // Options
             bars_clustered.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -66,8 +59,8 @@ var EchartsBarsStackedClusteredLight = function() {
                 // Add legend
                 legend: {
                     data: [
-                        'Version 1.7 - 2k data','Version 1.7 - 2w data','Version 1.7 - 20w data','',
-                        'Version 2.0 - 2k data','Version 2.0 - 2w data','Version 2.0 - 20w data'
+                        'Version 1.7 - 2k data', 'Version 1.7 - 2w data', 'Version 1.7 - 20w data', '',
+                        'Version 2.0 - 2k data', 'Version 2.0 - 2w data', 'Version 2.0 - 20w data'
                     ],
                     itemHeight: 2,
                     itemGap: 8,
@@ -117,7 +110,7 @@ var EchartsBarsStackedClusteredLight = function() {
                 yAxis: [
                     {
                         type: 'category',
-                        data: ['Line','Bar','Scatter','Pies'],
+                        data: ['Line', 'Bar', 'Scatter', 'Pies'],
                         axisLabel: {
                             color: '#333'
                         },
@@ -141,12 +134,12 @@ var EchartsBarsStackedClusteredLight = function() {
                     },
                     {
                         type: 'category',
-                        axisLine: {show:false},
-                        axisTick: {show:false},
-                        axisLabel: {show:false},
-                        splitArea: {show:false},
-                        splitLine: {show:false},
-                        data: ['Line','Bar','Scatter','Pies']
+                        axisLine: { show: false },
+                        axisTick: { show: false },
+                        axisLabel: { show: false },
+                        splitArea: { show: false },
+                        splitLine: { show: false },
+                        data: ['Line', 'Bar', 'Scatter', 'Pies']
                     }
                 ],
 
@@ -276,13 +269,12 @@ var EchartsBarsStackedClusteredLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             bars_clustered_element && bars_clustered.resize();
         };
 
@@ -292,7 +284,7 @@ var EchartsBarsStackedClusteredLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -300,22 +292,20 @@ var EchartsBarsStackedClusteredLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barsStackedClusteredLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsBarsStackedClusteredLight.init();
 });

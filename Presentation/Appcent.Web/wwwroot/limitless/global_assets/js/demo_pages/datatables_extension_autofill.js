@@ -6,31 +6,28 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableAutofill = function() {
-
-
+var DatatableAutofill = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableAutofill = function() {
+    var _componentDatatableAutofill = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
-            columnDefs: [{ 
+            columnDefs: [{
                 orderable: false,
                 width: 100,
-                targets: [ 5 ]
+                targets: [5]
             }],
             dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -41,12 +38,10 @@ var DatatableAutofill = function() {
             }
         });
 
-
         // Basic initialization
         $('.datatable-autofill-basic').DataTable({
             autoFill: true
         });
-
 
         // Always confirm action
         $('.datatable-autofill-confirm').DataTable({
@@ -55,7 +50,6 @@ var DatatableAutofill = function() {
             },
         });
 
-
         // Click focus
         $('.datatable-autofill-click').DataTable({
             autoFill: {
@@ -63,9 +57,8 @@ var DatatableAutofill = function() {
             }
         });
 
-
         // Column selector
-        $('.datatable-autofill-column').DataTable( {
+        $('.datatable-autofill-column').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -90,7 +83,7 @@ var DatatableAutofill = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -104,23 +97,21 @@ var DatatableAutofill = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableAutofill();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableAutofill.init();
 });

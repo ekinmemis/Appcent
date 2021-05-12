@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3AreaBivariate = function() {
-
-
+var D3AreaBivariate = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _areaBivariate = function() {
+    var _areaBivariate = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,24 +25,20 @@ var D3AreaBivariate = function() {
         var element = document.getElementById('d3-area-bivariate'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 20, left: 40},
+                margin = { top: 5, right: 10, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5,
                 color = '#ffb980';
 
             // Format data
             var parseDate = d3.time.format("%Y%m%d").parse;
-
-
 
             // Construct scales
             // ------------------------------
@@ -57,8 +50,6 @@ var D3AreaBivariate = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -75,8 +66,6 @@ var D3AreaBivariate = function() {
                 .scale(y)
                 .orient("left");
 
-
-
             // Create chart
             // ------------------------------
 
@@ -88,44 +77,36 @@ var D3AreaBivariate = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
 
             // Area
             var area = d3.svg.area()
-                .x(function(d) { return x(d.date); })
-                .y0(function(d) { return y(d.low); })
-                .y1(function(d) { return y(d.high); });
-
-
+                .x(function (d) { return x(d.date); })
+                .y0(function (d) { return y(d.low); })
+                .y1(function (d) { return y(d.high); });
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_bivariate.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_bivariate.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.date = parseDate(d.date);
                     d.low = +d.low;
                     d.high = +d.high;
                 });
 
-
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(d3.extent(data, function(d) { return d.date; }));
+                x.domain(d3.extent(data, function (d) { return d.date; }));
 
                 // Vertical
-                y.domain([d3.min(data, function(d) { return d.low; }), d3.max(data, function(d) { return d.high; })]);
-
-
+                y.domain([d3.min(data, function (d) { return d.low; }), d3.max(data, function (d) { return d.high; })]);
 
                 //
                 // Append chart elements
@@ -137,7 +118,6 @@ var D3AreaBivariate = function() {
                     .attr("class", "d3-area")
                     .attr("fill", color)
                     .attr("d", area);
-
 
                 // Append axes
                 // ------------------------------
@@ -163,8 +143,6 @@ var D3AreaBivariate = function() {
                     .text("Temperature (ºF)");
             });
 
-
-
             // Resize chart
             // ------------------------------
 
@@ -176,15 +154,13 @@ var D3AreaBivariate = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -195,7 +171,6 @@ var D3AreaBivariate = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -204,7 +179,6 @@ var D3AreaBivariate = function() {
 
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
-
 
                 // Chart elements
                 // -------------------------
@@ -215,22 +189,20 @@ var D3AreaBivariate = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaBivariate();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3AreaBivariate.init();
 });

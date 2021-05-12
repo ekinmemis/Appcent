@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsColumnsStackedLight = function() {
-
-
+var EchartsColumnsStackedLight = function () {
     //
     // Setup module components
     //
 
     // Stacked column chart
-    var _columnsStackedLightExample = function() {
+    var _columnsStackedLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsColumnsStackedLight = function() {
         // Define element
         var columns_stacked_element = document.getElementById('columns_stacked');
 
-
         //
         // Charts configuration
         //
-        
-        if (columns_stacked_element) {
 
+        if (columns_stacked_element) {
             // Initialize chart
             var columns_stacked = echarts.init(columns_stacked_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsColumnsStackedLight = function() {
 
             // Options
             columns_stacked.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -195,13 +188,12 @@ var EchartsColumnsStackedLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_stacked_element && columns_stacked.resize();
         };
 
@@ -211,7 +203,7 @@ var EchartsColumnsStackedLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -219,22 +211,20 @@ var EchartsColumnsStackedLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _columnsStackedLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsColumnsStackedLight.init();
 });

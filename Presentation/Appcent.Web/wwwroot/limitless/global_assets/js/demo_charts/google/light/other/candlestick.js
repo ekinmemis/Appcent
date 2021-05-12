@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleCandlestickChart = function() {
-
-
+var GoogleCandlestickChart = function () {
     //
     // Setup module components
     //
 
     // Candlestick chart
-    var _googleCandlestickChart = function() {
+    var _googleCandlestickChart = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleCandlestickChart = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawCandlestick();
 
@@ -37,7 +33,7 @@ var GoogleCandlestickChart = function() {
 
                 // Resize on window resize
                 var resizeCandlestickChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeCandlestickChart);
                     resizeCandlestickChart = setTimeout(function () {
                         drawCandlestick();
@@ -49,7 +45,6 @@ var GoogleCandlestickChart = function() {
 
         // Chart settings
         function drawCandlestick() {
-
             // Define charts element
             var candlestick_chart_element = document.getElementById('google-candlestick');
 
@@ -129,7 +124,7 @@ var GoogleCandlestickChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -149,18 +144,16 @@ var GoogleCandlestickChart = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleCandlestickChart();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

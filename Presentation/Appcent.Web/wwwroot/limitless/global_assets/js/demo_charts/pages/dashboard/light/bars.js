@@ -6,42 +6,35 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DashboardBars = function() {
-
-
+var DashboardBars = function () {
     //
     // Setup module components
     //
 
     // Bar charts
-    var _BarChart = function(element, barQty, height, animate, easing, duration, delay, color, tooltip) {
+    var _BarChart = function (element, barQty, height, animate, easing, duration, delay, color, tooltip) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
         }
 
         // Initialize chart only if element exsists in the DOM
-        if($(element).length > 0) {
-
-
+        if ($(element).length > 0) {
             // Basic setup
             // ------------------------------
 
             // Add data set
             var bardata = [];
-            for (var i=0; i < barQty; i++) {
-                bardata.push(Math.round(Math.random()*10) + 10);
+            for (var i = 0; i < barQty; i++) {
+                bardata.push(Math.round(Math.random() * 10) + 10);
             }
 
             // Main variables
             var d3Container = d3.select(element),
                 width = d3Container.node().getBoundingClientRect().width;
-            
-
 
             // Construct scales
             // ------------------------------
@@ -54,8 +47,6 @@ var DashboardBars = function() {
             var y = d3.scale.linear()
                 .range([0, height]);
 
-
-
             // Set input domains
             // ------------------------------
 
@@ -64,8 +55,6 @@ var DashboardBars = function() {
 
             // Vertical
             y.domain([0, d3.max(bardata)]);
-
-
 
             // Create chart
             // ------------------------------
@@ -79,8 +68,6 @@ var DashboardBars = function() {
                 .attr('height', height)
                 .append('g');
 
-
-
             //
             // Append chart elements
             //
@@ -90,14 +77,12 @@ var DashboardBars = function() {
                 .data(bardata)
                 .enter()
                 .append('rect')
-                    .attr('class', 'd3-random-bars')
-                    .attr('width', x.rangeBand())
-                    .attr('x', function(d,i) {
-                        return x(i);
-                    })
-                    .style('fill', color);
-
-
+                .attr('class', 'd3-random-bars')
+                .attr('width', x.rangeBand())
+                .attr('x', function (d, i) {
+                    return x(i);
+                })
+                .style('fill', color);
 
             // Tooltip
             // ------------------------------
@@ -107,52 +92,50 @@ var DashboardBars = function() {
                 .offset([-10, 0]);
 
             // Show and hide
-            if(tooltip == 'hours' || tooltip == 'goal' || tooltip == 'members') {
+            if (tooltip == 'hours' || tooltip == 'goal' || tooltip == 'members') {
                 bars.call(tip)
                     .on('mouseover', tip.show)
                     .on('mouseout', tip.hide);
             }
 
             // Daily meetings tooltip content
-            if(tooltip == 'hours') {
+            if (tooltip == 'hours') {
                 tip.html(function (d, i) {
                     return '<div class="text-center">' +
-                            '<h6 class="m-0">' + d + '</h6>' +
-                            '<span class="font-size-sm">meetings</span>' +
-                            '<div class="font-size-sm">' + i + ':00' + '</div>' +
+                        '<h6 class="m-0">' + d + '</h6>' +
+                        '<span class="font-size-sm">meetings</span>' +
+                        '<div class="font-size-sm">' + i + ':00' + '</div>' +
                         '</div>'
                 });
             }
 
             // Statements tooltip content
-            if(tooltip == 'goal') {
+            if (tooltip == 'goal') {
                 tip.html(function (d, i) {
                     return '<div class="text-center">' +
-                            '<h6 class="m-0">' + d + '</h6>' +
-                            '<span class="font-size-sm">statements</span>' +
-                            '<div class="font-size-sm">' + i + ':00' + '</div>' +
+                        '<h6 class="m-0">' + d + '</h6>' +
+                        '<span class="font-size-sm">statements</span>' +
+                        '<div class="font-size-sm">' + i + ':00' + '</div>' +
                         '</div>'
                 });
             }
 
             // Online members tooltip content
-            if(tooltip == 'members') {
+            if (tooltip == 'members') {
                 tip.html(function (d, i) {
                     return '<div class="text-center">' +
-                            '<h6 class="m-0">' + d + '0' + '</h6>' +
-                            '<span class="font-size-sm">members</span>' +
-                            '<div class="font-size-sm">' + i + ':00' + '</div>' +
+                        '<h6 class="m-0">' + d + '0' + '</h6>' +
+                        '<span class="font-size-sm">members</span>' +
+                        '<div class="font-size-sm">' + i + ':00' + '</div>' +
                         '</div>'
                 });
             }
-
-
 
             // Bar loading animation
             // ------------------------------
 
             // Choose between animated or static
-            if(animate) {
+            if (animate) {
                 withAnimation();
             } else {
                 withoutAnimation();
@@ -164,31 +147,29 @@ var DashboardBars = function() {
                     .attr('height', 0)
                     .attr('y', height)
                     .transition()
-                        .attr('height', function(d) {
-                            return y(d);
-                        })
-                        .attr('y', function(d) {
-                            return height - y(d);
-                        })
-                        .delay(function(d, i) {
-                            return i * delay;
-                        })
-                        .duration(duration)
-                        .ease(easing);
+                    .attr('height', function (d) {
+                        return y(d);
+                    })
+                    .attr('y', function (d) {
+                        return height - y(d);
+                    })
+                    .delay(function (d, i) {
+                        return i * delay;
+                    })
+                    .duration(duration)
+                    .ease(easing);
             }
 
             // Load without animation
             function withoutAnimation() {
                 bars
-                    .attr('height', function(d) {
+                    .attr('height', function (d) {
                         return y(d);
                     })
-                    .attr('y', function(d) {
+                    .attr('y', function (d) {
                         return height - y(d);
                     })
             }
-
-
 
             // Resize chart
             // ------------------------------
@@ -201,15 +182,13 @@ var DashboardBars = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', barsResize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function barsResize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width;
-
 
                 // Layout
                 // -------------------------
@@ -223,27 +202,25 @@ var DashboardBars = function() {
                 // Horizontal range
                 x.rangeBands([0, width], 0.3);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Bars
                 svg.selectAll('.d3-random-bars')
                     .attr('width', x.rangeBand())
-                    .attr('x', function(d,i) {
+                    .attr('x', function (d, i) {
                         return x(i);
                     });
             }
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _BarChart('#hours-available-bars', 24, 40, true, 'elastic', 1200, 50, '#EC407A', 'hours');
             _BarChart('#goal-bars', 24, 40, true, 'elastic', 1200, 50, '#5C6BC0', 'goal');
             _BarChart('#members-online', 24, 50, true, 'elastic', 1200, 50, 'rgba(255,255,255,0.5)', 'members');
@@ -251,10 +228,9 @@ var DashboardBars = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DashboardBars.init();
 });

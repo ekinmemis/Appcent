@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var I18nextQuery = function() {
-
-
+var I18nextQuery = function () {
     //
     // Setup module components
     //
 
     // Change language with page reload
-    var _componentI18nextQuery = function() {
+    var _componentI18nextQuery = function () {
         if (typeof i18next == 'undefined') {
             console.warn('Warning - i18next.min.js is not loaded.');
             return;
         }
-
 
         // Configuration
         // -------------------------
@@ -44,30 +40,26 @@ var I18nextQuery = function() {
             debug: true,
             fallbackLng: false
         },
-        function (err, t) {
-            
-            // Initialize library
-            jqueryI18next.init(i18next, $);
+            function (err, t) {
+                // Initialize library
+                jqueryI18next.init(i18next, $);
 
-            // Initialize translation
-            $localizationElement.localize();
+                // Initialize translation
+                $localizationElement.localize();
 
-            // To avoid FOUC when translation gets initialized,
-            // use data-fouc attribute in all elements by default. When translation
-            // is initialized, remove it from all elements
-            $localizationElement.find('[data-i18n]').removeAttr('data-fouc');
-        });
-
+                // To avoid FOUC when translation gets initialized,
+                // use data-fouc attribute in all elements by default. When translation
+                // is initialized, remove it from all elements
+                $localizationElement.find('[data-i18n]').removeAttr('data-fouc');
+            });
 
         // Change languages in dropdown
         // -------------------------
 
         // Do stuff when i18Next is initialized
-        i18next.on('initialized', function() {
-
+        i18next.on('initialized', function () {
             // English
-            if(i18next.language === "en") {
-
+            if (i18next.language === "en") {
                 // Set active class
                 $('.dropdown-item' + englishLangClass).addClass('active');
                 $('.navbar-nav-link' + englishLangClass).parent().addClass('active');
@@ -79,8 +71,7 @@ var I18nextQuery = function() {
             }
 
             // Russian
-            if(i18next.language === "ru") {
-
+            if (i18next.language === "ru") {
                 // Set active class
                 $('.dropdown-item' + russianLangClass).addClass('active');
                 $('.navbar-nav-link' + russianLangClass).parent().addClass('active');
@@ -92,8 +83,7 @@ var I18nextQuery = function() {
             }
 
             // Ukrainian
-            if(i18next.language === "ua") {
-
+            if (i18next.language === "ua") {
                 // Set active class
                 $('.dropdown-item' + ukrainianLangClass).addClass('active');
                 $('.navbar-nav-link' + ukrainianLangClass).parent().addClass('active');
@@ -106,22 +96,20 @@ var I18nextQuery = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentI18nextQuery();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     I18nextQuery.init();
 });

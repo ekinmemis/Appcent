@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var LocationPicker = function() {
-
-
+var LocationPicker = function () {
     //
     // Setup module components
     //
 
     // Location picker
-    var _componentLocation = function() {
+    var _componentLocation = function () {
         if (!$().locationpicker) {
             console.warn('Warning - location.js is not loaded.');
             return;
@@ -38,7 +35,7 @@ var LocationPicker = function() {
                 longitude: 2.7470703125
             },
             radius: 300,
-            onchanged: function(currentLocation, radius, isMarkerDropped) {
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
                 var mapContext = $(this).locationpicker('map');
                 mapContext.map.setZoom(20);
             }
@@ -46,7 +43,7 @@ var LocationPicker = function() {
 
         // Binding UI with the widget
         $('#us2').locationpicker({
-            location: {latitude: 44.1219256, longitude: 15.2357175}, 
+            location: { latitude: 44.1219256, longitude: 15.2357175 },
             radius: 300,
             scrollwheel: false,
             inputBinding: {
@@ -59,24 +56,24 @@ var LocationPicker = function() {
 
         // Subscribing for events
         $('#us3').locationpicker({
-            location: {latitude: 47.494293, longitude: 19.054151899999965}, 
+            location: { latitude: 47.494293, longitude: 19.054151899999965 },
             radius: 300,
             scrollwheel: false,
             inputBinding: {
                 latitudeInput: $('#us3-lat'),
                 longitudeInput: $('#us3-lon'),
                 radiusInput: $('#us3-radius'),
-                locationNameInput: $('#us3-address')        
+                locationNameInput: $('#us3-address')
             },
             enableAutocomplete: true,
-            onchanged: function(currentLocation, radius, isMarkerDropped) {
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
                 alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
             }
         });
     };
 
     // Typeahead address picker
-    var _componentAddressTypeahead = function() {
+    var _componentAddressTypeahead = function () {
         if (typeof AddressPicker == 'undefined' || !$().typeahead) {
             console.warn('Warning - typeahead_addresspicker.js and/or typeahead.bundle.min.js is not loaded.');
             return;
@@ -116,24 +113,24 @@ var LocationPicker = function() {
             html.push("Latitude: " + result.lat())
             html.push("Longitude: " + result.lng())
             html.push("Long names:")
-            result.addressTypes().forEach(function(type) {
+            result.addressTypes().forEach(function (type) {
                 html.push("  " + type + ": " + result.nameForType(type))
             });
             html.push("Short names:")
-            result.addressTypes().forEach(function(type) {
+            result.addressTypes().forEach(function (type) {
                 html.push("  " + type + ": " + result.nameForType(type, true))
             });
-            $('#response code').html( html.join('\n'));
+            $('#response code').html(html.join('\n'));
         });
     };
 
     // Autocomplete address picker
-    var _componentAddressAutocomplete = function() {
-        if (!$().addresspicker ) {
+    var _componentAddressAutocomplete = function () {
+        if (!$().addresspicker) {
             console.warn('Warning - typeahead_addresspicker.js is not loaded.');
             return;
         }
-    
+
         // Initialization
         var addresspickerMap = $('#addresspicker_map').addresspicker({
             regionBias: 'fr',
@@ -155,30 +152,29 @@ var LocationPicker = function() {
         addresspickerMap.addresspicker('updatePosition');
 
         // Reverse Geocode after Marker Drag
-        $('#reverseGeocode').on('change', function(){
+        $('#reverseGeocode').on('change', function () {
             $('#addresspicker_map').addresspicker('option', 'reverseGeocode', ($(this).val() === 'true'));
         });
 
         // Callback
-        function showCallback(geocodeResult, parsedGeocodeResult){
+        function showCallback(geocodeResult, parsedGeocodeResult) {
             $('#response2 code').text(JSON.stringify(parsedGeocodeResult, null, 4));
             Prism.highlightAll();
         }
 
         // Update zoom field
         var map = $('#addresspicker_map').addresspicker('map');
-        google.maps.event.addListener(map, 'idle', function(){
+        google.maps.event.addListener(map, 'idle', function () {
             $('#zoom').val(map.getZoom());
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentLocation();
             _componentAddressTypeahead();
             _componentAddressAutocomplete();
@@ -186,10 +182,9 @@ var LocationPicker = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     LocationPicker.init();
 });

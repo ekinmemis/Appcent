@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var JqueryUiSliders = function() {
-
-
+var JqueryUiSliders = function () {
     //
     // Setup module components
     //
 
     // Sliders
-    var _componentUiSlider = function() {
+    var _componentUiSlider = function () {
         if (!$().slider) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -91,17 +88,17 @@ var JqueryUiSliders = function() {
             range: true,
             min: 0,
             max: 60,
-            values: [ 15, 45 ]
+            values: [15, 45]
         });
 
         var sliderMethods = document.querySelector('.switchery');
         var sliderMethodsInit = new Switchery(sliderMethods);
-        sliderMethods.onchange = function() {
-            if(sliderMethods.checked) {
+        sliderMethods.onchange = function () {
+            if (sliderMethods.checked) {
                 $('.jui-slider-methods').slider('enable');
             }
             else {
-                $('.jui-slider-methods').slider('disable'); 
+                $('.jui-slider-methods').slider('disable');
             }
         };
 
@@ -113,14 +110,12 @@ var JqueryUiSliders = function() {
             disabled: true
         });
 
-
         //
         // Vertical sliders
         //
 
         // Basic
-        $('.jui-slider-vertical-default > span').each(function() {
-
+        $('.jui-slider-vertical-default > span').each(function () {
             // Read initial values from markup and remove that
             var value = parseInt($(this).text(), 10);
             $(this).empty().slider({
@@ -131,8 +126,7 @@ var JqueryUiSliders = function() {
         });
 
         // Range slider
-        $('.jui-slider-vertical-range-min > span').each(function() {
-
+        $('.jui-slider-vertical-range-min > span').each(function () {
             // Read initial values from markup and remove that
             var value = parseInt($(this).text(), 10);
             $(this).empty().slider({
@@ -144,8 +138,7 @@ var JqueryUiSliders = function() {
         });
 
         // Fixed maximum
-        $('.jui-slider-vertical-range-max > span').each(function() {
-
+        $('.jui-slider-vertical-range-max > span').each(function () {
             // Read initial values from markup and remove that
             var value = parseInt($(this).text(), 10);
             $(this).empty().slider({
@@ -157,8 +150,7 @@ var JqueryUiSliders = function() {
         });
 
         // Default handle
-        $('.jui-slider-vertical-handle-default > span').each(function() {
-
+        $('.jui-slider-vertical-handle-default > span').each(function () {
             // Read initial values from markup and remove that
             var value = parseInt($(this).text(), 10);
             $(this).empty().slider({
@@ -168,7 +160,6 @@ var JqueryUiSliders = function() {
                 orientation: 'vertical'
             });
         });
-
 
         // Slider pips
         // ------------------------------
@@ -185,7 +176,6 @@ var JqueryUiSliders = function() {
         });
         $('.jui-slider-pips').slider('pips');
 
-
         // With tooltip
         $('.jui-slider-floats').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
@@ -194,7 +184,6 @@ var JqueryUiSliders = function() {
         });
         $('.jui-slider-floats').slider('pips');
         $('.jui-slider-floats').slider('float');
-
 
         // Both pips and tooltip
         $('.jui-slider-floats-labels').slider({
@@ -207,29 +196,26 @@ var JqueryUiSliders = function() {
             pips: true
         });
 
-
         // Label with pips
         $('.jui-slider-labels').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
             max: 8,
             value: 4
         });
-        $('.jui-slider-labels').slider('pips' , {
+        $('.jui-slider-labels').slider('pips', {
             rest: 'label'
         });
-
 
         // Hide rest of the points
         $('.jui-slider-limits').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
             max: 20,
             range: true,
-            values: [ 4, 16 ]
+            values: [4, 16]
         });
-        $('.jui-slider-limits').slider('pips' , {
+        $('.jui-slider-limits').slider('pips', {
             rest: false
         });
-
 
         // Display pips only
         $('.jui-slider-pips-only').slider({
@@ -241,7 +227,6 @@ var JqueryUiSliders = function() {
             last: 'pip'
         });
 
-
         // Suffix and prefix
         $('.jui-slider-suffix-prefix').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
@@ -249,11 +234,10 @@ var JqueryUiSliders = function() {
             value: 2
         });
         $('.jui-slider-suffix-prefix').slider('pips', {
-            rest: 'label', 
+            rest: 'label',
             prefix: '$',
             suffix: '.00'
         });
-
 
         // Custom label text
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -264,14 +248,13 @@ var JqueryUiSliders = function() {
             max: 11,
             value: 5
         });
-        $('.jui-slider-labels-custom').slider('pips' , {
+        $('.jui-slider-labels-custom').slider('pips', {
             rest: 'label',
             labels: months
         });
-        $('.jui-slider-labels-custom').on('slidechange', function(e,ui) {
+        $('.jui-slider-labels-custom').on('slidechange', function (e, ui) {
             $('#jui-slider-labels-custom-output').html('You selected ' + '<span class="text-danger">' + months[ui.value] + '</span>');
         });
-
 
         // Label localization
         var hanziNums = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
@@ -282,21 +265,20 @@ var JqueryUiSliders = function() {
             max: 10,
             value: 5
         });
-        $('.jui-slider-local').slider('pips' , {
+        $('.jui-slider-local').slider('pips', {
             labels: hanziNums,
             rest: 'label'
         });
-        $('.jui-slider-local').slider('float' , {
+        $('.jui-slider-local').slider('float', {
             labels: hanziNums
         });
-
 
         //
         // Vertical sliders
         //
 
         // Basic
-        $('.jui-slider-vertical-pips > span').each(function() {
+        $('.jui-slider-vertical-pips > span').each(function () {
             var value = parseInt($(this).text());
             $(this).empty().slider({
                 min: 0,
@@ -309,9 +291,8 @@ var JqueryUiSliders = function() {
         });
         $('.jui-slider-vertical-pips > span').slider('pips');
 
-
         // With labels
-        $('.jui-slider-vertical-labels > span').each(function() {
+        $('.jui-slider-vertical-labels > span').each(function () {
             var value = parseInt($(this).text());
             $(this).empty().slider({
                 min: 0,
@@ -322,13 +303,12 @@ var JqueryUiSliders = function() {
                 orientation: 'vertical'
             });
         });
-        $('.jui-slider-vertical-labels > span').slider('pips' , {
+        $('.jui-slider-vertical-labels > span').slider('pips', {
             rest: 'label'
         });
 
-
         // With tooltip and handle
-        $( '.jui-slider-vertical-minmax > span' ).each(function() {
+        $('.jui-slider-vertical-minmax > span').each(function () {
             var value = parseInt($(this).text());
             $(this).empty().slider({
                 min: 0,
@@ -343,22 +323,20 @@ var JqueryUiSliders = function() {
         $('.jui-slider-vertical-minmax > span').slider('float');
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUiSlider();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     JqueryUiSliders.init();
 });

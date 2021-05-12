@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3BarInteraction = function() {
-
-
+var D3BarInteraction = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _barInteraction = function() {
+    var _barInteraction = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3BarInteraction = function() {
         var element = document.getElementById('d3-simple-interaction'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 20, bottom: 20, left: 10},
+                margin = { top: 5, right: 20, bottom: 20, left: 10 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
@@ -47,8 +42,6 @@ var D3BarInteraction = function() {
             // Colors
             var bar_colors = d3.scale.category20(),
                 bar_text_color = '#fff'
-
-
 
             // Construct scales
             // ------------------------------
@@ -63,8 +56,6 @@ var D3BarInteraction = function() {
                 .domain([0, d3.max(dataset)])
                 .range([0, height]);
 
-
-
             // Create axes
             // ------------------------------
 
@@ -72,8 +63,6 @@ var D3BarInteraction = function() {
             var xAxis = d3.svg.axis()
                 .scale(x)
                 .orient("bottom");
-
-
 
             // Create chart
             // ------------------------------
@@ -86,9 +75,7 @@ var D3BarInteraction = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Add tooltip
             // ------------------------------
@@ -97,11 +84,10 @@ var D3BarInteraction = function() {
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
-                .html(function(d) { return d })
+                .html(function (d) { return d })
 
             // Initialize tooltip
             svg.call(tip);
-
 
             //
             // Append chart elements
@@ -115,44 +101,41 @@ var D3BarInteraction = function() {
                 .data(dataset)
                 .enter()
                 .append("rect")
-                    .attr("class", "d3-bar")
-                    .attr("x", function(d, i) { return x(i) })
-                    .attr("width", x.rangeBand())
-                    .attr("height", 0)
-                    .attr("y", height)
-                    .attr("fill", function(d, i) { return bar_colors(i); })
-                    .style("cursor", "pointer")
-                    .on('mouseover', tip.show)
-                    .on('mouseout', tip.hide)
+                .attr("class", "d3-bar")
+                .attr("x", function (d, i) { return x(i) })
+                .attr("width", x.rangeBand())
+                .attr("height", 0)
+                .attr("y", height)
+                .attr("fill", function (d, i) { return bar_colors(i); })
+                .style("cursor", "pointer")
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide)
 
             // Add bar transition
             drawBars.transition()
                 .delay(200)
                 .duration(1000)
-                .attr("height", function(d) { return y(d) })
-                .attr("y", function(d) { return height - y(d) })
-
+                .attr("height", function (d) { return y(d) })
+                .attr("y", function (d) { return height - y(d) })
 
             // Add text labels
             var drawLabels = svg.selectAll(".value-label")
                 .data(dataset)
                 .enter()
                 .append("text")
-                    .attr("class", "value-label")
-                    .attr("x", function(d, i) { return x(i) + x.rangeBand() / 2 })
-                    .attr("y", function(d) { return height - y(d) + 25; })
-                    .style('opacity', 0)
-                    .style("text-anchor", "middle")
-                    .style("fill", bar_text_color)
-                    .text(function(d) {return d;});
+                .attr("class", "value-label")
+                .attr("x", function (d, i) { return x(i) + x.rangeBand() / 2 })
+                .attr("y", function (d) { return height - y(d) + 25; })
+                .style('opacity', 0)
+                .style("text-anchor", "middle")
+                .style("fill", bar_text_color)
+                .text(function (d) { return d; });
 
             // Add text label transition
             drawLabels.transition()
                 .delay(1000)
                 .duration(500)
                 .style('opacity', 1);
-
-
 
             // Create axes
             // ------------------------------
@@ -162,34 +145,31 @@ var D3BarInteraction = function() {
                 .scale(x)
                 .orient("bottom");
 
-
-
             // Change data sets
             // ------------------------------
 
-            d3.select(".toggle-dataset").on("change", function() {
-                if(this.checked) {
-
+            d3.select(".toggle-dataset").on("change", function () {
+                if (this.checked) {
                     dataset = [8.4, 12.1, 25.5, 10.3, 11.7, 10.9, 13.3, 23.1, 15.4, 12.3, 17.8, 18.8, 14.7, 8.8, 11.2, 10.2, 17.1, 14.5, 11.9, 7.3, 7.4];
 
                     // Update all rects
                     svg.selectAll("rect")
                         .data(dataset)
                         .transition()
-                            .delay(0)
-                            .duration(1000)
-                            .ease('cubic-in-out')
-                            .attr("y", function(d) { return height - y(d) })
-                            .attr("height", function(d) { return y(d) })
-                            .style("fill", bar_colors)
+                        .delay(0)
+                        .duration(1000)
+                        .ease('cubic-in-out')
+                        .attr("y", function (d) { return height - y(d) })
+                        .attr("height", function (d) { return y(d) })
+                        .style("fill", bar_colors)
 
                     // Update labels
                     var drawNewlabels = svg.selectAll("text")
                         .data(dataset)
-                        .attr("x", function(d, i) {return x(i) + x.rangeBand() / 2 })
-                        .attr("y", function(d) {return height - y(d) + 25 })
+                        .attr("x", function (d, i) { return x(i) + x.rangeBand() / 2 })
+                        .attr("y", function (d) { return height - y(d) + 25 })
                         .style('opacity', 0)
-                        .text(function(d) {return d;});
+                        .text(function (d) { return d; });
 
                     // Transition
                     drawNewlabels.transition()
@@ -198,28 +178,26 @@ var D3BarInteraction = function() {
                         .style('opacity', 1)
                 }
                 else {
-
                     dataset = [40.5, 33.1, 31.6, 31.0, 29.9, 28.9, 25.2, 25.2, 24.8, 24.3, 24.0, 22.6, 20.5, 19.5, 19.0, 18.9, 18.8, 18.5, 18.4, 17.6, 17.1];
 
                     // Update all rects
                     svg.selectAll("rect")
                         .data(dataset)
                         .transition()
-                            .delay(0)
-                            .duration(1000)
-                            .ease('cubic-in-out')
-                            .attr("y", function(d) { return height - y(d) })
-                            .attr("height", function(d) { return y(d) })
-                            .style("fill", function(d, i) { return bar_colors(i); });
-
+                        .delay(0)
+                        .duration(1000)
+                        .ease('cubic-in-out')
+                        .attr("y", function (d) { return height - y(d) })
+                        .attr("height", function (d) { return y(d) })
+                        .style("fill", function (d, i) { return bar_colors(i); });
 
                     // Update labels
                     var drawFirstlabels = svg.selectAll("text")
                         .data(dataset)
-                        .attr("x", function(d, i) {return x(i) + x.rangeBand() / 2 })
-                        .attr("y", function(d) {return height - y(d) + 25 })
+                        .attr("x", function (d, i) { return x(i) + x.rangeBand() / 2 })
+                        .attr("y", function (d) { return height - y(d) + 25 })
                         .style('opacity', 0)
-                        .text(function(d) {return d;});
+                        .text(function (d) { return d; });
 
                     drawFirstlabels.transition()
                         .delay(1000)
@@ -227,7 +205,6 @@ var D3BarInteraction = function() {
                         .style('opacity', 1);
                 }
             });
-
 
             // Resize chart
             // ------------------------------
@@ -240,15 +217,13 @@ var D3BarInteraction = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -259,7 +234,6 @@ var D3BarInteraction = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -269,35 +243,32 @@ var D3BarInteraction = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Bars
-                svg.selectAll('.d3-bar').attr("x", function(d, i) { return x(i) }).attr("width", x.rangeBand());
+                svg.selectAll('.d3-bar').attr("x", function (d, i) { return x(i) }).attr("width", x.rangeBand());
 
                 // Text label
-                svg.selectAll(".value-label").attr("x", function(d, i) { return x(i) + x.rangeBand() / 2 });
+                svg.selectAll(".value-label").attr("x", function (d, i) { return x(i) + x.rangeBand() / 2 });
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barInteraction();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3BarInteraction.init();
 });

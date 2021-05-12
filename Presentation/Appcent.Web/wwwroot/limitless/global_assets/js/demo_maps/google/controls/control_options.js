@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapControlOptions = function() {
-
-
+var GoogleMapControlOptions = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapControlOptions = function() {
+    var _googleMapControlOptions = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -26,7 +23,6 @@ var GoogleMapControlOptions = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_control_options_element = document.getElementById('map_control_options');
 
@@ -52,22 +48,20 @@ var GoogleMapControlOptions = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapControlOptions();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapControlOptions.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapDrawingPolygons = function() {
-
-
+var GoogleMapDrawingPolygons = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapDrawingPolygons = function() {
+    var _googleMapDrawingPolygons = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -30,7 +27,6 @@ var GoogleMapDrawingPolygons = function() {
         // stroke connecting the last LatLng back to the first LatLng.
 
         function initialize() {
-
             // Define map element
             var map_drawing_polygons_element = document.getElementById('map_drawing_polygon');
 
@@ -43,7 +39,6 @@ var GoogleMapDrawingPolygons = function() {
 
             // Apply options
             var map = new google.maps.Map(map_drawing_polygons_element, mapOptions);
-
 
             // Define the LatLng coordinates for the polygon's path. Note that there's
             // no need to specify the final coordinates to complete the polygon, because
@@ -74,22 +69,20 @@ var GoogleMapDrawingPolygons = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapDrawingPolygons();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapDrawingPolygons.init();
 });

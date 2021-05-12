@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FullCalendarFormats = function() {
-
-
+var FullCalendarFormats = function () {
     //
     // Setup module components
     //
 
     // FullCalendar formats examples
-    var _componentFullCalendarFormats = function() {
+    var _componentFullCalendarFormats = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
         }
-
 
         //
         // Date formats
@@ -33,9 +29,9 @@ var FullCalendarFormats = function() {
         var calendarFormatElement = document.querySelector('.fullcalendar-formats');
 
         // Initialize
-        if(calendarFormatElement) {
+        if (calendarFormatElement) {
             var calendarFormatInit = new FullCalendar.Calendar(calendarFormatElement, {
-                plugins: [ 'dayGrid', 'interaction' ],
+                plugins: ['dayGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -127,7 +123,6 @@ var FullCalendarFormats = function() {
             }).render();
         }
 
-
         //
         // Localization
         //
@@ -140,9 +135,9 @@ var FullCalendarFormats = function() {
         var calendarLocaleElement = document.querySelector('.fullcalendar-languages');
 
         // Initialize
-        if(calendarLocaleElement) {
+        if (calendarLocaleElement) {
             var calendarLocaleInit = new FullCalendar.Calendar(calendarLocaleElement, {
-                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -212,9 +207,8 @@ var FullCalendarFormats = function() {
 
             calendarLocaleInit.render();
 
-
             // Build the locale selector's options
-            calendarLocaleInit.getAvailableLocaleCodes().forEach(function(localeCode) {
+            calendarLocaleInit.getAvailableLocaleCodes().forEach(function (localeCode) {
                 var optionEl = document.createElement('option');
                 optionEl.value = localeCode;
                 optionEl.selected = localeCode == initialLocaleCode;
@@ -223,7 +217,7 @@ var FullCalendarFormats = function() {
             });
 
             // When the selected option changes, dynamically change the calendar option (jQuery, because of Select2)
-            $(calendarLocaleSelectorElement).on('change', function (e) { 
+            $(calendarLocaleSelectorElement).on('change', function (e) {
                 if (this.value) {
                     calendarLocaleInit.setOption('locale', this.value);
                 }
@@ -232,7 +226,7 @@ var FullCalendarFormats = function() {
     };
 
     // Select2 select
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -245,23 +239,21 @@ var FullCalendarFormats = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFullCalendarFormats();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FullCalendarFormats.init();
 });

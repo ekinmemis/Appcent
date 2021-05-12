@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapMarkerSymbolsCustom = function() {
-
-
+var GoogleMapMarkerSymbolsCustom = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapMarkerSymbolsCustom = function() {
+    var _googleMapMarkerSymbolsCustom = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -28,10 +25,8 @@ var GoogleMapMarkerSymbolsCustom = function() {
         // Sydney, NSW, Australia. Note that the anchor is set to
         // (0,32) to correspond to the base of the flagpole.
 
-
         // Map settings
         function initialize() {
-
             // Define map element
             var map_marker_symbol_custom_element = document.getElementById('map_symbol_custom');
 
@@ -48,7 +43,6 @@ var GoogleMapMarkerSymbolsCustom = function() {
             setMarkers(map, beaches);
         }
 
-
         /**
         * Data for the markers consisting of a name, a LatLng and a zIndex for
         * the order in which these markers should display on top of each
@@ -62,10 +56,8 @@ var GoogleMapMarkerSymbolsCustom = function() {
             ['Maroubra Beach', -33.950198, 151.259302, 1]
         ];
 
-
         // Set markers
         function setMarkers(map, locations) {
-
             // Add markers to the map
 
             // Marker sizes are expressed as a Size of X,Y
@@ -82,12 +74,11 @@ var GoogleMapMarkerSymbolsCustom = function() {
                 size: new google.maps.Size(20, 32),
 
                 // The origin for this image is 0,0.
-                origin: new google.maps.Point(0,0),
+                origin: new google.maps.Point(0, 0),
 
                 // The anchor for this image is the base of the flagpole at 0,32.
                 anchor: new google.maps.Point(0, 32)
             };
-
 
             // Shapes define the clickable region of the icon.
             // The type defines an HTML &lt;area&gt; element 'poly' which
@@ -95,7 +86,7 @@ var GoogleMapMarkerSymbolsCustom = function() {
             // coordinate closes the poly by connecting to the first
             // coordinate.
             var shape = {
-                coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
                 type: 'poly'
             };
             for (var i = 0; i < locations.length; i++) {
@@ -116,22 +107,20 @@ var GoogleMapMarkerSymbolsCustom = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapMarkerSymbolsCustom();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapMarkerSymbolsCustom.init();
 });

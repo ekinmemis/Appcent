@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var SidebarComponents = function () {
-
-
     //
     // Setup module components
     //
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -32,7 +29,7 @@ var SidebarComponents = function () {
     };
 
     // Switchery
-    var _componentSwitchery = function() {
+    var _componentSwitchery = function () {
         if (typeof Switchery == 'undefined') {
             console.warn('Warning - switchery.min.js is not loaded.');
             return;
@@ -40,13 +37,13 @@ var SidebarComponents = function () {
 
         // Multiple switchery toggles
         var elems = Array.prototype.slice.call(document.querySelectorAll('.form-input-switchery'));
-        elems.forEach(function(html) {
+        elems.forEach(function (html) {
             var switchery = new Switchery(html);
         });
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -59,7 +56,7 @@ var SidebarComponents = function () {
     };
 
     // Multiselect
-    var _componentMultiselect = function() {
+    var _componentMultiselect = function () {
         if (!$().multiselect) {
             console.warn('Warning - bootstrap-multiselect.js is not loaded.');
             return;
@@ -70,7 +67,7 @@ var SidebarComponents = function () {
     };
 
     // Color picker
-    var _componentColorPicker = function() {
+    var _componentColorPicker = function () {
         if (!$().spectrum) {
             console.warn('Warning - spectrum.js is not loaded.');
             return;
@@ -88,7 +85,7 @@ var SidebarComponents = function () {
     };
 
     // Daterange picker
-    var _componentDaterange = function() {
+    var _componentDaterange = function () {
         if (!$().daterangepicker) {
             console.warn('Warning - daterangepicker.js is not loaded.');
             return;
@@ -118,13 +115,13 @@ var SidebarComponents = function () {
                     fromLabel: 'From',
                     toLabel: 'To',
                     customRangeLabel: 'Custom Range',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                     monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     firstDay: 1,
                     direction: $('html').attr('dir') == 'rtl' ? 'rtl' : 'ltr'
                 }
             },
-            function(start, end) {
+            function (start, end) {
                 $('#reportrange .daterange-custom-display').html(start.format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>') + '<em> &#8211; </em>' + end.format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>'));
             }
         );
@@ -134,7 +131,7 @@ var SidebarComponents = function () {
     };
 
     // jQuery UI components
-    var _componentsJqueryUI = function() {
+    var _componentsJqueryUI = function () {
         if (!$().datepicker || !$().slider || !$().sortable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -142,7 +139,6 @@ var SidebarComponents = function () {
 
         // Date picker
         $('.datepicker').datepicker();
-
 
         //
         // Sliders
@@ -153,9 +149,8 @@ var SidebarComponents = function () {
             range: true,
             min: 0,
             max: 60,
-            values: [ 10, 50 ]
+            values: [10, 50]
         });
-
 
         //
         // Add pips to horizontal slider
@@ -165,23 +160,21 @@ var SidebarComponents = function () {
         $('.ui-slider-labels').slider({
             max: 9,
             range: true,
-            values: [ 2, 7 ]
+            values: [2, 7]
         });
 
         // And then we can apply pips to it!
-        $('.ui-slider-labels').slider('pips' , {
+        $('.ui-slider-labels').slider('pips', {
             rest: 'labels'
         });
         $('.ui-slider-labels').slider('float');
-
 
         //
         // Add pips to vertical slider
         //
 
         // Add options
-        $('.ui-slider-vertical-pips > span').each(function() {
-
+        $('.ui-slider-vertical-pips > span').each(function () {
             // Read initial values from markup and remove that
             var value = parseInt($(this).text());
 
@@ -197,7 +190,6 @@ var SidebarComponents = function () {
 
         // Add pips
         $('.ui-slider-vertical-pips > span').slider('pips');
-
 
         //
         // Sortable
@@ -215,14 +207,14 @@ var SidebarComponents = function () {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
     };
 
     // Dual listbox
-    var _componentDualListbox = function() {
+    var _componentDualListbox = function () {
         if (!$().bootstrapDualListbox) {
             console.warn('Warning - duallistbox.min.js is not loaded.');
             return;
@@ -236,7 +228,7 @@ var SidebarComponents = function () {
     };
 
     // Fancytree
-    var _componentFancytree = function() {
+    var _componentFancytree = function () {
         if (!$().fancytree) {
             console.warn('Warning - fancytree_all.min.js is not loaded.');
             return;
@@ -247,7 +239,7 @@ var SidebarComponents = function () {
     };
 
     // Lightbox
-    var _componentFancybox = function() {
+    var _componentFancybox = function () {
         if (!$().fancybox) {
             console.warn('Warning - fancybox.min.js is not loaded.');
             return;
@@ -259,13 +251,12 @@ var SidebarComponents = function () {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        initComponents: function() {
+        initComponents: function () {
             _componentUniform();
             _componentSwitchery();
             _componentSelect2();
@@ -280,10 +271,9 @@ var SidebarComponents = function () {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     SidebarComponents.initComponents();
 });

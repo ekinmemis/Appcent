@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleLineIntervals = function() {
-
-
+var GoogleLineIntervals = function () {
     //
     // Setup module components
     //
 
     // Line intervals chart
-    var _googleLineIntervals = function() {
+    var _googleLineIntervals = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleLineIntervals = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawLineIntervals();
 
@@ -37,7 +33,7 @@ var GoogleLineIntervals = function() {
 
                 // Resize on window resize
                 var resizeLineIntervals;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeLineIntervals);
                     resizeLineIntervals = setTimeout(function () {
                         drawLineIntervals();
@@ -49,20 +45,19 @@ var GoogleLineIntervals = function() {
 
         // Chart settings
         function drawLineIntervals() {
-
             // Define charts element
             var line_intervals_element = document.getElementById('google-line-intervals');
 
             // Data
             var data = new google.visualization.DataTable();
-                data.addColumn('string', 'x');
-                data.addColumn('number', 'values');
-                data.addColumn({id:'i0', type:'number', role:'interval'});
-                data.addColumn({id:'i1', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
+            data.addColumn('string', 'x');
+            data.addColumn('number', 'values');
+            data.addColumn({ id: 'i0', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i1', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
 
             data.addRows([
                 ['a', 100, 90, 110, 85, 96, 104, 120],
@@ -89,7 +84,7 @@ var GoogleLineIntervals = function() {
                     height: 350
                 },
                 lineWidth: 3,
-                intervals: {'style': 'line'}, // Use line intervals.
+                intervals: { 'style': 'line' }, // Use line intervals.
                 tooltip: {
                     textStyle: {
                         fontName: 'Roboto',
@@ -107,7 +102,7 @@ var GoogleLineIntervals = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -119,9 +114,8 @@ var GoogleLineIntervals = function() {
                     }
                 },
                 legend: 'none',
-                series: [{'color': '#66BB6A'}]
+                series: [{ 'color': '#66BB6A' }]
             };
-
 
             // Draw chart
             var line_intervals = new google.visualization.LineChart(line_intervals_element);
@@ -129,18 +123,16 @@ var GoogleLineIntervals = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleLineIntervals();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

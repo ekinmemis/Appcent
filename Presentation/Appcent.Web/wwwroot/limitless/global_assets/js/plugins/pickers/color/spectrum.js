@@ -19,7 +19,6 @@
     "use strict";
 
     var defaultOpts = {
-
         // Callbacks
         beforeShow: noop,
         move: noop,
@@ -79,7 +78,6 @@
         "</div>"
     ].join(''),
     markup = (function () {
-
         // IE does not support gradients with multiple stops, so we need to simulate
         //  that for the rainbow slider with 8 divs that each have a single gradient
         var gradientFix = "";
@@ -176,7 +174,6 @@
     }
 
     function spectrum(element, o) {
-
         var opts = instanceOptions(o, element),
             flat = opts.flat,
             showSelectionPalette = opts.showSelectionPalette,
@@ -240,7 +237,6 @@
             allowEmpty = opts.allowEmpty && !isInputTypeColor;
 
         function applyOptions() {
-
             if (opts.showPaletteOnly) {
                 opts.showPalette = true;
             }
@@ -274,7 +270,6 @@
         }
 
         function initialize() {
-
             if (IE) {
                 container.find("*:not(input)").attr("unselectable", "on");
             }
@@ -293,7 +288,6 @@
                 boundElement.after(container).hide();
             }
             else {
-
                 var appendTo = opts.appendTo === "parent" ? boundElement.parent() : $(opts.appendTo);
                 if (appendTo.length !== 1) {
                     appendTo = $("body");
@@ -404,7 +398,6 @@
             }, dragStart, dragStop);
 
             draggable(dragger, function (dragX, dragY, e) {
-
                 // shift+drag should snap the movement to either the x or y axis.
                 if (!e.shiftKey) {
                     shiftMovementDirection = null;
@@ -433,7 +426,6 @@
                 }
 
                 move();
-
             }, dragStart, dragStop);
 
             if (!!initialColor) {
@@ -482,9 +474,7 @@
         }
 
         function updateSelectionPaletteFromStorage() {
-
             if (localStorageKey && window.localStorage) {
-
                 // Migrate old palettes over to new format.  May want to remove this eventually.
                 try {
                     var oldPalette = window.localStorage[localStorageKey].split(",#");
@@ -539,7 +529,6 @@
         }
 
         function drawPalette() {
-
             var currentColor = get();
 
             var html = $.map(paletteArray, function (palette, i) {
@@ -580,7 +569,6 @@
         }
 
         function setFromTextInput() {
-
             var value = textInput.val();
 
             if ((value === null || value === "") && allowEmpty) {
@@ -743,7 +731,6 @@
         }
 
         function updateUI() {
-
             textInput.removeClass("sp-validation-error");
 
             updateHelperLocations();
@@ -1023,7 +1010,6 @@
     * noop - do nothing
     */
     function noop() {
-
     }
 
     /**
@@ -1158,9 +1144,7 @@
     */
     var dataID = "spectrum.id";
     $.fn.spectrum = function (opts, extra) {
-
         if (typeof opts == "string") {
-
             var returnValue = this;
             var args = Array.prototype.slice.call( arguments, 1 );
 
@@ -1232,7 +1216,6 @@
     // Brian Grinstead, MIT License
 
     (function() {
-
     var trimLeft = /^[\s,#]+/,
         trimRight = /\s+$/,
         tinyCounter = 0,
@@ -1243,7 +1226,6 @@
         mathRandom = math.random;
 
     var tinycolor = function(color, opts) {
-
         color = (color) ? color : '';
         opts = opts || { };
 
@@ -1513,7 +1495,6 @@
     //     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
     //
     function inputToRGB(color) {
-
         var rgb = { r: 0, g: 0, b: 0 };
         var a = 1;
         var ok = false;
@@ -1561,7 +1542,6 @@
         };
     }
 
-
     // Conversion Functions
     // --------------------
 
@@ -1586,7 +1566,6 @@
     // *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
     // *Returns:* { h, s, l } in [0,1]
     function rgbToHsl(r, g, b) {
-
         r = bound01(r, 255);
         g = bound01(g, 255);
         b = bound01(b, 255);
@@ -1651,7 +1630,6 @@
     // *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
     // *Returns:* { h, s, v } in [0,1]
     function rgbToHsv(r, g, b) {
-
         r = bound01(r, 255);
         g = bound01(g, 255);
         b = bound01(b, 255);
@@ -1681,7 +1659,6 @@
     // *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
     // *Returns:* { r, g, b } in the set [0, 255]
      function hsvToRgb(h, s, v) {
-
         h = bound01(h, 360) * 6;
         s = bound01(s, 100);
         v = bound01(v, 100);
@@ -1704,7 +1681,6 @@
     // Assumes r, g, and b are contained in the set [0, 255]
     // Returns a 3 or 6 character hex
     function rgbToHex(r, g, b, allow3Char) {
-
         var hex = [
             pad2(mathRound(r).toString(16)),
             pad2(mathRound(g).toString(16)),
@@ -1723,7 +1699,6 @@
         // Assumes r, g, b and a are contained in the set [0, 255]
         // Returns an 8 character hex
         function rgbaToHex(r, g, b, a) {
-
             var hex = [
                 pad2(convertDecimalToHex(a)),
                 pad2(mathRound(r).toString(16)),
@@ -1747,7 +1722,6 @@
             b: mathRandom()
         });
     };
-
 
     // Modification Functions
     // ----------------------
@@ -1915,7 +1889,6 @@
         return tinycolor(rgba);
     };
 
-
     // Readability Functions
     // ---------------------
     // <http://www.w3.org/TR/AERT#color-contrast>
@@ -1963,7 +1936,6 @@
         var bestScore = 0;
         var bestIsReadable = false;
         for (var i=0; i < colorList.length; i++) {
-
             // We normalize both around the "acceptable" breaking point,
             // but rank brightness constrast higher than hue.
 
@@ -1981,7 +1953,6 @@
         }
         return bestColor;
     };
-
 
     // Big List of Colors
     // ------------------
@@ -2141,7 +2112,6 @@
     // Make it easy to access colors via `hexNames[hex]`
     var hexNames = tinycolor.hexNames = flip(names);
 
-
     // Utilities
     // ---------
 
@@ -2233,7 +2203,6 @@
     }
 
     var matchers = (function() {
-
         // <http://www.w3.org/TR/css3-values/#integers>
         var CSS_INTEGER = "[-\\+]?\\d+%?";
 
@@ -2266,7 +2235,6 @@
     // Permissive string parsing.  Take in a number of formats, and output an object
     // based on detected format.  Returns `{ r, g, b }` or `{ h, s, l }` or `{ h, s, v}`
     function stringInputToObject(color) {
-
         color = color.replace(trimLeft,'').replace(trimRight, '').toLowerCase();
         var named = false;
         if (names[color]) {
@@ -2337,5 +2305,4 @@
             $.fn.spectrum.processNativeColorInputs();
         }
     });
-
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3BarSortableVertical = function() {
-
-
+var D3BarSortableVertical = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _barSortableVertical = function() {
+    var _barSortableVertical = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3BarSortableVertical = function() {
         var element = document.getElementById('d3-bar-sortable-vertical'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 20, bottom: 20, left: 40},
+                margin = { top: 5, right: 20, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
@@ -46,8 +41,6 @@ var D3BarSortableVertical = function() {
 
             // Colors
             var colors = d3.scale.category20c();
-
-
 
             // Construct scales
             // ------------------------------
@@ -59,8 +52,6 @@ var D3BarSortableVertical = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -76,8 +67,6 @@ var D3BarSortableVertical = function() {
                 .orient("left")
                 .tickFormat(formatPercent);
 
-
-
             // Create chart
             // ------------------------------
 
@@ -89,29 +78,25 @@ var D3BarSortableVertical = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/bars/bars_basic.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/bars/bars_basic.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.frequency = +d.frequency;
                 });
-
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(data.map(function(d) { return d.letter; }));
+                x.domain(data.map(function (d) { return d.letter; }));
 
                 // Vertical
-                y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
+                y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
 
                 //
                 // Append chart elements
@@ -140,7 +125,6 @@ var D3BarSortableVertical = function() {
                     .style("text-anchor", "end")
                     .text("Frequency");
 
-
                 // Append bars
                 // ------------------------------
 
@@ -148,13 +132,12 @@ var D3BarSortableVertical = function() {
                     .data(data)
                     .enter()
                     .append("rect")
-                        .attr("class", "d3-bar")
-                        .attr("fill", function(d, i) { return colors(i); })
-                        .attr("x", function(d) { return x(d.letter); })
-                        .attr("width", x.rangeBand())
-                        .attr("y", function(d) { return y(d.frequency); })
-                        .attr("height", function(d) { return height - y(d.frequency); });
-
+                    .attr("class", "d3-bar")
+                    .attr("fill", function (d, i) { return colors(i); })
+                    .attr("x", function (d) { return x(d.letter); })
+                    .attr("width", x.rangeBand())
+                    .attr("y", function (d) { return y(d.frequency); })
+                    .attr("height", function (d) { return height - y(d.frequency); });
 
                 // Change data sets
                 // ------------------------------
@@ -163,7 +146,7 @@ var D3BarSortableVertical = function() {
                 d3.select(".toggle-sort").on("change", change);
 
                 // Sort values on page load with delay
-                var sortTimeout = setTimeout(function() {
+                var sortTimeout = setTimeout(function () {
                     d3.select(".toggle-sort").property("checked", true).each(change);
                 }, 2000);
 
@@ -173,17 +156,17 @@ var D3BarSortableVertical = function() {
 
                     // Copy-on-write since tweens are evaluated after a delay.
                     var x0 = x.domain(data.sort(this.checked
-                        ? function(a, b) { return b.frequency - a.frequency; }
-                        : function(a, b) { return d3.ascending(a.letter, b.letter); })
-                        .map(function(d) { return d.letter; }))
+                        ? function (a, b) { return b.frequency - a.frequency; }
+                        : function (a, b) { return d3.ascending(a.letter, b.letter); })
+                        .map(function (d) { return d.letter; }))
                         .copy();
 
                     var transition = svg.transition().duration(750),
-                        delay = function(d, i) { return i * 50; };
+                        delay = function (d, i) { return i * 50; };
 
                     transition.selectAll(".d3-bar")
                         .delay(delay)
-                        .attr("x", function(d) { return x0(d.letter); });
+                        .attr("x", function (d) { return x0(d.letter); });
 
                     transition.select(".d3-axis-horizontal")
                         .call(xAxis)
@@ -191,8 +174,6 @@ var D3BarSortableVertical = function() {
                         .delay(delay);
                 }
             });
-
-
 
             // Resize chart
             // ------------------------------
@@ -205,15 +186,13 @@ var D3BarSortableVertical = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -224,7 +203,6 @@ var D3BarSortableVertical = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -234,32 +212,29 @@ var D3BarSortableVertical = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Line path
-                svg.selectAll('.d3-bar').attr("width", x.rangeBand()).attr("x", function(d) { return x(d.letter); });
+                svg.selectAll('.d3-bar').attr("width", x.rangeBand()).attr("x", function (d) { return x(d.letter); });
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barSortableVertical();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3BarSortableVertical.init();
 });

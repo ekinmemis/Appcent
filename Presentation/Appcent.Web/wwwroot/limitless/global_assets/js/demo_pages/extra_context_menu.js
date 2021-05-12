@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var ContextMenu = function() {
-
-
+var ContextMenu = function () {
     //
     // Setup module components
     //
 
     // Context menu
-    var _componentContextMenu = function() {
+    var _componentContextMenu = function () {
         if (!$().contextmenu) {
             console.warn('Warning - contextmenu.js is not loaded.');
             return;
@@ -46,7 +43,7 @@ var ContextMenu = function() {
         // Dynamic replacement
         $('.context-dynamic').contextmenu({
             target: '.context-dynamic-menu',
-            before: function(e) { 
+            before: function (e) {
                 this.getMenu().find('a').eq(2).html('<i class="icon-stack"></i> Item has been changed');
                 return true;
             }
@@ -55,7 +52,7 @@ var ContextMenu = function() {
         // Name on selection
         $('.context-selection').contextmenu({
             target: '.context-selection-menu',
-            onItem: function(context, e) {
+            onItem: function (context, e) {
                 alert($(e.target).text());
             }
         });
@@ -63,52 +60,49 @@ var ContextMenu = function() {
         // Dropdown submenu
         $('.context-submenu').contextmenu({
             target: '.context-sub-menu'
-        }).on('hidden.bs.context',function () {
+        }).on('hidden.bs.context', function () {
             $(this).find('.context-sub-menu .show').removeClass('show');
         });
-
 
         //
         // Callbacks
         //
 
         // onShow callback
-        $('.context-show-menu').on('show.bs.context',function () {
+        $('.context-show-menu').on('show.bs.context', function () {
             alert('onShow event fired');
         });
 
         // onShown callback
-        $('.context-shown-menu').on('shown.bs.context',function () {
+        $('.context-shown-menu').on('shown.bs.context', function () {
             alert('onShown event fired');
         });
 
         // onHide callback
-        $('.context-hide-menu').on('hide.bs.context',function () {
+        $('.context-hide-menu').on('hide.bs.context', function () {
             alert('onHide event fired');
         });
 
         // onHidden callback
-        $('.context-hidden-menu').on('hidden.bs.context',function () {
+        $('.context-hidden-menu').on('hidden.bs.context', function () {
             alert('onHidden event fired');
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentContextMenu();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     ContextMenu.init();
 });

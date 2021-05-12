@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleHistogram = function() {
-
-
+var GoogleHistogram = function () {
     //
     // Setup module components
     //
 
     // Histogram
-    var _googleHistogram = function() {
+    var _googleHistogram = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleHistogram = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawHistogram();
 
@@ -37,7 +33,7 @@ var GoogleHistogram = function() {
 
                 // Resize on window resize
                 var resizeHistogram;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeHistogram);
                     resizeHistogram = setTimeout(function () {
                         drawHistogram();
@@ -49,7 +45,6 @@ var GoogleHistogram = function() {
 
         // Chart settings
         function drawHistogram() {
-
             // Define charts element
             var histogram_chart_element = document.getElementById('google-histogram');
 
@@ -86,7 +81,6 @@ var GoogleHistogram = function() {
                 ['Velociraptor (swift robber)', 1.8]]
             );
 
-
             // Options
             var options_histogram = {
                 fontName: 'Roboto',
@@ -116,7 +110,7 @@ var GoogleHistogram = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -127,7 +121,7 @@ var GoogleHistogram = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee'
                     },
                     minValue: 0
@@ -139,7 +133,7 @@ var GoogleHistogram = function() {
                         color: '#333'
                     }
                 },
-                series: [{color: '#ffb980'}]
+                series: [{ color: '#ffb980' }]
             };
 
             // Draw chart
@@ -148,18 +142,16 @@ var GoogleHistogram = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleHistogram();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

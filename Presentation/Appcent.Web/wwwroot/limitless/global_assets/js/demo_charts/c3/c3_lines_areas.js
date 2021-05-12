@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var С3LinesAreas = function() {
-
-
+var С3LinesAreas = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _linesAreasExamples = function() {
+    var _linesAreasExamples = function () {
         if (typeof c3 == 'undefined') {
             console.warn('Warning - c3.min.js is not loaded.');
             return;
@@ -32,19 +29,17 @@ var С3LinesAreas = function() {
         var step_chart_element = document.getElementById('c3-step-chart');
         var sidebarToggle = document.querySelector('.sidebar-control');
 
-
         // Line chart
-        if(line_chart_element) {
-
+        if (line_chart_element) {
             // Generate chart
             var line_chart = c3.generate({
                 bindto: line_chart_element,
-                point: { 
-                    r: 4   
+                point: {
+                    r: 4
                 },
                 size: { height: 400 },
                 color: {
-                    pattern: ['#2ec7c9','#b6a2de','#5ab1ef']
+                    pattern: ['#2ec7c9', '#b6a2de', '#5ab1ef']
                 },
                 data: {
                     columns: [
@@ -82,14 +77,13 @@ var С3LinesAreas = function() {
             }, 9000);
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 line_chart.resize();
             });
         }
 
         // Line chart with regions
-        if(chart_line_regions_element) {
-
+        if (chart_line_regions_element) {
             // Generate chart
             var chart_line_regions = c3.generate({
                 bindto: chart_line_regions_element,
@@ -106,8 +100,8 @@ var С3LinesAreas = function() {
                         ['data2', 50, 20, 10, 40, 15, 25]
                     ],
                     regions: {
-                        'data1': [{'start':1, 'end':2, 'style':'dashed'},{'start':3}],
-                        'data2': [{'end':3}]
+                        'data1': [{ 'start': 1, 'end': 2, 'style': 'dashed' }, { 'start': 3 }],
+                        'data2': [{ 'end': 3 }]
                     }
                 },
                 grid: {
@@ -118,14 +112,13 @@ var С3LinesAreas = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 chart_line_regions.resize();
             });
         }
 
         // Area chart
-        if(area_chart_element) {
-
+        if (area_chart_element) {
             // Generate chart
             var area_chart = c3.generate({
                 bindto: area_chart_element,
@@ -134,7 +127,7 @@ var С3LinesAreas = function() {
                     r: 4
                 },
                 color: {
-                    pattern: ['#2ec7c9','#b6a2de']
+                    pattern: ['#2ec7c9', '#b6a2de']
                 },
                 data: {
                     columns: [
@@ -154,20 +147,19 @@ var С3LinesAreas = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 area_chart.resize();
             });
         }
 
         // Stacked area chart
-        if(area_stacked_chart_element) {
-
+        if (area_stacked_chart_element) {
             // Generate chart
             var area_stacked_chart = c3.generate({
                 bindto: area_stacked_chart_element,
                 size: { height: 400 },
                 color: {
-                    pattern: ['#2ec7c9','#b6a2de']
+                    pattern: ['#2ec7c9', '#b6a2de']
                 },
                 point: {
                     r: 4
@@ -191,14 +183,13 @@ var С3LinesAreas = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 area_stacked_chart.resize();
             });
         }
 
         // Step chart
-        if(step_chart_element) {
-
+        if (step_chart_element) {
             // Generate chart
             var step_chart = c3.generate({
                 bindto: step_chart_element,
@@ -224,28 +215,26 @@ var С3LinesAreas = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 step_chart.resize();
             });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesAreasExamples();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     С3LinesAreas.init();
 });

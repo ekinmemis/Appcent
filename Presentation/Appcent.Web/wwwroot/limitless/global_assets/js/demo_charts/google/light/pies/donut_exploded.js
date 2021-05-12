@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleDonutExploded = function() {
-
-
+var GoogleDonutExploded = function () {
     //
     // Setup module components
     //
 
     // Exploded donut
-    var _googleDonutExploded = function() {
+    var _googleDonutExploded = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleDonutExploded = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawDonutExploded();
 
@@ -37,7 +33,7 @@ var GoogleDonutExploded = function() {
 
                 // Resize on window resize
                 var resizeDonutExploded;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeDonutExploded);
                     resizeDonutExploded = setTimeout(function () {
                         drawDonutExploded();
@@ -49,7 +45,6 @@ var GoogleDonutExploded = function() {
 
         // Chart settings
         function drawDonutExploded() {
-
             // Define charts element
             var donut_exploded_element = document.getElementById('google-donut-exploded');
 
@@ -78,10 +73,10 @@ var GoogleDonutExploded = function() {
                 width: 540,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
                 chartArea: {
                     left: 50,
@@ -90,11 +85,11 @@ var GoogleDonutExploded = function() {
                 },
                 pieHole: 0.5,
                 pieSliceText: 'label',
-                slices: {  
-                    2: {offset: 0.15},
-                    8: {offset: 0.1},
-                    10: {offset: 0.15},
-                    11: {offset: 0.1}
+                slices: {
+                    2: { offset: 0.15 },
+                    8: { offset: 0.1 },
+                    10: { offset: 0.15 },
+                    11: { offset: 0.1 }
                 }
             };
 
@@ -104,18 +99,16 @@ var GoogleDonutExploded = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleDonutExploded();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

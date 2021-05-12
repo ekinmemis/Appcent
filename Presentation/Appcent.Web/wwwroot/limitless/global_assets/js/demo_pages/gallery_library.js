@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var MediaLibrary = function() {
-
-
+var MediaLibrary = function () {
     //
     // Setup module components
     //
 
     // Datatable
-    var _componentDatatable = function() {
+    var _componentDatatable = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
@@ -38,14 +35,14 @@ var MediaLibrary = function() {
                     width: 100,
                     targets: 1
                 },
-                { 
+                {
                     orderable: false,
                     width: 90,
                     targets: 6
                 }
             ],
-            order: [[ 2, 'asc' ]],
-            lengthMenu: [ 25, 50, 75, 100 ],
+            order: [[2, 'asc']],
+            lengthMenu: [25, 50, 75, 100],
             displayLength: 25,
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             language: {
@@ -70,7 +67,7 @@ var MediaLibrary = function() {
     };
 
     // Lightbox
-    var _componentFancybox = function() {
+    var _componentFancybox = function () {
         if (!$().fancybox) {
             console.warn('Warning - fancybox.min.js is not loaded.');
             return;
@@ -83,7 +80,7 @@ var MediaLibrary = function() {
     };
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -94,7 +91,7 @@ var MediaLibrary = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -108,13 +105,12 @@ var MediaLibrary = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatable();
             _componentFancybox();
             _componentUniform();
@@ -123,10 +119,9 @@ var MediaLibrary = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     MediaLibrary.init();
 });

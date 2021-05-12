@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsCustomAvailableHoursLight = function() {
-
-
+var EchartsCustomAvailableHoursLight = function () {
     //
     // Setup module components
     //
 
     // Bar chart with line
-    var _customAvailableHoursLightExample = function() {
+    var _customAvailableHoursLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsCustomAvailableHoursLight = function() {
         // Define element
         var available_hours_element = document.getElementById('available_hours');
 
-
         //
         // Charts configuration
         //
 
         if (available_hours_element) {
-
             // Initialize chart
             var available_hours = echarts.init(available_hours_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsCustomAvailableHoursLight = function() {
 
             // Options
             available_hours.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -96,7 +89,7 @@ var EchartsCustomAvailableHoursLight = function() {
                 // Horizontal axis
                 xAxis: [{
                     type: 'category',
-                    data : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     axisLabel: {
                         color: '#333'
                     },
@@ -178,13 +171,12 @@ var EchartsCustomAvailableHoursLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             available_hours_element && available_hours.resize();
         };
 
@@ -194,7 +186,7 @@ var EchartsCustomAvailableHoursLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -207,22 +199,20 @@ var EchartsCustomAvailableHoursLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _customAvailableHoursLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsCustomAvailableHoursLight.init();
 });

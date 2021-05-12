@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleScatterDiff = function() {
-
-
+var GoogleScatterDiff = function () {
     //
     // Setup module components
     //
 
     // Scatter diff chart
-    var _googleScatterDiff = function() {
+    var _googleScatterDiff = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleScatterDiff = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawScatterDiff();
 
@@ -37,7 +33,7 @@ var GoogleScatterDiff = function() {
 
                 // Resize on window resize
                 var resizeScatterDiff;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeScatterDiff);
                     resizeScatterDiff = setTimeout(function () {
                         drawScatterDiff();
@@ -49,7 +45,6 @@ var GoogleScatterDiff = function() {
 
         // Chart settings
         function drawScatterDiff() {
-
             // Define charts element
             var scatter_diff_element = document.getElementById('google-scatter-diff');
 
@@ -58,17 +53,17 @@ var GoogleScatterDiff = function() {
                 ['', 'Medicine 1', 'Medicine 2'],
                 [23, null, 12], [9, null, 39], [15, null, 28],
                 [37, null, 30], [21, null, 14], [12, null, 18],
-                [29, null, 34], [ 8, null, 12], [38, null, 28],
+                [29, null, 34], [8, null, 12], [38, null, 28],
                 [35, null, 12], [26, null, 10], [10, null, 29],
                 [11, null, 10], [27, null, 38], [39, null, 17],
-                [34, null, 20], [38, null,  5], [33, null, 27],
-                [23, null, 39], [12, null, 10], [ 8, 15, null],
+                [34, null, 20], [38, null, 5], [33, null, 27],
+                [23, null, 39], [12, null, 10], [8, 15, null],
                 [39, 15, null], [27, 31, null], [30, 24, null],
-                [31, 39, null], [35,  6, null], [ 5,  5, null],
-                [19, 39, null], [22,  8, null], [19, 23, null],
-                [27, 20, null], [11,  6, null], [34, 33, null],
-                [38,  8, null], [39, 29, null], [13, 23, null],
-                [13, 36, null], [39,  6, null], [14, 37, null], [13, 39, null]
+                [31, 39, null], [35, 6, null], [5, 5, null],
+                [19, 39, null], [22, 8, null], [19, 23, null],
+                [27, 20, null], [11, 6, null], [34, 33, null],
+                [38, 8, null], [39, 29, null], [13, 23, null],
+                [13, 36, null], [39, 6, null], [14, 37, null], [13, 39, null]
             ]);
 
             // New data
@@ -96,8 +91,8 @@ var GoogleScatterDiff = function() {
                 fontSize: 12,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#d87a80','#5ab1ef','#ffb980',
-                    '#b6a2de','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#d87a80', '#5ab1ef', '#ffb980',
+                    '#b6a2de', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: '3%',
@@ -115,7 +110,7 @@ var GoogleScatterDiff = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee'
                     },
                     minValue: 0
@@ -125,7 +120,7 @@ var GoogleScatterDiff = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -157,18 +152,16 @@ var GoogleScatterDiff = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleScatterDiff();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

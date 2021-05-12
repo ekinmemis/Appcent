@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var UserProfileTabbed = function() {
-
-
+var UserProfileTabbed = function () {
     //
     // Setup module components
     //
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -31,7 +28,7 @@ var UserProfileTabbed = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -44,7 +41,7 @@ var UserProfileTabbed = function() {
     };
 
     // Schedule
-    var _componentFullCalendar = function() {
+    var _componentFullCalendar = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
@@ -113,9 +110,9 @@ var UserProfileTabbed = function() {
         var myScheduleElement = document.querySelector('.my-schedule');
 
         // Initialize
-        if(myScheduleElement) {
+        if (myScheduleElement) {
             var myScheduleInit = new FullCalendar.Calendar(myScheduleElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -135,7 +132,7 @@ var UserProfileTabbed = function() {
     };
 
     // Row link
-    var _componentRowLink = function() {
+    var _componentRowLink = function () {
         if (!$().rowlink) {
             console.warn('Warning - rowlink.js is not loaded.');
             return;
@@ -146,14 +143,13 @@ var UserProfileTabbed = function() {
     };
 
     // Inbox table
-    var _componentTableInbox = function() {
-
+    var _componentTableInbox = function () {
         // Define variables
         var highlightColorClass = 'table-secondary';
 
         // Highlight row when checkbox is checked
-        $('.table-inbox').find('tr > td:first-child').find('input[type=checkbox]').on('change', function() {
-            if($(this).is(':checked')) {
+        $('.table-inbox').find('tr > td:first-child').find('input[type=checkbox]').on('change', function () {
+            if ($(this).is(':checked')) {
                 $(this).parents('tr').addClass(highlightColorClass);
             }
             else {
@@ -163,24 +159,22 @@ var UserProfileTabbed = function() {
 
         // Grab first letter and insert to the icon
         $('.table-inbox tr').each(function (i) {
-
             // Title
             var $title = $(this).find('.letter-icon-title'),
                 letter = $title.eq(0).text().charAt(0).toUpperCase();
 
             // Icon
             var $icon = $(this).find('.letter-icon');
-                $icon.eq(0).text(letter);
+            $icon.eq(0).text(letter);
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUniform();
             _componentSelect2();
             _componentFullCalendar();
@@ -190,10 +184,9 @@ var UserProfileTabbed = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     UserProfileTabbed.init();
 });

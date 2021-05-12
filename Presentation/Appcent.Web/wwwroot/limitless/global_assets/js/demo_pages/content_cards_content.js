@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var CardsContent = function() {
-
-
+var CardsContent = function () {
     //
     // Setup module components
     //
 
     // Lightbox
-    var _componentFancybox = function() {
+    var _componentFancybox = function () {
         if (!$().fancybox) {
             console.warn('Warning - fancybox.min.js is not loaded.');
             return;
@@ -30,22 +27,20 @@ var CardsContent = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFancybox();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     CardsContent.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleDiffChart = function() {
-
-
+var GoogleDiffChart = function () {
     //
     // Setup module components
     //
 
     // Diff chart
-    var _googleDiffChart = function() {
+    var _googleDiffChart = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleDiffChart = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawDiff();
 
@@ -37,7 +33,7 @@ var GoogleDiffChart = function() {
 
                 // Resize on window resize
                 var resizeDiffChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeDiffChart);
                     resizeDiffChart = setTimeout(function () {
                         drawDiff();
@@ -49,7 +45,6 @@ var GoogleDiffChart = function() {
 
         // Chart settings
         function drawDiff() {
-
             // Define charts element
             var diff_chart_element = document.getElementById('google-diff');
 
@@ -108,7 +103,7 @@ var GoogleDiffChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -139,18 +134,16 @@ var GoogleDiffChart = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleDiffChart();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

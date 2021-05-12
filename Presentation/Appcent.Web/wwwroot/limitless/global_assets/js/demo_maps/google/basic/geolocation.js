@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapLocation = function() {
-
-
+var GoogleMapLocation = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapLocation = function() {
+    var _googleMapLocation = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -32,7 +29,6 @@ var GoogleMapLocation = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_location_element = document.getElementById('map_geolocation');
 
@@ -45,8 +41,8 @@ var GoogleMapLocation = function() {
             var map = new google.maps.Map(map_location_element, mapOptions);
 
             // Try HTML5 geolocation
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                     // Info window
@@ -57,12 +53,11 @@ var GoogleMapLocation = function() {
                     });
 
                     map.setCenter(pos);
-                }, function() {
+                }, function () {
                     handleNoGeolocation(true);
                 });
             }
             else {
-
                 // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
@@ -93,22 +88,20 @@ var GoogleMapLocation = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapLocation();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapLocation.init();
 });

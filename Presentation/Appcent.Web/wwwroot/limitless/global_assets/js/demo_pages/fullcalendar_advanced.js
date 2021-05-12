@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FullCalendarAdvanced = function() {
-
-
+var FullCalendarAdvanced = function () {
     //
     // Setup module components
     //
 
     // External events
-    var _componentFullCalendarEvents = function() {
+    var _componentFullCalendarEvents = function () {
         if (typeof FullCalendar == 'undefined' || typeof Switchery == 'undefined') {
             console.warn('Warning - Fullcalendar or Switchery files are not loaded.');
             return;
         }
-
 
         //
         // External events
@@ -43,18 +39,17 @@ var FullCalendarAdvanced = function() {
 
         // Use custom colors for external events
         var two = calendarEventsContainerElement.querySelectorAll('.fc-event');
-        two.forEach(function(element) {
+        two.forEach(function (element) {
             element.style.borderColor = element.getAttribute('data-color');
             element.style.backgroundColor = element.getAttribute('data-color');
         });
 
         // Initialize
-        if(calendarEventsElement) {
-
+        if (calendarEventsElement) {
             // Initialize the external events
             new Draggable(calendarEventsContainerElement, {
                 itemSelector: '.fc-event',
-                eventData: function(eventEl) {
+                eventData: function (eventEl) {
                     return {
                         title: eventEl.innerText,
                         color: eventEl.getAttribute('data-color'),
@@ -62,10 +57,9 @@ var FullCalendarAdvanced = function() {
                 }
             });
 
-
             // Initialize the calendar
             var calendarEventsInit = new Calendar(calendarEventsElement, {
-                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+                plugins: ['interaction', 'dayGrid', 'timeGrid'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -142,7 +136,7 @@ var FullCalendarAdvanced = function() {
                         color: '#FF7043'
                     }
                 ],
-                drop: function(info) {
+                drop: function (info) {
                     if (checkboxElement.checked) {
                         info.draggedEl.parentNode.removeChild(info.draggedEl);
                     }
@@ -152,12 +146,11 @@ var FullCalendarAdvanced = function() {
     };
 
     // FullCalendar RTL direction
-    var _componentFullCalendarRTL = function() {
+    var _componentFullCalendarRTL = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
         }
-
 
         //
         // RTL direction
@@ -167,9 +160,9 @@ var FullCalendarAdvanced = function() {
         var calendarRTLElement = document.querySelector('.fullcalendar-rtl');
 
         // Initialize
-        if(calendarRTLElement) {
+        if (calendarRTLElement) {
             var calendarRTLInit = new FullCalendar.Calendar(calendarRTLElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -240,23 +233,21 @@ var FullCalendarAdvanced = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFullCalendarEvents();
             _componentFullCalendarRTL();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FullCalendarAdvanced.init();
 });

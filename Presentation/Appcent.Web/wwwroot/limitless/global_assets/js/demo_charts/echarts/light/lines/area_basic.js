@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsAreaBasicLight = function() {
-
-
+var EchartsAreaBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic area chart
-    var _areaBasicLightExample = function() {
+    var _areaBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsAreaBasicLight = function() {
         // Define element
         var area_basic_element = document.getElementById('area_basic');
 
-
         //
         // Charts configuration
         //
 
         if (area_basic_element) {
-
             // Initialize chart
             var area_basic = echarts.init(area_basic_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsAreaBasicLight = function() {
 
             // Options
             area_basic.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -187,13 +180,12 @@ var EchartsAreaBasicLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             area_basic_element && area_basic.resize();
         };
 
@@ -203,7 +195,7 @@ var EchartsAreaBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -211,22 +203,20 @@ var EchartsAreaBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsAreaBasicLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsFunnelSortingLight = function() {
-
-
+var EchartsFunnelSortingLight = function () {
     //
     // Setup module components
     //
 
     // Funnel chart with data sorting
-    var _funnelSortingLightExample = function() {
+    var _funnelSortingLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsFunnelSortingLight = function() {
         // Define element
         var funnel_sorting_element = document.getElementById('funnel_sorting');
 
-
         //
         // Charts configuration
         //
 
         if (funnel_sorting_element) {
-
             // Initialize chart
             var funnel_sorting = echarts.init(funnel_sorting_element);
-
 
             //
             // Chart config
@@ -44,13 +38,12 @@ var EchartsFunnelSortingLight = function() {
 
             // Options
             funnel_sorting.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -90,7 +83,7 @@ var EchartsFunnelSortingLight = function() {
                     orient: 'vertical',
                     top: 'center',
                     left: 0,
-                    data: ['IE','Opera','Safari','Firefox','Chrome'],
+                    data: ['IE', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                     itemHeight: 8,
                     itemWidth: 8
                 },
@@ -115,24 +108,23 @@ var EchartsFunnelSortingLight = function() {
                             }
                         },
                         data: [
-                            {value: 60, name: 'Safari'},
-                            {value: 40, name: 'Firefox'},
-                            {value: 20, name: 'Chrome'},
-                            {value: 80, name: 'Opera'},
-                            {value: 100, name: 'IE'}
+                            { value: 60, name: 'Safari' },
+                            { value: 40, name: 'Firefox' },
+                            { value: 20, name: 'Chrome' },
+                            { value: 80, name: 'Opera' },
+                            { value: 100, name: 'IE' }
                         ]
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             funnel_sorting_element && funnel_sorting.resize();
         };
 
@@ -142,7 +134,7 @@ var EchartsFunnelSortingLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -150,22 +142,20 @@ var EchartsFunnelSortingLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _funnelSortingLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsFunnelSortingLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var UserProfile = function() {
-
-
+var UserProfile = function () {
     //
     // Setup module components
     //
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -31,7 +28,7 @@ var UserProfile = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -44,7 +41,7 @@ var UserProfile = function() {
     };
 
     // Schedule
-    var _componentFullCalendar = function() {
+    var _componentFullCalendar = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
@@ -113,9 +110,9 @@ var UserProfile = function() {
         var myScheduleElement = document.querySelector('.my-schedule');
 
         // Initialize
-        if(myScheduleElement) {
+        if (myScheduleElement) {
             var myScheduleInit = new FullCalendar.Calendar(myScheduleElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -134,13 +131,12 @@ var UserProfile = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUniform();
             _componentSelect2();
             _componentFullCalendar();
@@ -148,10 +144,9 @@ var UserProfile = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     UserProfile.init();
 });

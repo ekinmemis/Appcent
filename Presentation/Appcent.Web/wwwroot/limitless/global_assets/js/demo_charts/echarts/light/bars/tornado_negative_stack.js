@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsTornadoNegativeStackLight = function() {
-
-
+var EchartsTornadoNegativeStackLight = function () {
     //
     // Setup module components
     //
 
     // Negative stack tornado
-    var _tornadoNegativeStackLightExample = function() {
+    var _tornadoNegativeStackLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsTornadoNegativeStackLight = function() {
         // Define elements
         var tornado_negative_stack_element = document.getElementById('tornado_negative_stack');
 
-
         //
         // Charts configuration
         //
 
         if (tornado_negative_stack_element) {
-
             // Initialize chart
             var tornado_negative_stack = echarts.init(tornado_negative_stack_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsTornadoNegativeStackLight = function() {
 
             // Options
             tornado_negative_stack.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#5ab1ef','#b6a2de',],
+                color: ['#2ec7c9', '#5ab1ef', '#b6a2de',],
 
                 // Global text styles
                 textStyle: {
@@ -116,7 +109,7 @@ var EchartsTornadoNegativeStackLight = function() {
                 // Vertical axis
                 yAxis: [{
                     type: 'category',
-                    data: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     axisTick: {
                         show: false
                     },
@@ -200,13 +193,12 @@ var EchartsTornadoNegativeStackLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             tornado_negative_stack_element && tornado_negative_stack.resize();
         };
 
@@ -216,7 +208,7 @@ var EchartsTornadoNegativeStackLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -224,22 +216,20 @@ var EchartsTornadoNegativeStackLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _tornadoNegativeStackLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsTornadoNegativeStackLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FullCalendarBasic = function() {
-
-
+var FullCalendarBasic = function () {
     //
     // Setup module components
     //
 
     // Basic calendar
-    var _componentFullCalendarBasic = function() {
+    var _componentFullCalendarBasic = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
@@ -85,7 +82,6 @@ var FullCalendarBasic = function() {
             }
         ];
 
-
         // Initialization
         // ------------------------------
 
@@ -97,9 +93,9 @@ var FullCalendarBasic = function() {
         var calendarBasicViewElement = document.querySelector('.fullcalendar-basic');
 
         // Initialize
-        if(calendarBasicViewElement) {
+        if (calendarBasicViewElement) {
             var calendarBasicViewInit = new FullCalendar.Calendar(calendarBasicViewElement, {
-                plugins: [ 'dayGrid', 'interaction' ],
+                plugins: ['dayGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -112,7 +108,6 @@ var FullCalendarBasic = function() {
             }).render();
         }
 
-
         //
         // Agenda view
         //
@@ -121,9 +116,9 @@ var FullCalendarBasic = function() {
         var calendarAgendaViewElement = document.querySelector('.fullcalendar-agenda');
 
         // Initialize
-        if(calendarAgendaViewElement) {
+        if (calendarAgendaViewElement) {
             var calendarAgendaViewInit = new FullCalendar.Calendar(calendarAgendaViewElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -137,7 +132,6 @@ var FullCalendarBasic = function() {
             }).render();
         }
 
-
         //
         // List view
         //
@@ -146,9 +140,9 @@ var FullCalendarBasic = function() {
         var calendarListViewElement = document.querySelector('.fullcalendar-list');
 
         // Initialize
-        if(calendarListViewElement) {
+        if (calendarListViewElement) {
             var calendarListViewInit = new FullCalendar.Calendar(calendarListViewElement, {
-                plugins: [ 'list', 'interaction' ],
+                plugins: ['list', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -169,22 +163,20 @@ var FullCalendarBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFullCalendarBasic();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FullCalendarBasic.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var ExtendedFormControls = function() {
-
-
+var ExtendedFormControls = function () {
     //
     // Setup module components
     //
 
     // Input formatter
-    var _componentInputFormatter = function() {
+    var _componentInputFormatter = function () {
         if (!$().formatter) {
             console.warn('Warning - formatter.min.js is not loaded.');
             return;
@@ -86,7 +83,7 @@ var ExtendedFormControls = function() {
     };
 
     // Autosize
-    var _componentAutosize = function() {
+    var _componentAutosize = function () {
         if (typeof autosize == 'undefined') {
             console.warn('Warning - autosize.min.js is not loaded.');
             return;
@@ -96,7 +93,7 @@ var ExtendedFormControls = function() {
         autosize($('.elastic'));
 
         // Manual trigger
-        $('.elastic-manual-trigger').on('click', function() {
+        $('.elastic-manual-trigger').on('click', function () {
             var manual = autosize($('.elastic-manual'));
             $('.elastic-manual').val('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed ultricies nibh, sed faucibus eros. Vivamus tristique fringilla ante, vitae pellentesque quam porta vel. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vehicula gravida nisl non imperdiet. Mauris felis odio, vehicula et laoreet non, tempor non enim. Cras convallis sapien hendrerit nibh sagittis sollicitudin. Fusce nec ultricies justo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ac urna in dui consequat cursus vel sit amet mauris. Proin nec bibendum arcu. Aenean sit amet nisi mi. Sed non leo nisl. Mauris leo odio, ultricies interdum ornare ac, posuere eu risus. Suspendisse adipiscing sapien sit amet gravida sollicitudin. Maecenas laoreet velit in dui adipiscing, vel fermentum tellus ullamcorper. Nullam et mi rhoncus, tempus nulla sit amet, varius ipsum.');
             autosize.update(manual);
@@ -104,13 +101,13 @@ var ExtendedFormControls = function() {
 
         // Destroy method
         var destroyAutosize = autosize($('.elastic-destroy'));
-        $('.elastic-destroy-trigger').on('click', function() {
+        $('.elastic-destroy-trigger').on('click', function () {
             autosize.destroy(destroyAutosize);
         });
     };
 
     // Passy
-    var _componentPassy = function() {
+    var _componentPassy = function () {
         if (!$().passy) {
             console.warn('Warning - passy.js is not loaded.');
             return;
@@ -130,26 +127,23 @@ var ExtendedFormControls = function() {
         var $inputGroupMaterial = $('.group-indicator-material input');
         var $outputGroupMaterial = $('.group-indicator-material .input-group-text');
 
-
         // Min input length
         $.passy.requirements.length.min = 4;
 
-
         // Strength meter
         var feedback = [
-            {color: '#D55757', text: 'Weak', textColor: '#fff'},
-            {color: '#EB7F5E', text: 'Normal', textColor: '#fff'},
-            {color: '#3BA4CE', text: 'Good', textColor: '#fff'},
-            {color: '#40B381', text: 'Strong', textColor: '#fff'}
+            { color: '#D55757', text: 'Weak', textColor: '#fff' },
+            { color: '#EB7F5E', text: 'Normal', textColor: '#fff' },
+            { color: '#3BA4CE', text: 'Good', textColor: '#fff' },
+            { color: '#40B381', text: 'Strong', textColor: '#fff' }
         ];
-
 
         //
         // Setup strength meter
         //
 
         // Label indicator
-        $inputLabel.passy(function(strength) {
+        $inputLabel.passy(function (strength) {
             $outputLabel.text(feedback[strength].text);
             $outputLabel.css({
                 'display': 'block',
@@ -159,7 +153,7 @@ var ExtendedFormControls = function() {
         });
 
         // Absolute positioned badge
-        $inputLabelAbsolute.passy(function(strength) {
+        $inputLabelAbsolute.passy(function (strength) {
             $outputLabelAbsolute.text(feedback[strength].text);
             $outputLabelAbsolute.css({
                 'background-color': feedback[strength].color,
@@ -168,7 +162,7 @@ var ExtendedFormControls = function() {
         });
 
         // Input group indicator
-        $inputGroup.passy(function(strength) {
+        $inputGroup.passy(function (strength) {
             $outputGroup.text(feedback[strength].text);
             $outputGroup.css({
                 'background-color': feedback[strength].color,
@@ -178,41 +172,40 @@ var ExtendedFormControls = function() {
         });
 
         // [Material theme] Input group indicator
-        $inputGroupMaterial.passy(function(strength) {
+        $inputGroupMaterial.passy(function (strength) {
             $outputGroupMaterial.text(feedback[strength].text);
             $outputGroupMaterial.css({
                 'color': feedback[strength].color
             });
         });
 
-
         //
         // Initialize
         //
 
         // Label
-        $('.generate-badge').on('click', function() {
+        $('.generate-badge').on('click', function () {
             $inputLabel.passy('generate', 12);
         });
 
         // Absolute badge
-        $('.generate-badge-absolute').on('click', function() {
+        $('.generate-badge-absolute').on('click', function () {
             $inputLabelAbsolute.passy('generate', 10);
         });
 
         // Group badge
-        $('.generate-group').on('click', function() {
+        $('.generate-group').on('click', function () {
             $inputGroup.passy('generate', 8);
         });
 
         // [Material theme] Group badge
-        $('.generate-group-material').on('click', function() {
+        $('.generate-group-material').on('click', function () {
             $inputGroupMaterial.passy('generate', 8);
         });
     };
 
     // Maxlength
-    var _componentMaxlength = function() {
+    var _componentMaxlength = function () {
         if (!$().maxlength) {
             console.warn('Warning - maxlength.min.js is not loaded.');
             return;
@@ -258,7 +251,7 @@ var ExtendedFormControls = function() {
     };
 
     // Typeahead
-    var _componentTypeahead = function() {
+    var _componentTypeahead = function () {
         if (!$().typeahead) {
             console.warn('Warning - typeahead.bundle.min.js is not loaded.');
             return;
@@ -269,7 +262,7 @@ var ExtendedFormControls = function() {
         //
 
         // Substring matches
-        var substringMatcher = function(strs) {
+        var substringMatcher = function (strs) {
             return function findMatches(q, cb) {
                 var matches, substringRegex;
 
@@ -281,9 +274,8 @@ var ExtendedFormControls = function() {
 
                 // iterate through the pool of strings and for any string that
                 // contains the substring `q`, add it to the `matches` array
-                $.each(strs, function(i, str) {
+                $.each(strs, function (i, str) {
                     if (substrRegex.test(str)) {
-
                         // the typeahead jQuery plugin expects suggestions to a
                         // JavaScript object, refer to typeahead docs for more info
                         matches.push({ value: str });
@@ -320,7 +312,6 @@ var ExtendedFormControls = function() {
             }
         );
 
-
         //
         // Bloodhound engine
         //
@@ -331,7 +322,7 @@ var ExtendedFormControls = function() {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
 
             // `states` is an array of state names defined in "The Basics"
-            local: $.map(states, function(state) { return { value: state }; })
+            local: $.map(states, function (state) { return { value: state }; })
         });
 
         // Initialize engine
@@ -354,7 +345,6 @@ var ExtendedFormControls = function() {
             }
         );
 
-
         //
         // Prefetched data
         //
@@ -365,7 +355,6 @@ var ExtendedFormControls = function() {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             limit: 10,
             prefetch: {
-
                 // url points to a json file that contains an array of country names, see
                 // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
                 url: '../../../../global_assets/demo_data/typeahead/countries.json',
@@ -373,8 +362,8 @@ var ExtendedFormControls = function() {
                 // the json file contains an array of strings, but the Bloodhound
                 // suggestion engine expects JavaScript objects so this converts all of
                 // those strings
-                filter: function(list) {
-                    return $.map(list, function(country) { return { name: country }; });
+                filter: function (list) {
+                    return $.map(list, function (country) { return { name: country }; });
                 }
             }
         });
@@ -391,7 +380,6 @@ var ExtendedFormControls = function() {
             // is compatible with the typeahead jQuery plugin
             source: countries.ttAdapter()
         });
-
 
         //
         // Remote data
@@ -415,7 +403,6 @@ var ExtendedFormControls = function() {
             source: bestPictures.ttAdapter()
         });
 
-
         //
         // Custom templates
         //
@@ -434,7 +421,6 @@ var ExtendedFormControls = function() {
                 suggestion: Handlebars.compile('<div><strong>{{value}}</strong> – {{year}}</div>')
             }
         });
-
 
         //
         // Multiple datasets
@@ -481,7 +467,6 @@ var ExtendedFormControls = function() {
             }
         );
 
-
         //
         // Dropdown height
         //
@@ -492,7 +477,6 @@ var ExtendedFormControls = function() {
             displayKey: 'name',
             source: countries.ttAdapter()
         });
-
 
         //
         // RTL support
@@ -527,13 +511,12 @@ var ExtendedFormControls = function() {
         );
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentInputFormatter();
             _componentAutosize();
             _componentPassy();
@@ -543,10 +526,9 @@ var ExtendedFormControls = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     ExtendedFormControls.init();
 });

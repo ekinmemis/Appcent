@@ -6,34 +6,31 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableScroller = function() {
-
-
+var DatatableScroller = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableScroller = function() {
+    var _componentDatatableScroller = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             columnDefs: [
-                { 
+                {
                     width: 100,
-                    targets: [ 0 ]
+                    targets: [0]
                 },
-                { 
+                {
                     width: "23%",
-                    targets: [ 1, 2, 3, 4 ]
+                    targets: [1, 2, 3, 4]
                 }
             ],
             dom: '<"datatable-header info-right"fi><"datatable-scroll"tS>',
@@ -49,13 +46,11 @@ var DatatableScroller = function() {
             }
         });
 
-
         // Table setup
         // ------------------------------
 
         // Basic scroller demo
         $('.datatable-scroller').DataTable();
-
 
         // Scroller with Buttons extension
         $('.datatable-scroller-buttons').DataTable({
@@ -67,21 +62,19 @@ var DatatableScroller = function() {
                     }
                 },
                 buttons: [
-                    {extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel'},
-                    {extend: 'pdf'},
-                    {extend: 'print'}
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel' },
+                    { extend: 'pdf' },
+                    { extend: 'print' }
                 ]
             }
         });
-
 
         // Saving state in scroller
         $('.datatable-scroller-state').DataTable({
             stateSave: true
         });
-
 
         // Using Scroller API
         $('.datatable-scroller-api').DataTable({
@@ -94,7 +87,7 @@ var DatatableScroller = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -108,23 +101,21 @@ var DatatableScroller = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableScroller();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableScroller.init();
 });

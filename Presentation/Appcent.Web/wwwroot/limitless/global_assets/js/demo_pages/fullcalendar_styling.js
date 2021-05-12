@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FullCalendarStyling = function() {
-
-
+var FullCalendarStyling = function () {
     //
     // Setup module components
     //
 
     // External events
-    var _componentFullCalendarStyling = function() {
+    var _componentFullCalendarStyling = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
         }
-
 
         // Add events
         // ------------------------------
@@ -160,7 +156,6 @@ var FullCalendarStyling = function() {
             }
         ];
 
-
         // Initialization
         // ------------------------------
 
@@ -172,9 +167,9 @@ var FullCalendarStyling = function() {
         var calendarEventColorsElement = document.querySelector('.fullcalendar-event-colors');
 
         // Initialize
-        if(calendarEventColorsElement) {
+        if (calendarEventColorsElement) {
             var calendarEventColorsInit = new FullCalendar.Calendar(calendarEventColorsElement, {
-                plugins: [ 'dayGrid', 'interaction' ],
+                plugins: ['dayGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -186,7 +181,6 @@ var FullCalendarStyling = function() {
             }).render();
         }
 
-
         //
         // Event background colors
         //
@@ -195,9 +189,9 @@ var FullCalendarStyling = function() {
         var calendarEventBgColorsElement = document.querySelector('.fullcalendar-background-colors');
 
         // Initialize
-        if(calendarEventBgColorsElement) {
+        if (calendarEventBgColorsElement) {
             var calendarEventBgColorsInit = new FullCalendar.Calendar(calendarEventBgColorsElement, {
-                plugins: [ 'dayGrid', 'interaction' ],
+                plugins: ['dayGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -210,22 +204,20 @@ var FullCalendarStyling = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFullCalendarStyling();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FullCalendarStyling.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsGaugeBasicLight = function() {
-
-
+var EchartsGaugeBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic gauge chart
-    var _gaugeBasicLightExample = function() {
+    var _gaugeBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsGaugeBasicLight = function() {
         // Define element
         var gauge_basic_element = document.getElementById('gauge_basic');
 
-
         //
         // Charts configuration
         //
 
         if (gauge_basic_element) {
-
             // Initialize chart
             var gauge_basic = echarts.init(gauge_basic_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsGaugeBasicLight = function() {
 
             // Options
             var gauge_basic_options = {
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -82,10 +75,10 @@ var EchartsGaugeBasicLight = function() {
                         type: 'gauge',
                         center: ['50%', '62%'],
                         radius: '90%',
-                        detail: {formatter:'{value}%'},
+                        detail: { formatter: '{value}%' },
                         axisLine: {
                             lineStyle: {
-                                color: [[0.2, '#2ec7c9'], [0.8, '#5ab1ef'], [1, '#d87a80']], 
+                                color: [[0.2, '#2ec7c9'], [0.8, '#5ab1ef'], [1, '#d87a80']],
                                 width: 15
                             }
                         },
@@ -119,7 +112,7 @@ var EchartsGaugeBasicLight = function() {
                         pointer: {
                             width: 5
                         },
-                        data: [{value: 50, name: 'Memory usage'}]
+                        data: [{ value: 50, name: 'Memory usage' }]
                     }
                 ]
             };
@@ -129,18 +122,17 @@ var EchartsGaugeBasicLight = function() {
             // Add random data
             clearInterval(timeTicket);
             var timeTicket = setInterval(function () {
-                gauge_basic_options.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+                gauge_basic_options.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
                 gauge_basic.setOption(gauge_basic_options, true);
             }, 2000);
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             gauge_basic_element && gauge_basic.resize();
         };
 
@@ -150,7 +142,7 @@ var EchartsGaugeBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -158,22 +150,20 @@ var EchartsGaugeBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _gaugeBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsGaugeBasicLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsPieInfographicedLight = function() {
-
-
+var EchartsPieInfographicedLight = function () {
     //
     // Setup module components
     //
 
     // Infographic pie chart
-    var _scatterPieInfographicLightExample = function() {
+    var _scatterPieInfographicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsPieInfographicedLight = function() {
         // Define element
         var pie_infographic_element = document.getElementById('pie_infographic');
 
-
         //
         // Charts configuration
         //
 
         if (pie_infographic_element) {
-
             // Initialize chart
             var pie_infographic = echarts.init(pie_infographic_element);
-
 
             //
             // Chart config
@@ -47,8 +41,8 @@ var EchartsPieInfographicedLight = function() {
                 normal: {
                     borderWidth: 1,
                     borderColor: '#fff',
-                    label: {show: false},
-                    labelLine: {show: false}
+                    label: { show: false },
+                    labelLine: { show: false }
                 }
             };
             var placeHolderStyle = {
@@ -60,13 +54,12 @@ var EchartsPieInfographicedLight = function() {
 
             // Options
             pie_infographic.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -101,7 +94,7 @@ var EchartsPieInfographicedLight = function() {
                         fontFamily: 'Roboto, sans-serif'
                     },
                     formatter: function (params) {
-                        if(params.color == "transparent")return;
+                        if (params.color == "transparent") return;
                         return params.percent + '%' + ' - ' + params.seriesName;
                     }
                 },
@@ -111,7 +104,7 @@ var EchartsPieInfographicedLight = function() {
                     orient: 'vertical',
                     top: '5%',
                     left: (pie_infographic_element.offsetWidth / 2) + 20,
-                    data: ['60% Definitely yes','30% Could be better','10% Not at the moment'],
+                    data: ['60% Definitely yes', '30% Could be better', '10% Not at the moment'],
                     itemHeight: 8,
                     itemWidth: 8,
                     itemGap: 15
@@ -142,7 +135,7 @@ var EchartsPieInfographicedLight = function() {
 
                     {
                         name: 'Could be better',
-                        type:'pie',
+                        type: 'pie',
                         cursor: 'default',
                         clockWise: false,
                         radius: ['60%', '75%'],
@@ -150,7 +143,7 @@ var EchartsPieInfographicedLight = function() {
                         itemStyle: dataStyle,
                         data: [
                             {
-                                value: 30, 
+                                value: 30,
                                 name: '30% Could be better'
                             },
                             {
@@ -172,7 +165,7 @@ var EchartsPieInfographicedLight = function() {
                         itemStyle: dataStyle,
                         data: [
                             {
-                                value: 10, 
+                                value: 10,
                                 name: '10% Not at the moment'
                             },
                             {
@@ -186,13 +179,12 @@ var EchartsPieInfographicedLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             pie_infographic_element && pie_infographic.resize();
         };
 
@@ -202,7 +194,7 @@ var EchartsPieInfographicedLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -210,22 +202,20 @@ var EchartsPieInfographicedLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterPieInfographicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsPieInfographicedLight.init();
 });

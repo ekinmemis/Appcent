@@ -6,28 +6,23 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DashboardDonuts = function() {
-
-
+var DashboardDonuts = function () {
     //
     // Setup module components
     //
 
     // Marketing campaigns donut chart
-    var _MarketingCampaignsDonutChart = function(element, size) {
+    var _MarketingCampaignsDonutChart = function (element, size) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
         }
 
         // Initialize chart only if element exsists in the DOM
-        if($(element).length > 0) {
-
-
+        if ($(element).length > 0) {
             // Basic setup
             // ------------------------------
 
@@ -51,13 +46,11 @@ var DashboardDonuts = function() {
             // Main variables
             var d3Container = d3.select(element),
                 distance = 2, // reserve 2px space for mouseover arc moving
-                radius = (size/2) - distance,
-                sum = d3.sum(data, function(d) { return d.value; });
+                radius = (size / 2) - distance,
+                sum = d3.sum(data, function (d) { return d.value; });
 
             // Colors
-            var colorrange = ['#66BB6A','#9575CD','#FF7043'];
-
-
+            var colorrange = ['#66BB6A', '#9575CD', '#FF7043'];
 
             // Tooltip
             // ------------------------------
@@ -71,24 +64,21 @@ var DashboardDonuts = function() {
                         '<li>' + '<div class="font-size-base mb-1 mt-1">' + d.data.icon + d.data.browser + '</div>' + '</li>' +
                         '<li>' + 'Visits: &nbsp;' + '<span class="font-weight-semibold float-right">' + d.value + '</span>' + '</li>' +
                         '<li>' + 'Share: &nbsp;' + '<span class="font-weight-semibold float-right">' + (100 / (sum / d.value)).toFixed(2) + '%' + '</span>' + '</li>' +
-                    '</ul>';
+                        '</ul>';
                 });
-
 
             // Create chart
             // ------------------------------
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+                .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
             // Construct chart layout
             // ------------------------------
@@ -98,9 +88,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -110,8 +100,6 @@ var DashboardDonuts = function() {
             // Colors
             var colors = d3.scale.ordinal().range(colorrange);
 
-
-
             //
             // Append chart elements
             //
@@ -120,10 +108,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
-                    .attr('class', 'd3-arc d3-slice-border')
-                    .style('cursor', 'pointer');
-            
+                .append('g')
+                .attr('class', 'd3-arc d3-slice-border')
+                .style('cursor', 'pointer');
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -132,10 +120,9 @@ var DashboardDonuts = function() {
             // Add tooltip
             arcPath
                 .on('mouseover', function (d, i) {
-
                     // Transition on mouseover
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('elastic')
                         .attr('transform', function (d) {
@@ -147,7 +134,6 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -155,10 +141,9 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mouseout', function (d, i) {
-
                     // Mouseout transition
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('bounce')
                         .attr('transform', 'translate(0,0)');
@@ -170,29 +155,27 @@ var DashboardDonuts = function() {
             // Animate chart on load
             arcPath
                 .transition()
-                    .delay(function(d, i) { return i * 500; })
-                    .duration(500)
-                    .attrTween('d', function(d) {
-                        var interpolate = d3.interpolate(d.startAngle,d.endAngle);
-                        return function(t) {
-                            d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
-                    });
+                .delay(function (d, i) { return i * 500; })
+                .duration(500)
+                .attrTween('d', function (d) {
+                    var interpolate = d3.interpolate(d.startAngle, d.endAngle);
+                    return function (t) {
+                        d.endAngle = interpolate(t);
+                        return arc(d);
+                    };
+                });
         }
     };
 
     // Campaign status donut chart
-    var _CampaignStatusDonutChart = function(element, size) {
+    var _CampaignStatusDonutChart = function (element, size) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
         }
 
         // Initialize chart only if element exsists in the DOM
-        if($(element).length > 0) {
-
-
+        if ($(element).length > 0) {
             // Basic setup
             // ------------------------------
 
@@ -220,13 +203,11 @@ var DashboardDonuts = function() {
             // Main variables
             var d3Container = d3.select(element),
                 distance = 2, // reserve 2px space for mouseover arc moving
-                radius = (size/2) - distance,
-                sum = d3.sum(data, function(d) { return d.value; });
+                radius = (size / 2) - distance,
+                sum = d3.sum(data, function (d) { return d.value; });
 
             // Colors
             var colorrange = ['#29B6F6', '#EF5350', '#81C784', '#999'];
-
-
 
             // Tooltip
             // ------------------------------
@@ -240,25 +221,21 @@ var DashboardDonuts = function() {
                         '<li>' + '<div class="font-size-base mb-1 mt-1">' + d.data.icon + d.data.status + '</div>' + '</li>' +
                         '<li>' + 'Total: &nbsp;' + '<span class="font-weight-semibold float-right">' + d.value + '</span>' + '</li>' +
                         '<li>' + 'Share: &nbsp;' + '<span class="font-weight-semibold float-right">' + (100 / (sum / d.value)).toFixed(2) + '%' + '</span>' + '</li>' +
-                    '</ul>';
+                        '</ul>';
                 });
-
-
 
             // Create chart
             // ------------------------------
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+                .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
             // Construct chart layout
             // ------------------------------
@@ -268,9 +245,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -280,8 +257,6 @@ var DashboardDonuts = function() {
             // Colors
             var colors = d3.scale.ordinal().range(colorrange);
 
-
-
             //
             // Append chart elements
             //
@@ -290,10 +265,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
-                    .attr('class', 'd3-arc d3-slice-border')
-                    .style('cursor', 'pointer');
-            
+                .append('g')
+                .attr('class', 'd3-arc d3-slice-border')
+                .style('cursor', 'pointer');
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -302,10 +277,9 @@ var DashboardDonuts = function() {
             // Add tooltip
             arcPath
                 .on('mouseover', function (d, i) {
-
                     // Transition on mouseover
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('elastic')
                         .attr('transform', function (d) {
@@ -317,7 +291,6 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -325,10 +298,9 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mouseout', function (d, i) {
-
                     // Mouseout transition
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('bounce')
                         .attr('transform', 'translate(0,0)');
@@ -340,29 +312,27 @@ var DashboardDonuts = function() {
             // Animate chart on load
             arcPath
                 .transition()
-                    .delay(function(d, i) { return i * 500; })
-                    .duration(500)
-                    .attrTween('d', function(d) {
-                        var interpolate = d3.interpolate(d.startAngle,d.endAngle);
-                        return function(t) {
-                            d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
-                    });
+                .delay(function (d, i) { return i * 500; })
+                .duration(500)
+                .attrTween('d', function (d) {
+                    var interpolate = d3.interpolate(d.startAngle, d.endAngle);
+                    return function (t) {
+                        d.endAngle = interpolate(t);
+                        return arc(d);
+                    };
+                });
         }
     };
 
     // Tickets status donut chart
-    var _TicketStatusDonutChart = function(element, size) {
+    var _TicketStatusDonutChart = function (element, size) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
         }
 
         // Initialize chart only if element exsists in the DOM
-        if($(element).length > 0) {
-
-
+        if ($(element).length > 0) {
             // Basic setup
             // ------------------------------
 
@@ -386,13 +356,11 @@ var DashboardDonuts = function() {
             // Main variables
             var d3Container = d3.select(element),
                 distance = 2, // reserve 2px space for mouseover arc moving
-                radius = (size/2) - distance,
-                sum = d3.sum(data, function(d) { return d.value; });
+                radius = (size / 2) - distance,
+                sum = d3.sum(data, function (d) { return d.value; });
 
             // Colors
-            var colorrange = ['#29B6F6','#66BB6A','#EF5350'];
-
-
+            var colorrange = ['#29B6F6', '#66BB6A', '#EF5350'];
 
             // Tooltip
             // ------------------------------
@@ -406,25 +374,21 @@ var DashboardDonuts = function() {
                         '<li>' + '<div class="font-size-base mb-1 mt-1">' + d.data.icon + d.data.status + '</div>' + '</li>' +
                         '<li>' + 'Total: &nbsp;' + '<span class="font-weight-semibold float-right">' + d.value + '</span>' + '</li>' +
                         '<li>' + 'Share: &nbsp;' + '<span class="font-weight-semibold float-right">' + (100 / (sum / d.value)).toFixed(2) + '%' + '</span>' + '</li>' +
-                    '</ul>';
+                        '</ul>';
                 });
-
-
 
             // Create chart
             // ------------------------------
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+                .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
             // Construct chart layout
             // ------------------------------
@@ -434,9 +398,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -446,7 +410,6 @@ var DashboardDonuts = function() {
             // Colors
             var colors = d3.scale.ordinal().range(colorrange);
 
-
             //
             // Append chart elements
             //
@@ -455,10 +418,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
-                    .attr('class', 'd3-arc d3-slice-border')
-                    .style('cursor', 'pointer');
-            
+                .append('g')
+                .attr('class', 'd3-arc d3-slice-border')
+                .style('cursor', 'pointer');
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -467,10 +430,9 @@ var DashboardDonuts = function() {
             // Add tooltip
             arcPath
                 .on('mouseover', function (d, i) {
-
                     // Transition on mouseover
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('elastic')
                         .attr('transform', function (d) {
@@ -482,7 +444,6 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -490,10 +451,9 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mouseout', function (d, i) {
-
                     // Mouseout transition
                     d3.select(this)
-                    .transition()
+                        .transition()
                         .duration(500)
                         .ease('bounce')
                         .attr('transform', 'translate(0,0)');
@@ -505,25 +465,24 @@ var DashboardDonuts = function() {
             // Animate chart on load
             arcPath
                 .transition()
-                    .delay(function(d, i) { return i * 500; })
-                    .duration(500)
-                    .attrTween('d', function(d) {
-                        var interpolate = d3.interpolate(d.startAngle,d.endAngle);
-                        return function(t) {
-                            d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
-                    });
+                .delay(function (d, i) { return i * 500; })
+                .duration(500)
+                .attrTween('d', function (d) {
+                    var interpolate = d3.interpolate(d.startAngle, d.endAngle);
+                    return function (t) {
+                        d.endAngle = interpolate(t);
+                        return arc(d);
+                    };
+                });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _MarketingCampaignsDonutChart('#campaigns-donut', 42);
             _CampaignStatusDonutChart('#campaign-status-pie', 42);
             _TicketStatusDonutChart('#tickets-status', 42);
@@ -531,10 +490,9 @@ var DashboardDonuts = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DashboardDonuts.init();
 });

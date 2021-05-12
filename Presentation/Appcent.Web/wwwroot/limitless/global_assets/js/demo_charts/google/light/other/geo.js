@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleGeoRegion = function() {
-
-
+var GoogleGeoRegion = function () {
     //
     // Setup module components
     //
 
     // Geo chart
-    var _googleGeoRegion = function() {
+    var _googleGeoRegion = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleGeoRegion = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawRegionsMap();
 
@@ -37,7 +33,7 @@ var GoogleGeoRegion = function() {
 
                 // Resize on window resize
                 var resizeGeoRegion;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeGeoRegion);
                     resizeGeoRegion = setTimeout(function () {
                         drawRegionsMap();
@@ -49,7 +45,6 @@ var GoogleGeoRegion = function() {
 
         // Chart settings
         function drawRegionsMap() {
-
             // Define charts element
             var geo_region_element = document.getElementById('google-geo-region');
 
@@ -84,18 +79,16 @@ var GoogleGeoRegion = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleGeoRegion();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

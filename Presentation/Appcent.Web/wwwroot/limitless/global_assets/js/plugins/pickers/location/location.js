@@ -1,5 +1,4 @@
-(function ( $ ) {
-
+(function ($) {
     /**
      * Holds google map object and related utility entities.
      * @constructor
@@ -36,7 +35,7 @@
          * @param gmapContext - context
          * @param options
          */
-        drawCircle: function(gmapContext, center, radius, options) {
+        drawCircle: function (gmapContext, center, radius, options) {
             if (gmapContext.circle != null) {
                 gmapContext.circle.setMap(null);
             }
@@ -63,14 +62,14 @@
          * @param location
          * @param callback
          */
-        setPosition: function(gMapContext, location, callback) {
+        setPosition: function (gMapContext, location, callback) {
             gMapContext.location = location;
             gMapContext.marker.setPosition(location);
             gMapContext.map.panTo(location);
             this.drawCircle(gMapContext, location, gMapContext.radius, {});
             if (gMapContext.settings.enableReverseGeocode) {
-                gMapContext.geodecoder.geocode({latLng: gMapContext.location}, function(results, status){
-                    if (status == google.maps.GeocoderStatus.OK && results.length > 0){
+                gMapContext.geodecoder.geocode({ latLng: gMapContext.location }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
                         gMapContext.locationName = results[0].formatted_address;
                     }
                     if (callback) {
@@ -82,10 +81,9 @@
                     callback.call(this, gMapContext);
                 }
             }
-
         },
-        locationFromLatLng: function(lnlg) {
-            return {latitude: lnlg.lat(), longitude: lnlg.lng()}
+        locationFromLatLng: function (lnlg) {
+            return { latitude: lnlg.lat(), longitude: lnlg.lng() }
         }
     }
 
@@ -97,7 +95,7 @@
         return $(domObj).data("locationpicker");
     }
 
-    function updateInputValues(inputBinding, gmapContext){
+    function updateInputValues(inputBinding, gmapContext) {
         if (!inputBinding) return;
         var currentLocation = GmUtility.locationFromLatLng(gmapContext.location);
         if (inputBinding.latitudeInput) {
@@ -112,45 +110,45 @@
         if (inputBinding.locationNameInput) {
             inputBinding.locationNameInput.val(gmapContext.locationName);
         }
-    } 
- 
+    }
+
     function setupInputListenersInput(inputBinding, gmapContext) {
         if (inputBinding) {
-            if (inputBinding.radiusInput){
-		          inputBinding.radiusInput.on("change", function() {
-		              gmapContext.radius = $(this).val();
-		              GmUtility.setPosition(gmapContext, gmapContext.location, function(context){
-		              	context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
-		              });
-		          });
+            if (inputBinding.radiusInput) {
+                inputBinding.radiusInput.on("change", function () {
+                    gmapContext.radius = $(this).val();
+                    GmUtility.setPosition(gmapContext, gmapContext.location, function (context) {
+                        context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
+                    });
+                });
             }
             if (inputBinding.locationNameInput && gmapContext.settings.enableAutocomplete) {
                 gmapContext.autocomplete = new google.maps.places.Autocomplete(inputBinding.locationNameInput.get(0));
-                google.maps.event.addListener(gmapContext.autocomplete, 'place_changed', function() {
+                google.maps.event.addListener(gmapContext.autocomplete, 'place_changed', function () {
                     var place = gmapContext.autocomplete.getPlace();
                     if (!place.geometry) {
                         gmapContext.settings.onlocationnotfound(place.name);
                         return;
                     }
-                    GmUtility.setPosition(gmapContext, place.geometry.location, function(context) {		                    
+                    GmUtility.setPosition(gmapContext, place.geometry.location, function (context) {
                         updateInputValues(inputBinding, context);
                         context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
                     });
                 });
             }
             if (inputBinding.latitudeInput) {
-            	inputBinding.latitudeInput.on("change", function() {
-            		GmUtility.setPosition(gmapContext, new google.maps.LatLng($(this).val(), gmapContext.location.lng()), function(context){
-		              	context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
-		            });
-            	});
+                inputBinding.latitudeInput.on("change", function () {
+                    GmUtility.setPosition(gmapContext, new google.maps.LatLng($(this).val(), gmapContext.location.lng()), function (context) {
+                        context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
+                    });
+                });
             }
             if (inputBinding.longitudeInput) {
-            	inputBinding.longitudeInput.on("change", function() {
-            		GmUtility.setPosition(gmapContext, new google.maps.LatLng(gmapContext.location.lat(), $(this).val()), function(context){
-		              	context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
-		            });
-            	});
+                inputBinding.longitudeInput.on("change", function () {
+                    GmUtility.setPosition(gmapContext, new google.maps.LatLng(gmapContext.location.lat(), $(this).val()), function (context) {
+                        context.settings.onchanged(GmUtility.locationFromLatLng(context.location), context.radius, false);
+                    });
+                });
             }
         }
     }
@@ -162,7 +160,7 @@
      * @param params
      * @returns {*}
      */
-    $.fn.locationpicker = function( options, params ) {
+    $.fn.locationpicker = function (options, params) {
         if (typeof options == 'string') { // Command provided
             var _targetDomElement = this.get(0);
             // Plug-in is not applied - nothing to do.
@@ -179,7 +177,7 @@
                         if (params.radius) {
                             gmapContext.radius = params.radius;
                         }
-                        GmUtility.setPosition(gmapContext, new google.maps.LatLng(params.latitude, params.longitude), function(gmapContext) {
+                        GmUtility.setPosition(gmapContext, new google.maps.LatLng(params.latitude, params.longitude), function (gmapContext) {
                             updateInputValues(gmapContext.settings.inputBinding, gmapContext);
                         });
                     }
@@ -197,7 +195,7 @@
                     } else {
                         var event = params.event;
                         var callback = params.callback;
-                        if (!event || ! callback) {
+                        if (!event || !callback) {
                             console.error("LocationPicker: Invalid arguments for method \"subscribe\"")
                             return null;
                         }
@@ -208,13 +206,13 @@
             }
             return null;
         }
-        return this.each(function() {
+        return this.each(function () {
             var $target = $(this);
             // If plug-in hasn't been applied before - initialize, otherwise - skip
             if (isPluginApplied(this)) return;
             // Plug-in initialization is required
             // Defaults
-            var settings = $.extend({}, $.fn.locationpicker.defaults, options );
+            var settings = $.extend({}, $.fn.locationpicker.defaults, options);
             // Initialize
             var gmapContext = new GMapContext(this, {
                 zoom: settings.zoom,
@@ -231,14 +229,14 @@
             });
             $target.data("locationpicker", gmapContext);
             // Subscribe GMap events
-            google.maps.event.addListener(gmapContext.marker, "dragend", function(event) {
-                GmUtility.setPosition(gmapContext, gmapContext.marker.position, function(context){
+            google.maps.event.addListener(gmapContext.marker, "dragend", function (event) {
+                GmUtility.setPosition(gmapContext, gmapContext.marker.position, function (context) {
                     var currentLocation = GmUtility.locationFromLatLng(gmapContext.location);
                     context.settings.onchanged(currentLocation, context.radius, true);
                     updateInputValues(gmapContext.settings.inputBinding, gmapContext);
                 });
             });
-            GmUtility.setPosition(gmapContext, new google.maps.LatLng(settings.location.latitude, settings.location.longitude), function(context){
+            GmUtility.setPosition(gmapContext, new google.maps.LatLng(settings.location.latitude, settings.location.longitude), function (context) {
                 updateInputValues(settings.inputBinding, gmapContext);
                 context.settings.oninitialized($target);
             });
@@ -247,7 +245,7 @@
         });
     };
     $.fn.locationpicker.defaults = {
-        location: {latitude: 40.7324319, longitude: -73.82480799999996},
+        location: { latitude: 40.7324319, longitude: -73.82480799999996 },
         locationName: "",
         radius: 500,
         zoom: 15,
@@ -261,10 +259,8 @@
         enableAutocomplete: false,
         enableReverseGeocode: true,
         draggable: true,
-        onchanged: function(currentLocation, radius, isMarkerDropped) {},
-        onlocationnotfound: function(locationName) {},
-        oninitialized: function (component) {}
-
+        onchanged: function (currentLocation, radius, isMarkerDropped) { },
+        onlocationnotfound: function (locationName) { },
+        oninitialized: function (component) { }
     }
-
-}( jQuery ));
+}(jQuery));

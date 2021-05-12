@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleColumnStacked = function() {
-
-
+var GoogleColumnStacked = function () {
     //
     // Setup module components
     //
 
     // Stacked column chart
-    var _googleColumnStacked = function() {
+    var _googleColumnStacked = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleColumnStacked = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawColumnStacked();
 
@@ -37,7 +33,7 @@ var GoogleColumnStacked = function() {
 
                 // Resize on window resize
                 var resizeColumnStacked;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeColumnStacked);
                     resizeColumnStacked = setTimeout(function () {
                         drawColumnStacked();
@@ -49,13 +45,12 @@ var GoogleColumnStacked = function() {
 
         // Chart settings
         function drawColumnStacked() {
-
             // Define charts element
             var column_stacked_element = document.getElementById('google-column-stacked');
 
             // Data
             var data = google.visualization.arrayToDataTable([
-                ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General', 'Western', 'Literature', { role: 'annotation' } ],
+                ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General', 'Western', 'Literature', { role: 'annotation' }],
                 ['2000', 20, 30, 35, 40, 45, 30, ''],
                 ['2005', 14, 20, 25, 30, 48, 30, ''],
                 ['2010', 10, 24, 20, 32, 18, 5, ''],
@@ -64,7 +59,6 @@ var GoogleColumnStacked = function() {
                 ['2025', 12, 26, 20, 40, 20, 30, ''],
                 ['2030', 28, 19, 29, 30, 12, 13, '']
             ]);
-
 
             // Options
             var options_column_stacked = {
@@ -95,7 +89,7 @@ var GoogleColumnStacked = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -129,18 +123,16 @@ var GoogleColumnStacked = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleColumnStacked();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

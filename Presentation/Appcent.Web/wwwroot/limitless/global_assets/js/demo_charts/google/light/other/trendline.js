@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleTrendline = function() {
-
-
+var GoogleTrendline = function () {
     //
     // Setup module components
     //
 
     // Trendline chart
-    var _googleTrendline = function() {
+    var _googleTrendline = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleTrendline = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawTrendline();
 
@@ -37,7 +33,7 @@ var GoogleTrendline = function() {
 
                 // Resize on window resize
                 var resizeTrendline;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeTrendline);
                     resizeTrendline = setTimeout(function () {
                         drawTrendline();
@@ -49,7 +45,6 @@ var GoogleTrendline = function() {
 
         // Chart settings
         function drawTrendline() {
-
             // Define charts element
             var trendline_element = document.getElementById('google-trendline');
 
@@ -74,7 +69,7 @@ var GoogleTrendline = function() {
                 fontSize: 12,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ed88f','#ffb980'
+                    '#2ed88f', '#ffb980'
                 ],
                 chartArea: {
                     left: '5%',
@@ -86,7 +81,7 @@ var GoogleTrendline = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -107,7 +102,7 @@ var GoogleTrendline = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -138,18 +133,16 @@ var GoogleTrendline = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleTrendline();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

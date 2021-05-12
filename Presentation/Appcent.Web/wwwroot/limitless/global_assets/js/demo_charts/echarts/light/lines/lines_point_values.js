@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsLinesPointValuesLight = function() {
-
-
+var EchartsLinesPointValuesLight = function () {
     //
     // Setup module components
     //
 
     // Line chart with point values
-    var _linesPointValuesLightExample = function() {
+    var _linesPointValuesLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsLinesPointValuesLight = function() {
         // Define element
         var line_values_element = document.getElementById('line_values');
 
-
         //
         // Charts configuration
         //
 
         if (line_values_element) {
-
             // Initialize chart
             var line_values = echarts.init(line_values_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsLinesPointValuesLight = function() {
 
             // Options
             line_values.setOption({
-
                 // Define colors
                 color: ['#49C1B6', '#EA007B'],
 
@@ -140,7 +133,7 @@ var EchartsLinesPointValuesLight = function() {
                         label: {
                             normal: {
                                 show: true
-                            } 
+                            }
                         },
                         itemStyle: {
                             normal: {
@@ -157,7 +150,7 @@ var EchartsLinesPointValuesLight = function() {
                         label: {
                             normal: {
                                 show: true
-                            } 
+                            }
                         },
                         itemStyle: {
                             normal: {
@@ -169,13 +162,12 @@ var EchartsLinesPointValuesLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             line_values_element && line_values.resize();
         };
 
@@ -185,7 +177,7 @@ var EchartsLinesPointValuesLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -193,22 +185,20 @@ var EchartsLinesPointValuesLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesPointValuesLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsLinesPointValuesLight.init();
 });

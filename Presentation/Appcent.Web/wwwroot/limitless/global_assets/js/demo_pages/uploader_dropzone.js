@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DropzoneUploader = function() {
-
-
+var DropzoneUploader = function () {
     //
     // Setup module components
     //
 
     // Dropzone file uploader
-    var _componentDropzone = function() {
+    var _componentDropzone = function () {
         if (typeof Dropzone == 'undefined') {
             console.warn('Warning - dropzone.min.js is not loaded.');
             return;
@@ -38,11 +35,11 @@ var DropzoneUploader = function() {
             maxFiles: 1,
             dictDefaultMessage: 'Drop file to upload <span>or CLICK</span>',
             autoProcessQueue: false,
-            init: function() {
-                this.on('addedfile', function(file){
+            init: function () {
+                this.on('addedfile', function (file) {
                     if (this.fileTracker) {
-                    this.removeFile(this.fileTracker);
-                }
+                        this.removeFile(this.fileTracker);
+                    }
                     this.fileTracker = file;
                 });
             }
@@ -75,18 +72,16 @@ var DropzoneUploader = function() {
         };
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDropzone();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3LineSeries = function() {
-
-
+var D3LineSeries = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _lineSeries = function() {
+    var _lineSeries = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3LineSeries = function() {
         var element = document.getElementById('d3-line-multi-series'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 100, bottom: 20, left: 40},
+                margin = { top: 5, right: 100, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
@@ -46,8 +41,6 @@ var D3LineSeries = function() {
 
             // Colors
             var color = d3.scale.category20();
-
-
 
             // Construct scales
             // ------------------------------
@@ -59,8 +52,6 @@ var D3LineSeries = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -77,8 +68,6 @@ var D3LineSeries = function() {
                 .scale(y)
                 .orient("left");
 
-
-
             // Create chart
             // ------------------------------
 
@@ -90,9 +79,7 @@ var D3LineSeries = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -100,53 +87,45 @@ var D3LineSeries = function() {
             // Line
             var line = d3.svg.line()
                 .interpolate("basis")
-                .x(function(d) { return x(d.date); })
-                .y(function(d) { return y(d.temperature); });
-
-
+                .x(function (d) { return x(d.date); })
+                .y(function (d) { return y(d.temperature); });
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_multi_series.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_multi_series.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.date = parseDate(d.date);
                 });
-
 
                 // Set color domains
                 // ------------------------------
 
                 // Filter by date
-                color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+                color.domain(d3.keys(data[0]).filter(function (key) { return key !== "date"; }));
 
                 // Set colors
-                var cities = color.domain().map(function(name) {
+                var cities = color.domain().map(function (name) {
                     return {
                         name: name,
-                        values: data.map(function(d) {
-                            return {date: d.date, temperature: +d[name]};
+                        values: data.map(function (d) {
+                            return { date: d.date, temperature: +d[name] };
                         })
                     }
                 });
-
-
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(d3.extent(data, function(d) { return d.date; }));
+                x.domain(d3.extent(data, function (d) { return d.date; }));
 
                 // Vertical
                 y.domain([
-                    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-                    d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+                    d3.min(cities, function (c) { return d3.min(c.values, function (v) { return v.temperature; }); }),
+                    d3.max(cities, function (c) { return d3.max(c.values, function (v) { return v.temperature; }); })
                 ]);
-
-
 
                 //
                 // Append chart elements
@@ -157,24 +136,22 @@ var D3LineSeries = function() {
                     .data(cities)
                     .enter()
                     .append("g")
-                        .attr("class", "multiline-city");
+                    .attr("class", "multiline-city");
 
                 // Add line
                 city.append("path")
                     .attr("class", "d3-line d3-line-medium")
-                    .attr("d", function(d) { return line(d.values); })
-                    .style("stroke", function(d) { return color(d.name); });
+                    .attr("d", function (d) { return line(d.values); })
+                    .style("stroke", function (d) { return color(d.name); });
 
                 // Add text
                 city.append("text")
-                    .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-                    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+                    .datum(function (d) { return { name: d.name, value: d.values[d.values.length - 1] }; })
+                    .attr("transform", function (d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
                     .attr("class", "d3-cities d3-text")
                     .attr("x", 10)
                     .attr("dy", ".35em")
-                    .text(function(d) { return d.name; });
-            
-
+                    .text(function (d) { return d.name; });
 
                 // Append axes
                 // ------------------------------
@@ -200,8 +177,6 @@ var D3LineSeries = function() {
                     .text("Temperature (ºF)");
             })
 
-
-
             // Resize chart
             // ------------------------------
 
@@ -213,15 +188,13 @@ var D3LineSeries = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -232,7 +205,6 @@ var D3LineSeries = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -242,35 +214,32 @@ var D3LineSeries = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Line path
-                svg.selectAll('.d3-line').attr("d", function(d) { return line(d.values); });
+                svg.selectAll('.d3-line').attr("d", function (d) { return line(d.values); });
 
                 // Text
-                svg.selectAll('.d3-cities').attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+                svg.selectAll('.d3-cities').attr("transform", function (d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _lineSeries();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3LineSeries.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var С3Advanced = function() {
-
-
+var С3Advanced = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _advancedExamples = function() {
+    var _advancedExamples = function () {
         if (typeof c3 == 'undefined') {
             console.warn('Warning - c3.min.js is not loaded.');
             return;
@@ -32,10 +29,8 @@ var С3Advanced = function() {
         var data_color_element = document.getElementById('c3-data-color');
         var sidebarToggle = document.querySelector('.sidebar-control');
 
-
         // Chart transforms
-        if(transform_element) {
-
+        if (transform_element) {
             // Generate chart
             var transform = c3.generate({
                 bindto: transform_element,
@@ -48,7 +43,7 @@ var С3Advanced = function() {
                     type: 'spline'
                 },
                 color: {
-                    pattern: ['#2ec7c9','#b6a2de']
+                    pattern: ['#2ec7c9', '#b6a2de']
                 },
                 grid: {
                     y: {
@@ -56,7 +51,7 @@ var С3Advanced = function() {
                     }
                 }
             }),
-            buttonElement = document.getElementById('btn-transform');
+                buttonElement = document.getElementById('btn-transform');
 
             // Update data
             function update() {
@@ -82,20 +77,19 @@ var С3Advanced = function() {
                 }, 11500);
             }
 
-            buttonElement.addEventListener('click', function() {
+            buttonElement.addEventListener('click', function () {
                 this.classList.add('disabled');
                 update();
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 transform.resize();
             });
         }
 
         // Zoomable chart
-        if(zoomable_element) {
-
+        if (zoomable_element) {
             // Generate chart
             var zoomable_chart = c3.generate({
                 bindto: zoomable_element,
@@ -122,14 +116,13 @@ var С3Advanced = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 zoomable_chart.resize();
             });
         }
 
         // Subchart
-        if(subchart_element) {
-
+        if (subchart_element) {
             // Generate chart
             var subchart = c3.generate({
                 bindto: subchart_element,
@@ -154,14 +147,13 @@ var С3Advanced = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 subchart.resize();
             });
         }
 
         // Label format
-        if(label_format_element) {
-
+        if (label_format_element) {
             // Generate chart
             var label_format = c3.generate({
                 bindto: label_format_element,
@@ -183,7 +175,7 @@ var С3Advanced = function() {
                     }
                 },
                 color: {
-                    pattern: ['#66bb6a','#ffb980','#5ab1ef']
+                    pattern: ['#66bb6a', '#ffb980', '#5ab1ef']
                 },
                 bar: {
                     width: {
@@ -192,20 +184,19 @@ var С3Advanced = function() {
                 },
                 grid: {
                     y: {
-                        lines: [{value: 0}]
+                        lines: [{ value: 0 }]
                     }
                 }
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 label_format.resize();
             });
         }
 
         // Data color
-        if(data_color_element) {
-
+        if (data_color_element) {
             // Generate chart
             var data_color = c3.generate({
                 bindto: data_color_element,
@@ -231,28 +222,26 @@ var С3Advanced = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 data_color.resize();
             });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _advancedExamples();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     С3Advanced.init();
 });

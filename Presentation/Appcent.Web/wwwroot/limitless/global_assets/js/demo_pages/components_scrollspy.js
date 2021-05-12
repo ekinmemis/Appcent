@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var Scrollspy = function () {
-
-
     //
     // Setup module components
     //
 
-	// Sticky
-    var _componentSticky = function() {
+    // Sticky
+    var _componentSticky = function () {
         if (!$().stick_in_parent) {
             console.warn('Warning - sticky.min.js is not loaded.');
             return;
@@ -31,27 +28,25 @@ var Scrollspy = function () {
         });
 
         // Detach on mobiles
-        $('.sidebar-mobile-component-toggle').on('click', function() {
+        $('.sidebar-mobile-component-toggle').on('click', function () {
             $('.sidebar-sticky .sidebar').trigger("sticky_kit:detach");
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        initComponents: function() {
+        initComponents: function () {
             _componentSticky();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Scrollspy.initComponents();
 });

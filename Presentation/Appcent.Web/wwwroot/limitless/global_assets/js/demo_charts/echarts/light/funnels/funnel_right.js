@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsFunnelRightLight = function() {
-
-
+var EchartsFunnelRightLight = function () {
     //
     // Setup module components
     //
 
     // Right aligned funnel chart
-    var _funnelRightLightExample = function() {
+    var _funnelRightLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsFunnelRightLight = function() {
         // Define element
         var funnel_right_element = document.getElementById('funnel_right');
 
-
         //
         // Charts configuration
         //
 
         if (funnel_right_element) {
-
             // Initialize chart
             var funnel_right = echarts.init(funnel_right_element);
-
 
             //
             // Chart config
@@ -44,13 +38,12 @@ var EchartsFunnelRightLight = function() {
 
             // Options
             funnel_right.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -90,7 +83,7 @@ var EchartsFunnelRightLight = function() {
                     orient: 'vertical',
                     top: 'center',
                     right: 0,
-                    data: ['IE','Opera','Safari','Firefox','Chrome'],
+                    data: ['IE', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                     itemHeight: 8,
                     itemWidth: 8
                 },
@@ -115,24 +108,23 @@ var EchartsFunnelRightLight = function() {
                             }
                         },
                         data: [
-                            {value: 60, name: 'Safari'},
-                            {value: 40, name: 'Firefox'},
-                            {value: 20, name: 'Chrome'},
-                            {value: 80, name: 'Opera'},
-                            {value: 100, name: 'IE'}
+                            { value: 60, name: 'Safari' },
+                            { value: 40, name: 'Firefox' },
+                            { value: 20, name: 'Chrome' },
+                            { value: 80, name: 'Opera' },
+                            { value: 100, name: 'IE' }
                         ]
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             funnel_right_element && funnel_right.resize();
         };
 
@@ -142,7 +134,7 @@ var EchartsFunnelRightLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -150,22 +142,20 @@ var EchartsFunnelRightLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _funnelRightLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsFunnelRightLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsColumnsStackedClusteredLight = function() {
-
-
+var EchartsColumnsStackedClusteredLight = function () {
     //
     // Setup module components
     //
 
     // Clustered column chart
-    var _columnsStackedClusteredLightExample = function() {
+    var _columnsStackedClusteredLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsColumnsStackedClusteredLight = function() {
         // Define element
         var columns_clustered_element = document.getElementById('columns_clustered');
 
-
         //
         // Charts configuration
         //
 
         if (columns_clustered_element) {
-
             // Initialize chart
             var columns_clustered = echarts.init(columns_clustered_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsColumnsStackedClusteredLight = function() {
 
             // Options
             columns_clustered.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -69,8 +62,8 @@ var EchartsColumnsStackedClusteredLight = function() {
                 // Add legend
                 legend: {
                     data: [
-                        'Version 1.7 - 2k data','Version 1.7 - 2w data','Version 1.7 - 20w data','',
-                        'Version 2.0 - 2k data','Version 2.0 - 2w data','Version 2.0 - 20w data'
+                        'Version 1.7 - 2k data', 'Version 1.7 - 2w data', 'Version 1.7 - 20w data', '',
+                        'Version 2.0 - 2k data', 'Version 2.0 - 2w data', 'Version 2.0 - 20w data'
                     ],
                     itemHeight: 2,
                     itemGap: 8,
@@ -94,7 +87,7 @@ var EchartsColumnsStackedClusteredLight = function() {
                 xAxis: [
                     {
                         type: 'category',
-                        data: ['Line','Bar','Scatter','Pies','Map'],
+                        data: ['Line', 'Bar', 'Scatter', 'Pies', 'Map'],
                         axisLabel: {
                             color: '#333'
                         },
@@ -113,12 +106,12 @@ var EchartsColumnsStackedClusteredLight = function() {
                     },
                     {
                         type: 'category',
-                        axisLine: {show:false},
-                        axisTick: {show:false},
-                        axisLabel: {show:false},
-                        splitArea: {show:false},
-                        splitLine: {show:false},
-                        data: ['Line','Bar','Scatter','Pies','Map']
+                        axisLine: { show: false },
+                        axisTick: { show: false },
+                        axisLabel: { show: false },
+                        splitArea: { show: false },
+                        splitLine: { show: false },
+                        data: ['Line', 'Bar', 'Scatter', 'Pies', 'Map']
                     }
                 ],
 
@@ -201,7 +194,7 @@ var EchartsColumnsStackedClusteredLight = function() {
                                     padding: 5,
                                     position: 'top',
                                     textStyle: {
-                                        color:'#fff',
+                                        color: '#fff',
                                         fontSize: 12
                                     }
                                 }
@@ -264,13 +257,12 @@ var EchartsColumnsStackedClusteredLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_clustered_element && columns_clustered.resize();
         };
 
@@ -280,7 +272,7 @@ var EchartsColumnsStackedClusteredLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -288,22 +280,20 @@ var EchartsColumnsStackedClusteredLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _columnsStackedClusteredLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsColumnsStackedClusteredLight.init();
 });

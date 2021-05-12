@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var Summernote = function() {
-
-
+var Summernote = function () {
     //
     // Setup module components
     //
 
     // Summernote
-    var _componentSummernote = function() {
+    var _componentSummernote = function () {
         if (!$().summernote) {
             console.warn('Warning - summernote.min.js is not loaded.');
             return;
@@ -40,24 +37,23 @@ var Summernote = function() {
             airMode: true
         });
 
-
         // Click to edit
         // ------------------------------
 
         // Edit
-        $('#edit').on('click', function() {
-            $('.click2edit').summernote({focus: true});
+        $('#edit').on('click', function () {
+            $('.click2edit').summernote({ focus: true });
         })
 
         // Save
-        $('#save').on('click', function() {
+        $('#save').on('click', function () {
             var aHTML = $('.click2edit').summernote('code');
             $('.click2edit').summernote('destroy');
         });
     };
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -69,23 +65,21 @@ var Summernote = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSummernote();
             _componentUniform();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Summernote.init();
 });

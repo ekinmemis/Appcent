@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsBarsStackedLight = function() {
-
-
+var EchartsBarsStackedLight = function () {
     //
     // Setup module components
     //
 
     // Stacked bar chart
-    var _barsStackedLightExample = function() {
+    var _barsStackedLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsBarsStackedLight = function() {
         // Define element
         var bars_stacked_element = document.getElementById('bars_stacked');
 
-
         //
         // Charts configuration
         //
 
         if (bars_stacked_element) {
-
             // Initialize chart
             var bars_stacked = echarts.init(bars_stacked_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsBarsStackedLight = function() {
 
             // Options
             bars_stacked.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -65,7 +58,7 @@ var EchartsBarsStackedLight = function() {
 
                 // Add legend
                 legend: {
-                    data: ['Internet Explorer','Opera','Safari','Firefox','Chrome'],
+                    data: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                     itemHeight: 8,
                     itemGap: 20,
                     textStyle: {
@@ -154,7 +147,7 @@ var EchartsBarsStackedLight = function() {
                                 }
                             }
                         },
-                        data:[320, 302, 301, 334, 390, 330, 320]
+                        data: [320, 302, 301, 334, 390, 330, 320]
                     },
                     {
                         name: 'Opera',
@@ -171,7 +164,7 @@ var EchartsBarsStackedLight = function() {
                                 }
                             }
                         },
-                        data:[120, 132, 101, 134, 120, 230, 210]
+                        data: [120, 132, 101, 134, 120, 230, 210]
                     },
                     {
                         name: 'Safari',
@@ -188,7 +181,7 @@ var EchartsBarsStackedLight = function() {
                                 }
                             }
                         },
-                        data:[220, 182, 191, 234, 290, 330, 310]
+                        data: [220, 182, 191, 234, 290, 330, 310]
                     },
                     {
                         name: 'Firefox',
@@ -205,7 +198,7 @@ var EchartsBarsStackedLight = function() {
                                 }
                             }
                         },
-                        data:[150, 212, 201, 154, 190, 330, 410]
+                        data: [150, 212, 201, 154, 190, 330, 410]
                     },
                     {
                         name: 'Chrome',
@@ -222,19 +215,18 @@ var EchartsBarsStackedLight = function() {
                                 }
                             }
                         },
-                        data:[820, 832, 901, 934, 1290, 1330, 1320]
+                        data: [820, 832, 901, 934, 1290, 1330, 1320]
                     }
                 ]
             });
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             bars_stacked_element && bars_stacked.resize();
         };
 
@@ -244,7 +236,7 @@ var EchartsBarsStackedLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -252,22 +244,20 @@ var EchartsBarsStackedLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barsStackedLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsBarsStackedLight.init();
 });

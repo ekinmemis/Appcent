@@ -6,26 +6,22 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var MailList = function() {
-
-
+var MailList = function () {
     //
     // Setup module components
     //
 
     // Inbox table
-    var _componentTableInbox = function() {
-
+    var _componentTableInbox = function () {
         // Define variables
         var highlightColorClass = 'table-secondary';
 
         // Highlight row when checkbox is checked
-        $('.table-inbox').find('tr > td:first-child').find('input[type=checkbox]').on('change', function() {
-            if($(this).is(':checked')) {
+        $('.table-inbox').find('tr > td:first-child').find('input[type=checkbox]').on('change', function () {
+            if ($(this).is(':checked')) {
                 $(this).parents('tr').addClass(highlightColorClass);
             }
             else {
@@ -35,19 +31,18 @@ var MailList = function() {
 
         // Grab first letter and insert to the icon
         $('.table-inbox tr').each(function (i) {
-
             // Title
             var $title = $(this).find('.letter-icon-title'),
                 letter = $title.eq(0).text().charAt(0).toUpperCase();
 
             // Icon
             var $icon = $(this).find('.letter-icon');
-                $icon.eq(0).text(letter);
+            $icon.eq(0).text(letter);
         });
     };
 
     // Row link
-    var _componentRowLink = function() {
+    var _componentRowLink = function () {
         if (!$().rowlink) {
             console.warn('Warning - rowlink.js is not loaded.');
             return;
@@ -60,7 +55,7 @@ var MailList = function() {
     };
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -70,13 +65,12 @@ var MailList = function() {
         $('.form-input-styled').uniform();
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentTableInbox();
             _componentRowLink();
             _componentUniform();
@@ -84,10 +78,9 @@ var MailList = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     MailList.init();
 });

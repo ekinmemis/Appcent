@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var TaskManagerDetailed = function () {
-
-
     //
     // Setup components
     //
 
     // Datepicker
-    var _componentUiDatepicker = function() {
+    var _componentUiDatepicker = function () {
         if (!$().datepicker) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -30,7 +27,6 @@ var TaskManagerDetailed = function () {
             dateFormat: 'd MM, y'
         });
 
-
         // Inline datepicker
         $('.datepicker-inline').datepicker({
             showOtherMonths: true,
@@ -39,7 +35,7 @@ var TaskManagerDetailed = function () {
     };
 
     // Summernote
-    var _componentSummernote = function() {
+    var _componentSummernote = function () {
         if (!$().summernote) {
             console.warn('Warning - summernote.min.js is not loaded.');
             return;
@@ -49,23 +45,21 @@ var TaskManagerDetailed = function () {
         $('#add-comment').summernote();
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUiDatepicker();
             _componentSummernote();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     TaskManagerDetailed.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EcommerceCustomers = function() {
-
-
+var EcommerceCustomers = function () {
     //
     // Setup module components
     //
 
     // Datatable
-    var _componentDatatable = function() {
+    var _componentDatatable = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
@@ -32,7 +29,7 @@ var EcommerceCustomers = function() {
                     targets: 0,
                     width: 400
                 },
-                { 
+                {
                     orderable: false,
                     width: 16,
                     targets: 6
@@ -43,7 +40,7 @@ var EcommerceCustomers = function() {
                     targets: -1
                 },
             ],
-            order: [[ 0, 'asc' ]],
+            order: [[0, 'asc']],
             dom: '<"datatable-header datatable-header-accent"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
                 search: '<span>Search people:</span> _INPUT_',
@@ -51,7 +48,7 @@ var EcommerceCustomers = function() {
                 lengthMenu: '<span>Show:</span> _MENU_',
                 paginate: { 'first': 'First', 'last': 'Last', 'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
             },
-            lengthMenu: [ 25, 50, 75, 100 ],
+            lengthMenu: [25, 50, 75, 100],
             displayLength: 50,
             responsive: {
                 details: {
@@ -66,7 +63,7 @@ var EcommerceCustomers = function() {
                     className: 'btn bg-blue',
                     orientation: 'landscape',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5 ],
+                        columns: [0, 1, 2, 3, 4, 5],
                         stripHtml: true
                     },
                     customize: function (doc) {
@@ -78,7 +75,7 @@ var EcommerceCustomers = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -92,23 +89,21 @@ var EcommerceCustomers = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatable();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EcommerceCustomers.init();
 });

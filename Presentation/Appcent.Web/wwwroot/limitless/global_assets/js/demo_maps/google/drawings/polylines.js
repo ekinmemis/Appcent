@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapDrawingPolylines = function() {
-
-
+var GoogleMapDrawingPolylines = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapDrawingPolylines = function() {
+    var _googleMapDrawingPolylines = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -33,7 +30,6 @@ var GoogleMapDrawingPolylines = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_drawing_polylines_element = document.getElementById('map_drawing_polyline');
 
@@ -45,7 +41,6 @@ var GoogleMapDrawingPolylines = function() {
 
             // Apply options
             map = new google.maps.Map(map_drawing_polylines_element, mapOptions);
-
 
             // Polyline options
             var polyOptions = {
@@ -67,7 +62,6 @@ var GoogleMapDrawingPolylines = function() {
         // @param {google.maps.MouseEvent} event
 
         function addLatLng(event) {
-
             var path = poly.getPath();
 
             // Because path is an MVCArray, we can simply append a new coordinate
@@ -86,22 +80,20 @@ var GoogleMapDrawingPolylines = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapDrawingPolylines();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapDrawingPolylines.init();
 });

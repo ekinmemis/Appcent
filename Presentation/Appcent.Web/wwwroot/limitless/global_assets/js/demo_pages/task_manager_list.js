@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var TaskManagerList = function () {
-
-
     //
     // Setup components
     //
 
     // Datatable
-    var _componentDatatable = function() {
+    var _componentDatatable = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
@@ -26,14 +23,14 @@ var TaskManagerList = function () {
 
         // Create an array with the values of all the input boxes in a column
         $.fn.dataTable.ext.order['dom-text'] = function (settings, col) {
-            return this.api().column(col, {order:'index'}).nodes().map( function (td, i) {
+            return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
                 return $('input', td).val();
             });
         };
-         
+
         // Create an array with the values of all the select options in a column
         $.fn.dataTable.ext.order['dom-select'] = function (settings, col) {
-            return this.api().column(col, {order:'index'}).nodes().map( function (td, i) {
+            return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
                 return $('select', td).val();
             });
         };
@@ -69,7 +66,7 @@ var TaskManagerList = function () {
                     type: 'string',
                     targets: 5
                 },
-                { 
+                {
                     orderable: false,
                     width: 100,
                     targets: 7
@@ -79,7 +76,7 @@ var TaskManagerList = function () {
                     targets: [4, 5, 6]
                 }
             ],
-            order: [[ 0, 'desc' ]],
+            order: [[0, 'desc']],
             dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
             language: {
                 search: '<span>Filter:</span> _INPUT_',
@@ -87,20 +84,20 @@ var TaskManagerList = function () {
                 lengthMenu: '<span>Show:</span> _MENU_',
                 paginate: { 'first': 'First', 'last': 'Last', 'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
             },
-            lengthMenu: [ 15, 25, 50, 75, 100 ],
+            lengthMenu: [15, 25, 50, 75, 100],
             displayLength: 25,
             drawCallback: function (settings) {
                 var api = this.api();
-                var rows = api.rows({page:'current'}).nodes();
-                var last=null;
-     
+                var rows = api.rows({ page: 'current' }).nodes();
+                var last = null;
+
                 // Grouod rows
-                api.column(1, {page:'current'}).data().each(function (group, i) {
+                api.column(1, { page: 'current' }).data().each(function (group, i) {
                     if (last !== group) {
                         $(rows).eq(i).before(
-                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
+                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">' + group + '</td></tr>'
                         );
-     
+
                         last = group;
                     }
                 });
@@ -113,7 +110,7 @@ var TaskManagerList = function () {
     };
 
     // Datepicker
-    var _componentUiDatepicker = function() {
+    var _componentUiDatepicker = function () {
         if (!$().datepicker) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -126,8 +123,8 @@ var TaskManagerList = function () {
         });
     };
 
-    // Select2 
-    var _componentSelect2 = function() {
+    // Select2
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -146,23 +143,21 @@ var TaskManagerList = function () {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatable();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     TaskManagerList.init();
 });

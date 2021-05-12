@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsWaterfallChangeLight = function() {
-
-
+var EchartsWaterfallChangeLight = function () {
     //
     // Setup module components
     //
 
     // Change waterfall chart
-    var _waterfallChangeLightExample = function() {
+    var _waterfallChangeLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsWaterfallChangeLight = function() {
         // Define element
         var columns_change_waterfall_element = document.getElementById('columns_change_waterfall');
 
-
         //
         // Charts configuration
         //
 
         if (columns_change_waterfall_element) {
-
             // Initialize chart
             var columns_change_waterfall = echarts.init(columns_change_waterfall_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsWaterfallChangeLight = function() {
 
             // Options
             columns_change_waterfall.setOption({
-
                 // Define colors
                 color: ['#f17a52', '#03A9F4'],
 
@@ -106,7 +99,7 @@ var EchartsWaterfallChangeLight = function() {
                 // Horizontal axis
                 xAxis: [{
                     type: 'category',
-                    data: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                    data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     axisLabel: {
                         color: '#333'
                     },
@@ -194,19 +187,18 @@ var EchartsWaterfallChangeLight = function() {
                                 }
                             }
                         },
-                        data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203,300]
+                        data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203, 300]
                     }
                 ]
             });
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_change_waterfall_element && columns_change_waterfall.resize();
         };
 
@@ -216,7 +208,7 @@ var EchartsWaterfallChangeLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -224,22 +216,20 @@ var EchartsWaterfallChangeLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _waterfallChangeLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsWaterfallChangeLight.init();
 });

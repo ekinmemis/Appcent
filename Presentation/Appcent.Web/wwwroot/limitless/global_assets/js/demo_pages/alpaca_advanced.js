@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var AlpacaAdvanced = function() {
-
-
+var AlpacaAdvanced = function () {
     //
     // Setup module components
     //
 
     // Alpaca examples
-    var _componentAlpacaAdvanced = function() {
+    var _componentAlpacaAdvanced = function () {
         if (!$().alpaca) {
             console.warn('Warning - alpaca.min.js is not loaded.');
             return;
         }
-
 
         // Option trees
         // ------------------------------
@@ -116,7 +112,6 @@ var AlpacaAdvanced = function() {
                 focus: false
             }
         });
-
 
         // Input types
         // ------------------------------
@@ -235,7 +230,6 @@ var AlpacaAdvanced = function() {
             }
         });
 
-
         // File inputs
         // ------------------------------
 
@@ -270,7 +264,6 @@ var AlpacaAdvanced = function() {
             view: 'bootstrap-display'
         });
 
-
         // Selector helpers
         // ------------------------------
 
@@ -289,7 +282,6 @@ var AlpacaAdvanced = function() {
                 focus: false
             }
         });
-
 
         // CKEditor
         // ------------------------------
@@ -323,7 +315,7 @@ var AlpacaAdvanced = function() {
     };
 
     // Alpaca with Select2
-    var _componentAlpacaAdvancedSelect2 = function() {
+    var _componentAlpacaAdvancedSelect2 = function () {
         if (!$().alpaca || !$().select2) {
             console.warn('Warning - alpaca.min.js and/or select2.min.js is not loaded.');
             return;
@@ -336,7 +328,7 @@ var AlpacaAdvanced = function() {
                 id: 'country-search',
                 focus: false
             },
-            postRender: function() {
+            postRender: function () {
                 $('#country-search').select2();
             }
         });
@@ -348,14 +340,14 @@ var AlpacaAdvanced = function() {
                 id: 'state-search',
                 focus: false
             },
-            postRender: function() {
+            postRender: function () {
                 $('#state-search').select2();
             }
         });
     };
 
     // Alpaca with Uniform
-    var _componentAlpacaAdvancedUniform = function() {
+    var _componentAlpacaAdvancedUniform = function () {
         if (!$().alpaca || !$().uniform) {
             console.warn('Warning - alpaca.min.js and/or uniform.min.js is not loaded.');
             return;
@@ -375,7 +367,7 @@ var AlpacaAdvanced = function() {
                 type: 'string',
                 format: 'uri'
             },
-            postRender: function() {
+            postRender: function () {
                 $('#file-styled').uniform({
                     fileButtonClass: 'action btn bg-blue'
                 });
@@ -397,7 +389,7 @@ var AlpacaAdvanced = function() {
                 type: 'string',
                 format: 'uri'
             },
-            postRender: function() {
+            postRender: function () {
                 $('#file-styled-disabled').uniform({
                     fileButtonClass: 'action btn bg-blue'
                 });
@@ -405,13 +397,12 @@ var AlpacaAdvanced = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentAlpacaAdvanced();
             _componentAlpacaAdvancedSelect2();
             _componentAlpacaAdvancedUniform();
@@ -419,10 +410,9 @@ var AlpacaAdvanced = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     AlpacaAdvanced.init();
 });

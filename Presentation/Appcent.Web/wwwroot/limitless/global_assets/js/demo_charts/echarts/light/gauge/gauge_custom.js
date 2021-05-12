@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsGaugeCustomLight = function() {
-
-
+var EchartsGaugeCustomLight = function () {
     //
     // Setup module components
     //
 
     // Custom gauge chart
-    var _gaugeCustomLightExample = function() {
+    var _gaugeCustomLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsGaugeCustomLight = function() {
         // Define element
         var gauge_custom_element = document.getElementById('gauge_custom');
 
-
         //
         // Charts configuration
         //
 
         if (gauge_custom_element) {
-
             // Initialize chart
             var gauge_custom = echarts.init(gauge_custom_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsGaugeCustomLight = function() {
 
             // Options
             var gauge_custom_options = {
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -86,7 +79,7 @@ var EchartsGaugeCustomLight = function() {
                         endAngle: -150,
                         axisLine: {
                             lineStyle: {
-                                color: [[0.2, 'lightgreen'], [0.4, 'orange'], [0.8, 'skyblue'], [1, '#ff4500']], 
+                                color: [[0.2, 'lightgreen'], [0.4, 'orange'], [0.8, 'skyblue'], [1, '#ff4500']],
                                 width: 30
                             }
                         },
@@ -98,8 +91,8 @@ var EchartsGaugeCustomLight = function() {
                             }
                         },
                         axisLabel: {
-                            formatter: function(v) {
-                                switch (v+''){
+                            formatter: function (v) {
+                                switch (v + '') {
                                     case '10': return 'Idle';
                                     case '30': return 'Low';
                                     case '60': return 'Normal';
@@ -131,7 +124,7 @@ var EchartsGaugeCustomLight = function() {
                                 fontWeight: 500
                             }
                         },
-                        data: [{value: 50, name: 'Memory usage'}]
+                        data: [{ value: 50, name: 'Memory usage' }]
                     }
                 ]
             };
@@ -141,18 +134,17 @@ var EchartsGaugeCustomLight = function() {
             // Add random data
             clearInterval(timeTicket2);
             var timeTicket2 = setInterval(function () {
-                gauge_custom_options.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+                gauge_custom_options.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
                 gauge_custom.setOption(gauge_custom_options, true);
             }, 2000);
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             gauge_custom_element && gauge_custom.resize();
         };
 
@@ -162,7 +154,7 @@ var EchartsGaugeCustomLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -170,22 +162,20 @@ var EchartsGaugeCustomLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _gaugeCustomLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsGaugeCustomLight.init();
 });

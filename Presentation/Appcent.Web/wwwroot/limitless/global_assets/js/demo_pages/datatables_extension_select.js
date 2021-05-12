@@ -6,31 +6,28 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableSelect = function() {
-
-
+var DatatableSelect = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableSelect = function() {
+    var _componentDatatableSelect = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
             columnDefs: [{
                 orderable: false,
                 width: 100,
-                targets: [ 5 ]
+                targets: [5]
             }],
             dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -41,12 +38,10 @@ var DatatableSelect = function() {
             }
         });
 
-
         // Basic initialization
         $('.datatable-select-basic').DataTable({
             select: true
         });
-
 
         // Single item selection
         $('.datatable-select-single').DataTable({
@@ -55,14 +50,12 @@ var DatatableSelect = function() {
             }
         });
 
-
         // Multiple items selection
         $('.datatable-select-multiple').DataTable({
             select: {
                 style: 'multi'
             }
         });
-
 
         // Checkbox selection
         $('.datatable-select-checkbox').DataTable({
@@ -85,25 +78,24 @@ var DatatableSelect = function() {
             order: [[1, 'asc']]
         });
 
-
         // Buttons
         $('.datatable-select-buttons').DataTable({
             dom: '<"dt-buttons-full"B><"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             buttons: [
-                {extend: 'selected', className: 'btn btn-light'},
-                {extend: 'selectedSingle', className: 'btn btn-light'},
-                {extend: 'selectAll', className: 'btn bg-blue'},
-                {extend: 'selectNone', className: 'btn bg-blue'},
-                {extend: 'selectRows', className: 'btn bg-teal-400'},
-                {extend: 'selectColumns', className: 'btn bg-teal-400'},
-                {extend: 'selectCells', className: 'btn bg-teal-400'}
+                { extend: 'selected', className: 'btn btn-light' },
+                { extend: 'selectedSingle', className: 'btn btn-light' },
+                { extend: 'selectAll', className: 'btn bg-blue' },
+                { extend: 'selectNone', className: 'btn bg-blue' },
+                { extend: 'selectRows', className: 'btn bg-teal-400' },
+                { extend: 'selectColumns', className: 'btn bg-teal-400' },
+                { extend: 'selectCells', className: 'btn bg-teal-400' }
             ],
             select: true
         });
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -117,23 +109,21 @@ var DatatableSelect = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableSelect();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableSelect.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsCalendarSingleLight = function() {
-
-
+var EchartsCalendarSingleLight = function () {
     //
     // Setup module components
     //
 
     // Single calendar chart
-    var _calendarSingleLightExample = function() {
+    var _calendarSingleLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsCalendarSingleLight = function() {
         // Define element
         var calendar_single_element = document.getElementById('calendar_single');
 
-
         //
         // Charts configuration
         //
 
         if (calendar_single_element) {
-
             // Initialize chart
             var calendar_single = echarts.init(calendar_single_element);
-
 
             //
             // Chart config
@@ -60,7 +54,6 @@ var EchartsCalendarSingleLight = function() {
 
             // Options
             calendar_single.setOption({
-
                 // Add title
                 title: {
                     text: 'Github commits',
@@ -128,7 +121,7 @@ var EchartsCalendarSingleLight = function() {
                             width: 2
                         }
                     },
-                    yearLabel: {show: false}
+                    yearLabel: { show: false }
                 },
 
                 // Add series
@@ -140,13 +133,12 @@ var EchartsCalendarSingleLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             calendar_single_element && calendar_single.resize();
         };
 
@@ -156,7 +148,7 @@ var EchartsCalendarSingleLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -164,22 +156,20 @@ var EchartsCalendarSingleLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _calendarSingleLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsCalendarSingleLight.init();
 });

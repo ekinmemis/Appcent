@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var Dashboard = function () {
-
-
     //
     // Setup module components
     //
 
     // Setup Switchery
-    var _componentSwitchery = function() {
+    var _componentSwitchery = function () {
         if (typeof Switchery == 'undefined') {
             console.warn('Warning - switchery.min.js is not loaded.');
             return;
@@ -26,13 +23,13 @@ var Dashboard = function () {
 
         // Initialize multiple switches
         var switches = Array.prototype.slice.call(document.querySelectorAll('.form-input-switchery'));
-        switches.forEach(function(html) {
+        switches.forEach(function (html) {
             var switchery = new Switchery(html);
         });
     };
 
     // Setup Daterangepicker
-    var _componentDaterange = function() {
+    var _componentDaterange = function () {
         if (!$().daterangepicker) {
             console.warn('Warning - daterangepicker.js is not loaded.');
             return;
@@ -62,7 +59,7 @@ var Dashboard = function () {
                     direction: $('html').attr('dir') == 'rtl' ? 'rtl' : 'ltr'
                 }
             },
-            function(start, end) {
+            function (start, end) {
                 $('.daterange-ranges span').html(start.format('MMMM D') + ' - ' + end.format('MMMM D'));
             }
         );
@@ -70,21 +67,18 @@ var Dashboard = function () {
     };
 
     // Use first letter as an icon
-    var _componentIconLetter = function() {
-
+    var _componentIconLetter = function () {
         // Grab first letter and insert to the icon
-        $('.table tr').each(function() {
-
+        $('.table tr').each(function () {
             // Title
             var $title = $(this).find('.letter-icon-title'),
                 letter = $title.eq(0).text().charAt(0).toUpperCase();
 
             // Icon
             var $icon = $(this).find('.letter-icon');
-                $icon.eq(0).text(letter);
+            $icon.eq(0).text(letter);
         });
     };
-
 
     //
     // Charts configs
@@ -99,7 +93,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -123,8 +116,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colorrange = ['#03A9F4', '#29B6F6', '#4FC3F7', '#81D4FA', '#B3E5FC', '#E1F5FE'];
 
-
-
     //         // Construct scales
     //         // ------------------------------
 
@@ -136,8 +127,6 @@ var Dashboard = function () {
 
     //         // Colors
     //         var z = d3.scale.ordinal().range(colorrange);
-
-
 
     //         // Create axes
     //         // ------------------------------
@@ -172,8 +161,6 @@ var Dashboard = function () {
     //             .tickFormat('')
     //             .tickSize(-width, 0, 0);
 
-
-
     //         // Create chart
     //         // ------------------------------
 
@@ -186,8 +173,6 @@ var Dashboard = function () {
     //             .attr('height', height + margin.top + margin.bottom)
     //                 .append('g')
     //                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-
 
     //         // Construct chart layout
     //         // ------------------------------
@@ -210,13 +195,10 @@ var Dashboard = function () {
     //             .y0(function(d) { return y(d.y0); })
     //             .y1(function(d) { return y(d.y0 + d.y); });
 
-
-
     //         // Load data
     //         // ------------------------------
 
     //         d3.csv('../../../../global_assets/demo_data/dashboard/traffic_sources.csv', function (error, data) {
-
     //             // Pull out values
     //             data.forEach(function (d) {
     //                 d.date = format.parse(d.date);
@@ -225,8 +207,6 @@ var Dashboard = function () {
 
     //             // Stack and nest layers
     //             var layers = stack(nest.entries(data));
-
-
 
     //             // Set input domains
     //             // ------------------------------
@@ -237,8 +217,6 @@ var Dashboard = function () {
     //             // Vertical
     //             y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
-
-
     //             // Add grid
     //             // ------------------------------
 
@@ -246,8 +224,6 @@ var Dashboard = function () {
     //             svg.append('g')
     //                 .attr('class', 'd3-grid-dashed')
     //                 .call(gridAxis);
-
-
 
     //             //
     //             // Append chart elements
@@ -266,7 +242,7 @@ var Dashboard = function () {
     //                 .enter()
     //                     .append('path')
     //                     .attr('class', 'streamgraph-layer')
-    //                     .attr('d', function(d) { return area(d.values); })                    
+    //                     .attr('d', function(d) { return area(d.values); })
     //                     .style('stroke', '#fff')
     //                     .style('stroke-width', 0.5)
     //                     .style('fill', function(d, i) { return z(i); });
@@ -278,8 +254,6 @@ var Dashboard = function () {
     //                     .duration(750)
     //                     .delay(function(d, i) { return i * 50; })
     //                     .style('opacity', 1)
-
-
 
     //             // Append axes
     //             // ------------------------------
@@ -296,7 +270,6 @@ var Dashboard = function () {
     //             d3.select(svg.selectAll('.d3-axis-left .tick text')[0][0])
     //                 .style('visibility', 'hidden');
 
-
     //             //
     //             // Right vertical
     //             //
@@ -309,7 +282,6 @@ var Dashboard = function () {
     //             // Hide first tick
     //             d3.select(svg.selectAll('.d3-axis-right .tick text')[0][0])
     //                 .style('visibility', 'hidden');
-
 
     //             //
     //             // Horizontal
@@ -330,8 +302,6 @@ var Dashboard = function () {
     //                 .attr('y2', 4)
     //                 .attr('x1', x)
     //                 .attr('x2', x);
-
-
 
     //             // Add hover line and pointer
     //             // ------------------------------
@@ -366,8 +336,6 @@ var Dashboard = function () {
     //                 .style('pointer-events', 'none')
     //                 .style('opacity', 0);
 
-
-
     //             // Append events to the layers group
     //             // ------------------------------
 
@@ -397,7 +365,6 @@ var Dashboard = function () {
     //                         mousedate = datearray.indexOf(invertedx);
     //                         pro = d.values[mousedate].value;
 
-
     //                         // Display mouse pointer
     //                         hoverPointer
     //                             .attr('x', mousex - 3)
@@ -418,7 +385,7 @@ var Dashboard = function () {
     //                             '<ul class="list-unstyled mb-1">' +
     //                                 '<li>' + '<div class="font-size-base my-1"><i class="icon-circle-left2 mr-2"></i>' + d.key + '</div>' + '</li>' +
     //                                 '<li>' + 'Visits: &nbsp;' + "<span class='font-weight-semibold float-right'>" + pro + '</span>' + '</li>' +
-    //                                 '<li>' + 'Time: &nbsp; ' + '<span class="font-weight-semibold float-right">' + formatDate(d.values[mousedate].date) + '</span>' + '</li>' + 
+    //                                 '<li>' + 'Time: &nbsp; ' + '<span class="font-weight-semibold float-right">' + formatDate(d.values[mousedate].date) + '</span>' + '</li>' +
     //                             '</ul>'
     //                         )
     //                         .style('display', 'block');
@@ -428,7 +395,6 @@ var Dashboard = function () {
     //                     })
 
     //                     .on('mouseout', function (d, i) {
-
     //                         // Revert full opacity to all paths
     //                         svg.selectAll('.streamgraph-layer')
     //                             .transition()
@@ -444,8 +410,6 @@ var Dashboard = function () {
     //                         hoverLine.style('opacity', 0);
     //                     });
     //                 });
-
-
 
     //             // Append events to the chart container
     //             // ------------------------------
@@ -473,8 +437,6 @@ var Dashboard = function () {
     //                 });
     //         });
 
-
-
     //         // Resize chart
     //         // ------------------------------
 
@@ -485,12 +447,11 @@ var Dashboard = function () {
     //         $(document).on('click', '.sidebar-control', resizeStream);
 
     //         // Resize function
-    //         // 
+    //         //
     //         // Since D3 doesn't support SVG resize by default,
-    //         // we need to manually specify parts of the graph that need to 
+    //         // we need to manually specify parts of the graph that need to
     //         // be updated on window resize
     //         function resizeStream() {
-
     //             // Layout
     //             // -------------------------
 
@@ -505,7 +466,6 @@ var Dashboard = function () {
 
     //             // Horizontal range
     //             x.range([0, width]);
-
 
     //             // Chart elements
     //             // -------------------------
@@ -537,8 +497,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -555,7 +513,7 @@ var Dashboard = function () {
     //                 return '<ul class="list-unstyled mb-1">' +
     //                     '<li>' + '<div class="font-size-base my-1"><i class="icon-circle-left2 mr-2"></i>' + d.name + ' app' + '</div>' + '</li>' +
     //                     '<li>' + 'Sales: &nbsp;' + '<span class="font-weight-semibold float-right">' + d.value + '</span>' + '</li>' +
-    //                     '<li>' + 'Revenue: &nbsp; ' + '<span class="font-weight-semibold float-right">' + '$' + (d.value * 25).toFixed(2) + '</span>' + '</li>' + 
+    //                     '<li>' + 'Revenue: &nbsp; ' + '<span class="font-weight-semibold float-right">' + '$' + (d.value * 25).toFixed(2) + '</span>' + '</li>' +
     //                 '</ul>';
     //             });
 
@@ -566,7 +524,6 @@ var Dashboard = function () {
     //         // Line colors
     //         var scale = ['#66bb6a', '#ffb97f', '#5ab1ef'],
     //             color = d3.scale.ordinal().range(scale);
-
 
     //         // Create chart
     //         // ------------------------------
@@ -582,13 +539,11 @@ var Dashboard = function () {
     //                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
     //                 .call(tooltip);
 
-
     //         // Add date range switcher
     //         // ------------------------------
 
     //         var menu = document.getElementById('select_date');
     //         menu.addEventListener('change', change);
-
 
     //         // Load data
     //         // ------------------------------
@@ -598,7 +553,6 @@ var Dashboard = function () {
     //             redraw();
     //         });
 
-
     //         // Construct layout
     //         // ------------------------------
 
@@ -607,21 +561,18 @@ var Dashboard = function () {
     //         d3.select(window)
     //             .on('keydown', function() { altKey = d3.event.altKey; })
     //             .on('keyup', function() { altKey = false; });
-        
-    //         // Set terms of transition on date change   
+
+    //         // Set terms of transition on date change
     //         function change() {
     //           d3.transition()
     //               .duration(altKey ? 7500 : 500)
     //               .each(redraw);
     //         }
 
-
-
     //         // Main chart drawing function
     //         // ------------------------------
 
     //         function redraw() {
-
     //             // Construct chart layout
     //             // ------------------------------
 
@@ -629,15 +580,15 @@ var Dashboard = function () {
     //             var nested = d3.nest()
     //                 .key(function(d) { return d.type; })
     //                 .map(formatted)
-                
+
     //             // Get value from menu selection
     //             // the option values correspond
-    //             //to the [type] value we used to nest the data  
+    //             //to the [type] value we used to nest the data
     //             var series = menu.value;
-                
+
     //             // Only retrieve data from the selected series using nest
     //             var data = nested[series];
-                
+
     //             // For object constancy we will need to set 'keys', one for each type of data (column name) exclude all others.
     //             color.domain(d3.keys(data[0]).filter(function(key) { return (key !== 'date' && key !== 'type'); }));
 
@@ -656,8 +607,6 @@ var Dashboard = function () {
     //                 .x(function(d) { return x(d.date); })
     //                 .y(function(d) { return y(d.value); })
     //                 .interpolate('cardinal');
-
-
 
     //             // Construct scales
     //             // ------------------------------
@@ -678,8 +627,6 @@ var Dashboard = function () {
     //                 ])
     //                 .range([height, 0]);
 
-
-
     //             // Create axes
     //             // ------------------------------
 
@@ -699,8 +646,6 @@ var Dashboard = function () {
     //                 .ticks(6)
     //                 .tickSize(0 -width)
     //                 .tickPadding(8);
-                
-
 
     //             //
     //             // Append chart elements
@@ -718,15 +663,13 @@ var Dashboard = function () {
     //             svg.append('g')
     //                 .attr('class', 'd3-axis d3-axis-vertical d3-axis-transparent d3-grid d3-grid-dashed');
 
-
-
     //             // Append lines
     //             // ------------------------------
 
     //             // Bind the data
     //             var lines = svg.selectAll('.app-sales-lines')
     //                 .data(linedata)
-             
+
     //             // Append a group tag for each line
     //             var lineGroup = lines
     //                 .enter()
@@ -744,8 +687,6 @@ var Dashboard = function () {
     //                     .duration(500)
     //                     .delay(function(d, i) { return i * 200; })
     //                     .style('opacity', 1);
-              
-
 
     //             // Append circles
     //             // ------------------------------
@@ -768,8 +709,6 @@ var Dashboard = function () {
     //                     .delay(500)
     //                     .style('opacity', 1);
 
-
-
     //             // Append tooltip
     //             // ------------------------------
 
@@ -790,7 +729,7 @@ var Dashboard = function () {
 
     //             // Change tooltip direction of first point
     //             // to always keep it inside chart, useful on mobiles
-    //             lines.each(function (d) { 
+    //             lines.each(function (d) {
     //                 d3.select(d3.select(this).selectAll('circle')[0][0])
     //                     .on('mouseover', function (d) {
     //                         tooltip.offset([0, 15]).direction('e').show(d);
@@ -808,7 +747,7 @@ var Dashboard = function () {
 
     //             // Change tooltip direction of last point
     //             // to always keep it inside chart, useful on mobiles
-    //             lines.each(function (d) { 
+    //             lines.each(function (d) {
     //                 d3.select(d3.select(this).selectAll('circle')[0][d3.select(this).selectAll('circle').size() - 1])
     //                     .on('mouseover', function (d) {
     //                         tooltip.offset([0, -15]).direction('w').show(d);
@@ -824,14 +763,12 @@ var Dashboard = function () {
     //                     })
     //             })
 
-
-
     //             // Update chart on date change
     //             // ------------------------------
 
     //             // Set variable for updating visualization
     //             var lineUpdate = d3.transition(lines);
-                
+
     //             // Update lines
     //             lineUpdate.select('path')
     //                 .attr('d', function(d, i) { return line(d.values); });
@@ -844,15 +781,13 @@ var Dashboard = function () {
     //             // Update vertical axes
     //             d3.transition(svg)
     //                 .select('.d3-axis-vertical')
-    //                 .call(yAxis);   
+    //                 .call(yAxis);
 
     //             // Update horizontal axes
     //             d3.transition(svg)
     //                 .select('.d3-axis-horizontal')
     //                 .attr('transform', 'translate(0,' + height + ')')
     //                 .call(xAxis);
-
-
 
     //             // Resize chart
     //             // ------------------------------
@@ -864,12 +799,11 @@ var Dashboard = function () {
     //             document.querySelector('.sidebar-control').addEventListener('click', appSalesResize);
 
     //             // Resize function
-    //             // 
+    //             //
     //             // Since D3 doesn't support SVG resize by default,
-    //             // we need to manually specify parts of the graph that need to 
+    //             // we need to manually specify parts of the graph that need to
     //             // be updated on window resize
     //             function appSalesResize() {
-
     //                 // Layout
     //                 // -------------------------
 
@@ -887,7 +821,6 @@ var Dashboard = function () {
 
     //                 // Vertical range
     //                 y.range([height, 0]);
-
 
     //                 // Chart elements
     //                 // -------------------------
@@ -917,8 +850,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -933,7 +864,6 @@ var Dashboard = function () {
     //             bisectDate = d3.bisector(function(d) { return d.date; }).left,
     //             formatDate = d3.time.format('%b %d');
 
-
     //         // Create SVG
     //         // ------------------------------
 
@@ -947,8 +877,6 @@ var Dashboard = function () {
     //             .append('g')
     //                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -959,7 +887,6 @@ var Dashboard = function () {
     //             .y1(function(d) { return y(d.value); })
     //             .interpolate('monotone')
 
-
     //         // Construct scales
     //         // ------------------------------
 
@@ -968,7 +895,6 @@ var Dashboard = function () {
 
     //         // Vertical
     //         var y = d3.scale.linear().range([height, 0]);
-
 
     //         // Create axes
     //         // ------------------------------
@@ -982,12 +908,10 @@ var Dashboard = function () {
     //             .tickPadding(8)
     //             .tickFormat(d3.time.format('%b %d'));
 
-
     //         // Load data
     //         // ------------------------------
 
     //         d3.json('../../../../global_assets/demo_data/dashboard/monthly_sales.json', function (error, data) {
-
     //             // Show what's wrong if error
     //             if (error) return console.error(error);
 
@@ -1008,7 +932,6 @@ var Dashboard = function () {
     //                 };
     //             });
 
-
     //             // Set input domains
     //             // ------------------------------
 
@@ -1017,8 +940,6 @@ var Dashboard = function () {
 
     //             // Vertical
     //             y.domain([0, d3.max( data, function(d) { return d.value; })]);
-
-
 
     //             //
     //             // Append chart elements
@@ -1044,8 +965,6 @@ var Dashboard = function () {
     //                     .attr('x1', x)
     //                     .attr('x2', x);
 
-
-
     //             // Append area
     //             // -------------------------
 
@@ -1064,8 +983,6 @@ var Dashboard = function () {
     //                         }
     //                     });
 
-
-
     //             // Append crosshair and tooltip
     //             // -------------------------
 
@@ -1083,7 +1000,6 @@ var Dashboard = function () {
     //                 .attr('y1', 0)
     //                 .attr('y2', -maxY);
 
-
     //             //
     //             // Pointer
     //             //
@@ -1100,7 +1016,6 @@ var Dashboard = function () {
     //                 .style('stroke', color)
     //                 .style('stroke-width', 1.5);
 
-
     //             //
     //             // Text
     //             //
@@ -1116,7 +1031,6 @@ var Dashboard = function () {
     //                 .attr('dy', -10)
     //                 .style('font-size', 12);
 
-
     //             //
     //             // Overlay with events
     //             //
@@ -1128,21 +1042,19 @@ var Dashboard = function () {
     //                 .attr('width', width)
     //                 .attr('height', height)
     //                     .on('mouseover', function() {
-    //                         focusPointer.style('display', null);        
+    //                         focusPointer.style('display', null);
     //                         focusLine.style('display', null)
     //                         focusText.style('display', null);
     //                     })
     //                     .on('mouseout', function() {
-    //                         focusPointer.style('display', 'none'); 
+    //                         focusPointer.style('display', 'none');
     //                         focusLine.style('display', 'none');
     //                         focusText.style('display', 'none');
     //                     })
     //                     .on('mousemove', mousemove);
 
-
     //             // Display tooltip on mousemove
     //             function mousemove() {
-
     //                 // Define main variables
     //                 var mouse = d3.mouse(this),
     //                     mousex = mouse[0],
@@ -1168,8 +1080,6 @@ var Dashboard = function () {
     //                 }
     //             }
 
-
-
     //             // Resize chart
     //             // ------------------------------
 
@@ -1179,17 +1089,14 @@ var Dashboard = function () {
     //             // Call function on sidebar width change
     //             document.querySelector('.sidebar-control').addEventListener('click', monthlySalesAreaResize);
 
-
     //             // Resize function
-    //             // 
+    //             //
     //             // Since D3 doesn't support SVG resize by default,
-    //             // we need to manually specify parts of the graph that need to 
+    //             // we need to manually specify parts of the graph that need to
     //             // be updated on window resize
     //             function monthlySalesAreaResize() {
-
     //                 // Layout variables
     //                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
     //                 // Layout
     //                 // -------------------------
@@ -1199,7 +1106,6 @@ var Dashboard = function () {
 
     //                 // Width of appended group
     //                 svg.attr('width', width + margin.left + margin.right);
-
 
     //                 // Axes
     //                 // -------------------------
@@ -1212,7 +1118,6 @@ var Dashboard = function () {
 
     //                 // Horizontal axis subticks
     //                 svg.selectAll('.d3-axis-subticks').attr('x1', x).attr('x2', x);
-
 
     //                 // Chart elements
     //                 // -------------------------
@@ -1236,11 +1141,8 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
     //         // Load data
     //         d3.csv('../../../../global_assets/demo_data/dashboard/app_sales_heatmap.csv', function(error, data) {
-
-
     //             // Bind data
     //             // ------------------------------
 
@@ -1253,12 +1155,10 @@ var Dashboard = function () {
     //                 formatTime = d3.time.format('%H:%M');
 
     //             // Pull out values
-    //             data.forEach(function(d, i) { 
+    //             data.forEach(function(d, i) {
     //                 d.date = format.parse(d.date),
     //                 d.value = +d.value
     //             });
-
-
 
     //             // Layout setup
     //             // ------------------------------
@@ -1272,8 +1172,6 @@ var Dashboard = function () {
     //                 height = (rowGap + gridSize) * (d3.max(nest, function(d,i) {return i+1})) - margin.top,
     //                 buckets = 5, // number of colors in range
     //                 colors = ['#e9d8fa','#d2b5ef','#b990e1','#9f6bd3','#8548c3'];
-
-
 
     //             // Construct scales
     //             // ------------------------------
@@ -1289,8 +1187,6 @@ var Dashboard = function () {
     //                 .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
     //                 .range(colors);
 
-
-
     //             // Set input domains
     //             // ------------------------------
 
@@ -1299,8 +1195,6 @@ var Dashboard = function () {
 
     //             // Vertical
     //             y.domain([0, d3.max(data, function(d) { return d.app; })]);
-
-
 
     //             // Create chart
     //             // ------------------------------
@@ -1314,8 +1208,6 @@ var Dashboard = function () {
     //                 .attr('height', height + margin.bottom)
     //                 .append('g')
     //                     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-
 
     //             //
     //             // Append chart elements
@@ -1349,8 +1241,6 @@ var Dashboard = function () {
     //                     .style('text-anchor', 'end')
     //                     .text(function (d, i) { return d3.sum(d.values, function(d) { return d.value; }) + ' sales today' });
 
-
-
     //             // Add map elements
     //             // ------------------------------
 
@@ -1366,7 +1256,7 @@ var Dashboard = function () {
     //                     .attr('height', gridSize)
     //                     .style('cursor', 'pointer');
 
-    //             // Add loading transition    
+    //             // Add loading transition
     //             heatMap.transition()
     //                 .duration(250)
     //                 .delay(function(d, i) { return i * 20; })
@@ -1385,14 +1275,12 @@ var Dashboard = function () {
     //                     })
     //             })
 
-
-
     //             // Add legend
     //             // ------------------------------
 
     //             // Get min and max values
     //             var minValue, maxValue;
-    //             data.forEach(function(d, i) { 
+    //             data.forEach(function(d, i) {
     //                 maxValue = d3.max(data, function (d) { return d.value; });
     //                 minValue = d3.min(data, function (d) { return d.value; });
     //             });
@@ -1437,8 +1325,6 @@ var Dashboard = function () {
     //                 .style('font-size', 11)
     //                 .text(maxValue);
 
-
-
     //             // Resize chart
     //             // ------------------------------
 
@@ -1449,12 +1335,11 @@ var Dashboard = function () {
     //             document.querySelector('.sidebar-control').addEventListener('click', resizeHeatmap);
 
     //             // Resize function
-    //             // 
+    //             //
     //             // Since D3 doesn't support SVG resize by default,
-    //             // we need to manually specify parts of the graph that need to 
+    //             // we need to manually specify parts of the graph that need to
     //             // be updated on window resize
     //             function resizeHeatmap() {
-
     //                 // Layout
     //                 // -------------------------
 
@@ -1475,7 +1360,6 @@ var Dashboard = function () {
 
     //                 // Horizontal range
     //                 x.range([0, width]);
-
 
     //                 // Chart elements
     //                 // -------------------------
@@ -1520,8 +1404,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -1533,7 +1415,6 @@ var Dashboard = function () {
 
     //         // Date and time format
     //         var parseDate = d3.time.format('%Y-%m-%d').parse;
-
 
     //         // Create SVG
     //         // ------------------------------
@@ -1548,7 +1429,6 @@ var Dashboard = function () {
     //             .append('g')
     //                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -1559,7 +1439,6 @@ var Dashboard = function () {
     //             .y1(function(d) { return y(d.value); })
     //             .interpolate('monotone')
 
-
     //         // Construct scales
     //         // ------------------------------
 
@@ -1569,12 +1448,10 @@ var Dashboard = function () {
     //         // Vertical
     //         var y = d3.scale.linear().range([height, 0]);
 
-
     //         // Load data
     //         // ------------------------------
 
     //         d3.json('../../../../global_assets/demo_data/dashboard/monthly_sales.json', function (error, data) {
-
     //             // Show what's wrong if error
     //             if (error) return console.error(error);
 
@@ -1595,7 +1472,6 @@ var Dashboard = function () {
     //                 };
     //             });
 
-
     //             // Set input domains
     //             // ------------------------------
 
@@ -1604,8 +1480,6 @@ var Dashboard = function () {
 
     //             // Vertical
     //             y.domain([0, d3.max( data, function(d) { return d.value; })]);
-
-
 
     //             //
     //             // Append chart elements
@@ -1626,7 +1500,6 @@ var Dashboard = function () {
     //                         }
     //                     });
 
-
     //             // Resize chart
     //             // ------------------------------
 
@@ -1637,15 +1510,13 @@ var Dashboard = function () {
     //             document.querySelector('.sidebar-control').addEventListener('click', messagesAreaResize);
 
     //             // Resize function
-    //             // 
+    //             //
     //             // Since D3 doesn't support SVG resize by default,
-    //             // we need to manually specify parts of the graph that need to 
+    //             // we need to manually specify parts of the graph that need to
     //             // be updated on window resize
     //             function messagesAreaResize() {
-
     //                 // Layout variables
     //                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
     //                 // Layout
     //                 // -------------------------
@@ -1658,7 +1529,6 @@ var Dashboard = function () {
 
     //                 // Horizontal range
     //                 x.range([0, width]);
-
 
     //                 // Chart elements
     //                 // -------------------------
@@ -1679,8 +1549,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -1690,13 +1558,11 @@ var Dashboard = function () {
     //             width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
     //             height = height - margin.top - margin.bottom;
 
-
     //         // Generate random data (for demo only)
     //         var data = [];
     //         for (var i=0; i < qty; i++) {
     //             data.push(Math.floor(Math.random() * qty) + 5)
     //         }
-
 
     //         // Construct scales
     //         // ------------------------------
@@ -1707,7 +1573,6 @@ var Dashboard = function () {
     //         // Vertical
     //         var y = d3.scale.linear().range([height - 5, 5]);
 
-
     //         // Set input domains
     //         // ------------------------------
 
@@ -1716,8 +1581,6 @@ var Dashboard = function () {
 
     //         // Vertical
     //         y.domain([0, qty])
-                
-
 
     //         // Construct chart layout
     //         // ------------------------------
@@ -1731,15 +1594,13 @@ var Dashboard = function () {
     //         // Area
     //         var area = d3.svg.area()
     //             .interpolate(interpolation)
-    //             .x(function(d, i) { 
-    //                 return x(i); 
+    //             .x(function(d, i) {
+    //                 return x(i);
     //             })
     //             .y0(height)
-    //             .y1(function(d) { 
-    //                 return y(d); 
+    //             .y1(function(d) {
+    //                 return y(d);
     //             });
-
-
 
     //         // Create SVG
     //         // ------------------------------
@@ -1753,8 +1614,6 @@ var Dashboard = function () {
     //             .attr('height', height + margin.top + margin.bottom)
     //             .append("g")
     //                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-
 
     //         // Add mask for animation
     //         // ------------------------------
@@ -1776,8 +1635,6 @@ var Dashboard = function () {
     //                 .duration(1000)
     //                 .ease('linear')
     //                 .attr('width', width);
-
-
 
     //         //
     //         // Append chart elements
@@ -1805,13 +1662,10 @@ var Dashboard = function () {
     //                 .duration(750)
     //                 .style('opacity', 1);
 
-
-
     //         // Set update interval. For demo only
     //         // ------------------------------
 
     //         setInterval(function() {
-
     //             // push a new data point onto the back
     //             data.push(Math.floor(Math.random() * qty) + 5);
 
@@ -1822,13 +1676,10 @@ var Dashboard = function () {
 
     //         }, interval);
 
-
-
     //         // Update random data. For demo only
     //         // ------------------------------
 
     //         function update() {
-
     //             // Redraw the path and slide it to the left
     //             path
     //                 .attr('transform', null)
@@ -1846,8 +1697,6 @@ var Dashboard = function () {
     //             }
     //         }
 
-
-
     //         // Resize chart
     //         // ------------------------------
 
@@ -1858,15 +1707,13 @@ var Dashboard = function () {
     //         document.querySelector('.sidebar-control').addEventListener('click', resizeSparklines);
 
     //         // Resize function
-    //         // 
+    //         //
     //         // Since D3 doesn't support SVG resize by default,
-    //         // we need to manually specify parts of the graph that need to 
+    //         // we need to manually specify parts of the graph that need to
     //         // be updated on window resize
     //         function resizeSparklines() {
-
     //             // Layout variables
     //             width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
     //             // Layout
     //             // -------------------------
@@ -1879,7 +1726,6 @@ var Dashboard = function () {
 
     //             // Horizontal range
     //             x.range([0, width]);
-
 
     //             // Chart elements
     //             // -------------------------
@@ -1905,8 +1751,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -1951,8 +1795,6 @@ var Dashboard = function () {
     //         var lineColor = '#fff',
     //             guideColor = 'rgba(255,255,255,0.3)';
 
-
-
     //         // Add tooltip
     //         // ------------------------------
 
@@ -1962,11 +1804,9 @@ var Dashboard = function () {
     //                 return '<ul class="list-unstyled mb-1">' +
     //                     '<li>' + '<div class="font-size-base my-1"><i class="icon-check2 mr-2"></i>' + formatDate(d.date) + '</div>' + '</li>' +
     //                     '<li>' + 'Sales: &nbsp;' + '<span class="font-weight-semibold float-right">' + d.alpha + '</span>' + '</li>' +
-    //                     '<li>' + 'Revenue: &nbsp; ' + '<span class="font-weight-semibold float-right">' + '$' + (d.alpha * 25).toFixed(2) + '</span>' + '</li>' + 
+    //                     '<li>' + 'Revenue: &nbsp; ' + '<span class="font-weight-semibold float-right">' + '$' + (d.alpha * 25).toFixed(2) + '</span>' + '</li>' +
     //                 '</ul>';
     //             });
-
-
 
     //         // Create chart
     //         // ------------------------------
@@ -1982,8 +1822,6 @@ var Dashboard = function () {
     //                     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
     //                     .call(tooltip);
 
-
-
     //         // Load data
     //         // ------------------------------
 
@@ -1991,8 +1829,6 @@ var Dashboard = function () {
     //             d.date = parseDate(d.date);
     //             d.alpha = +d.alpha;
     //         });
-
-
 
     //         // Construct scales
     //         // ------------------------------
@@ -2004,8 +1840,6 @@ var Dashboard = function () {
     //         // Vertical
     //         var y = d3.scale.linear()
     //             .range([height, 5]);
-
-
 
     //         // Set input domains
     //         // ------------------------------
@@ -2020,8 +1854,6 @@ var Dashboard = function () {
     //             return Math.max(d.alpha);
     //         })]);
 
-
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -2033,8 +1865,6 @@ var Dashboard = function () {
     //             .y(function(d) {
     //                 return y(d.alpha)
     //             });
-
-
 
     //         //
     //         // Append chart elements
@@ -2061,8 +1891,6 @@ var Dashboard = function () {
     //                   .ease('linear')
     //                   .attr('width', width);
 
-
-
     //         // Line
     //         // ------------------------------
 
@@ -2080,8 +1908,6 @@ var Dashboard = function () {
     //             .transition()
     //                 .duration(1000)
     //                 .ease('linear');
-
-
 
     //         // Add vertical guide lines
     //         // ------------------------------
@@ -2121,8 +1947,6 @@ var Dashboard = function () {
     //                     return y(d.alpha);
     //                 });
 
-
-
     //         // Alpha app points
     //         // ------------------------------
 
@@ -2139,8 +1963,6 @@ var Dashboard = function () {
     //                 .style('stroke', lineColor)
     //                 .style('fill', lineColor);
 
-
-
     //         // Animate points on page load
     //         points
     //             .style('opacity', 0)
@@ -2149,7 +1971,6 @@ var Dashboard = function () {
     //                 .ease('linear')
     //                 .delay(1000)
     //                 .style('opacity', 1);
-
 
     //         // Add user interaction
     //         points
@@ -2198,8 +2019,6 @@ var Dashboard = function () {
     //                 d3.select(this).transition().duration(250).attr('r', 3);
     //             })
 
-
-
     //         // Resize chart
     //         // ------------------------------
 
@@ -2210,15 +2029,13 @@ var Dashboard = function () {
     //         document.querySelector('.sidebar-control').addEventListener('click', revenueResize);
 
     //         // Resize function
-    //         // 
+    //         //
     //         // Since D3 doesn't support SVG resize by default,
-    //         // we need to manually specify parts of the graph that need to 
+    //         // we need to manually specify parts of the graph that need to
     //         // be updated on window resize
     //         function revenueResize() {
-
     //             // Layout variables
     //             width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
     //             // Layout
     //             // -------------------------
@@ -2231,7 +2048,6 @@ var Dashboard = function () {
 
     //             // Horizontal range
     //             x.range([padding, width - padding]);
-
 
     //             // Chart elements
     //             // -------------------------
@@ -2266,8 +2082,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -2279,8 +2093,6 @@ var Dashboard = function () {
     //             progress = $(element).data('progress'),
     //             total = 100;
 
-
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -2290,10 +2102,8 @@ var Dashboard = function () {
     //             .innerRadius(0)
     //             .outerRadius(radius)
     //             .endAngle(function(d) {
-    //               return (d.value / d.size) * 2 * Math.PI; 
+    //               return (d.value / d.size) * 2 * Math.PI;
     //             })
-
-
 
     //         // Create chart
     //         // ------------------------------
@@ -2307,8 +2117,6 @@ var Dashboard = function () {
     //             .attr('height', height)
     //             .append('g')
     //                 .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-
-
 
     //         //
     //         // Append chart elements
@@ -2336,7 +2144,6 @@ var Dashboard = function () {
     //                 .duration(2500)
     //                 .attrTween('d', arcTween);
 
-
     //         // Tween arcs
     //         function arcTween() {
     //             var i = d3.interpolate(0, progress);
@@ -2358,8 +2165,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -2389,8 +2194,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colorrange = ['#66bb6a','#5ab1ef','#ffb980'];
 
-
-
     //         // Tooltip
     //         // ------------------------------
 
@@ -2406,21 +2209,18 @@ var Dashboard = function () {
     //                 '</ul>';
     //             });
 
-
     //         // Create chart
     //         // ------------------------------
 
     //         // Add svg element
     //         var container = d3Container.append('svg').call(tip);
-            
+
     //         // Add SVG group
     //         var svg = container
     //             .attr('width', size)
     //             .attr('height', size)
     //             .append('g')
-    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
     //         // Construct chart layout
     //         // ------------------------------
@@ -2430,9 +2230,9 @@ var Dashboard = function () {
     //             .sort(null)
     //             .startAngle(Math.PI)
     //             .endAngle(3 * Math.PI)
-    //             .value(function (d) { 
+    //             .value(function (d) {
     //                 return d.value;
-    //             }); 
+    //             });
 
     //         // Arc
     //         var arc = d3.svg.arc()
@@ -2442,8 +2242,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colors = d3.scale.ordinal().range(colorrange);
 
-
-
     //         //
     //         // Append chart elements
     //         //
@@ -2452,10 +2250,10 @@ var Dashboard = function () {
     //         var arcGroup = svg.selectAll('.d3-arc')
     //             .data(pie(data))
     //             .enter()
-    //             .append('g') 
+    //             .append('g')
     //                 .attr('class', 'd3-arc d3-slice-border')
     //                 .style('cursor', 'pointer');
-            
+
     //         // Append path
     //         var arcPath = arcGroup
     //             .append('path')
@@ -2464,7 +2262,6 @@ var Dashboard = function () {
     //         // Add tooltip
     //         arcPath
     //             .on('mouseover', function (d, i) {
-
     //                 // Transition on mouseover
     //                 d3.select(this)
     //                 .transition()
@@ -2479,7 +2276,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mousemove', function (d) {
-                    
     //                 // Show tooltip on mousemove
     //                 tip.show(d)
     //                     .style('top', (d3.event.pageY - 40) + 'px')
@@ -2487,7 +2283,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mouseout', function (d, i) {
-
     //                 // Mouseout transition
     //                 d3.select(this)
     //                 .transition()
@@ -2508,8 +2303,8 @@ var Dashboard = function () {
     //                     var interpolate = d3.interpolate(d.startAngle,d.endAngle);
     //                     return function(t) {
     //                         d.endAngle = interpolate(t);
-    //                         return arc(d);  
-    //                     }; 
+    //                         return arc(d);
+    //                     };
     //                 });
     //     }
     // };
@@ -2523,8 +2318,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -2558,8 +2351,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colorrange = ['#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'];
 
-
-
     //         // Tooltip
     //         // ------------------------------
 
@@ -2575,22 +2366,18 @@ var Dashboard = function () {
     //                 '</ul>';
     //             });
 
-
-
     //         // Create chart
     //         // ------------------------------
 
     //         // Add svg element
     //         var container = d3Container.append('svg').call(tip);
-            
+
     //         // Add SVG group
     //         var svg = container
     //             .attr('width', size)
     //             .attr('height', size)
     //             .append('g')
-    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
     //         // Construct chart layout
     //         // ------------------------------
@@ -2600,9 +2387,9 @@ var Dashboard = function () {
     //             .sort(null)
     //             .startAngle(Math.PI)
     //             .endAngle(3 * Math.PI)
-    //             .value(function (d) { 
+    //             .value(function (d) {
     //                 return d.value;
-    //             }); 
+    //             });
 
     //         // Arc
     //         var arc = d3.svg.arc()
@@ -2612,8 +2399,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colors = d3.scale.ordinal().range(colorrange);
 
-
-
     //         //
     //         // Append chart elements
     //         //
@@ -2622,10 +2407,10 @@ var Dashboard = function () {
     //         var arcGroup = svg.selectAll('.d3-arc')
     //             .data(pie(data))
     //             .enter()
-    //             .append('g') 
+    //             .append('g')
     //                 .attr('class', 'd3-arc d3-slice-border')
     //                 .style('cursor', 'pointer');
-            
+
     //         // Append path
     //         var arcPath = arcGroup
     //             .append('path')
@@ -2634,7 +2419,6 @@ var Dashboard = function () {
     //         // Add tooltip
     //         arcPath
     //             .on('mouseover', function (d, i) {
-
     //                 // Transition on mouseover
     //                 d3.select(this)
     //                 .transition()
@@ -2649,7 +2433,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mousemove', function (d) {
-                    
     //                 // Show tooltip on mousemove
     //                 tip.show(d)
     //                     .style('top', (d3.event.pageY - 40) + 'px')
@@ -2657,7 +2440,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mouseout', function (d, i) {
-
     //                 // Mouseout transition
     //                 d3.select(this)
     //                 .transition()
@@ -2678,8 +2460,8 @@ var Dashboard = function () {
     //                     var interpolate = d3.interpolate(d.startAngle,d.endAngle);
     //                     return function(t) {
     //                         d.endAngle = interpolate(t);
-    //                         return arc(d);  
-    //                     }; 
+    //                         return arc(d);
+    //                     };
     //                 });
     //     }
     // };
@@ -2693,8 +2475,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -2724,8 +2504,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colorrange = ['#66bb6a','#5ab1ef','#ffb980'];
 
-
-
     //         // Tooltip
     //         // ------------------------------
 
@@ -2741,22 +2519,18 @@ var Dashboard = function () {
     //                 '</ul>';
     //             });
 
-
-
     //         // Create chart
     //         // ------------------------------
 
     //         // Add svg element
     //         var container = d3Container.append('svg').call(tip);
-            
+
     //         // Add SVG group
     //         var svg = container
     //             .attr('width', size)
     //             .attr('height', size)
     //             .append('g')
-    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
-
-
+    //                 .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
     //         // Construct chart layout
     //         // ------------------------------
@@ -2766,9 +2540,9 @@ var Dashboard = function () {
     //             .sort(null)
     //             .startAngle(Math.PI)
     //             .endAngle(3 * Math.PI)
-    //             .value(function (d) { 
+    //             .value(function (d) {
     //                 return d.value;
-    //             }); 
+    //             });
 
     //         // Arc
     //         var arc = d3.svg.arc()
@@ -2778,7 +2552,6 @@ var Dashboard = function () {
     //         // Colors
     //         var colors = d3.scale.ordinal().range(colorrange);
 
-
     //         //
     //         // Append chart elements
     //         //
@@ -2787,10 +2560,10 @@ var Dashboard = function () {
     //         var arcGroup = svg.selectAll('.d3-arc')
     //             .data(pie(data))
     //             .enter()
-    //             .append('g') 
+    //             .append('g')
     //                 .attr('class', 'd3-arc d3-slice-border')
     //                 .style('cursor', 'pointer');
-            
+
     //         // Append path
     //         var arcPath = arcGroup
     //             .append('path')
@@ -2799,7 +2572,6 @@ var Dashboard = function () {
     //         // Add tooltip
     //         arcPath
     //             .on('mouseover', function (d, i) {
-
     //                 // Transition on mouseover
     //                 d3.select(this)
     //                 .transition()
@@ -2814,7 +2586,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mousemove', function (d) {
-                    
     //                 // Show tooltip on mousemove
     //                 tip.show(d)
     //                     .style('top', (d3.event.pageY - 40) + 'px')
@@ -2822,7 +2593,6 @@ var Dashboard = function () {
     //             })
 
     //             .on('mouseout', function (d, i) {
-
     //                 // Mouseout transition
     //                 d3.select(this)
     //                 .transition()
@@ -2843,8 +2613,8 @@ var Dashboard = function () {
     //                     var interpolate = d3.interpolate(d.startAngle,d.endAngle);
     //                     return function(t) {
     //                         d.endAngle = interpolate(t);
-    //                         return arc(d);  
-    //                     }; 
+    //                         return arc(d);
+    //                     };
     //                 });
     //     }
     // };
@@ -2858,8 +2628,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -2872,8 +2640,6 @@ var Dashboard = function () {
     //         // Main variables
     //         var d3Container = d3.select(element),
     //             width = d3Container.node().getBoundingClientRect().width;
-            
-
 
     //         // Construct scales
     //         // ------------------------------
@@ -2886,8 +2652,6 @@ var Dashboard = function () {
     //         var y = d3.scale.linear()
     //             .range([0, height]);
 
-
-
     //         // Set input domains
     //         // ------------------------------
 
@@ -2896,8 +2660,6 @@ var Dashboard = function () {
 
     //         // Vertical
     //         y.domain([0, d3.max(bardata)]);
-
-
 
     //         // Create chart
     //         // ------------------------------
@@ -2910,8 +2672,6 @@ var Dashboard = function () {
     //             .attr('width', width)
     //             .attr('height', height)
     //             .append('g');
-
-
 
     //         //
     //         // Append chart elements
@@ -2928,8 +2688,6 @@ var Dashboard = function () {
     //                     return x(i);
     //                 })
     //                 .style('fill', color);
-
-
 
     //         // Tooltip
     //         // ------------------------------
@@ -2978,8 +2736,6 @@ var Dashboard = function () {
     //             });
     //         }
 
-
-
     //         // Bar loading animation
     //         // ------------------------------
 
@@ -3020,8 +2776,6 @@ var Dashboard = function () {
     //                 })
     //         }
 
-
-
     //         // Resize chart
     //         // ------------------------------
 
@@ -3032,15 +2786,13 @@ var Dashboard = function () {
     //         document.querySelector('.sidebar-control').addEventListener('click', barsResize);
 
     //         // Resize function
-    //         // 
+    //         //
     //         // Since D3 doesn't support SVG resize by default,
-    //         // we need to manually specify parts of the graph that need to 
+    //         // we need to manually specify parts of the graph that need to
     //         // be updated on window resize
     //         function barsResize() {
-
     //             // Layout variables
     //             width = d3Container.node().getBoundingClientRect().width;
-
 
     //             // Layout
     //             // -------------------------
@@ -3053,7 +2805,6 @@ var Dashboard = function () {
 
     //             // Horizontal range
     //             x.rangeBands([0, width], 0.3);
-
 
     //             // Chart elements
     //             // -------------------------
@@ -3077,8 +2828,6 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -3097,8 +2846,6 @@ var Dashboard = function () {
     //         // Values step
     //         var step = endPercent < startPercent ? -0.01 : 0.01;
 
-
-
     //         // Create chart
     //         // ------------------------------
 
@@ -3112,8 +2859,6 @@ var Dashboard = function () {
     //             .append('g')
     //                 .attr('transform', 'translate(' + (boxSize / 2) + ',' + (boxSize / 2) + ')');
 
-
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -3122,8 +2867,6 @@ var Dashboard = function () {
     //             .startAngle(0)
     //             .innerRadius(radius)
     //             .outerRadius(radius - border);
-
-
 
     //         //
     //         // Append chart elements
@@ -3150,8 +2893,6 @@ var Dashboard = function () {
     //             .style('fill', color)
     //             .style('fill-opacity', 1);
 
-
-
     //         // Text
     //         // ------------------------------
 
@@ -3176,8 +2917,6 @@ var Dashboard = function () {
     //             .append('div')
     //                 .attr('class', 'font-size-sm text-muted mb-3')
     //                 .text(textAverage);
-
-
 
     //         // Animation
     //         // ------------------------------
@@ -3211,16 +2950,12 @@ var Dashboard = function () {
 
     //     // Initialize chart only if element exsists in the DOM
     //     if($(element).length > 0) {
-
-
     //         // Bullet chart core
     //         // ------------------------------
 
     //         function bulletCore() {
-
     //             // Construct
     //             d3.bullet = function() {
-
     //                 // Default layout variables
     //                 var orient = 'left',
     //                     reverse = false,
@@ -3234,7 +2969,6 @@ var Dashboard = function () {
     //                 // For each small multiple…
     //                 function bullet(g) {
     //                     g.each(function(d, i) {
-
     //                         // Define variables
     //                         var rangez = ranges.call(this, d, i).slice().sort(d3.descending),
     //                             markerz = markers.call(this, d, i).slice().sort(d3.descending),
@@ -3257,8 +2991,6 @@ var Dashboard = function () {
     //                         // Derive width-scales from the x-scales.
     //                         var w0 = bulletWidth(x0),
     //                             w1 = bulletWidth(x1);
-
-
 
     //                         // Setup range
     //                         // ------------------------------
@@ -3288,8 +3020,6 @@ var Dashboard = function () {
     //                             .attr('x', reverse ? x1 : 0)
     //                             .attr('width', w1)
     //                             .attr('height', height);
-
-
 
     //                         // Setup measures
     //                         // ------------------------------
@@ -3322,8 +3052,6 @@ var Dashboard = function () {
     //                             .attr('x', reverse ? x1 : 0)
     //                             .attr('y', height / 2.5);
 
-
-
     //                         // Setup markers
     //                         // ------------------------------
 
@@ -3353,8 +3081,6 @@ var Dashboard = function () {
     //                             .attr('x2', x1)
     //                             .attr('y1', height / 6)
     //                             .attr('y2', height * 5 / 6);
-
-
 
     //                         // Setup axes
     //                         // ------------------------------
@@ -3416,8 +3142,6 @@ var Dashboard = function () {
     //                                 .style('opacity', 1e-6)
     //                                 .remove();
 
-
-
     //                         // Resize chart
     //                         // ------------------------------
 
@@ -3428,23 +3152,20 @@ var Dashboard = function () {
     //                         document.querySelector('.sidebar-control').addEventListener('click', resizeBulletsCore);
 
     //                         // Resize function
-    //                         // 
+    //                         //
     //                         // Since D3 doesn't support SVG resize by default,
-    //                         // we need to manually specify parts of the graph that need to 
+    //                         // we need to manually specify parts of the graph that need to
     //                         // be updated on window resize
     //                         function resizeBulletsCore() {
-
     //                             // Layout variables
     //                             width = d3.select('#bullets').node().getBoundingClientRect().width - margin.left - margin.right;
     //                             w1 = bulletWidth(x1);
-
 
     //                             // Layout
     //                             // -------------------------
 
     //                             // Horizontal range
     //                             x1.range(reverse ? [width, 0] : [0, width]);
-
 
     //                             // Chart elements
     //                             // -------------------------
@@ -3465,7 +3186,6 @@ var Dashboard = function () {
 
     //                     d3.timer.flush();
     //                 }
-
 
     //                 // Constructor functions
     //                 // ------------------------------
@@ -3562,8 +3282,6 @@ var Dashboard = function () {
     //         }
     //         bulletCore();
 
-
-
     //         // Basic setup
     //         // ------------------------------
 
@@ -3573,8 +3291,6 @@ var Dashboard = function () {
     //             width = width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
     //             height = height - margin.top - margin.bottom;
 
-
-
     //         // Construct chart layout
     //         // ------------------------------
 
@@ -3582,16 +3298,12 @@ var Dashboard = function () {
     //             .width(width)
     //             .height(height);
 
-
-
     //         // Load data
     //         // ------------------------------
 
     //         d3.json('../../../../global_assets/demo_data/dashboard/bullets.json', function(error, data) {
-
     //             // Show what's wrong if error
     //             if (error) return console.error(error);
-
 
     //             // Create SVG
     //             // ------------------------------
@@ -3610,8 +3322,6 @@ var Dashboard = function () {
     //                 .append('g')
     //                     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
     //                     .call(chart);
-
-
 
     //             // Add title
     //             // ------------------------------
@@ -3638,8 +3348,6 @@ var Dashboard = function () {
     //                     .duration(500)
     //                     .delay(500)
     //                     .style('opacity', 0.75);
-
-
 
     //             // Add random transition for demo
     //             // ------------------------------
@@ -3669,8 +3377,6 @@ var Dashboard = function () {
     //                 }
     //             };
 
-
-
     //             // Resize chart
     //             // ------------------------------
 
@@ -3681,15 +3387,13 @@ var Dashboard = function () {
     //             document.querySelector('.sidebar-control').addEventListener('click', bulletResize);
 
     //             // Resize function
-    //             // 
+    //             //
     //             // Since D3 doesn't support SVG resize by default,
-    //             // we need to manually specify parts of the graph that need to 
+    //             // we need to manually specify parts of the graph that need to
     //             // be updated on window resize
     //             function bulletResize() {
-
     //                 // Layout variables
     //                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
     //                 // Layout
     //                 // -------------------------
@@ -3700,7 +3404,6 @@ var Dashboard = function () {
     //                 // Width of appended group
     //                 svg.attr('width', width + margin.left + margin.right);
 
-
     //                 // Chart elements
     //                 // -------------------------
 
@@ -3708,8 +3411,6 @@ var Dashboard = function () {
     //                 svg.selectAll('.bullet-subtitle').attr('x', width);
     //             }
     //         });
-
-
 
     //         // Randomizers
     //         // ------------------------------
@@ -3730,19 +3431,17 @@ var Dashboard = function () {
     //     }
     // };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        initComponents: function() {
+        initComponents: function () {
             _componentSwitchery();
             _componentDaterange();
             _componentIconLetter();
         },
-        initCharts: function() {
-
+        initCharts: function () {
             // Sparklines
             // _chartSparkline('#new-visitors', 'line', 30, 35, 'basis', 750, 2000, '#81c784');
             // _chartSparkline('#new-sessions', 'line', 30, 35, 'basis', 750, 2000, '#ffb74d');
@@ -3785,11 +3484,10 @@ var Dashboard = function () {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Dashboard.initComponents();
     Dashboard.initCharts();
 });

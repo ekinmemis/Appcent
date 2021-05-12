@@ -6,32 +6,28 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var BlockUi = function() {
-
-
+var BlockUi = function () {
     //
     // Setup module components
     //
 
     // BlockUI
-    var _componentBlockUi = function() {
+    var _componentBlockUi = function () {
         if (!$().block) {
             console.warn('Warning - blockui.min.js is not loaded.');
             return;
         }
 
-
         // Page elements
         // ------------------------------
 
         // Block card
-        $('#block-card').on('click', function() {
+        $('#block-card').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -48,9 +44,9 @@ var BlockUi = function() {
         });
 
         // Block sidebar
-        $('#block-sidebar').on('click', function() {
+        $('#block-sidebar').on('click', function () {
             var block = $('.sidebar-main');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -58,7 +54,7 @@ var BlockUi = function() {
                     opacity: 0.6,
                     cursor: 'wait'
                 },
-                centerY: 0, 
+                centerY: 0,
                 css: {
                     top: '180px',
                     border: 0,
@@ -66,7 +62,7 @@ var BlockUi = function() {
                     padding: 0,
                     backgroundColor: 'transparent'
                 },
-                onBlock: function() {
+                onBlock: function () {
                     $(block).css({
                         left: 0
                     });
@@ -75,8 +71,8 @@ var BlockUi = function() {
         });
 
         // Block page
-        $('#block-page').on('click', function() {
-            $.blockUI({ 
+        $('#block-page').on('click', function () {
+            $.blockUI({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -95,14 +91,13 @@ var BlockUi = function() {
             });
         });
 
-
         // Overlays
         // ------------------------------
 
         // Basic overlay
-        $('#basic-overlay').on('click', function() {
+        $('#basic-overlay').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -119,9 +114,9 @@ var BlockUi = function() {
         });
 
         // Custom overlay
-        $('#overlay-custom').on('click', function() {
+        $('#overlay-custom').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -139,9 +134,9 @@ var BlockUi = function() {
         });
 
         // Overlay with custom color
-        $('#overlay-cover').on('click', function() {
+        $('#overlay-cover').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -159,7 +154,7 @@ var BlockUi = function() {
         });
 
         // Overlay without text
-        $('#no-message').on('click', function() {
+        $('#no-message').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: null,
@@ -178,7 +173,7 @@ var BlockUi = function() {
         });
 
         // No overlay
-        $('#no-overlay').on('click', function() {
+        $('#no-overlay').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
@@ -192,19 +187,18 @@ var BlockUi = function() {
                     width: 46,
                     height: 46,
                     lineHeight: 1,
-                    '-webkit-border-radius': '2px', 
-                    '-moz-border-radius': '2px', 
+                    '-webkit-border-radius': '2px',
+                    '-moz-border-radius': '2px',
                     opacity: 0.95
                 }
             });
         });
 
-
         // Messages
         // ------------------------------
 
         // Default message
-        $('#default-message').on('click', function() {
+        $('#default-message').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: '<span class="font-weight-semibold">Please wait...</span>',
@@ -223,7 +217,7 @@ var BlockUi = function() {
         });
 
         // Spinner only
-        $('#spinner-only').on('click', function() {
+        $('#spinner-only').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
@@ -242,7 +236,7 @@ var BlockUi = function() {
         });
 
         // Custom message
-        $('#custom-message').on('click', function() {
+        $('#custom-message').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: '<span class="font-weight-semibold"><i class="icon-spinner4 spinner mr-2"></i>&nbsp; Updating data</span>',
@@ -265,7 +259,7 @@ var BlockUi = function() {
         });
 
         // DOM message
-        $('#dom-message').on('click', function() {
+        $('#dom-message').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: $(this).parent().parent().find('.blockui-message'),
@@ -287,10 +281,10 @@ var BlockUi = function() {
         });
 
         // Multiple messages
-        $('#multiple-messages').on('click', function() {
+        $('#multiple-messages').on('click', function () {
             var message = $(this).parent().parent().find('.blockui-message');
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: message,
                 overlayCSS: {
                     backgroundColor: '#fff',
@@ -305,34 +299,34 @@ var BlockUi = function() {
                     padding: 0,
                     backgroundColor: 'transparent'
                 },
-                onBlock: function() {
+                onBlock: function () {
                     clearTimeout();
                 }
             });
 
             window.setTimeout(function () {
-               message.html('<i class="icon-spinner4 spinner mt-1"></i> <span class="font-weight-semibold d-block mt-2">Loading</span>')
-            }, 0); 
+                message.html('<i class="icon-spinner4 spinner mt-1"></i> <span class="font-weight-semibold d-block mt-2">Loading</span>')
+            }, 0);
 
             window.setTimeout(function () {
-               message.html('<i class="icon-spinner4 spinner mt-1"></i> <span class="font-weight-semibold d-block mt-2">Please wait</span>')
-            }, 2000); 
+                message.html('<i class="icon-spinner4 spinner mt-1"></i> <span class="font-weight-semibold d-block mt-2">Please wait</span>')
+            }, 2000);
 
             window.setTimeout(function () {
-               message.addClass('bg-danger').html('<i class="icon-warning mt-1"></i> <span class="font-weight-semibold d-block mt-2">Load error</span>')
+                message.addClass('bg-danger').html('<i class="icon-warning mt-1"></i> <span class="font-weight-semibold d-block mt-2">Load error</span>')
             }, 4000);
 
             window.setTimeout(function () {
-               $(block).unblock({
-                onUnblock: function(){
-                    message.removeClass('bg-danger');
-                }
-               });
+                $(block).unblock({
+                    onUnblock: function () {
+                        message.removeClass('bg-danger');
+                    }
+                });
             }, 6000);
         });
 
         // Custom message animation
-        $('#custom-message-animation').on('click', function() {
+        $('#custom-message-animation').on('click', function () {
             var block = $(this).closest('.card');
             $(block).block({
                 message: $('.blockui-animation-container'),
@@ -359,9 +353,9 @@ var BlockUi = function() {
         });
 
         // Custom message position
-        $('#custom-position').on('click', function() {
+        $('#custom-position').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 centerX: 0,
@@ -383,14 +377,13 @@ var BlockUi = function() {
             });
         });
 
-
         // Unblock options
         // ------------------------------
 
         // Auto unblock
-        $('#auto-unblock').on('click', function() {
+        $('#auto-unblock').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -407,9 +400,9 @@ var BlockUi = function() {
         });
 
         // Unblock on click
-        $('#click-unblock').on('click', function() {
+        $('#click-unblock').on('click', function () {
             var block = $(this).closest('.card');
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 overlayCSS: {
                     backgroundColor: '#fff',
@@ -424,20 +417,19 @@ var BlockUi = function() {
                 }
             });
 
-            $('.blockOverlay').on('click', function() {
+            $('.blockOverlay').on('click', function () {
                 $(block).unblock();
             });
         });
-
 
         // Callbacks
         // ------------------------------
 
         // Block callback
-        $('#block-callback').on('click', function() {
-            $.blockUI({ 
+        $('#block-callback').on('click', function () {
+            $.blockUI({
                 message: '<i class="icon-spinner4 spinner"></i>',
-                fadeIn: 800, 
+                fadeIn: 800,
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
                     backgroundColor: '#1b2024',
@@ -452,15 +444,15 @@ var BlockUi = function() {
                     padding: 0,
                     backgroundColor: 'transparent'
                 },
-                onBlock: function() { 
-                    alert('Page is now blocked. FadeIn completed.'); 
-                } 
+                onBlock: function () {
+                    alert('Page is now blocked. FadeIn completed.');
+                }
             });
         });
 
         // Unblock callback
-        $('#unblock-callback').on('click', function() {
-            $.blockUI({ 
+        $('#unblock-callback').on('click', function () {
+            $.blockUI({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 timeout: 2000, //unblock after 2 seconds
                 overlayCSS: {
@@ -476,15 +468,15 @@ var BlockUi = function() {
                     zIndex: 1201,
                     backgroundColor: 'transparent'
                 },
-                onUnblock: function() { 
-                    alert('Page is now unblocked. FadeOut completed.'); 
-                } 
+                onUnblock: function () {
+                    alert('Page is now unblocked. FadeOut completed.');
+                }
             });
         });
 
         // Overlay callback
-        $('#overlay-callback').on('click', function() {
-            $.blockUI({ 
+        $('#overlay-callback').on('click', function () {
+            $.blockUI({
                 message: '<i class="icon-spinner4 spinner"></i>',
                 overlayCSS: {
                     backgroundColor: '#1b2024',
@@ -503,20 +495,19 @@ var BlockUi = function() {
             });
         });
 
-
         // Other options
         // ------------------------------
 
         // Growl notification
-        $('#growl').on('click', function() {
-            $.blockUI({ 
-                message: $('.blockui-growl'), 
-                fadeIn: 700, 
-                fadeOut: 700, 
+        $('#growl').on('click', function () {
+            $.blockUI({
+                message: $('.blockui-growl'),
+                fadeIn: 700,
+                fadeOut: 700,
                 timeout: 3000000, //unblock after 3 seconds
-                showOverlay: false, 
-                centerY: false, 
-                css: { 
+                showOverlay: false,
+                centerY: false,
+                css: {
                     width: '250px',
                     backgroundColor: 'transparent',
                     top: '20px',
@@ -525,27 +516,25 @@ var BlockUi = function() {
                     border: 0,
                     opacity: .95,
                     zIndex: 1200,
-                } 
-            }); 
+                }
+            });
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentBlockUi();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     BlockUi.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsPieLevelsLight = function() {
-
-
+var EchartsPieLevelsLight = function () {
     //
     // Setup module components
     //
 
     // Pie chart with levels
-    var _pieLevelsLightExample = function() {
+    var _pieLevelsLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsPieLevelsLight = function() {
         // Define element
         var pie_levels_element = document.getElementById('pie_levels');
 
-
         //
         // Charts configuration
         //
 
         if (pie_levels_element) {
-
             // Initialize chart
             var pie_levels = echarts.init(pie_levels_element);
-
 
             //
             // Chart config
@@ -44,13 +38,12 @@ var EchartsPieLevelsLight = function() {
 
             // Options
             pie_levels.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -90,7 +83,7 @@ var EchartsPieLevelsLight = function() {
                     orient: 'vertical',
                     top: 'center',
                     left: 0,
-                    data: ['Chrome','Firefox','Safari','IE9+','IE8-'],
+                    data: ['Chrome', 'Firefox', 'Safari', 'IE9+', 'IE8-'],
                     itemHeight: 8,
                     itemWidth: 8
                 },
@@ -119,11 +112,11 @@ var EchartsPieLevelsLight = function() {
                             radius: [i * 3.6 + 40, i * 3.6 + 43],
                             center: ['50%', '55%'],
                             data: [
-                                {value: i * 128 + 80,  name: 'Chrome'},
-                                {value: i * 64  + 160,  name: 'Firefox'},
-                                {value: i * 32  + 320,  name: 'Safari'},
-                                {value: i * 16  + 640,  name: 'IE9+'},
-                                {value: i * 8  + 1280, name: 'IE8-'}
+                                { value: i * 128 + 80, name: 'Chrome' },
+                                { value: i * 64 + 160, name: 'Firefox' },
+                                { value: i * 32 + 320, name: 'Safari' },
+                                { value: i * 16 + 640, name: 'IE9+' },
+                                { value: i * 8 + 1280, name: 'IE8-' }
                             ]
                         })
                     }
@@ -132,13 +125,12 @@ var EchartsPieLevelsLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             pie_levels_element && pie_levels.resize();
         };
 
@@ -148,7 +140,7 @@ var EchartsPieLevelsLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -156,22 +148,20 @@ var EchartsPieLevelsLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _pieLevelsLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsPieLevelsLight.init();
 });

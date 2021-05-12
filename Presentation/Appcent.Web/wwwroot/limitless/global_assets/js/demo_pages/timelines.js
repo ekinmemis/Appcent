@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var Timelines = function() {
-
-
+var Timelines = function () {
     //
     // Setup module components
     //
 
     // Schedule
-    var _componentFullCalendar = function() {
+    var _componentFullCalendar = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
@@ -87,9 +84,9 @@ var Timelines = function() {
         var myScheduleElement = document.querySelector('.my-schedule');
 
         // Initialize
-        if(myScheduleElement) {
+        if (myScheduleElement) {
             var myScheduleInit = new FullCalendar.Calendar(myScheduleElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -103,22 +100,20 @@ var Timelines = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFullCalendar();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Timelines.init();
 });

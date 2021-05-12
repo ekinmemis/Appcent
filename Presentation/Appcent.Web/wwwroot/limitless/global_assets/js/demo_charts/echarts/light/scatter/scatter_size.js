@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsScatterBubbleSizeLight = function() {
-
-
+var EchartsScatterBubbleSizeLight = function () {
     //
     // Setup module components
     //
 
     // Scatter chart with custom bubble size
-    var _scatterBubbleSizeLightExample = function() {
+    var _scatterBubbleSizeLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,25 +24,22 @@ var EchartsScatterBubbleSizeLight = function() {
         // Define element
         var scatter_bubble_size_element = document.getElementById('scatter_bubble_size');
 
-
         //
         // Charts configuration
         //
 
         if (scatter_bubble_size_element) {
-
             // Initialize chart
             var scatter_bubble_size = echarts.init(scatter_bubble_size_element);
-
 
             //
             // Chart config
             //
 
             // Demo data
-            function random(){
+            function random() {
                 var r = Math.round(Math.random() * 100);
-                return (r * (r % 2 == 0 ? 1: -1));
+                return (r * (r % 2 == 0 ? 1 : -1));
             }
             function randomDataArray() {
                 var d = [];
@@ -62,7 +56,6 @@ var EchartsScatterBubbleSizeLight = function() {
 
             // Options
             scatter_bubble_size.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -175,13 +168,12 @@ var EchartsScatterBubbleSizeLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             scatter_bubble_size_element && scatter_bubble_size.resize();
         };
 
@@ -191,7 +183,7 @@ var EchartsScatterBubbleSizeLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -199,22 +191,20 @@ var EchartsScatterBubbleSizeLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterBubbleSizeLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsScatterBubbleSizeLight.init();
 });

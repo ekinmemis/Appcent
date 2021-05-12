@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsPieMultipleLight = function() {
-
-
+var EchartsPieMultipleLight = function () {
     //
     // Setup module components
     //
 
     // Multiple pie charts
-    var _pieMultipleLightExample = function() {
+    var _pieMultipleLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsPieMultipleLight = function() {
         // Define element
         var pie_multiples_element = document.getElementById('pie_multiples');
 
-
         //
         // Charts configuration
         //
 
         if (pie_multiples_element) {
-
             // Initialize chart
             var pie_multiples = echarts.init(pie_multiples_element);
-
 
             //
             // Chart config
@@ -85,13 +79,12 @@ var EchartsPieMultipleLight = function() {
 
             // Options
             pie_multiples.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -132,8 +125,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 46, label: labelBottom, itemStyle: backStyle},
-                            {name: 'GMaps', value: 54, label: labelTop}
+                            { name: 'other', value: 46, label: labelBottom, itemStyle: backStyle },
+                            { name: 'GMaps', value: 54, label: labelTop }
                         ]
                     },
                     {
@@ -142,8 +135,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 56, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Facebook', value: 44, label: labelTop}
+                            { name: 'other', value: 56, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Facebook', value: 44, label: labelTop }
                         ]
                     },
                     {
@@ -152,8 +145,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 65, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Youtube', value: 35, label: labelTop}
+                            { name: 'other', value: 65, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Youtube', value: 35, label: labelTop }
                         ]
                     },
                     {
@@ -162,8 +155,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 70, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Google+', value: 30, label: labelTop}
+                            { name: 'other', value: 70, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Google+', value: 30, label: labelTop }
                         ]
                     },
                     {
@@ -172,8 +165,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 73, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Weixin', value: 27, label: labelTop}
+                            { name: 'other', value: 73, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Weixin', value: 27, label: labelTop }
                         ]
                     },
                     {
@@ -182,8 +175,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 78, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Twitter', value: 22, label: labelTop}
+                            { name: 'other', value: 78, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Twitter', value: 22, label: labelTop }
                         ]
                     },
                     {
@@ -192,8 +185,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 78, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Skype', value: 22, label: labelTop}
+                            { name: 'other', value: 78, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Skype', value: 22, label: labelTop }
                         ]
                     },
                     {
@@ -202,8 +195,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 78, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Messenger', value: 22, label: labelTop}
+                            { name: 'other', value: 78, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Messenger', value: 22, label: labelTop }
                         ]
                     },
                     {
@@ -212,8 +205,8 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 83, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Whatsapp', value: 17, label: labelTop}
+                            { name: 'other', value: 83, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Whatsapp', value: 17, label: labelTop }
                         ]
                     },
                     {
@@ -222,21 +215,20 @@ var EchartsPieMultipleLight = function() {
                         radius: radius,
                         hoverAnimation: false,
                         data: [
-                            {name: 'other', value: 89, label: labelBottom, itemStyle: backStyle},
-                            {name: 'Instagram', value: 11, label: labelTop}
+                            { name: 'other', value: 89, label: labelBottom, itemStyle: backStyle },
+                            { name: 'Instagram', value: 11, label: labelTop }
                         ]
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             pie_multiples_element && pie_multiples.resize();
         };
 
@@ -246,7 +238,7 @@ var EchartsPieMultipleLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -254,22 +246,20 @@ var EchartsPieMultipleLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _pieMultipleLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsPieMultipleLight.init();
 });

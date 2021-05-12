@@ -6,13 +6,10 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var DashboardProgress = function() {
-
-
     //
     // Setup module components
     //
@@ -26,8 +23,6 @@ var DashboardProgress = function() {
 
         // Initialize chart only if element exsists in the DOM
         if($(element).length > 0) {
-
-
             // Basic setup
             // ------------------------------
 
@@ -46,8 +41,6 @@ var DashboardProgress = function() {
             // Values step
             var step = endPercent < startPercent ? -0.01 : 0.01;
 
-
-
             // Create chart
             // ------------------------------
 
@@ -61,8 +54,6 @@ var DashboardProgress = function() {
                 .append('g')
                     .attr('transform', 'translate(' + (boxSize / 2) + ',' + (boxSize / 2) + ')');
 
-
-
             // Construct chart layout
             // ------------------------------
 
@@ -71,8 +62,6 @@ var DashboardProgress = function() {
                 .startAngle(0)
                 .innerRadius(radius)
                 .outerRadius(radius - border);
-
-
 
             //
             // Append chart elements
@@ -101,8 +90,6 @@ var DashboardProgress = function() {
                 .style('fill', color)
                 .style('fill-opacity', 1);
 
-
-
             // Text
             // ------------------------------
 
@@ -128,8 +115,6 @@ var DashboardProgress = function() {
                     .attr('class', 'font-size-sm text-muted mb-3')
                     .text(textAverage);
 
-
-
             // Animation
             // ------------------------------
 
@@ -153,7 +138,6 @@ var DashboardProgress = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
@@ -165,7 +149,6 @@ var DashboardProgress = function() {
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

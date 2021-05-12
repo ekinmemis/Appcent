@@ -6,30 +6,27 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableFixedColumns = function() {
-
-
+var DatatableFixedColumns = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableFixedColumns = function() {
+    var _componentDatatableFixedColumns = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
-            columnDefs: [{ 
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
                 orderable: false,
                 width: 100,
-                targets: [ 5 ]
+                targets: [5]
             }],
             dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -40,27 +37,26 @@ var DatatableFixedColumns = function() {
             }
         });
 
-
         // Left fixed column example
         $('.datatable-fixed-left').DataTable({
             columnDefs: [
-                { 
+                {
                     orderable: false,
                     targets: [5]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [0]
                 },
-                { 
+                {
                     width: "300px",
                     targets: [1]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [5, 6]
                 },
-                { 
+                {
                     width: "100px",
                     targets: [4]
                 }
@@ -71,27 +67,26 @@ var DatatableFixedColumns = function() {
             fixedColumns: true
         });
 
-
         // Right fixed column example
         $('.datatable-fixed-right').DataTable({
             columnDefs: [
-                { 
+                {
                     orderable: false,
                     targets: [5]
                 },
-                { 
+                {
                     width: "300px",
                     targets: [0]
                 },
-                { 
+                {
                     width: "300px",
                     targets: [1]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [5, 6]
                 },
-                { 
+                {
                     width: "100px",
                     targets: [3, 4]
                 }
@@ -105,27 +100,26 @@ var DatatableFixedColumns = function() {
             }
         });
 
-
         // Left and right fixed columns
         $('.datatable-fixed-both').DataTable({
             columnDefs: [
-                { 
+                {
                     orderable: false,
-                    targets: [ 5 ]
+                    targets: [5]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [0]
                 },
-                { 
+                {
                     width: "100px",
                     targets: [1]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [5, 6]
                 },
-                { 
+                {
                     width: "100px",
                     targets: [4]
                 }
@@ -139,32 +133,31 @@ var DatatableFixedColumns = function() {
             }
         });
 
-
         //
         // Fixed column with complex headers
         //
-        
+
         // Initialize
         var table = $('.datatable-fixed-complex').DataTable({
             autoWidth: false,
             columnDefs: [
-                { 
+                {
                     orderable: false,
                     targets: [5]
                 },
-                { 
+                {
                     width: "250px",
                     targets: [0]
                 },
-                { 
+                {
                     width: "250px",
                     targets: [1]
                 },
-                { 
+                {
                     width: "200px",
                     targets: [5, 6]
                 },
-                { 
+                {
                     width: "100px",
                     targets: [4]
                 }
@@ -176,7 +169,7 @@ var DatatableFixedColumns = function() {
         });
 
         // Adjust columns on window resize
-        setTimeout(function() {
+        setTimeout(function () {
             $(window).on('resize', function () {
                 table.columns.adjust();
             });
@@ -184,7 +177,7 @@ var DatatableFixedColumns = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -198,23 +191,21 @@ var DatatableFixedColumns = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableFixedColumns();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableFixedColumns.init();
 });

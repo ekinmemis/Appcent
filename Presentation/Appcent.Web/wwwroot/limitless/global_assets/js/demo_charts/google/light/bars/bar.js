@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleBarBasic = function() {
-
-
+var GoogleBarBasic = function () {
     //
     // Setup module components
     //
 
     // Bar chart
-    var _googleBarBasic = function() {
+    var _googleBarBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleBarBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawBar();
 
@@ -37,7 +33,7 @@ var GoogleBarBasic = function() {
 
                 // Resize on window resize
                 var resizeBarBasic;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeBarBasic);
                     resizeBarBasic = setTimeout(function () {
                         drawBar();
@@ -49,19 +45,17 @@ var GoogleBarBasic = function() {
 
         // Chart settings
         function drawBar() {
-
             // Define charts element
             var bar_chart_element = document.getElementById('google-bar');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Sales', 'Expenses'],
-                ['2004',  1000,      400],
-                ['2005',  1170,      460],
-                ['2006',  660,       1120],
-                ['2007',  1030,      540]
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
             ]);
-
 
             // Options
             var options_bar = {
@@ -84,7 +78,7 @@ var GoogleBarBasic = function() {
                     textStyle: {
                         color: '#333'
                     },
-                    gridlines:{
+                    gridlines: {
                         count: 10
                     },
                     minValue: 0
@@ -94,7 +88,7 @@ var GoogleBarBasic = function() {
                     textStyle: {
                         color: '#333'
                     },
-                    gridlines:{
+                    gridlines: {
                         color: '#eee'
                     }
                 },
@@ -114,22 +108,19 @@ var GoogleBarBasic = function() {
             // Draw chart
             var bar = new google.visualization.BarChart(bar_chart_element);
             bar.draw(data, options_bar);
-
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleBarBasic();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapControlPosition = function() {
-
-
+var GoogleMapControlPosition = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapControlPosition = function() {
+    var _googleMapControlPosition = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -26,7 +23,6 @@ var GoogleMapControlPosition = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_control_position_element = document.getElementById('map_control_positioning');
 
@@ -63,22 +59,20 @@ var GoogleMapControlPosition = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapControlPosition();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapControlPosition.init();
 });

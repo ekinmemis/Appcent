@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var IdleTimeout = function() {
-
-
+var IdleTimeout = function () {
     //
     // Setup module components
     //
 
     // Idle timeout
-    var _componentIdleTimeout = function() {
+    var _componentIdleTimeout = function () {
         if (!$.sessionTimeout) {
             console.warn('Warning - session_timeout.min.js is not loaded.');
             return;
@@ -37,22 +34,20 @@ var IdleTimeout = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentIdleTimeout();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     IdleTimeout.init();
 });

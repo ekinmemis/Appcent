@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsScatterBasicLight = function() {
-
-
+var EchartsScatterBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic scatter chart
-    var _scatterBasicLightExample = function() {
+    var _scatterBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsScatterBasicLight = function() {
         // Define element
         var scatter_basic_element = document.getElementById('scatter_basic');
 
-
         //
         // Charts configuration
         //
 
         if (scatter_basic_element) {
-
             // Initialize chart
             var scatter_basic = echarts.init(scatter_basic_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsScatterBasicLight = function() {
 
             // Options
             scatter_basic.setOption({
-
                 // Main colors
                 color: ['#2ec7c9', '#b6a2de'],
 
@@ -90,13 +83,13 @@ var EchartsScatterBasicLight = function() {
                     formatter: function (params) {
                         if (params.value.length > 1) {
                             return params.seriesName + ':<br/>'
-                            + params.value[0] + 'cm ' 
-                            + params.value[1] + 'kg ';
+                                + params.value[0] + 'cm '
+                                + params.value[1] + 'kg ';
                         }
                         else {
                             return params.seriesName + ':<br/>'
-                            + params.name + ': '
-                            + params.value + 'kg ';
+                                + params.name + ': '
+                                + params.value + 'kg ';
                         }
                     }
                 },
@@ -282,13 +275,12 @@ var EchartsScatterBasicLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             scatter_basic_element && scatter_basic.resize();
         };
 
@@ -298,7 +290,7 @@ var EchartsScatterBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -306,22 +298,20 @@ var EchartsScatterBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsScatterBasicLight.init();
 });

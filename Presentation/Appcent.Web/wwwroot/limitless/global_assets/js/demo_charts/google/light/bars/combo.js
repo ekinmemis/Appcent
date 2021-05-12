@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleComboChart = function() {
-
-
+var GoogleComboChart = function () {
     //
     // Setup module components
     //
 
     // Combo chart
-    var _googleComboChart = function() {
+    var _googleComboChart = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleComboChart = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawCombo();
 
@@ -37,7 +33,7 @@ var GoogleComboChart = function() {
 
                 // Resize on window resize
                 var resizeCombo;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeCombo);
                     resizeCombo = setTimeout(function () {
                         drawCombo();
@@ -49,20 +45,18 @@ var GoogleComboChart = function() {
 
         // Chart settings
         function drawCombo() {
-
             // Define charts element
             var combo_chart_element = document.getElementById('google-combo');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-                ['2004/05',  165,      938,         522,             998,           450,      614.6],
-                ['2005/06',  135,      1120,        599,             1268,          288,      682],
-                ['2006/07',  157,      1167,        587,             807,           397,      623],
-                ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-                ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+                ['2004/05', 165, 938, 522, 998, 450, 614.6],
+                ['2005/06', 135, 1120, 599, 1268, 288, 682],
+                ['2006/07', 157, 1167, 587, 807, 397, 623],
+                ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+                ['2008/09', 136, 691, 629, 1026, 366, 569.6]
             ]);
-
 
             // Options
             var options_combo = {
@@ -87,7 +81,7 @@ var GoogleComboChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -126,18 +120,16 @@ var GoogleComboChart = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleComboChart();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieRotate = function() {
-
-
+var GooglePieRotate = function () {
     //
     // Setup module components
     //
 
     // Rotated pie
-    var _googlePieRotate = function() {
+    var _googlePieRotate = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieRotate = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPieRotated();
 
@@ -37,7 +33,7 @@ var GooglePieRotate = function() {
 
                 // Resize on window resize
                 var resizePieRotate;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieRotate);
                     resizePieRotate = setTimeout(function () {
                         drawPieRotated();
@@ -49,18 +45,17 @@ var GooglePieRotate = function() {
 
         // Chart settings
         function drawPieRotated() {
-
             // Define charts element
             var pie_rotate_element = document.getElementById('google-pie-rotate');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
                 ['Watch TV', 2],
-                ['Sleep',    7]
+                ['Sleep', 7]
             ]);
 
             // Options
@@ -71,8 +66,8 @@ var GooglePieRotate = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -87,18 +82,16 @@ var GooglePieRotate = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieRotate();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

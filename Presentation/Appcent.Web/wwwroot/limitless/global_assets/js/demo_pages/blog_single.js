@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var BlogSingle = function() {
-
-
+var BlogSingle = function () {
     //
     // Setup module components
     //
 
     // Summernote
-    var _componentSummernote = function() {
+    var _componentSummernote = function () {
         if (!$().summernote) {
             console.warn('Warning - summernote.min.js is not loaded.');
             return;
@@ -29,7 +26,7 @@ var BlogSingle = function() {
     };
 
     // Lightbox
-    var _componentFancybox = function() {
+    var _componentFancybox = function () {
         if (!$().fancybox) {
             console.warn('Warning - fancybox.min.js is not loaded.');
             return;
@@ -41,23 +38,21 @@ var BlogSingle = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSummernote();
             _componentFancybox();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     BlogSingle.init();
 });

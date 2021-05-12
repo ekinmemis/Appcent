@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleBubbleChart = function() {
-
-
+var GoogleBubbleChart = function () {
     //
     // Setup module components
     //
 
     // Bubble chart
-    var _googleBubbleChart = function() {
+    var _googleBubbleChart = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleBubbleChart = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawBubbleChart();
 
@@ -37,7 +33,7 @@ var GoogleBubbleChart = function() {
 
                 // Resize on window resize
                 var resizeBubbleChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeBubbleChart);
                     resizeBubbleChart = setTimeout(function () {
                         drawBubbleChart();
@@ -49,23 +45,22 @@ var GoogleBubbleChart = function() {
 
         // Chart settings
         function drawBubbleChart() {
-
             // Define charts element
             var bubble_chart_element = document.getElementById('google-bubble');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['ID', 'Life Expectancy', 'Fertility Rate', 'Region'],
-                ['CAN',    82.66,              1.67,      'North America'],
-                ['DEU',    79.84,              1.36,      'Europe'],
-                ['DNK',    70.6,               1.84,      'Europe'],
-                ['EGY',    72.73,              2.78,      'Middle East'],
-                ['GBR',    75.05,              2,         'Europe'],
-                ['IRN',    72.49,              0.7,       'Middle East'],
-                ['IRQ',    68.09,              4.77,      'Middle East'],
-                ['ISR',    81.55,              3.96,      'Middle East'],
-                ['RUS',    68.6,               1.54,      'Europe'],
-                ['USA',    78.09,              3.05,      'North America']
+                ['CAN', 82.66, 1.67, 'North America'],
+                ['DEU', 79.84, 1.36, 'Europe'],
+                ['DNK', 70.6, 1.84, 'Europe'],
+                ['EGY', 72.73, 2.78, 'Middle East'],
+                ['GBR', 75.05, 2, 'Europe'],
+                ['IRN', 72.49, 0.7, 'Middle East'],
+                ['IRQ', 68.09, 4.77, 'Middle East'],
+                ['ISR', 81.55, 3.96, 'Middle East'],
+                ['RUS', 68.6, 1.54, 'Europe'],
+                ['USA', 78.09, 3.05, 'North America']
             ]);
 
             // Options
@@ -75,8 +70,8 @@ var GoogleBubbleChart = function() {
                 fontSize: 12,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: '4%',
@@ -100,7 +95,7 @@ var GoogleBubbleChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -111,18 +106,18 @@ var GoogleBubbleChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     }
                 },
                 bubble: {
-                  textStyle: {
-                    auraColor: 'none',
-                    color: '#fff'
-                  },
-                  opacity: 1,
-                  stroke: 'transparent'
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#fff'
+                    },
+                    opacity: 1,
+                    stroke: 'transparent'
                 },
                 legend: {
                     position: 'top',
@@ -139,18 +134,16 @@ var GoogleBubbleChart = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleBubbleChart();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsAreaReversedAxisLight = function() {
-
-
+var EchartsAreaReversedAxisLight = function () {
     //
     // Setup module components
     //
 
     // Area chart with reversed axis
-    var _areaReversedAxisLightExample = function() {
+    var _areaReversedAxisLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsAreaReversedAxisLight = function() {
         // Define element
         var area_reversed_axis_element = document.getElementById('area_reversed_axis');
 
-
         //
         // Charts configuration
         //
 
         if (area_reversed_axis_element) {
-
             // Initialize chart
             var area_reversed_axis = echarts.init(area_reversed_axis_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsAreaReversedAxisLight = function() {
 
             // Options
             area_reversed_axis.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -82,10 +75,10 @@ var EchartsAreaReversedAxisLight = function() {
                         fontSize: 13,
                         fontFamily: 'Roboto, sans-serif'
                     },
-                    formatter: function(params) {
+                    formatter: function (params) {
                         return params[0].name + '<br/>'
-                        + params[0].seriesName + ': ' + params[0].value + ' (m^3/s)<br/>'
-                        + params[1].seriesName + ': ' + -params[1].value + ' (mm)';
+                            + params[0].seriesName + ': ' + params[0].value + ' (m^3/s)<br/>'
+                            + params[1].seriesName + ': ' + -params[1].value + ' (mm)';
                     }
                 },
 
@@ -143,7 +136,7 @@ var EchartsAreaReversedAxisLight = function() {
                         type: 'value',
                         axisLabel: {
                             color: '#333',
-                            formatter: function(v) {
+                            formatter: function (v) {
                                 return - v;
                             }
                         },
@@ -195,12 +188,12 @@ var EchartsAreaReversedAxisLight = function() {
                                 borderWidth: 2
                             }
                         },
-                        data: (function() {
+                        data: (function () {
                             var oriData = [
                                 1, 2, 1.5, 7.4, 3.1, 4, 2
                             ];
                             var len = oriData.length;
-                            while(len--) {
+                            while (len--) {
                                 oriData[len] *= -1;
                             }
                             return oriData;
@@ -210,13 +203,12 @@ var EchartsAreaReversedAxisLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             area_reversed_axis_element && area_reversed_axis.resize();
         };
 
@@ -226,7 +218,7 @@ var EchartsAreaReversedAxisLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -234,22 +226,20 @@ var EchartsAreaReversedAxisLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaReversedAxisLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsAreaReversedAxisLight.init();
 });

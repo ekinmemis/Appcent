@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3Waterfall = function() {
-
-
+var D3Waterfall = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _waterfall = function() {
+    var _waterfall = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3Waterfall = function() {
         var element = document.getElementById('d3-waterfall'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 100, left: 50},
+                margin = { top: 5, right: 10, bottom: 100, left: 50 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom,
                 padding = 0.3;
@@ -47,7 +42,7 @@ var D3Waterfall = function() {
                 n = Math.round(n);
                 var result = n;
                 if (Math.abs(n) > 1000) {
-                    result = Math.round(n/1000) + 'K';
+                    result = Math.round(n / 1000) + 'K';
                 }
                 return '$' + result;
             }
@@ -57,8 +52,6 @@ var D3Waterfall = function() {
                 color_negative = '#66BB6A',
                 color_total = '#42A5F5',
                 color_text = '#fff';
-
-
 
             // Construct scales
             // ------------------------------
@@ -70,8 +63,6 @@ var D3Waterfall = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -85,9 +76,7 @@ var D3Waterfall = function() {
             var yAxis = d3.svg.axis()
                 .scale(y)
                 .orient("left")
-                .tickFormat(function(d) { return dollarFormatter(d); });
-
-
+                .tickFormat(function (d) { return dollarFormatter(d); });
 
             // Create chart
             // ------------------------------
@@ -99,18 +88,15 @@ var D3Waterfall = function() {
             var svg = container
                 .attr('width', width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Load data
             // ------------------------------
 
-            d3.csv("../../../../global_assets/demo_data/d3/other/waterfall.csv", function(error, data) {
-
+            d3.csv("../../../../global_assets/demo_data/d3/other/waterfall.csv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.value = +d.value;
                 });
 
@@ -120,7 +106,7 @@ var D3Waterfall = function() {
                     data[i].start = cumulative;
                     cumulative += data[i].value;
                     data[i].end = cumulative;
-                    data[i].class = ( data[i].value >= 0 ) ? 'positive' : 'negative'
+                    data[i].class = (data[i].value >= 0) ? 'positive' : 'negative'
                 }
                 data.push({
                     name: 'Total',
@@ -129,17 +115,14 @@ var D3Waterfall = function() {
                     class: 'total'
                 });
 
-
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(data.map(function(d) { return d.name; }));
+                x.domain(data.map(function (d) { return d.name; }));
 
                 // Vertical
-                y.domain([0, d3.max(data, function(d) { return d.end; })]);
-
-
+                y.domain([0, d3.max(data, function (d) { return d.end; })]);
 
                 //
                 // Append chart elements
@@ -153,19 +136,18 @@ var D3Waterfall = function() {
                     .attr("class", "d3-axis d3-axis-horizontal")
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis)
-                    .selectAll("text")  
-                        .style("text-anchor", "end")
-                        .attr("dx", "-15px")
-                        .attr("dy", "-6px")
-                        .attr("transform", function(d) {
-                            return "rotate(-90)" 
-                        });
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-15px")
+                    .attr("dy", "-6px")
+                    .attr("transform", function (d) {
+                        return "rotate(-90)"
+                    });
 
                 // Vertical
                 svg.append("g")
                     .attr("class", "d3-axis d3-axis-vertical")
                     .call(yAxis);
-
 
                 // Append bars
                 // ------------------------------
@@ -175,41 +157,39 @@ var D3Waterfall = function() {
                     .data(data)
                     .enter()
                     .append("g")
-                        .attr("class", function(d) { return "d3-waterfall-bar " + d.class })
-                        .attr("transform", function(d) { return "translate(" + x(d.name) + ",0)"; });
+                    .attr("class", function (d) { return "d3-waterfall-bar " + d.class })
+                    .attr("transform", function (d) { return "translate(" + x(d.name) + ",0)"; });
 
                 // Append bar rects
                 bar.append("rect")
-                    .attr("y", function(d) { return y( Math.max(d.start, d.end) ); })
-                    .attr("height", function(d) { return Math.abs( y(d.start) - y(d.end) ); })
+                    .attr("y", function (d) { return y(Math.max(d.start, d.end)); })
+                    .attr("height", function (d) { return Math.abs(y(d.start) - y(d.end)); })
                     .attr("width", x.rangeBand());
 
                 // Append text
                 bar.append("text")
                     .attr("x", x.rangeBand() / 2)
-                    .attr("y", function(d) { return y(d.end) + 5; })
-                    .attr("dy", function(d) { return ((d.class=='negative') ? '-' : '') + "1.5em" })
+                    .attr("y", function (d) { return y(d.end) + 5; })
+                    .attr("dy", function (d) { return ((d.class == 'negative') ? '-' : '') + "1.5em" })
                     .style("fill", color_text)
                     .style("text-anchor", "middle")
-                    .text(function(d) { return dollarFormatter(d.end - d.start);});
+                    .text(function (d) { return dollarFormatter(d.end - d.start); });
 
                 // Apply colors
-                bar.filter(function(d) { return d.class == "positive" }).select('rect').style("fill", color_positive);
-                bar.filter(function(d) { return d.class == "negative" }).select('rect').style("fill", color_negative);
-                bar.filter(function(d) { return d.class == "total" }).select('rect').style("fill", color_total);
+                bar.filter(function (d) { return d.class == "positive" }).select('rect').style("fill", color_positive);
+                bar.filter(function (d) { return d.class == "negative" }).select('rect').style("fill", color_negative);
+                bar.filter(function (d) { return d.class == "total" }).select('rect').style("fill", color_total);
 
                 // Add connector line
-                bar.filter(function(d) { return d.class != "total" })
+                bar.filter(function (d) { return d.class != "total" })
                     .append("line")
-                        .attr("class", "d3-waterfall-connector d3-line-connect")
-                        .attr("x1", x.rangeBand() + 5 )
-                        .attr("y1", function(d) { return y(d.end) })
-                        .attr("x2", x.rangeBand() / ( 1 - padding) - 5)
-                        .attr("y2", function(d) { return y(d.end) })
-                        .style("stroke-dasharray", 3);
+                    .attr("class", "d3-waterfall-connector d3-line-connect")
+                    .attr("x1", x.rangeBand() + 5)
+                    .attr("y1", function (d) { return y(d.end) })
+                    .attr("x2", x.rangeBand() / (1 - padding) - 5)
+                    .attr("y2", function (d) { return y(d.end) })
+                    .style("stroke-dasharray", 3);
             });
-
-
 
             // Resize chart
             // ------------------------------
@@ -222,15 +202,13 @@ var D3Waterfall = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -241,7 +219,6 @@ var D3Waterfall = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -251,12 +228,11 @@ var D3Waterfall = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis).selectAll('text').style("text-anchor", "end").attr("dy", "-6px");
 
-
                 // Chart elements
                 // -------------------------
 
                 // Bar group
-                svg.selectAll(".d3-waterfall-bar").attr("transform", function(d) { return "translate(" + x(d.name) + ",0)"; });
+                svg.selectAll(".d3-waterfall-bar").attr("transform", function (d) { return "translate(" + x(d.name) + ",0)"; });
 
                 // Bar rect
                 svg.selectAll(".d3-waterfall-bar rect").attr("width", x.rangeBand());
@@ -265,27 +241,25 @@ var D3Waterfall = function() {
                 svg.selectAll(".d3-waterfall-bar text").attr("x", x.rangeBand() / 2);
 
                 // Connector line
-                svg.selectAll(".d3-waterfall-connector").attr("x1", x.rangeBand() + 5 ).attr("x2", x.rangeBand() / ( 1 - padding) - 5 );
+                svg.selectAll(".d3-waterfall-connector").attr("x1", x.rangeBand() + 5).attr("x2", x.rangeBand() / (1 - padding) - 5);
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _waterfall();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3Waterfall.init();
 });

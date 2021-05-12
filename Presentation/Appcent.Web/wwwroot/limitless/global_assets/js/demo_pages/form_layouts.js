@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FormLayouts = function() {
-
-
+var FormLayouts = function () {
     //
     // Setup module components
     //
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -26,7 +23,6 @@ var FormLayouts = function() {
 
         // Basic example
         $('.form-control-select2').select2();
-
 
         //
         // Select with icons
@@ -46,12 +42,12 @@ var FormLayouts = function() {
             templateResult: iconFormat,
             minimumResultsForSearch: Infinity,
             templateSelection: iconFormat,
-            escapeMarkup: function(m) { return m; }
+            escapeMarkup: function (m) { return m; }
         });
     };
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -63,23 +59,21 @@ var FormLayouts = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSelect2();
             _componentUniform();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FormLayouts.init();
 });

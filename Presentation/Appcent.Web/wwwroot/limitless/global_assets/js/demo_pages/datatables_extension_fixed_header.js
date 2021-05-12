@@ -6,30 +6,27 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableFixedHeader = function() {
-
-
+var DatatableFixedHeader = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableFixedHeader = function() {
+    var _componentDatatableFixedHeader = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
-            columnDefs: [{ 
+            columnDefs: [{
                 orderable: false,
-                targets: [ 5 ]
+                targets: [5]
             }],
             dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -40,12 +37,10 @@ var DatatableFixedHeader = function() {
             }
         });
 
-
         // Basic initialization
         var table_basic = $('.datatable-header-basic').DataTable({
             fixedHeader: true
         });
-
 
         // Header and footer fixed
         var table_footer = $('.datatable-header-footer').DataTable({
@@ -55,23 +50,20 @@ var DatatableFixedHeader = function() {
             }
         });
 
-
         // Offset
         var table_offset = $('.datatable-header-offset').DataTable({
             fixedHeader: {
                 header: true,
-                
             }
         });
 
         // Init offset toggle
         var toggleType = document.querySelector('.toggle-offset');
-        var toggleTypeInit = new Switchery(toggleType, { secondaryColor: '#FF7043'});
+        var toggleTypeInit = new Switchery(toggleType, { secondaryColor: '#FF7043' });
 
         // Toggle offset and fixed navbar
-        toggleType.onchange = function() {
-            if(toggleType.checked) {
-
+        toggleType.onchange = function () {
+            if (toggleType.checked) {
                 // Toggle necessary body and navbar classes
                 $('body').children('.navbar').first().addClass('fixed-top');
                 $('body').addClass('navbar-top');
@@ -83,7 +75,6 @@ var DatatableFixedHeader = function() {
                 table_offset.fixedHeader.headerOffset($('.fixed-top').height());
             }
             else {
-
                 // Toggle necessary body and navbar classes
                 $('body').children('.navbar').first().removeClass('fixed-top');
                 $('body').removeClass('navbar-top');
@@ -96,16 +87,14 @@ var DatatableFixedHeader = function() {
             }
         };
 
-
         // ColReorder integration
         var table_reorder = $('.datatable-header-reorder').DataTable({
             fixedHeader: true,
             colReorder: true
         });
 
-
         // Adjust table header if sidebar toggler is clicked
-        $('.sidebar-control').on('click', function() {
+        $('.sidebar-control').on('click', function () {
             table_basic.fixedHeader.adjust();
             table_footer.fixedHeader.adjust();
             table_offset.fixedHeader.adjust();
@@ -114,7 +103,7 @@ var DatatableFixedHeader = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -128,23 +117,21 @@ var DatatableFixedHeader = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableFixedHeader();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableFixedHeader.init();
 });

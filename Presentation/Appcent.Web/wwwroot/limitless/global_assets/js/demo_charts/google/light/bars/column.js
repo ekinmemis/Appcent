@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleColumnBasic = function() {
-
-
+var GoogleColumnBasic = function () {
     //
     // Setup module components
     //
 
     // Column chart
-    var _googleColumnBasic = function() {
+    var _googleColumnBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,17 +24,16 @@ var GoogleColumnBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawColumn();
 
                 // Resize on sidebar width change
-               var sidebarToggle = document.querySelector('.sidebar-control');
+                var sidebarToggle = document.querySelector('.sidebar-control');
                 sidebarToggle && sidebarToggle.addEventListener('click', drawColumn);
 
                 // Resize on window resize
                 var resizeColumn;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeColumn);
                     resizeColumn = setTimeout(function () {
                         drawColumn();
@@ -49,19 +45,17 @@ var GoogleColumnBasic = function() {
 
         // Chart settings
         function drawColumn() {
-
             // Define charts element
             var line_chart_element = document.getElementById('google-column');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Sales', 'Expenses'],
-                ['2004',  1000,      400],
-                ['2005',  1170,      460],
-                ['2006',  660,       1120],
-                ['2007',  1030,      540]
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
             ]);
-
 
             // Options
             var options_column = {
@@ -91,7 +85,7 @@ var GoogleColumnBasic = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -121,18 +115,16 @@ var GoogleColumnBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleColumnBasic();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

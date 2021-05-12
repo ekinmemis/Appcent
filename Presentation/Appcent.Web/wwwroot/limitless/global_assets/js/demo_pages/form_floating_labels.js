@@ -6,20 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FloatingLabels = function() {
-
-
+var FloatingLabels = function () {
     //
     // Setup module components
     //
 
     // Floating labels config
-    var _componentFloatingLabels = function() {
-
+    var _componentFloatingLabels = function () {
         // Variables
         var showClass = 'is-visible',
             animateClass = 'animate',
@@ -28,7 +24,6 @@ var FloatingLabels = function() {
 
         // Setup
         $('input:not(.token-input):not(.bootstrap-tagsinput > input), textarea, select').on('checkval change', function () {
-
             // Define label
             var label = $(this).parents('.' + labelWrapperClass).children('.' + labelClass);
 
@@ -39,20 +34,18 @@ var FloatingLabels = function() {
             else {
                 label.removeClass(showClass).addClass(animateClass);
             }
-
         }).on('keyup', function () {
             $(this).trigger('checkval');
         }).trigger('checkval').trigger('change');
 
-
         // Remove animation on page load
-        $(window).on('load', function() {
+        $(window).on('load', function () {
             $('.' + labelWrapperClass).find('.' + showClass).removeClass(animateClass);
         });
     };
 
     // Tokenfield
-    var _componentTokenfield = function() {
+    var _componentTokenfield = function () {
         if (!$().tokenfield) {
             console.warn('Warning - tokenfield.min.js is not loaded.');
             return;
@@ -63,7 +56,7 @@ var FloatingLabels = function() {
 
         // Configure labels
         $('.token-field').on('tokenfield:createdtoken tokenfield:removedtoken change', function (e) {
-            if($(this).parent().children().hasClass('token')) {
+            if ($(this).parent().children().hasClass('token')) {
                 $(this).parent().find('.token-input').attr('placeholder', '');
             }
             else {
@@ -73,7 +66,7 @@ var FloatingLabels = function() {
     };
 
     // Tags input
-    var _componentTagsinput = function() {
+    var _componentTagsinput = function () {
         if (!$().tagsinput) {
             console.warn('Warning - tagsinput.min.js is not loaded.');
             return;
@@ -85,7 +78,7 @@ var FloatingLabels = function() {
         // Configure labels
         var tagsinputClass = 'bootstrap-tagsinput';
         $('.tags-input').on('itemAdded itemRemoved change', function (e) {
-            if($(this).parent().find('.' + tagsinputClass).children().hasClass('label')) {
+            if ($(this).parent().find('.' + tagsinputClass).children().hasClass('label')) {
                 $(this).parent().find('.' + tagsinputClass).children('input[type=text]').attr('placeholder', '');
             }
             else {
@@ -95,14 +88,14 @@ var FloatingLabels = function() {
     };
 
     // Typeahead
-    var _componentTypeahead = function() {
+    var _componentTypeahead = function () {
         if (!$().typeahead) {
             console.warn('Warning - typeahead.bundle.min.js is not loaded.');
             return;
         }
 
         // Substring matches
-        var substringMatcher = function(strs) {
+        var substringMatcher = function (strs) {
             return function findMatches(q, cb) {
                 var matches, substringRegex;
 
@@ -114,9 +107,8 @@ var FloatingLabels = function() {
 
                 // iterate through the pool of strings and for any string that
                 // contains the substring `q`, add it to the `matches` array
-                $.each(strs, function(i, str) {
+                $.each(strs, function (i, str) {
                     if (substrRegex.test(str)) {
-
                         // the typeahead jQuery plugin expects suggestions to a
                         // JavaScript object, refer to typeahead docs for more info
                         matches.push({ value: str });
@@ -155,7 +147,7 @@ var FloatingLabels = function() {
     };
 
     // Touchspin
-    var _componentTouchspin = function() {
+    var _componentTouchspin = function () {
         if (!$().TouchSpin) {
             console.warn('Warning - touchspin.min.js is not loaded.');
             return;
@@ -168,7 +160,7 @@ var FloatingLabels = function() {
     };
 
     // Input formatter
-    var _componentFormatter = function() {
+    var _componentFormatter = function () {
         if (!$().formatter) {
             console.warn('Warning - formatter.min.js is not loaded.');
             return;
@@ -181,7 +173,7 @@ var FloatingLabels = function() {
     };
 
     // Maxlength
-    var _componentMaxlength = function() {
+    var _componentMaxlength = function () {
         if (!$().maxlength) {
             console.warn('Warning - maxlength.min.js is not loaded.');
             return;
@@ -192,7 +184,7 @@ var FloatingLabels = function() {
     };
 
     // Uniform
-    var _componentUniform = function() {
+    var _componentUniform = function () {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -205,7 +197,7 @@ var FloatingLabels = function() {
     };
 
     // Multiselect
-    var _componentMultiselect = function() {
+    var _componentMultiselect = function () {
         if (!$().multiselect) {
             console.warn('Warning - bootstrap-multiselect.js is not loaded.');
             return;
@@ -218,7 +210,7 @@ var FloatingLabels = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -228,13 +220,12 @@ var FloatingLabels = function() {
         $('.form-control-select2').select2();
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFloatingLabels();
             _componentTokenfield();
             _componentTagsinput();
@@ -249,10 +240,9 @@ var FloatingLabels = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FloatingLabels.init();
 });

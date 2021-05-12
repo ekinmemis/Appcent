@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsColumnsBasicLight = function() {
-
-
+var EchartsColumnsBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic column chart
-    var _columnsBasicLightExample = function() {
+    var _columnsBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsColumnsBasicLight = function() {
         // Define element
         var columns_basic_element = document.getElementById('columns_basic');
 
-
         //
         // Charts configuration
         //
 
         if (columns_basic_element) {
-
             // Initialize chart
             var columns_basic = echarts.init(columns_basic_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsColumnsBasicLight = function() {
 
             // Options
             columns_basic.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -150,7 +143,7 @@ var EchartsColumnsBasicLight = function() {
                             }
                         },
                         markLine: {
-                            data: [{type: 'average', name: 'Average'}]
+                            data: [{ type: 'average', name: 'Average' }]
                         }
                     },
                     {
@@ -169,20 +162,19 @@ var EchartsColumnsBasicLight = function() {
                             }
                         },
                         markLine: {
-                            data: [{type: 'average', name: 'Average'}]
+                            data: [{ type: 'average', name: 'Average' }]
                         }
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_basic_element && columns_basic.resize();
         };
 
@@ -192,7 +184,7 @@ var EchartsColumnsBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -200,22 +192,20 @@ var EchartsColumnsBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _columnsBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsColumnsBasicLight.init();
 });

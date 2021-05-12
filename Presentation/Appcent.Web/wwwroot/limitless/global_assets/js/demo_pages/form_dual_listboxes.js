@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DualListboxes = function() {
-
-
+var DualListboxes = function () {
     //
     // Setup module components
     //
 
     // Dual listbox
-    var _componentDualListbox = function() {
+    var _componentDualListbox = function () {
         if (!$().bootstrapDualListbox) {
             console.warn('Warning - duallistbox.min.js is not loaded.');
             return;
@@ -62,7 +59,6 @@ var DualListboxes = function() {
             filterTextClear: 'Показать все'
         });
 
-
         //
         // Add options dynamically
         //
@@ -73,34 +69,32 @@ var DualListboxes = function() {
         });
 
         // Add options
-        $('.listbox-add').on('click', function(){
+        $('.listbox-add').on('click', function () {
             $('.listbox-dynamic-options').append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
             $('.listbox-dynamic-options').trigger('bootstrapDualListbox.refresh');
         });
 
         // Add options with clearing highlights
-        $('.listbox-add-clear').on('click', function(){
+        $('.listbox-add-clear').on('click', function () {
             $('.listbox-dynamic-options').append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
             $('.listbox-dynamic-options').trigger('bootstrapDualListbox.refresh', true);
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDualListbox();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DualListboxes.init();
 });

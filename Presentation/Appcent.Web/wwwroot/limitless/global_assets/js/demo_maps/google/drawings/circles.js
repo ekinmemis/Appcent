@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapDrawingCircles = function() {
-
-
+var GoogleMapDrawingCircles = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapDrawingCircles = function() {
+    var _googleMapDrawingCircles = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -57,7 +54,6 @@ var GoogleMapDrawingCircles = function() {
         // Initialize
         var cityCircle;
         function initialize() {
-
             // Define map element
             var map_drawing_circles_element = document.getElementById('map_drawing_circles');
 
@@ -71,11 +67,9 @@ var GoogleMapDrawingCircles = function() {
             // Apply options
             var map = new google.maps.Map(map_drawing_circles_element, mapOptions);
 
-
             // Construct the circle for each value in citymap.
             // Note: We scale the area of the circle based on the population.
             for (var city in citymap) {
-
                 // Options
                 var populationOptions = {
                     strokeColor: '#b41b1b',
@@ -97,22 +91,20 @@ var GoogleMapDrawingCircles = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapDrawingCircles();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapDrawingCircles.init();
 });

@@ -6,31 +6,28 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableSorting = function() {
-
-
+var DatatableSorting = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableSorting = function() {
+    var _componentDatatableSorting = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
-            columnDefs: [{ 
+            columnDefs: [{
                 orderable: false,
                 width: 100,
-                targets: [ 5 ]
+                targets: [5]
             }],
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             language: {
@@ -41,12 +38,10 @@ var DatatableSorting = function() {
             }
         });
 
-
         // Default ordering example
         $('.datatable-sorting').DataTable({
             order: [3, "desc"]
         });
-
 
         // Multi column ordering
         $('.datatable-multi-sorting').DataTable({
@@ -66,28 +61,26 @@ var DatatableSorting = function() {
             }]
         });
 
-
         // Complex headers with sorting
         $('.datatable-complex-header').DataTable({
             columnDefs: []
         });
 
-
         // Sequence control
-        $('.datatable-sequence-control').dataTable( {
+        $('.datatable-sequence-control').dataTable({
             "aoColumns": [
                 null,
                 null,
-                {"orderSequence": ["asc"]},
-                {"orderSequence": ["desc", "asc", "asc"]},
-                {"orderSequence": ["desc"]},
+                { "orderSequence": ["asc"] },
+                { "orderSequence": ["desc", "asc", "asc"] },
+                { "orderSequence": ["desc"] },
                 null
             ]
         });
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -101,23 +94,21 @@ var DatatableSorting = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableSorting();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableSorting.init();
 });

@@ -6,28 +6,23 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DashboardPies = function() {
-
-
+var DashboardPies = function () {
     //
     // Setup module components
     //
 
     // Small progress pie chart
-    var _ProgressPieChart = function(element, width, height, color) {
+    var _ProgressPieChart = function (element, width, height, color) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
         }
 
         // Initialize chart only if element exsists in the DOM
-        if($(element).length > 0) {
-
-
+        if ($(element).length > 0) {
             // Basic setup
             // ------------------------------
 
@@ -39,8 +34,6 @@ var DashboardPies = function() {
                 progress = $(element).data('progress'),
                 total = 100;
 
-
-
             // Construct chart layout
             // ------------------------------
 
@@ -49,11 +42,9 @@ var DashboardPies = function() {
                 .startAngle(0)
                 .innerRadius(0)
                 .outerRadius(radius)
-                .endAngle(function(d) {
-                  return (d.value / d.size) * 2 * Math.PI; 
+                .endAngle(function (d) {
+                    return (d.value / d.size) * 2 * Math.PI;
                 })
-
-
 
             // Create chart
             // ------------------------------
@@ -66,9 +57,7 @@ var DashboardPies = function() {
                 .attr('width', width)
                 .attr('height', height)
                 .append('g')
-                    .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-
-
+                .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
             //
             // Append chart elements
@@ -92,16 +81,15 @@ var DashboardPies = function() {
             // Animate foreground path
             foreground
                 .transition()
-                    .ease('cubic-out')
-                    .duration(2500)
-                    .attrTween('d', arcTween);
-
+                .ease('cubic-out')
+                .duration(2500)
+                .attrTween('d', arcTween);
 
             // Tween arcs
             function arcTween() {
                 var i = d3.interpolate(0, progress);
-                return function(t) {
-                    var currentProgress = progress / (100/t);
+                return function (t) {
+                    var currentProgress = progress / (100 / t);
                     var endAngle = arc.endAngle(twoPi * (currentProgress));
                     return arc(i(endAngle));
                 };
@@ -109,23 +97,21 @@ var DashboardPies = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _ProgressPieChart('#today-progress', 20, 20, '#7986CB');
             _ProgressPieChart('#yesterday-progress', 20, 20, '#7986CB');
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DashboardPies.init();
 });

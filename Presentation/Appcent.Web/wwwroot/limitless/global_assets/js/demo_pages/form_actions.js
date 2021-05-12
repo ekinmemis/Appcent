@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FormActions = function() {
-
-
+var FormActions = function () {
     //
     // Setup module components
     //
 
     // Uniform
-    var _componentUniform = function(element) {
+    var _componentUniform = function (element) {
         if (!$().uniform) {
             console.warn('Warning - uniform.min.js is not loaded.');
             return;
@@ -29,7 +26,7 @@ var FormActions = function() {
     };
 
     // Switchery
-    var _componentSwitchery = function() {
+    var _componentSwitchery = function () {
         if (typeof Switchery == 'undefined') {
             console.warn('Warning - switchery.min.js is not loaded.');
             return;
@@ -37,13 +34,13 @@ var FormActions = function() {
 
         // Initialize
         var elems = Array.prototype.slice.call(document.querySelectorAll('.form-control-switchery'));
-        elems.forEach(function(html) {
+        elems.forEach(function (html) {
             var switchery = new Switchery(html);
         });
     };
 
     // Select2
-    var _componentSelect2 = function(element) {
+    var _componentSelect2 = function (element) {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -55,13 +52,12 @@ var FormActions = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUniform();
             _componentSwitchery();
             _componentSelect2();
@@ -69,10 +65,9 @@ var FormActions = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FormActions.init();
 });

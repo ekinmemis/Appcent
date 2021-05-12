@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3SplineTransition = function() {
-
-
+var D3SplineTransition = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _splineTransition = function() {
+    var _splineTransition = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3SplineTransition = function() {
         var element = document.getElementById('d3-spline-transition'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 5, bottom: 5, left: 30},
+                margin = { top: 5, right: 5, bottom: 5, left: 30 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
@@ -48,7 +43,6 @@ var D3SplineTransition = function() {
 
             // Colors
             var color = '#d87a80';
-
 
             // Construct scales
             // ------------------------------
@@ -63,8 +57,6 @@ var D3SplineTransition = function() {
                 .domain([-1, 1])
                 .range([height, 0]);
 
-
-
             // Create axes
             // ------------------------------
 
@@ -78,8 +70,6 @@ var D3SplineTransition = function() {
                 .scale(y)
                 .orient("left");
 
-
-
             // Create chart
             // ------------------------------
 
@@ -91,9 +81,7 @@ var D3SplineTransition = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -101,10 +89,8 @@ var D3SplineTransition = function() {
             // Line
             var line = d3.svg.line()
                 .interpolate("basis")
-                .x(function(d, i) { return x(i); })
-                .y(function(d, i) { return y(d); });
-
-
+                .x(function (d, i) { return x(i); })
+                .y(function (d, i) { return y(d); });
 
             //
             // Append chart elements
@@ -113,11 +99,10 @@ var D3SplineTransition = function() {
             // Add mask
             svg.append("defs")
                 .append("clipPath")
-                    .attr("id", "transition-clip")
-                    .append("rect")
-                        .attr("width", width)
-                        .attr("height", height);
-
+                .attr("id", "transition-clip")
+                .append("rect")
+                .attr("width", width)
+                .attr("height", height);
 
             // Append axes
             // ------------------------------
@@ -133,16 +118,14 @@ var D3SplineTransition = function() {
                 .attr("class", "d3-axis d3-axis-vertical")
                 .call(yAxis);
 
-
             // Add line
             var path = svg.append("g")
                 .attr("clip-path", "url(#transition-clip)")
                 .append("path")
-                    .datum(data)
-                    .attr("d", line)
-                    .attr("class", "d3-line d3-line-medium")
-                    .style("stroke", color);
-
+                .datum(data)
+                .attr("d", line)
+                .attr("class", "d3-line d3-line-medium")
+                .style("stroke", color);
 
             // Transition
             // ------------------------------
@@ -152,7 +135,6 @@ var D3SplineTransition = function() {
 
             // Setup transition
             function tick() {
-
                 // push a new data point onto the back
                 data.push(random());
 
@@ -161,16 +143,14 @@ var D3SplineTransition = function() {
                     .attr("d", line)
                     .attr("transform", null)
                     .transition()
-                        .duration(500)
-                        .ease("linear")
-                        .attr("transform", "translate(" + x(0) + ",0)")
-                        .each("end", tick);
+                    .duration(500)
+                    .ease("linear")
+                    .attr("transform", "translate(" + x(0) + ",0)")
+                    .each("end", tick);
 
                 // pop the old data point off the front
                 data.shift();
             }
-
-
 
             // Resize chart
             // ------------------------------
@@ -183,15 +163,13 @@ var D3SplineTransition = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -202,7 +180,6 @@ var D3SplineTransition = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -211,7 +188,6 @@ var D3SplineTransition = function() {
 
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
-
 
                 // Chart elements
                 // -------------------------
@@ -225,22 +201,20 @@ var D3SplineTransition = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _splineTransition();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3SplineTransition.init();
 });

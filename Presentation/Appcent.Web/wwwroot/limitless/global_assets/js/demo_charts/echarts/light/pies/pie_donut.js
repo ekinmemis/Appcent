@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsPieDonutLight = function() {
-
-
+var EchartsPieDonutLight = function () {
     //
     // Setup module components
     //
 
     // Basic donut chart
-    var _scatterPieDonutLightExample = function() {
+    var _scatterPieDonutLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsPieDonutLight = function() {
         // Define element
         var pie_donut_element = document.getElementById('pie_donut');
 
-
         //
         // Charts configuration
         //
 
         if (pie_donut_element) {
-
             // Initialize chart
             var pie_donut = echarts.init(pie_donut_element);
-
 
             //
             // Chart config
@@ -44,13 +38,12 @@ var EchartsPieDonutLight = function() {
 
             // Options
             pie_donut.setOption({
-
                 // Colors
                 color: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
 
                 // Global text styles
@@ -108,23 +101,22 @@ var EchartsPieDonutLight = function() {
                         }
                     },
                     data: [
-                        {value: 335, name: 'IE'},
-                        {value: 310, name: 'Opera'},
-                        {value: 234, name: 'Safari'},
-                        {value: 135, name: 'Firefox'},
-                        {value: 1548, name: 'Chrome'}
+                        { value: 335, name: 'IE' },
+                        { value: 310, name: 'Opera' },
+                        { value: 234, name: 'Safari' },
+                        { value: 135, name: 'Firefox' },
+                        { value: 1548, name: 'Chrome' }
                     ]
                 }]
             });
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             pie_donut_element && pie_donut.resize();
         };
 
@@ -134,7 +126,7 @@ var EchartsPieDonutLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -142,22 +134,20 @@ var EchartsPieDonutLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterPieDonutLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsPieDonutLight.init();
 });

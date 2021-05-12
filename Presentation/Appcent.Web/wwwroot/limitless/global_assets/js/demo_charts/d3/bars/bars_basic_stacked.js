@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3BarStacked = function() {
-
-
+var D3BarStacked = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _barStacked = function() {
+    var _barStacked = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,23 +25,19 @@ var D3BarStacked = function() {
         var element = document.getElementById('d3-bar-stacked'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 20, left: 40},
+                margin = { top: 5, right: 10, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
             // Colors
             var bar_colors = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
-
-
 
             // Construct scales
             // ------------------------------
@@ -61,8 +54,6 @@ var D3BarStacked = function() {
             var color = d3.scale.ordinal()
                 .range(bar_colors);
 
-
-
             // Create axes
             // ------------------------------
 
@@ -77,8 +68,6 @@ var D3BarStacked = function() {
                 .orient("left")
                 .tickFormat(d3.format(".2s"));
 
-
-
             // Create chart
             // ------------------------------
 
@@ -90,38 +79,33 @@ var D3BarStacked = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Load data
             // ------------------------------
 
-            d3.csv("../../../../global_assets/demo_data/d3/bars/bars_stacked.csv", function(error, data) {
-
+            d3.csv("../../../../global_assets/demo_data/d3/bars/bars_stacked.csv", function (error, data) {
                 // Filter values by key
-                color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));
+                color.domain(d3.keys(data[0]).filter(function (key) { return key !== "State"; }));
 
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     var y0 = 0;
-                    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+                    d.ages = color.domain().map(function (name) { return { name: name, y0: y0, y1: y0 += +d[name] }; });
                     d.total = d.ages[d.ages.length - 1].y1;
                 });
 
                 // Sort data
-                data.sort(function(a, b) { return b.total - a.total; });
-
+                data.sort(function (a, b) { return b.total - a.total; });
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(data.map(function(d) { return d.State; }));
+                x.domain(data.map(function (d) { return d.State; }));
 
                 // Vertical
-                y.domain([0, d3.max(data, function(d) { return d.total; })]);
-
+                y.domain([0, d3.max(data, function (d) { return d.total; })]);
 
                 //
                 // Append chart elements
@@ -150,7 +134,6 @@ var D3BarStacked = function() {
                     .style("text-anchor", "end")
                     .text("Population");
 
-
                 // Add bars
                 // ------------------------------
 
@@ -159,20 +142,19 @@ var D3BarStacked = function() {
                     .data(data)
                     .enter()
                     .append("g")
-                        .attr("class", "bar-group")
-                        .attr("transform", function(d) { return "translate(" + x(d.State) + ",0)"; });
+                    .attr("class", "bar-group")
+                    .attr("transform", function (d) { return "translate(" + x(d.State) + ",0)"; });
 
                 // Append bars
                 state.selectAll(".d3-bar")
-                    .data(function(d) { return d.ages; })
+                    .data(function (d) { return d.ages; })
                     .enter()
                     .append("rect")
-                        .attr("class", "d3-bar")
-                        .attr("width", x.rangeBand())
-                        .attr("y", function(d) { return y(d.y1); })
-                        .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-                        .style("fill", function(d) { return color(d.name); });
-
+                    .attr("class", "d3-bar")
+                    .attr("width", x.rangeBand())
+                    .attr("y", function (d) { return y(d.y1); })
+                    .attr("height", function (d) { return y(d.y0) - y(d.y1); })
+                    .style("fill", function (d) { return color(d.name); });
 
                 // Add legend
                 // ------------------------------
@@ -182,8 +164,8 @@ var D3BarStacked = function() {
                     .data(color.domain().slice().reverse())
                     .enter()
                     .append("g")
-                        .attr("class", "d3-legend")
-                        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+                    .attr("class", "d3-legend")
+                    .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
 
                 // Legend indicator
                 legend.append("rect")
@@ -198,10 +180,8 @@ var D3BarStacked = function() {
                     .attr("y", 9)
                     .attr("dy", ".35em")
                     .style("text-anchor", "end")
-                    .text(function(d) { return d; });
+                    .text(function (d) { return d; });
             });
-
-
 
             // Resize chart
             // ------------------------------
@@ -214,15 +194,13 @@ var D3BarStacked = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -233,7 +211,6 @@ var D3BarStacked = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -243,15 +220,14 @@ var D3BarStacked = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Bar group
-                svg.selectAll('.bar-group').attr("transform", function(d) { return "translate(" + x(d.State) + ",0)"; });
+                svg.selectAll('.bar-group').attr("transform", function (d) { return "translate(" + x(d.State) + ",0)"; });
 
                 // Bars
-                svg.selectAll('.d3-bar').attr("width", x.rangeBand()).attr("x", function(d) { return x(d.name); });
+                svg.selectAll('.d3-bar').attr("width", x.rangeBand()).attr("x", function (d) { return x(d.name); });
 
                 // Legend
                 svg.selectAll(".d3-legend text").attr("x", width - 24);
@@ -260,22 +236,20 @@ var D3BarStacked = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barStacked();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3BarStacked.init();
 });

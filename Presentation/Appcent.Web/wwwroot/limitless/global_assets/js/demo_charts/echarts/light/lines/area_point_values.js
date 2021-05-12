@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsAreaPointValuesLight = function() {
-
-
+var EchartsAreaPointValuesLight = function () {
     //
     // Setup module components
     //
 
     // Area chart with point values
-    var _areaPointValuesLightExample = function() {
+    var _areaPointValuesLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsAreaPointValuesLight = function() {
         // Define element
         var area_values_element = document.getElementById('area_values');
 
-
         //
         // Charts configuration
         //
 
         if (area_values_element) {
-
             // Initialize chart
             var area_values = echarts.init(area_values_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsAreaPointValuesLight = function() {
 
             // Options
             area_values.setOption({
-
                 // Define colors
                 color: ['#EC407A'],
 
@@ -133,7 +126,7 @@ var EchartsAreaPointValuesLight = function() {
                         label: {
                             normal: {
                                 show: true
-                            } 
+                            }
                         },
                         areaStyle: {
                             normal: {
@@ -150,13 +143,12 @@ var EchartsAreaPointValuesLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             area_values_element && area_values.resize();
         };
 
@@ -166,7 +158,7 @@ var EchartsAreaPointValuesLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -174,22 +166,20 @@ var EchartsAreaPointValuesLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaPointValuesLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsAreaPointValuesLight.init();
 });

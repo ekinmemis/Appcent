@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieDiffInvert = function() {
-
-
+var GooglePieDiffInvert = function () {
     //
     // Setup module components
     //
 
     // Pie with inverted behaviour
-    var _googlePieDiffInvert = function() {
+    var _googlePieDiffInvert = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieDiffInvert = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPieDiffInvert();
 
@@ -37,7 +33,7 @@ var GooglePieDiffInvert = function() {
 
                 // Resize on window resize
                 var resizePieDiffInvert;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieDiffInvert);
                     resizePieDiffInvert = setTimeout(function () {
                         drawPieDiffInvert();
@@ -49,7 +45,6 @@ var GooglePieDiffInvert = function() {
 
         // Chart settings
         function drawPieDiffInvert() {
-
             // Define charts element
             var pie_diff_invert_element = document.getElementById('google-pie-diff-invert');
 
@@ -76,8 +71,8 @@ var GooglePieDiffInvert = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -102,18 +97,16 @@ var GooglePieDiffInvert = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieDiffInvert();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

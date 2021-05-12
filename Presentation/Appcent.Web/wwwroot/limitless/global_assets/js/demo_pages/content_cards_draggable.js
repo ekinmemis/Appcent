@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var CardsDraggable = function() {
-
-
+var CardsDraggable = function () {
     //
     // Setup module components
     //
 
     // jQuery UI Sortable
-    var _componentSortable = function() {
+    var _componentSortable = function () {
         if (!$().sortable) {
             console.warn('Warning - jquery_ui.js components are not loaded.');
             return;
@@ -37,7 +34,7 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
@@ -55,7 +52,7 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
@@ -73,7 +70,7 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
@@ -91,7 +88,7 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
@@ -108,7 +105,7 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
@@ -126,28 +123,26 @@ var CardsDraggable = function() {
             placeholder: 'sortable-placeholder',
             forcePlaceholderSize: true,
             tolerance: 'pointer',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSortable();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     CardsDraggable.init();
 });

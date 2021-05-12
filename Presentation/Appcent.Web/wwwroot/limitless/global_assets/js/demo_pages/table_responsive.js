@@ -6,44 +6,39 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var TableFootable = function() {
-
-
+var TableFootable = function () {
     //
     // Setup module components
     //
 
     // Default file input style
-    var _componentFootable = function() {
+    var _componentFootable = function () {
         if (!$().footable) {
             console.warn('Warning - footable.min.js is not loaded.');
             return;
         }
 
-		// Initialize responsive functionality
-	    $('.table-togglable').footable();
+        // Initialize responsive functionality
+        $('.table-togglable').footable();
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFootable();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     TableFootable.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var С3Grid = function() {
-
-
+var С3Grid = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _gridExamples = function() {
+    var _gridExamples = function () {
         if (typeof c3 == 'undefined') {
             console.warn('Warning - c3.min.js is not loaded.');
             return;
@@ -32,10 +29,8 @@ var С3Grid = function() {
         var grid_region_chart_element = document.getElementById('c3-grid-chart-region');
         var sidebarToggle = document.querySelector('.sidebar-control');
 
-
         // Grid lines
-        if(grid_lines_element) {
-
+        if (grid_lines_element) {
             // Generate chart
             var grid_lines = c3.generate({
                 bindto: grid_lines_element,
@@ -60,14 +55,13 @@ var С3Grid = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 grid_lines.resize();
             });
         }
 
         // Optional X grid lines
-        if(grid_lines_x_element) {
-
+        if (grid_lines_x_element) {
             // Generate chart
             var grid_lines_x = c3.generate({
                 bindto: grid_lines_x_element,
@@ -83,20 +77,19 @@ var С3Grid = function() {
                 },
                 grid: {
                     x: {
-                        lines: [{value: 3, text: 'Label 3'}, {value: 4.5, text: 'Label 4.5'}]
+                        lines: [{ value: 3, text: 'Label 3' }, { value: 4.5, text: 'Label 4.5' }]
                     }
                 }
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 grid_lines_x.resize();
             });
         }
 
         // Optional Y grid lines
-        if(grid_lines_y_element) {
-
+        if (grid_lines_y_element) {
             // Generate chart
             var grid_lines_y = c3.generate({
                 bindto: grid_lines_y_element,
@@ -121,20 +114,19 @@ var С3Grid = function() {
                 },
                 grid: {
                     y: {
-                        lines: [{value: 50, text: 'Label 50'}, {value: 1300, text: 'Label 1300', axis: 'y2'}]
+                        lines: [{ value: 50, text: 'Label 50' }, { value: 1300, text: 'Label 1300', axis: 'y2' }]
                     }
                 }
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 grid_lines_y.resize();
             });
         }
 
         // Rects on chart
-        if(grid_region_element) {
-
+        if (grid_region_element) {
             // Generate chart
             var grid_region = c3.generate({
                 bindto: grid_region_element,
@@ -158,27 +150,26 @@ var С3Grid = function() {
                     }
                 },
                 regions: [
-                    {axis: 'x', end: 1, class: 'regionX'},
-                    {axis: 'x', start: 2, end: 4, class: 'regionX'},
-                    {axis: 'x', start: 5, class: 'regionX'},
-                    {axis: 'y', end: 50, class: 'regionY'},
-                    {axis: 'y', start: 80, end: 140, class: 'regionY'},
-                    {axis: 'y', start: 400, class: 'regionY'},
-                    {axis: 'y2', end: 900, class: 'regionY2'},
-                    {axis: 'y2', start: 1150, end: 1250, class: 'regionY2'},
-                    {axis: 'y2', start: 1300, class: 'regionY2'},
+                    { axis: 'x', end: 1, class: 'regionX' },
+                    { axis: 'x', start: 2, end: 4, class: 'regionX' },
+                    { axis: 'x', start: 5, class: 'regionX' },
+                    { axis: 'y', end: 50, class: 'regionY' },
+                    { axis: 'y', start: 80, end: 140, class: 'regionY' },
+                    { axis: 'y', start: 400, class: 'regionY' },
+                    { axis: 'y2', end: 900, class: 'regionY2' },
+                    { axis: 'y2', start: 1150, end: 1250, class: 'regionY2' },
+                    { axis: 'y2', start: 1300, class: 'regionY2' },
                 ]
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 grid_region.resize();
             });
         }
 
         // Data regions
-        if(grid_region_chart_element) {
-
+        if (grid_region_chart_element) {
             // Generate chart
             var grid_region_chart = c3.generate({
                 bindto: grid_region_chart_element,
@@ -192,8 +183,8 @@ var С3Grid = function() {
                         ['data2', 50, 20, 10, 40, 15, 25]
                     ],
                     regions: {
-                        'data1': [{'start':1, 'end':2, 'style':'dashed'},{'start':3}], // currently 'dashed' style only
-                        'data2': [{'end':3}]
+                        'data1': [{ 'start': 1, 'end': 2, 'style': 'dashed' }, { 'start': 3 }], // currently 'dashed' style only
+                        'data2': [{ 'end': 3 }]
                     }
                 },
                 grid: {
@@ -204,28 +195,26 @@ var С3Grid = function() {
             });
 
             // Resize chart on sidebar width change
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function () {
                 grid_region_chart.resize();
             });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _gridExamples();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     С3Grid.init();
 });

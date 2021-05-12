@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3TreeCollapsible = function() {
-
-
+var D3TreeCollapsible = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _treeCollapsible = function() {
+    var _treeCollapsible = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3TreeCollapsible = function() {
         var element = document.getElementById('d3-tree-collapsible'),
             height = 800;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 0, right: 0, bottom: 0, left: 40},
+                margin = { top: 0, right: 0, bottom: 0, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5,
                 i = 0,
@@ -45,8 +40,6 @@ var D3TreeCollapsible = function() {
 
             // Colors
             var color = '#2196F3';
-
-
 
             // Create chart
             // ------------------------------
@@ -59,9 +52,7 @@ var D3TreeCollapsible = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -72,17 +63,14 @@ var D3TreeCollapsible = function() {
 
             // Diagonal projection
             var diagonal = d3.svg.diagonal()
-                .projection(function(d) { return [d.y, d.x]; });
-
-
+                .projection(function (d) { return [d.y, d.x]; });
 
             // Load data
             // ------------------------------
 
-            d3.json("../../../../global_assets/demo_data/d3/tree/tree_data_collapsible.json", function(error, json) {
-
+            d3.json("../../../../global_assets/demo_data/d3/tree/tree_data_collapsible.json", function (error, json) {
                 root = json;
-                root.x0 = height/2;
+                root.x0 = height / 2;
                 root.y0 = 0;
 
                 // Toggle nodes function
@@ -103,14 +91,11 @@ var D3TreeCollapsible = function() {
                 update(root);
             });
 
-
-
             // Layout setup
             // ------------------------------
 
             // Update nodes
             function update(source) {
-
                 // Set duration
                 var duration = d3.event && d3.event.altKey ? 5000 : 500;
 
@@ -122,8 +107,7 @@ var D3TreeCollapsible = function() {
 
                 // Update the nodes…
                 var node = svg.selectAll(".d3-tree-node")
-                    .data(nodes, function(d) { return d.id || (d.id = ++i); });
-
+                    .data(nodes, function (d) { return d.id || (d.id = ++i); });
 
                 // Enter nodes
                 // ------------------------------
@@ -131,8 +115,8 @@ var D3TreeCollapsible = function() {
                 // Enter any new nodes at the parent's previous position.
                 var nodeEnter = node.enter().append("g")
                     .attr("class", "d3-tree-node")
-                    .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-                    .on("click", function(d) { toggle(d); update(d); });
+                    .attr("transform", function (d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+                    .on("click", function (d) { toggle(d); update(d); });
 
                 // Add node circles
                 nodeEnter.append("circle")
@@ -141,18 +125,17 @@ var D3TreeCollapsible = function() {
                     .style("stroke", color)
                     .style("stroke-width", 1.5)
                     .style("cursor", "pointer")
-                    .style("fill", function(d) { return d._children && color; });
+                    .style("fill", function (d) { return d._children && color; });
 
                 // Add nodes text
                 nodeEnter.append("text")
                     .attr("class", "d3-text")
-                    .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+                    .attr("x", function (d) { return d.children || d._children ? -10 : 10; })
                     .attr("dy", ".35em")
-                    .style("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+                    .style("text-anchor", function (d) { return d.children || d._children ? "end" : "start"; })
                     .style("font-size", 12)
                     .style("fill-opacity", 1e-6)
-                    .text(function(d) { return d.name; });
-
+                    .text(function (d) { return d.name; });
 
                 // Update nodes
                 // ------------------------------
@@ -160,17 +143,16 @@ var D3TreeCollapsible = function() {
                 // Transition nodes to their new position.
                 var nodeUpdate = node.transition()
                     .duration(duration)
-                    .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+                    .attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; });
 
                 // Update circle
                 nodeUpdate.select("circle")
                     .attr("r", 4.5)
-                    .style("fill", function(d) { return d._children && color; });
+                    .style("fill", function (d) { return d._children && color; });
 
                 // Update text
                 nodeUpdate.select("text")
                     .style("fill-opacity", 1);
-
 
                 // Exit nodes
                 // ------------------------------
@@ -178,9 +160,9 @@ var D3TreeCollapsible = function() {
                 // Transition exiting nodes to the parent's new position.
                 var nodeExit = node.exit()
                     .transition()
-                        .duration(duration)
-                        .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-                        .remove();
+                    .duration(duration)
+                    .attr("transform", function (d) { return "translate(" + source.y + "," + source.x + ")"; })
+                    .remove();
 
                 // Update circles
                 nodeExit.select("circle")
@@ -190,26 +172,25 @@ var D3TreeCollapsible = function() {
                 nodeExit.select("text")
                     .style("fill-opacity", 1e-6);
 
-
                 // Links
                 // ------------------------------
 
                 // Update the links…
                 var link = svg.selectAll(".d3-tree-link")
-                    .data(tree.links(nodes), function(d) { return d.target.id; });
+                    .data(tree.links(nodes), function (d) { return d.target.id; });
 
                 // Enter any new links at the parent's previous position.
                 link.enter().insert("path", "g")
                     .attr("class", "d3-tree-link d3-line-connect")
                     .style("fill", "none")
                     .style("stroke-width", 1.5)
-                    .attr("d", function(d) {
-                        var o = {x: source.x0, y: source.y0};
-                        return diagonal({source: o, target: o});
+                    .attr("d", function (d) {
+                        var o = { x: source.x0, y: source.y0 };
+                        return diagonal({ source: o, target: o });
                     })
                     .transition()
-                        .duration(duration)
-                        .attr("d", diagonal);
+                    .duration(duration)
+                    .attr("d", diagonal);
 
                 // Transition links to their new position.
                 link.transition()
@@ -219,18 +200,17 @@ var D3TreeCollapsible = function() {
                 // Transition exiting nodes to the parent's new position.
                 link.exit().transition()
                     .duration(duration)
-                    .attr("d", function(d) {
-                    var o = {x: source.x, y: source.y};
-                        return diagonal({source: o, target: o});
+                    .attr("d", function (d) {
+                        var o = { x: source.x, y: source.y };
+                        return diagonal({ source: o, target: o });
                     })
                     .remove();
 
                 // Stash the old positions for transition.
-                nodes.forEach(function(d) {
+                nodes.forEach(function (d) {
                     d.x0 = d.x;
                     d.y0 = d.y;
                 });
-
 
                 // Resize chart
                 // ------------------------------
@@ -242,18 +222,16 @@ var D3TreeCollapsible = function() {
                 var sidebarToggle = document.querySelector('.sidebar-control');
                 sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
-
                 // Resize function
-                // 
+                //
                 // Since D3 doesn't support SVG resize by default,
-                // we need to manually specify parts of the graph that need to 
+                // we need to manually specify parts of the graph that need to
                 // be updated on window resize
                 function resize() {
-
                     // Layout variables
                     width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
-                    nodes = tree.nodes(root),
-                    links = tree.links(nodes);
+                        nodes = tree.nodes(root),
+                        links = tree.links(nodes);
 
                     // Layout
                     // -------------------------
@@ -264,12 +242,10 @@ var D3TreeCollapsible = function() {
                     // Width of appended group
                     svg.attr("width", width + margin.left + margin.right);
 
-
                     // Tree size
                     tree.size([height, width - 180]);
 
-                    diagonal.projection(function(d) { return [d.y, d.x]; });
-
+                    diagonal.projection(function (d) { return [d.y, d.x]; });
 
                     // Chart elements
                     // -------------------------
@@ -278,7 +254,7 @@ var D3TreeCollapsible = function() {
                     svg.selectAll(".d3-tree-link").attr("d", diagonal)
 
                     // Node paths
-                    svg.selectAll(".d3-tree-node").attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+                    svg.selectAll(".d3-tree-node").attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; });
                 }
             }
 
@@ -296,22 +272,20 @@ var D3TreeCollapsible = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _treeCollapsible();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3TreeCollapsible.init();
 });

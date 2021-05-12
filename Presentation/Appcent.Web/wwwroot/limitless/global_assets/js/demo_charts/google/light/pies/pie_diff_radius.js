@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieDiff = function() {
-
-
+var GooglePieDiff = function () {
     //
     // Setup module components
     //
 
     // Pie with radius factor
-    var _googlePieDiff = function() {
+    var _googlePieDiff = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieDiff = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPieDiff();
 
@@ -37,7 +33,7 @@ var GooglePieDiff = function() {
 
                 // Resize on window resize
                 var resizePieDiff;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieDiff);
                     resizePieDiff = setTimeout(function () {
                         drawPieDiff();
@@ -49,7 +45,6 @@ var GooglePieDiff = function() {
 
         // Chart settings
         function drawPieDiff() {
-
             // Define charts element
             var pie_diff_element = document.getElementById('google-pie-diff-radius');
 
@@ -76,8 +71,8 @@ var GooglePieDiff = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -102,18 +97,16 @@ var GooglePieDiff = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieDiff();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

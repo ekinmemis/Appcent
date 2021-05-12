@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var Select2Selects = function() {
-
-
+var Select2Selects = function () {
     //
     // Setup module components
     //
 
     // Select2 examples
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
         }
-
 
         //
         // Basic examples
@@ -48,7 +44,6 @@ var Select2Selects = function() {
             minimumResultsForSearch: Infinity,
             width: 400
         });
-
 
         //
         // Advanced examples
@@ -93,7 +88,6 @@ var Select2Selects = function() {
             maximumSelectionSize: 3
         });
 
-
         //
         // Drag and drop selected items
         //
@@ -108,7 +102,6 @@ var Select2Selects = function() {
             containment: '.sortable-target',
             items: '.select2-selection__choice:not(.select2-search--inline)'
         });
-
 
         //
         // Single select with icons
@@ -128,16 +121,15 @@ var Select2Selects = function() {
             templateResult: iconFormat,
             minimumResultsForSearch: Infinity,
             templateSelection: iconFormat,
-            escapeMarkup: function(m) { return m; }
+            escapeMarkup: function (m) { return m; }
         });
-
 
         //
         // Customize matched results
         //
 
         // Setup matcher
-        function matchStart (term, text) {
+        function matchStart(term, text) {
             if (text.toUpperCase().indexOf(term.toUpperCase()) == 0) {
                 return true;
             }
@@ -154,18 +146,17 @@ var Select2Selects = function() {
             });
         });
 
-
         //
         // Loading arrays of data
         //
 
         // Data
         var array_data = [
-            {id: 0, text: 'enhancement'},
-            {id: 1, text: 'bug'},
-            {id: 2, text: 'duplicate'},
-            {id: 3, text: 'invalid'},
-            {id: 4, text: 'wontfix'}
+            { id: 0, text: 'enhancement' },
+            { id: 1, text: 'bug' },
+            { id: 2, text: 'duplicate' },
+            { id: 3, text: 'invalid' },
+            { id: 4, text: 'wontfix' }
         ];
 
         // Loading array data
@@ -175,13 +166,12 @@ var Select2Selects = function() {
             data: array_data
         });
 
-
         //
         // Loading remote data
         //
 
         // Format displayed data
-        function formatRepo (repo) {
+        function formatRepo(repo) {
             if (repo.loading) return repo.text;
 
             var markup = '<div class="select2-result-repository clearfix">' +
@@ -204,7 +194,7 @@ var Select2Selects = function() {
         }
 
         // Format selection
-        function formatRepoSelection (repo) {
+        function formatRepoSelection(repo) {
             return repo.full_name || repo.text;
         }
 
@@ -221,7 +211,6 @@ var Select2Selects = function() {
                     };
                 },
                 processResults: function (data, params) {
-
                     // parse the results into the format expected by Select2
                     // since we are using custom formatting functions we do not need to
                     // alter the remote JSON data, except to indicate that infinite
@@ -243,7 +232,6 @@ var Select2Selects = function() {
             templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
         });
 
-
         //
         // Programmatic access (single)
         //
@@ -253,9 +241,8 @@ var Select2Selects = function() {
             minimumResultsForSearch: Infinity,
             placeholder: 'Select State...'
         });
-        $('.access-get').on('click', function () { alert('Selected value is: '+$('.select-access-value').val()); });
+        $('.access-get').on('click', function () { alert('Selected value is: ' + $('.select-access-value').val()); });
         $('.access-set').on('click', function () { $('.select-access-value').val('CA').trigger('change'); });
-
 
         // Open/close menu
         $('.select-access-open').select2({
@@ -265,7 +252,6 @@ var Select2Selects = function() {
         $('.access-open').on('click', function () { $('.select-access-open').select2('open'); });
         $('.access-close').on('click', function () { $('.select-access-open').select2('close'); });
 
-
         // Enable/disable menu
         $('.select-access-enable').select2({
             minimumResultsForSearch: Infinity,
@@ -273,7 +259,6 @@ var Select2Selects = function() {
         });
         $('.access-disable').on('click', function () { $('.select-access-enable').prop('disabled', true); });
         $('.access-enable').on('click', function () { $('.select-access-enable').prop('disabled', false); });
-
 
         // Destroy/create menu
         function create_menu() {
@@ -283,9 +268,8 @@ var Select2Selects = function() {
             });
         }
         create_menu();
-        $('.access-create').on('click', function () { return create_menu()});
+        $('.access-create').on('click', function () { return create_menu() });
         $('.access-destroy').on('click', function () { $('.select-access-create').select2('destroy'); });
-
 
         //
         // Programmatic access (multiple)
@@ -293,9 +277,8 @@ var Select2Selects = function() {
 
         // Reacting to external value changes
         $('.select-access-multiple-value').select2();
-        $('.change-to-ca').on('click', function() { $('.select-access-multiple-value').val('CA').trigger('change'); });
-        $('.change-to-ak-co').on('click', function() { $('.select-access-multiple-value').val(['AK','CO']).trigger('change'); });
-
+        $('.change-to-ca').on('click', function () { $('.select-access-multiple-value').val('CA').trigger('change'); });
+        $('.change-to-ak-co').on('click', function () { $('.select-access-multiple-value').val(['AK', 'CO']).trigger('change'); });
 
         // Open/close menu
         $('.select-access-multiple-open').select2({
@@ -304,14 +287,12 @@ var Select2Selects = function() {
         $('.access-multiple-open').on('click', function () { $('.select-access-multiple-open').select2('open'); });
         $('.access-multiple-close').on('click', function () { $('.select-access-multiple-open').select2('close'); });
 
-
         // Enable/disable menu
         $('.select-access-multiple-enable').select2({
             minimumResultsForSearch: Infinity
         });
         $('.access-multiple-disable').on('click', function () { $('.select-access-multiple-enable').prop('disabled', true); });
         $('.access-multiple-enable').on('click', function () { $('.select-access-multiple-enable').prop('disabled', false); });
-
 
         // Destroy/create menu
         function create_menu_multiple() {
@@ -320,9 +301,8 @@ var Select2Selects = function() {
             });
         }
         create_menu_multiple();
-        $('.access-multiple-create').on('click', function () { return create_menu_multiple()});
+        $('.access-multiple-create').on('click', function () { return create_menu_multiple() });
         $('.access-multiple-destroy').on('click', function () { $('.select-access-multiple-create').select2('destroy'); });
-
 
         // Clear selection
         $('.select-access-multiple-clear').select2({
@@ -331,22 +311,20 @@ var Select2Selects = function() {
         $('.access-multiple-clear').on('click', function () { $('.select-access-multiple-clear').val(null).trigger('change'); });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Select2Selects.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapMarkerSymbolPredefined = function() {
-
-
+var GoogleMapMarkerSymbolPredefined = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapMarkerSymbolPredefined = function() {
+    var _googleMapMarkerSymbolPredefined = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -30,7 +27,6 @@ var GoogleMapMarkerSymbolPredefined = function() {
 
         // Setup map
         function initialize() {
-
             // Define map element
             var map_marker_symbol_predefined_element = document.getElementById('map_symbol_predefined');
 
@@ -59,22 +55,20 @@ var GoogleMapMarkerSymbolPredefined = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapMarkerSymbolPredefined();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapMarkerSymbolPredefined.init();
 });

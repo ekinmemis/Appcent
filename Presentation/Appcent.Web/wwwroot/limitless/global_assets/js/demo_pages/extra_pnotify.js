@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var Pnotify = function() {
-
-
+var Pnotify = function () {
     //
     // Setup module components
     //
 
     // PNotify examples
-    var _componentPnotify = function() {
+    var _componentPnotify = function () {
         if (typeof PNotify == 'undefined') {
             console.warn('Warning - pnotify.min.js is not loaded.');
             return;
@@ -76,7 +73,6 @@ var Pnotify = function() {
             });
         });
 
-
         //
         // Contextual alternatives
         //
@@ -110,7 +106,6 @@ var Pnotify = function() {
                 type: 'info'
             });
         });
-
 
         //
         // Solid color style
@@ -189,7 +184,6 @@ var Pnotify = function() {
             });
         });
 
-
         //
         // Desktop notifications
         //
@@ -206,7 +200,7 @@ var Pnotify = function() {
                     icon: '../../../../global_assets/images/pnotify/default.png'
                 }
             })
-            ).get().click(function(e) {
+            ).get().click(function (e) {
                 if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
                 alert('Hey! You clicked the desktop notification!');
             });
@@ -224,7 +218,7 @@ var Pnotify = function() {
                     icon: '../../../../global_assets/images/pnotify/danger.png'
                 }
             })
-            ).get().click(function(e) {
+            ).get().click(function (e) {
                 if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
                 alert('Hey! You clicked the desktop notification!');
             });
@@ -242,7 +236,7 @@ var Pnotify = function() {
                     icon: '../../../../global_assets/images/pnotify/success.png'
                 }
             })
-            ).get().click(function(e) {
+            ).get().click(function (e) {
                 if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
                 alert('Hey! You clicked the desktop notification!');
             });
@@ -260,7 +254,7 @@ var Pnotify = function() {
                     icon: '../../../../global_assets/images/pnotify/warning.png'
                 }
             })
-            ).get().click(function(e) {
+            ).get().click(function (e) {
                 if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
                 alert('Hey! You clicked the desktop notification!');
             });
@@ -278,12 +272,11 @@ var Pnotify = function() {
                     icon: '../../../../global_assets/images/pnotify/info.png'
                 }
             })
-            ).get().click(function(e) {
+            ).get().click(function (e) {
                 if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
                 alert('Hey! You clicked the desktop notification!');
             });
         });
-
 
         //
         // Options
@@ -318,9 +311,9 @@ var Pnotify = function() {
                     sticker: false
                 }
             });
-            notice.get().click(function() {
+            notice.get().click(function () {
                 notice.remove();
-            });  
+            });
         });
 
         // Form
@@ -338,12 +331,12 @@ var Pnotify = function() {
             });
 
             // Remove if cancelled
-            notice.get().find('button[name=cancel]').on('click', function() {
+            notice.get().find('button[name=cancel]').on('click', function () {
                 notice.remove();
             })
 
             // Submit form
-            notice.get().submit(function() {
+            notice.get().submit(function () {
                 var username = $(this).find('input[name=username]').val();
                 if (!username) {
                     alert('Please provide a username.');
@@ -401,14 +394,12 @@ var Pnotify = function() {
             });
         });
 
-
         //
         // Modules
         //
 
         // Confirm
         $('#pnotify-confirm').on('click', function () {
-
             // Setup
             var notice = new PNotify({
                 title: 'Confirmation',
@@ -434,19 +425,18 @@ var Pnotify = function() {
             })
 
             // On confirm
-            notice.get().on('pnotify.confirm', function() {
+            notice.get().on('pnotify.confirm', function () {
                 alert('Ok, cool.');
             })
 
             // On cancel
-            notice.get().on('pnotify.cancel', function() {
+            notice.get().on('pnotify.cancel', function () {
                 alert('Oh ok. Chicken, I see.');
             });
         });
 
         // Prompt
         $('#pnotify-prompt').on('click', function () {
-
             // Setup
             var notice = new PNotify({
                 title: 'Input needed',
@@ -471,7 +461,7 @@ var Pnotify = function() {
             });
 
             // On confirm
-            notice.get().on('pnotify.confirm', function(e, notice, val) {
+            notice.get().on('pnotify.confirm', function (e, notice, val) {
                 notice.cancelRemove().update({
                     title: 'You\'ve chosen a side',
                     text: 'You want ' + $('<div/>').text(val).html() + '.',
@@ -490,7 +480,7 @@ var Pnotify = function() {
             })
 
             // On cancel
-            notice.get().on('pnotify.cancel', function(e, notice) {
+            notice.get().on('pnotify.cancel', function (e, notice) {
                 notice.cancelRemove().update({
                     title: 'You don\'t want a side',
                     text: 'No soup for you!',
@@ -511,7 +501,6 @@ var Pnotify = function() {
 
         // Multiline prompt
         $('#pnotify-multiline').on('click', function () {
-
             // Setup
             var notice = new PNotify({
                 title: 'Input needed',
@@ -538,7 +527,7 @@ var Pnotify = function() {
             });
 
             // Confirm
-            notice.get().on('pnotify.confirm', function(e, notice, val) {
+            notice.get().on('pnotify.confirm', function (e, notice, val) {
                 notice.cancelRemove().update({
                     title: 'Your poem',
                     text: $('<div/>').text(val).html(),
@@ -556,7 +545,7 @@ var Pnotify = function() {
             });
 
             // On cancel
-            notice.get().on('pnotify.cancel', function(e, notice) {
+            notice.get().on('pnotify.cancel', function (e, notice) {
                 notice.cancelRemove().update({
                     title: 'You don\'t like poetry',
                     text: 'Roses are dead,\nViolets are dead,\nI suck at gardening.',
@@ -587,7 +576,7 @@ var Pnotify = function() {
                         {
                             text: 'Fries',
                             addClass: 'btn btn-sm bg-blue',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'You\'ve chosen a side',
                                     text: 'You want fries.',
@@ -607,7 +596,7 @@ var Pnotify = function() {
                         {
                             text: 'Mashed Potatoes',
                             addClass: 'btn btn-sm bg-pink-400',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'You\'ve chosen a side',
                                     text: 'You want mashed potatoes.',
@@ -627,7 +616,7 @@ var Pnotify = function() {
                         {
                             text: 'Fruit',
                             addClass: 'btn btn-sm bg-indigo-400',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'You\'ve chosen a side',
                                     text: 'You want fruit.',
@@ -675,31 +664,31 @@ var Pnotify = function() {
 
         // Callbacks
         $('#pnotify-callbacks').on('click', function () {
-            var dont_alert = function() {};
+            var dont_alert = function () { };
             new PNotify({
                 title: 'I\'m here',
                 text: 'I have a callback for each of my events. I\'ll call all my callbacks while I change states.',
                 addclass: 'bg-teal border-teal',
-                before_init: function(opts) {
+                before_init: function (opts) {
                     dont_alert('I\'m called before the notice initializes. I\'m passed the options used to make the notice. I can modify them. Watch me replace the word callback with tire iron!');
                     opts.text = opts.text.replace(/callback/g, 'tire iron');
                 },
-                after_init: function(PNotify) {
+                after_init: function (PNotify) {
                     dont_alert('I\'m called after the notice initializes. I\'m passed the PNotify object for the current notice: ' + PNotify + '\n\nThere are more callbacks you can assign, but this is the last notice you\'ll see. Check the code to see them all.');
                 },
-                before_open: function(PNotify) {
+                before_open: function (PNotify) {
                     var source_note = 'Return false to cancel opening.';
                     dont_alert('I\'m called before the notice opens. I\'m passed the PNotify object for the current notice: ' + PNotify);
                 },
-                after_open: function(PNotify) {
+                after_open: function (PNotify) {
                     alert('I\'m called after the notice opens. I\'m passed the PNotify object for the current notice: ' + PNotify);
                 },
-                before_close: function(PNotify, timer_hide) {
+                before_close: function (PNotify, timer_hide) {
                     var source_note = 'Return false to cancel close. Use PNotify.queueRemove() to set the removal timer again.';
                     dont_alert('I\'m called before the notice closes. I\'m passed the PNotify object for the current notice: ' + PNotify);
                     dont_alert('I also have an argument called timer_hide, which is true if the notice was closed because the timer ran down. Value: ' + timer_hide);
                 },
-                after_close: function(PNotify, timer_hide) {
+                after_close: function (PNotify, timer_hide) {
                     alert('I\'m called after the notice closes. I\'m passed the PNotify object for the current notice: ' + PNotify);
                     dont_alert('I also have an argument called timer_hide, which is true if the notice was closed because the timer ran down. Value: ' + timer_hide);
                 }
@@ -712,19 +701,19 @@ var Pnotify = function() {
                 title: 'Notice',
                 text: 'Right now I\'m a notice.',
                 addclass: 'alert bg-primary border-primary alert-styled-right',
-                before_close: function(PNotify) {
+                before_close: function (PNotify) {
                     PNotify.update({
                         title: 'Error',
                         text: 'Uh oh. Now I\'ve become an error.',
                         addclass: 'alert bg-danger border-danger alert-styled-right',
                         type: 'error',
-                        before_close: function(PNotify) {
+                        before_close: function (PNotify) {
                             PNotify.update({
                                 title: 'Success',
                                 text: 'I fixed the error!',
                                 addclass: 'alert bg-success border-success alert-styled-right',
                                 type: 'success',
-                                before_close: function(PNotify) {
+                                before_close: function (PNotify) {
                                     PNotify.update({
                                         title: 'Info',
                                         text: 'Everything\'s cool now.',
@@ -749,7 +738,7 @@ var Pnotify = function() {
         // Progress loader
         $('#pnotify-progress').on('click', function () {
             var cur_value = 1,
-            progress;
+                progress;
 
             // Make a loader.
             var loader = new PNotify({
@@ -766,14 +755,13 @@ var Pnotify = function() {
                     closer: false,
                     sticker: false
                 },
-                before_open: function(PNotify) {
+                before_open: function (PNotify) {
                     progress = PNotify.get().find("div.progress-bar");
                     progress.width(cur_value + "%").attr("aria-valuenow", cur_value).find("span").html(cur_value + "%");
 
                     // Pretend to do something.
-                    var timer = setInterval(function() {
+                    var timer = setInterval(function () {
                         if (cur_value >= 100) {
-
                             // Remove the interval.
                             window.clearInterval(timer);
                             loader.remove();
@@ -803,54 +791,52 @@ var Pnotify = function() {
                 width: "170px"
             });
 
-            setTimeout(function() {
-            notice.update({
-                title: false
-            });
-            var interval = setInterval(function() {
-                percent += 2;
-                var options = {
-                    text: percent + "% complete."
-                };
-                if (percent == 80) options.title = "Almost There";
-                if (percent >= 100) {
-                    window.clearInterval(interval);
-                    options.title = "Done!";
-                    options.addclass = "bg-success border-success";
-                    options.type = "success";
-                    options.hide = true;
-                    options.buttons = {
-                        closer: true,
-                        sticker: true
+            setTimeout(function () {
+                notice.update({
+                    title: false
+                });
+                var interval = setInterval(function () {
+                    percent += 2;
+                    var options = {
+                        text: percent + "% complete."
                     };
-                    options.icon = 'icon-checkmark3';
-                    options.opacity = 1;
-                    options.width = PNotify.prototype.options.width;
-                }
-                notice.update(options);
+                    if (percent == 80) options.title = "Almost There";
+                    if (percent >= 100) {
+                        window.clearInterval(interval);
+                        options.title = "Done!";
+                        options.addclass = "bg-success border-success";
+                        options.type = "success";
+                        options.hide = true;
+                        options.buttons = {
+                            closer: true,
+                            sticker: true
+                        };
+                        options.icon = 'icon-checkmark3';
+                        options.opacity = 1;
+                        options.width = PNotify.prototype.options.width;
+                    }
+                    notice.update(options);
                 }, 120);
             }, 2000);
         });
-
 
         // Stacks
         // ------------------------------
 
         // Define directions
-        var stack_top_left = {"dir1": "right", "dir2": "down", "push": "top"};
-        var stack_bottom_left = {"dir1": "right", "dir2": "up", "push": "top"};
-        var stack_bottom_right = {"dir1": "left", "dir2": "up", "firstpos1": 20, "firstpos2": 20};
-        var stack_custom_left = {"dir1": "right", "dir2": "down"};
-        var stack_custom_right = {"dir1": "left", "dir2": "up", "push": "top"};
-        var stack_custom_top = {"dir1": "right", "dir2": "down", "push": "top", "spacing1": 1};
-        var stack_custom_bottom = {"dir1": "right", "dir2": "up", "spacing1": 1};
+        var stack_top_left = { "dir1": "right", "dir2": "down", "push": "top" };
+        var stack_bottom_left = { "dir1": "right", "dir2": "up", "push": "top" };
+        var stack_bottom_right = { "dir1": "left", "dir2": "up", "firstpos1": 20, "firstpos2": 20 };
+        var stack_custom_left = { "dir1": "right", "dir2": "down" };
+        var stack_custom_right = { "dir1": "left", "dir2": "up", "push": "top" };
+        var stack_custom_top = { "dir1": "right", "dir2": "down", "push": "top", "spacing1": 1 };
+        var stack_custom_bottom = { "dir1": "right", "dir2": "up", "spacing1": 1 };
 
-        var stack_top_left_rtl = {"dir1": "left", "dir2": "down", "push": "top"};
-        var stack_bottom_left_rtl = {"dir1": "left", "dir2": "up", "push": "top"};
-        var stack_bottom_right_rtl = {"dir1": "right", "dir2": "up", "firstpos1": 20, "firstpos2": 20};
-        var stack_custom_left_rtl = {"dir1": "left", "dir2": "down"};
-        var stack_custom_right_rtl = {"dir1": "right", "dir2": "up", "push": "top"};
-
+        var stack_top_left_rtl = { "dir1": "left", "dir2": "down", "push": "top" };
+        var stack_bottom_left_rtl = { "dir1": "left", "dir2": "up", "push": "top" };
+        var stack_bottom_right_rtl = { "dir1": "right", "dir2": "up", "firstpos1": 20, "firstpos2": 20 };
+        var stack_custom_left_rtl = { "dir1": "left", "dir2": "down" };
+        var stack_custom_right_rtl = { "dir1": "right", "dir2": "up", "push": "top" };
 
         //
         // Setup options for positions
@@ -866,25 +852,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-top-left bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-top-left bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-top-left bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-top-left bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-top-left bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-top-left bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -899,25 +885,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-bottom-left bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-bottom-left bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-bottom-left bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-bottom-left bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-bottom-left bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-bottom-left bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -932,25 +918,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-bottom-right bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-bottom-right bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-bottom-right bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-bottom-right bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-bottom-right bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-bottom-right bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -965,25 +951,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-custom-left bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-custom-left bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-custom-left bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-custom-left bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-custom-left bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-custom-left bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -998,25 +984,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-custom-right bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-custom-right bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-custom-right bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-custom-right bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-custom-right bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-custom-right bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -1033,25 +1019,25 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-custom-top bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-custom-top bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-custom-top bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-custom-top bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-custom-top bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-custom-top bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
@@ -1068,29 +1054,28 @@ var Pnotify = function() {
             };
             switch (type) {
                 case 'error':
-                opts.title = "Oh No";
-                opts.text = "Watch out for that water tower!";
-                opts.addclass = "stack-custom-bottom bg-danger border-danger";
-                opts.type = "error";
-                break;
+                    opts.title = "Oh No";
+                    opts.text = "Watch out for that water tower!";
+                    opts.addclass = "stack-custom-bottom bg-danger border-danger";
+                    opts.type = "error";
+                    break;
 
                 case 'info':
-                opts.title = "Breaking News";
-                opts.text = "Have you met Ted?";
-                opts.addclass = "stack-custom-bottom bg-info border-info";
-                opts.type = "info";
-                break;
+                    opts.title = "Breaking News";
+                    opts.text = "Have you met Ted?";
+                    opts.addclass = "stack-custom-bottom bg-info border-info";
+                    opts.type = "info";
+                    break;
 
                 case 'success':
-                opts.title = "Good News Everyone";
-                opts.text = "I've invented a device that bites shiny metal asses.";
-                opts.addclass = "stack-custom-bottom bg-success border-success";
-                opts.type = "success";
-                break;
+                    opts.title = "Good News Everyone";
+                    opts.text = "I've invented a device that bites shiny metal asses.";
+                    opts.addclass = "stack-custom-bottom bg-success border-success";
+                    opts.type = "success";
+                    break;
             }
             new PNotify(opts);
         }
-
 
         //
         // Initialize
@@ -1132,22 +1117,20 @@ var Pnotify = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentPnotify();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Pnotify.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleBarStacked = function() {
-
-
+var GoogleBarStacked = function () {
     //
     // Setup module components
     //
 
     // Stacked bar chart
-    var _googleBarStacked = function() {
+    var _googleBarStacked = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleBarStacked = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawBarStacked();
 
@@ -37,7 +33,7 @@ var GoogleBarStacked = function() {
 
                 // Resize on window resize
                 var resizeBarStacked;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeBarStacked);
                     resizeBarStacked = setTimeout(function () {
                         drawBarStacked();
@@ -49,13 +45,12 @@ var GoogleBarStacked = function() {
 
         // Chart settings
         function drawBarStacked() {
-
             // Define charts element
             var bar_stacked_element = document.getElementById('google-bar-stacked');
 
             // Data
             var data = google.visualization.arrayToDataTable([
-                ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General', 'Western', 'Literature', { role: 'annotation' } ],
+                ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General', 'Western', 'Literature', { role: 'annotation' }],
                 ['2000', 20, 30, 35, 40, 45, 30, ''],
                 ['2005', 14, 20, 25, 30, 48, 30, ''],
                 ['2010', 10, 24, 20, 32, 18, 5, ''],
@@ -64,7 +59,6 @@ var GoogleBarStacked = function() {
                 ['2025', 12, 26, 20, 40, 20, 30, ''],
                 ['2030', 28, 19, 29, 30, 12, 13, '']
             ]);
-
 
             // Options
             var options_bar_stacked = {
@@ -94,7 +88,7 @@ var GoogleBarStacked = function() {
                     textStyle: {
                         color: '#333'
                     },
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -121,21 +115,18 @@ var GoogleBarStacked = function() {
             var bar_stacked = new google.visualization.BarChart(bar_stacked_element);
             bar_stacked.draw(data, options_bar_stacked);
         }
-
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleBarStacked();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

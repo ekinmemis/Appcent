@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieDiffBorder = function() {
-
-
+var GooglePieDiffBorder = function () {
     //
     // Setup module components
     //
 
     // Pie with border factor
-    var _googlePieDiffBorder = function() {
+    var _googlePieDiffBorder = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieDiffBorder = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPieDiffBorder();
 
@@ -37,7 +33,7 @@ var GooglePieDiffBorder = function() {
 
                 // Resize on window resize
                 var resizePieDiffBorder;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieDiffBorder);
                     resizePieDiffBorder = setTimeout(function () {
                         drawPieDiffBorder();
@@ -49,7 +45,6 @@ var GooglePieDiffBorder = function() {
 
         // Chart settings
         function drawPieDiffBorder() {
-
             // Define charts element
             var pie_diff_border_element = document.getElementById('google-pie-diff-border');
 
@@ -76,8 +71,8 @@ var GooglePieDiffBorder = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -102,18 +97,16 @@ var GooglePieDiffBorder = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieDiffBorder();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
 var Pagination = function () {
-
-
     //
     // Setup module components
     //
 
     // Dynamic pagination
-    var _componentPaginationDynamic = function() {
+    var _componentPaginationDynamic = function () {
         if (!$().twbsPagination) {
             console.warn('Warning - sweet_alert.min.js is not loaded.');
             return;
@@ -100,22 +97,20 @@ var Pagination = function () {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        initComponents: function() {
+        initComponents: function () {
             _componentPaginationDynamic();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Pagination.initComponents();
 });

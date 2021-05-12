@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsLinesBasicLight = function() {
-
-
+var EchartsLinesBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic line chart
-    var _linesBasicLightExample = function() {
+    var _linesBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsLinesBasicLight = function() {
         // Define element
         var line_basic_element = document.getElementById('line_basic');
 
-
         //
         // Charts configuration
         //
 
         if (line_basic_element) {
-
             // Initialize chart
             var line_basic = echarts.init(line_basic_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsLinesBasicLight = function() {
 
             // Options
             line_basic.setOption({
-
                 // Define colors
                 color: ['#EF5350', '#66BB6A'],
 
@@ -171,13 +164,12 @@ var EchartsLinesBasicLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             line_basic_element && line_basic.resize();
         };
 
@@ -187,7 +179,7 @@ var EchartsLinesBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -195,22 +187,20 @@ var EchartsLinesBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsLinesBasicLight.init();
 });

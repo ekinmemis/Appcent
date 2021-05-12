@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3PieDonutMultiple = function() {
-
-
+var D3PieDonutMultiple = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _pieDonutMultiple = function() {
+    var _pieDonutMultiple = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -29,24 +26,21 @@ var D3PieDonutMultiple = function() {
             radius = 110,
             margin = 10;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define the data as a two-dimensional array of numbers
             var data = [
-                [11975,  5871, 8916, 2868],
-                [ 1951, 10048, 2060, 6171],
-                [ 8010, 16145, 8090, 8045],
-                [ 1013,   990,  940, 6907]
+                [11975, 5871, 8916, 2868],
+                [1951, 10048, 2060, 6171],
+                [8010, 16145, 8090, 8045],
+                [1013, 990, 940, 6907]
             ];
 
             // Colors
             var colors = d3.scale.category20();
-
 
             // Create chart
             // ------------------------------
@@ -57,12 +51,11 @@ var D3PieDonutMultiple = function() {
                 .data(data)
                 .enter()
                 .append("svg")
-                    .attr("width", (radius + margin) * 2)
-                    .attr("height", (radius + margin) * 2)
-                    .append("g")
-                        .attr("class", "d3-arc")
-                        .attr("transform", "translate(" + (radius + margin) + "," + (radius + margin) + ")");
-
+                .attr("width", (radius + margin) * 2)
+                .attr("height", (radius + margin) * 2)
+                .append("g")
+                .attr("class", "d3-arc")
+                .attr("transform", "translate(" + (radius + margin) + "," + (radius + margin) + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -71,7 +64,6 @@ var D3PieDonutMultiple = function() {
             var arc = d3.svg.arc()
                 .innerRadius(radius / 1.75)
                 .outerRadius(radius);
-
 
             //
             // Append chart elements
@@ -82,28 +74,26 @@ var D3PieDonutMultiple = function() {
                 .data(d3.layout.pie())
                 .enter()
                 .append("path")
-                    .attr("d", arc)
-                    .attr("class", "d3-slice-border")
-                    .style("fill", function(d, i) { return colors(i); });
+                .attr("d", arc)
+                .attr("class", "d3-slice-border")
+                .style("fill", function (d, i) { return colors(i); });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _pieDonutMultiple();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3PieDonutMultiple.init();
 });

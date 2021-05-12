@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsLinesInvertedAxesLight = function() {
-
-
+var EchartsLinesInvertedAxesLight = function () {
     //
     // Setup module components
     //
 
     // Line chart with inverted axes
-    var _linesInvertedAxesLightExample = function() {
+    var _linesInvertedAxesLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsLinesInvertedAxesLight = function() {
         // Define element
         var line_inverted_axes_element = document.getElementById('line_inverted_axes');
 
-
         //
         // Charts configuration
         //
 
         if (line_inverted_axes_element) {
-
             // Initialize chart
             var line_inverted_axes = echarts.init(line_inverted_axes_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsLinesInvertedAxesLight = function() {
 
             // Options
             line_inverted_axes.setOption({
-
                 // Define colors
                 color: ['#7E57C2'],
 
@@ -158,13 +151,12 @@ var EchartsLinesInvertedAxesLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             line_inverted_axes_element && line_inverted_axes.resize();
         };
 
@@ -174,7 +166,7 @@ var EchartsLinesInvertedAxesLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -182,22 +174,20 @@ var EchartsLinesInvertedAxesLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesInvertedAxesLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsLinesInvertedAxesLight.init();
 });

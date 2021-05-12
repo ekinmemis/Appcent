@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3PieDonutMultipleNesting = function() {
-
-
+var D3PieDonutMultipleNesting = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _pieDonutMultipleNesting = function() {
+    var _pieDonutMultipleNesting = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -29,10 +26,8 @@ var D3PieDonutMultipleNesting = function() {
             radius = 110,
             margin = 10;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
@@ -40,17 +35,14 @@ var D3PieDonutMultipleNesting = function() {
             var slice_colors = d3.scale.category20c(),
                 slice_text_color = '#fff';
 
-
             // Load data
             // ------------------------------
 
-            d3.csv("../../../../global_assets/demo_data/d3/pies/pies_nesting.csv", function(flights) {
-
+            d3.csv("../../../../global_assets/demo_data/d3/pies/pies_nesting.csv", function (flights) {
                 // Nest the flight data by originating airport
                 var airports = d3.nest()
-                    .key(function(d) { return d.origin; })
+                    .key(function (d) { return d.origin; })
                     .entries(flights);
-
 
                 // Create chart
                 // ------------------------------
@@ -60,12 +52,11 @@ var D3PieDonutMultipleNesting = function() {
                     .selectAll("svg")
                     .data(airports)
                     .enter()
-                        .append("svg")
-                            .attr("width", (radius + margin) * 2)
-                            .attr("height", (radius + margin) * 2)
-                            .append("g")
-                                .attr("transform", "translate(" + (radius + margin) + "," + (radius + margin) + ")");
-
+                    .append("svg")
+                    .attr("width", (radius + margin) * 2)
+                    .attr("height", (radius + margin) * 2)
+                    .append("g")
+                    .attr("transform", "translate(" + (radius + margin) + "," + (radius + margin) + ")");
 
                 // Construct chart layout
                 // ------------------------------
@@ -77,10 +68,8 @@ var D3PieDonutMultipleNesting = function() {
 
                 // Pie
                 var pie = d3.layout.pie()
-                    .value(function(d) { return +d.count; })
-                    .sort(function(a, b) { return b.count - a.count; });
-
-
+                    .value(function (d) { return +d.count; })
+                    .sort(function (a, b) { return b.count - a.count; });
 
                 //
                 // Append chart elements
@@ -92,35 +81,31 @@ var D3PieDonutMultipleNesting = function() {
                     .attr("dy", ".35em")
                     .style("text-anchor", "middle")
                     .style("font-weight", 500)
-                    .text(function(d) { return d.key; });
-
+                    .text(function (d) { return d.key; });
 
                 // Pass the nested values to the pie layout
                 var g = svg.selectAll("g")
-                    .data(function(d) { return pie(d.values); })
+                    .data(function (d) { return pie(d.values); })
                     .enter()
                     .append("g")
-                        .attr("class", "d3-arc");
-
+                    .attr("class", "d3-arc");
 
                 // Add a colored arc path, with a mouseover title showing the count
                 g.append("path")
                     .attr("d", arc)
                     .attr("class", "d3-slice-border")
-                    .style("fill", function(d) { return slice_colors(d.data.carrier); })
+                    .style("fill", function (d) { return slice_colors(d.data.carrier); })
                     .append("title")
-                        .text(function(d) { return d.data.carrier + ": " + d.data.count; });
-
+                    .text(function (d) { return d.data.carrier + ": " + d.data.count; });
 
                 // Add a label to the larger arcs, translated to the arc centroid and rotated.
-                g.filter(function(d) { return d.endAngle - d.startAngle > .2; }).append("text")
+                g.filter(function (d) { return d.endAngle - d.startAngle > .2; }).append("text")
                     .attr("dy", ".35em")
-                    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
+                    .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
                     .style("fill", slice_text_color)
                     .style("font-size", 12)
                     .style("text-anchor", "middle")
-                    .text(function(d) { return d.data.carrier; });
-
+                    .text(function (d) { return d.data.carrier; });
 
                 // Computes the label angle of an arc, converting from radians to degrees.
                 function angle(d) {
@@ -131,22 +116,20 @@ var D3PieDonutMultipleNesting = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _pieDonutMultipleNesting();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3PieDonutMultipleNesting.init();
 });

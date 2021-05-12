@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapMarkerAnimation = function() {
-
-
+var GoogleMapMarkerAnimation = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapMarkerAnimation = function() {
+    var _googleMapMarkerAnimation = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -28,7 +25,6 @@ var GoogleMapMarkerAnimation = function() {
         // drop them on the map consecutively rather than all at once.
         // This example shows how to use setTimeout() to space
         // your markers' animation.
-
 
         // Add Berlin coordinates
         var berlin = new google.maps.LatLng(52.520816, 13.410186);
@@ -48,7 +44,6 @@ var GoogleMapMarkerAnimation = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_marker_animation_element = document.getElementById('map_marker_animation');
 
@@ -65,7 +60,7 @@ var GoogleMapMarkerAnimation = function() {
         // Drop markers
         function drop() {
             for (var i = 0; i < neighborhoods.length; i++) {
-                setTimeout(function() {
+                setTimeout(function () {
                     addMarker();
                 }, i * 200);
             }
@@ -83,7 +78,7 @@ var GoogleMapMarkerAnimation = function() {
         }
 
         // Drop markers on button click
-        $('.drop-markers').on('click', function() {
+        $('.drop-markers').on('click', function () {
             drop();
         });
 
@@ -91,22 +86,20 @@ var GoogleMapMarkerAnimation = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapMarkerAnimation();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapMarkerAnimation.init();
 });

@@ -6,31 +6,28 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableColumnReorder = function() {
-
-
+var DatatableColumnReorder = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableColumnReorder = function() {
+    var _componentDatatableColumnReorder = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
-            columnDefs: [{ 
+            columnDefs: [{
                 orderable: false,
                 width: 100,
-                targets: [ 5 ]
+                targets: [5]
             }],
             colReorder: true,
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
@@ -42,10 +39,8 @@ var DatatableColumnReorder = function() {
             }
         });
 
-
         // Basic column reorder
         $('.datatable-reorder').DataTable();
-
 
         // Realtime updating
         $('.datatable-reorder-realtime').DataTable({
@@ -54,12 +49,10 @@ var DatatableColumnReorder = function() {
             }
         });
 
-
         // Save state after reorder
         $('.datatable-reorder-state-saving').DataTable({
             stateSave: true
         });
-
 
         // Predefined column ordering
         $('.datatable-reorder-predefined').DataTable({
@@ -70,7 +63,7 @@ var DatatableColumnReorder = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -84,23 +77,21 @@ var DatatableColumnReorder = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableColumnReorder();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableColumnReorder.init();
 });

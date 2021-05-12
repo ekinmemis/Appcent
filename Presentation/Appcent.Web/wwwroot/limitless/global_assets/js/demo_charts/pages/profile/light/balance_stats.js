@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsCustomBalanceStatsLight = function() {
-
-
+var EchartsCustomBalanceStatsLight = function () {
     //
     // Setup module components
     //
 
     // Bar chart with line
-    var _customBalanceStatsLightExample = function() {
+    var _customBalanceStatsLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsCustomBalanceStatsLight = function() {
         // Define element
         var balance_statistics_element = document.getElementById('balance_statistics');
 
-
         //
         // Charts configuration
         //
 
         if (balance_statistics_element) {
-
             // Initialize chart
             var balance_statistics = echarts.init(balance_statistics_element);
-
 
             //
             // Chart config
@@ -54,7 +48,6 @@ var EchartsCustomBalanceStatsLight = function() {
 
             // Options
             balance_statistics.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -189,13 +182,12 @@ var EchartsCustomBalanceStatsLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             balance_statistics_element && balance_statistics.resize();
         };
 
@@ -205,7 +197,7 @@ var EchartsCustomBalanceStatsLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -218,22 +210,20 @@ var EchartsCustomBalanceStatsLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _customBalanceStatsLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsCustomBalanceStatsLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3ChordTweens = function() {
-
-
+var D3ChordTweens = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _chordTweens = function() {
+    var _chordTweens = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -27,34 +24,29 @@ var D3ChordTweens = function() {
         // Main variables
         var element = document.getElementById('d3-chord-tweens');
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Data set
             var data = [
-                [6,32,47,81,31,89,24,68,50,39],
-                [37,83,57,80,87,7,85,7,68,17],
-                [50,15,31,3,1,85,36,95,83,99],
-                [77,2,87,41,93,52,6,42,11,76],
-                [91,56,97,65,23,60,63,68,45,48],
-                [97,50,79,52,85,31,85,21,79,44],
-                [17,77,96,22,87,98,58,15,36,16],
-                [44,54,60,69,36,44,76,58,50,16]
+                [6, 32, 47, 81, 31, 89, 24, 68, 50, 39],
+                [37, 83, 57, 80, 87, 7, 85, 7, 68, 17],
+                [50, 15, 31, 3, 1, 85, 36, 95, 83, 99],
+                [77, 2, 87, 41, 93, 52, 6, 42, 11, 76],
+                [91, 56, 97, 65, 23, 60, 63, 68, 45, 48],
+                [97, 50, 79, 52, 85, 31, 85, 21, 79, 44],
+                [17, 77, 96, 22, 87, 98, 58, 15, 36, 16],
+                [44, 54, 60, 69, 36, 44, 76, 58, 50, 16]
             ];
-
-
 
             // Construct layout
             // ------------------------------
 
             d3.chart = d3.chart || {};
 
-            d3.chart.chord = function(container) {
-
+            d3.chart.chord = function (container) {
                 // Main variables
                 var self = {},
                     svg;
@@ -67,7 +59,6 @@ var D3ChordTweens = function() {
 
                 // Colors
                 var fill = d3.scale.category20();
-
 
                 // Construct chart layout
                 // ------------------------------
@@ -85,60 +76,57 @@ var D3ChordTweens = function() {
                 // Chord
                 var chord_svg = d3.svg.chord().radius(r0);
 
-
-
                 // Setup chart
                 // ------------------------------
 
                 // Update chart
-                self.update = function(data) {
-                   if (!chord.matrix()) {
-                       chord.matrix(data);
-                       self.render();
-                   } else {
-                       var old = {
-                           groups: chord.groups(),
-                           chords: chord.chords()
-                       };
-                       chord.matrix(data);
-                       self.transition(old);
-                   }
+                self.update = function (data) {
+                    if (!chord.matrix()) {
+                        chord.matrix(data);
+                        self.render();
+                    } else {
+                        var old = {
+                            groups: chord.groups(),
+                            chords: chord.chords()
+                        };
+                        chord.matrix(data);
+                        self.transition(old);
+                    }
                 };
 
                 // Clear chart
-                self.clear = function() {
+                self.clear = function () {
                     d3.select(container).selectAll('svg').remove();
                 };
 
                 // Transitions
-                self.transition = function(old) {
-
+                self.transition = function (old) {
                     // Animate ticks
                     svg.selectAll(".d3-chord-ticks")
                         .transition()
-                            .duration(200)
-                            .attr("opacity", 0);
+                        .duration(200)
+                        .attr("opacity", 0);
 
                     // Animate arc
                     svg.selectAll(".d3-arc")
                         .data(chord.groups)
                         .transition()
-                            .duration(1500)
-                            .attrTween("d", arcTween(arc_svg, old));
+                        .duration(1500)
+                        .attrTween("d", arcTween(arc_svg, old));
 
                     // Animate chord
                     svg.selectAll(".d3-chord")
                         .selectAll("path")
                         .data(chord.chords)
                         .transition()
-                            .duration(1500)
-                            .attrTween("d", chordTween(chord_svg, old));
+                        .duration(1500)
+                        .attrTween("d", chordTween(chord_svg, old));
 
                     setTimeout(self.drawTicks, 1100);
                 };
 
                 // Render chart
-                self.render = function() {
+                self.render = function () {
                     self.clear();
 
                     // Create chart
@@ -146,7 +134,7 @@ var D3ChordTweens = function() {
                         .attr("width", w)
                         .attr("height", h)
                         .append("g")
-                            .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+                        .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
                     // Add arc
                     svg.append("g")
@@ -154,12 +142,12 @@ var D3ChordTweens = function() {
                         .data(chord.groups)
                         .enter()
                         .append("path")
-                            .attr("class", "d3-arc")
-                            .attr("d", arc_svg)
-                            .style("fill", function(d) { return fill(d.index); })
-                            .style("stroke", function(d) { return fill(d.index); })
-                            .on("mouseover", fade(.1, svg))
-                            .on("mouseout", fade(1, svg));
+                        .attr("class", "d3-arc")
+                        .attr("d", arc_svg)
+                        .style("fill", function (d) { return fill(d.index); })
+                        .style("stroke", function (d) { return fill(d.index); })
+                        .on("mouseover", fade(.1, svg))
+                        .on("mouseout", fade(1, svg));
 
                     // Add chord
                     svg.append("g")
@@ -168,19 +156,18 @@ var D3ChordTweens = function() {
                         .data(chord.chords)
                         .enter()
                         .append("path")
-                            .style("fill", function(d) { return fill(d.target.index); })
-                            .attr("d", chord_svg)
-                            .attr("class", "d3-slice-border")
-                            .style("stroke-width", 1)
-                            .style("fill-opacity", 0.7)
+                        .style("fill", function (d) { return fill(d.target.index); })
+                        .attr("d", chord_svg)
+                        .attr("class", "d3-slice-border")
+                        .style("stroke-width", 1)
+                        .style("fill-opacity", 0.7)
 
                     // Draw ticks
                     self.drawTicks();
                 };
 
                 // Draw ticks
-                self.drawTicks = function() {
-
+                self.drawTicks = function () {
                     // Remove on load
                     svg.selectAll(".d3-chord-ticks").remove();
 
@@ -192,14 +179,14 @@ var D3ChordTweens = function() {
                         .data(chord.groups)
                         .enter()
                         .append("g")
-                            .selectAll("g")
-                            .data(groupTicks)
-                            .enter()
-                            .append("g")
-                                .attr("transform", function(d) {
-                                    return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-                                    + "translate(" + r1 + ",0)";
-                                });
+                        .selectAll("g")
+                        .data(groupTicks)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function (d) {
+                            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+                                + "translate(" + r1 + ",0)";
+                        });
 
                     // Add line
                     ticks.append("line")
@@ -213,14 +200,14 @@ var D3ChordTweens = function() {
                         .attr("class", "d3-text")
                         .attr("x", 8)
                         .attr("dy", ".35em")
-                        .attr("text-anchor", function(d) {
+                        .attr("text-anchor", function (d) {
                             return d.angle > Math.PI ? "end" : null;
                         })
-                        .attr("transform", function(d) {
+                        .attr("transform", function (d) {
                             return d.angle > Math.PI ? "rotate(180)translate(-16)" : null;
                         })
                         .style("font-size", 12)
-                        .text(function(d) { return d.label; });
+                        .text(function (d) { return d.label; });
 
                     // Transitions
                     svg.selectAll(".d3-chord-ticks").transition()
@@ -231,14 +218,12 @@ var D3ChordTweens = function() {
                 return self;
             };
 
-
-
             // Utility functions
 
             // Returns an array of tick angles and labels, given a group
             function groupTicks(d) {
                 var k = (d.endAngle - d.startAngle) / d.value;
-                return d3.range(0, d.value, 50).map(function(v, i) {
+                return d3.range(0, d.value, 50).map(function (v, i) {
                     return {
                         angle: v * k + d.startAngle,
                         label: i % 2 ? null : v
@@ -248,21 +233,21 @@ var D3ChordTweens = function() {
 
             // Returns an event handler for fading a given chord group
             function fade(opacity, svg) {
-              return function(g, i) {
-                svg.selectAll(".d3-chord path")
-                    .filter(function(d) {
-                        return d.source.index != i && d.target.index != i;
-                    })
-                    .transition()
-                    .style("opacity", opacity);
-              };
+                return function (g, i) {
+                    svg.selectAll(".d3-chord path")
+                        .filter(function (d) {
+                            return d.source.index != i && d.target.index != i;
+                        })
+                        .transition()
+                        .style("opacity", opacity);
+                };
             }
 
             // Interpolate the arcs
             function arcTween(arc_svg, old) {
-                return function(d,i) {
+                return function (d, i) {
                     var i = d3.interpolate(old.groups[i], d);
-                    return function(t) {
+                    return function (t) {
                         return arc_svg(i(t));
                     }
                 }
@@ -270,9 +255,9 @@ var D3ChordTweens = function() {
 
             // Interpolate the chords
             function chordTween(chord_svg, old) {
-                return function(d,i) {
+                return function (d, i) {
                     var i = d3.interpolate(old.chords[i], d);
-                    return function(t) {
+                    return function (t) {
                         return chord_svg(i(t));
                     }
                 }
@@ -281,18 +266,16 @@ var D3ChordTweens = function() {
             // Random data
             function random_matrix(size) {
                 var matrix = [];
-                for (var i=0; i<size; i++) {
+                for (var i = 0; i < size; i++) {
                     var row = [];
-                    for (var j=0; j<size; j++) {
-                        var num = Math.round(100*Math.pow(Math.random(),2)+1);
+                    for (var j = 0; j < size; j++) {
+                        var num = Math.round(100 * Math.pow(Math.random(), 2) + 1);
                         row.push(num);
                     }
                     matrix.push(row);
                 }
                 return matrix;
             };
-
-
 
             // Initialize chart
             // ------------------------------
@@ -303,36 +286,34 @@ var D3ChordTweens = function() {
                 var chord = d3.chart.chord(element);
                 chord.update(data);
 
-                d3.select("#update-tween").on("click", function() {
+                d3.select("#update-tween").on("click", function () {
                     var data = random_matrix(8);
                     chord.update(data);
                 });
-                d3.select("#clear-tween").on("click", function() {
+                d3.select("#clear-tween").on("click", function () {
                     chord.clear();
                 });
-                d3.select("#render-tween").on("click", function() {
+                d3.select("#render-tween").on("click", function () {
                     chord.render();
                 });
             }
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _chordTweens();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3ChordTweens.init();
 });

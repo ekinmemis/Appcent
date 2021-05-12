@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsRadarBasicLight = function() {
-
-
+var EchartsRadarBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic radar chart
-    var _radarBasicLightExample = function() {
+    var _radarBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsRadarBasicLight = function() {
         // Define element
         var radar_basic_element = document.getElementById('radar_basic');
 
-
         //
         // Charts configuration
         //
 
         if (radar_basic_element) {
-
             // Initialize chart
             var radar_basic = echarts.init(radar_basic_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsRadarBasicLight = function() {
 
             // Options
             radar_basic.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -67,7 +60,7 @@ var EchartsRadarBasicLight = function() {
                     orient: 'vertical',
                     top: 0,
                     left: 0,
-                    data: ['Allocated Budget','Actual Spending'],
+                    data: ['Allocated Budget', 'Actual Spending'],
                     itemHeight: 8,
                     itemWidth: 8
                 },
@@ -75,17 +68,17 @@ var EchartsRadarBasicLight = function() {
                 // Setup polar coordinates
                 radar: [{
                     radius: '84%',
-                    center:  ['50%', '50%'],
+                    center: ['50%', '50%'],
                     name: {
                         color: '#777'
                     },
                     indicator: [
-                        {text: 'Sales', max: 6000},
-                        {text: 'Administration', max: 16000},
-                        {text: 'Information Techology', max: 30000},
-                        {text: 'Customer Support', max: 38000},
-                        {text: 'Development', max: 52000},
-                        {text: 'Marketing', max: 25000}
+                        { text: 'Sales', max: 6000 },
+                        { text: 'Administration', max: 16000 },
+                        { text: 'Information Techology', max: 30000 },
+                        { text: 'Customer Support', max: 38000 },
+                        { text: 'Development', max: 52000 },
+                        { text: 'Marketing', max: 25000 }
                     ]
                 }],
 
@@ -113,13 +106,12 @@ var EchartsRadarBasicLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             radar_basic_element && radar_basic.resize();
         };
 
@@ -129,7 +121,7 @@ var EchartsRadarBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -137,22 +129,20 @@ var EchartsRadarBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _radarBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsRadarBasicLight.init();
 });

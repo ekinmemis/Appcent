@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapBasic = function() {
-
-
+var GoogleMapBasic = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapBasic = function() {
+    var _googleMapBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -26,7 +23,6 @@ var GoogleMapBasic = function() {
 
         // Map settings
         function initialize() {
-
             // Define map element
             var map_basic_element = document.getElementById('map_basic');
 
@@ -44,22 +40,20 @@ var GoogleMapBasic = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapBasic();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapBasic.init();
 });

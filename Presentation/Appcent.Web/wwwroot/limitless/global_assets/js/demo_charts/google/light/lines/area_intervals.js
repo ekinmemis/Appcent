@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleAreaIntervals = function() {
-
-
+var GoogleAreaIntervals = function () {
     //
     // Setup module components
     //
 
     // Area intervals
-    var _googleAreaIntervals = function() {
+    var _googleAreaIntervals = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleAreaIntervals = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawAreaIntervals();
 
@@ -37,7 +33,7 @@ var GoogleAreaIntervals = function() {
 
                 // Resize on window resize
                 var resizeAreaIntervals;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeAreaIntervals);
                     resizeAreaIntervals = setTimeout(function () {
                         drawAreaIntervals();
@@ -49,20 +45,19 @@ var GoogleAreaIntervals = function() {
 
         // Chart settings
         function drawAreaIntervals() {
-
             // Define charts element
             var area_intervals_element = document.getElementById('google-area-intervals');
 
             // Data
             var data = new google.visualization.DataTable();
-                data.addColumn('string', 'x');
-                data.addColumn('number', 'values');
-                data.addColumn({id:'i0', type:'number', role:'interval'});
-                data.addColumn({id:'i1', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
-                data.addColumn({id:'i2', type:'number', role:'interval'});
+            data.addColumn('string', 'x');
+            data.addColumn('number', 'values');
+            data.addColumn({ id: 'i0', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i1', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
+            data.addColumn({ id: 'i2', type: 'number', role: 'interval' });
 
             data.addRows([
                 ['a', 100, 90, 110, 85, 96, 104, 120],
@@ -73,7 +68,6 @@ var GoogleAreaIntervals = function() {
                 ['f', 30, 39, 22, 21, 28, 34, 40],
                 ['g', 80, 77, 83, 70, 77, 85, 90],
                 ['h', 100, 90, 110, 85, 95, 102, 110]]);
-
 
             // The intervals data as areas
             var options_area_intervals = {
@@ -107,7 +101,7 @@ var GoogleAreaIntervals = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -119,7 +113,7 @@ var GoogleAreaIntervals = function() {
                     }
                 },
                 legend: 'none',
-                series: [{'color': '#ffb980'}]
+                series: [{ 'color': '#ffb980' }]
             };
 
             // Draw chart
@@ -128,18 +122,16 @@ var GoogleAreaIntervals = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleAreaIntervals();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

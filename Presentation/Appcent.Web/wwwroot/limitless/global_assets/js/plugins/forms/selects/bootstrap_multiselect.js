@@ -48,7 +48,7 @@
         ko.bindingHandlers.multiselect = {
             after: ['options', 'value', 'selectedOptions', 'enable', 'disable'],
 
-            init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
                 var $element = $(element);
                 var config = ko.toJS(valueAccessor());
 
@@ -58,9 +58,9 @@
                     var options = allBindings.get('options');
                     if (ko.isObservable(options)) {
                         ko.computed({
-                            read: function() {
+                            read: function () {
                                 options();
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     var ms = $element.data('multiselect');
                                     if (ms)
                                         ms.updateOriginalOptions();//Not sure how beneficial this is.
@@ -79,9 +79,9 @@
                     var value = allBindings.get('value');
                     if (ko.isObservable(value)) {
                         ko.computed({
-                            read: function() {
+                            read: function () {
                                 value();
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     $element.multiselect('refresh');
                                 }, 1);
                             },
@@ -96,9 +96,9 @@
                     var selectedOptions = allBindings.get('selectedOptions');
                     if (ko.isObservable(selectedOptions)) {
                         ko.computed({
-                            read: function() {
+                            read: function () {
                                 selectedOptions();
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     $element.multiselect('refresh');
                                 }, 1);
                             },
@@ -144,12 +144,12 @@
                     }
                 }
 
-                ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
+                ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
                     $element.multiselect('destroy');
                 });
             },
 
-            update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
                 var $element = $(element);
                 var config = ko.toJS(valueAccessor());
 
@@ -173,7 +173,6 @@
      * @returns {Multiselect}
      */
     function Multiselect(select, options) {
-
         this.$select = $(select);
         this.options = this.mergeOptions($.extend({}, options, this.$select.data()));
 
@@ -230,7 +229,6 @@
     }
 
     Multiselect.prototype = {
-
         defaults: {
             /**
              * Default text function will either print 'None selected' in case no
@@ -241,20 +239,18 @@
              * @param {jQuery} select
              * @returns {String}
              */
-            buttonText: function(options, select) {
+            buttonText: function (options, select) {
                 if (this.disabledText.length > 0
-                        && (select.prop('disabled') || (options.length == 0 && this.disableIfEmpty)))  {
-
+                    && (select.prop('disabled') || (options.length == 0 && this.disableIfEmpty))) {
                     return this.disabledText;
                 }
                 else if (options.length === 0) {
                     return this.nonSelectedText;
                 }
                 else if (this.allSelectedText
-                        && options.length === $('option', $(select)).length
-                        && $('option', $(select)).length !== 1
-                        && this.multiple) {
-
+                    && options.length === $('option', $(select)).length
+                    && $('option', $(select)).length !== 1
+                    && this.multiple) {
                     if (this.selectAllNumber) {
                         return this.allSelectedText + ' (' + options.length + ')';
                     }
@@ -269,7 +265,7 @@
                     var selected = '';
                     var delimiter = this.delimiterText;
 
-                    options.each(function() {
+                    options.each(function () {
                         var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).text();
                         selected += label + delimiter;
                     });
@@ -284,7 +280,7 @@
              * @param {jQuery} select
              * @returns {@exp;selected@call;substr}
              */
-            buttonTitle: function(options, select) {
+            buttonTitle: function (options, select) {
                 if (options.length === 0) {
                     return this.nonSelectedText;
                 }
@@ -299,7 +295,7 @@
                     return selected.substr(0, selected.length - this.delimiterText.length);
                 }
             },
-            checkboxName: function(option) {
+            checkboxName: function (option) {
                 return false; // no checkbox name
             },
             /**
@@ -308,7 +304,7 @@
              * @param {jQuery} element
              * @returns {String}
              */
-            optionLabel: function(element){
+            optionLabel: function (element) {
                 return $(element).attr('label') || $(element).text();
             },
             /**
@@ -317,7 +313,7 @@
              * @param {jQuery} element
              * @returns {String}
              */
-            optionClass: function(element) {
+            optionClass: function (element) {
                 return $(element).attr('class') || '';
             },
             /**
@@ -328,52 +324,45 @@
              * @param {jQuery} option
              * @param {Boolean} checked
              */
-            onChange : function(option, checked) {
-
+            onChange: function (option, checked) {
             },
             /**
              * Triggered when the dropdown is shown.
              *
              * @param {jQuery} event
              */
-            onDropdownShow: function(event) {
-
+            onDropdownShow: function (event) {
             },
             /**
              * Triggered when the dropdown is hidden.
              *
              * @param {jQuery} event
              */
-            onDropdownHide: function(event) {
-
+            onDropdownHide: function (event) {
             },
             /**
              * Triggered after the dropdown is shown.
              *
              * @param {jQuery} event
              */
-            onDropdownShown: function(event) {
-
+            onDropdownShown: function (event) {
             },
             /**
              * Triggered after the dropdown is hidden.
              *
              * @param {jQuery} event
              */
-            onDropdownHidden: function(event) {
-
+            onDropdownHidden: function (event) {
             },
             /**
              * Triggered on select all.
              */
-            onSelectAll: function() {
-
+            onSelectAll: function () {
             },
             /**
              * Triggered on deselect all.
              */
-            onDeselectAll: function() {
-
+            onDeselectAll: function () {
             },
             /**
              * Triggered after initializing.
@@ -381,16 +370,14 @@
              * @param {jQuery} $select
              * @param {jQuery} $container
              */
-            onInitialized: function($select, $container) {
-
+            onInitialized: function ($select, $container) {
             },
             /**
              * Triggered on filtering.
              *
              * @param {jQuery} $filter
              */
-            onFiltering: function($filter) {
-
+            onFiltering: function ($filter) {
             },
             enableHTML: true,
             buttonClass: 'btn btn-light',
@@ -443,7 +430,7 @@
         /**
          * Builds the container of the multiselect.
          */
-        buildContainer: function() {
+        buildContainer: function () {
             this.$container = $(this.options.buttonContainer);
             this.$container.on('show.bs.dropdown', this.options.onDropdownShow);
             this.$container.on('hide.bs.dropdown', this.options.onDropdownHide);
@@ -454,7 +441,7 @@
         /**
          * Builds the button of the multiselect.
          */
-        buildButton: function() {
+        buildButton: function () {
             this.$button = $(this.options.templates.button).addClass(this.options.buttonClass);
             if (this.$select.attr('class') && this.options.inheritClass) {
                 this.$button.addClass(this.$select.attr('class'));
@@ -470,9 +457,9 @@
             // Manually add button width if set.
             if (this.options.buttonWidth && this.options.buttonWidth !== 'auto') {
                 this.$button.css({
-                    'width' : '100%', //this.options.buttonWidth,
-                    'overflow' : 'hidden',
-                    'text-overflow' : 'ellipsis'
+                    'width': '100%', //this.options.buttonWidth,
+                    'overflow': 'hidden',
+                    'text-overflow': 'ellipsis'
                 });
                 this.$container.css({
                     'width': this.options.buttonWidth
@@ -491,8 +478,7 @@
         /**
          * Builds the ul representing the dropdown menu.
          */
-        buildDropdown: function() {
-
+        buildDropdown: function () {
             // Build ul.
             this.$ul = $(this.options.templates.ul);
 
@@ -511,8 +497,7 @@
             }
 
             if (this.options.dropUp) {
-
-                var height = Math.min(this.options.maxHeight, $('option[data-role!="divider"]', this.$select).length*26 + $('option[data-role="divider"]', this.$select).length*19 + (this.options.includeSelectAllOption ? 26 : 0) + (this.options.enableFiltering || this.options.enableCaseInsensitiveFiltering ? 44 : 0));
+                var height = Math.min(this.options.maxHeight, $('option[data-role!="divider"]', this.$select).length * 26 + $('option[data-role="divider"]', this.$select).length * 19 + (this.options.includeSelectAllOption ? 26 : 0) + (this.options.enableFiltering || this.options.enableCaseInsensitiveFiltering ? 44 : 0));
                 var moveCalc = height + 34;
 
                 this.$ul.css({
@@ -531,10 +516,8 @@
          *
          * Uses createDivider and createOptionValue to create the necessary options.
          */
-        buildDropdownOptions: function() {
-
-            this.$select.children().each($.proxy(function(index, element) {
-
+        buildDropdownOptions: function () {
+            this.$select.children().each($.proxy(function (index, element) {
                 var $element = $(element);
                 // Support optgroups and options without a group simultaneously.
                 var tag = $element.prop('tagName')
@@ -548,21 +531,19 @@
                     this.createOptgroup(element);
                 }
                 else if (tag === 'option') {
-
                     if ($element.data('role') === 'divider') {
                         this.createDivider();
                     }
                     else {
                         this.createOptionValue(element);
                     }
-
                 }
 
                 // Other illegal tags will be ignored.
             }, this));
 
             // Bind the change event on the dropdown elements.
-            $('.multiselect-item:not(.multiselect-group) input', this.$ul).on('change', $.proxy(function(event) {
+            $('.multiselect-item:not(.multiselect-group) input', this.$ul).on('change', $.proxy(function (event) {
                 var $target = $(event.target);
 
                 var checked = $target.prop('checked') || false;
@@ -588,7 +569,6 @@
                 var $checkboxesNotThis = $('input', this.$container).not($target);
 
                 if (isSelectAllOption) {
-
                     if (checked) {
                         this.selectAll(this.options.selectAllJustVisible, true);
                     }
@@ -640,25 +620,25 @@
                 this.$select.change();
                 this.updateButtonText();
 
-                if(this.options.preventInputChangeEvent) {
+                if (this.options.preventInputChangeEvent) {
                     return false;
                 }
             }, this));
 
-            $('.dropdown-item', this.$ul).on('mousedown', function(e) {
+            $('.dropdown-item', this.$ul).on('mousedown', function (e) {
                 if (e.shiftKey) {
                     // Prevent selecting text by Shift+click
                     return false;
                 }
             });
 
-            $('.dropdown-item', this.$ul).on('touchstart click', $.proxy(function(event) {
+            $('.dropdown-item', this.$ul).on('touchstart click', $.proxy(function (event) {
                 event.stopPropagation();
 
                 var $target = $(event.target);
 
                 if (event.shiftKey && this.options.multiple) {
-                    if($target.is("label")){ // Handles checkbox selection manually (see https://github.com/davidstutz/bootstrap-multiselect/issues/431)
+                    if ($target.is("label")) { // Handles checkbox selection manually (see https://github.com/davidstutz/bootstrap-multiselect/issues/431)
                         event.preventDefault();
                         $target = $target.find("input");
                         $target.prop("checked", !$target.prop("checked"));
@@ -702,7 +682,7 @@
                 }
 
                 // Remembers last clicked option
-                if($target.is("input") && !$target.closest("div, a").is(".multiselect-item")){
+                if ($target.is("input") && !$target.closest("div, a").is(".multiselect-item")) {
                     this.lastToggledInput = $target;
                 }
 
@@ -710,7 +690,7 @@
             }, this));
 
             // Keyboard support.
-            this.$container.off('keydown.multiselect').on('keydown.multiselect', $.proxy(function(event) {
+            this.$container.off('keydown.multiselect').on('keydown.multiselect', $.proxy(function (event) {
                 if ($('input[type="text"]', this.$container).is(':focus')) {
                     return;
                 }
@@ -755,7 +735,7 @@
             }, this));
 
             if (this.options.enableClickableOptGroups && this.options.multiple) {
-                $(".multiselect-group input", this.$ul).on("change", $.proxy(function(event) {
+                $(".multiselect-group input", this.$ul).on("change", $.proxy(function (event) {
                     event.stopPropagation();
 
                     var $target = $(event.target);
@@ -780,7 +760,7 @@
                         }
                     }
 
-                    $.each($inputs, $.proxy(function(index, input) {
+                    $.each($inputs, $.proxy(function (index, input) {
                         var value = $(input).val();
                         var $option = this.getOptionByValue(value);
 
@@ -812,13 +792,13 @@
             }
 
             if (this.options.enableCollapsibleOptGroups && this.options.multiple) {
-                $(".multiselect-group .caret-container", this.$ul).on("click", $.proxy(function(event) {
+                $(".multiselect-group .caret-container", this.$ul).on("click", $.proxy(function (event) {
                     var $li = $(event.target).closest('.multiselect-item');
                     var $inputs = $li.nextUntil(".multiselect-group")
-                            .not('.multiselect-filter-hidden');
+                        .not('.multiselect-filter-hidden');
 
                     var visible = true;
-                    $inputs.each(function() {
+                    $inputs.each(function () {
                         visible = visible && $(this).is(':visible');
                     });
 
@@ -843,7 +823,7 @@
          *
          * @param {jQuery} element
          */
-        createOptionValue: function(element) {
+        createOptionValue: function (element) {
             var $element = $(element);
             if ($element.is(':selected')) {
                 $element.prop('selected', true);
@@ -913,7 +893,7 @@
          *
          * @param {jQuery} element
          */
-        createDivider: function(element) {
+        createDivider: function (element) {
             var $divider = $(this.options.templates.divider);
             this.$ul.append($divider);
         },
@@ -923,7 +903,7 @@
          *
          * @param {jQuery} group
          */
-        createOptgroup: function(group) {
+        createOptgroup: function (group) {
             var label = $(group).attr("label");
             var value = $(group).attr("value");
             var $li = $('<div class="multiselect-item multiselect-group form-check"><label></label></div>');
@@ -954,7 +934,7 @@
 
             this.$ul.append($li);
 
-            $("option", group).each($.proxy(function($, group) {
+            $("option", group).each($.proxy(function ($, group) {
                 this.createOptionValue(group);
             }, this))
         },
@@ -964,7 +944,7 @@
          *
          * Checks if a select all has already been created.
          */
-        buildSelectAll: function() {
+        buildSelectAll: function () {
             if (typeof this.options.selectAllValue === 'number') {
                 this.options.selectAllValue = this.options.selectAllValue.toString();
             }
@@ -972,8 +952,7 @@
             var alreadyHasSelectAll = this.hasSelectAll();
 
             if (!alreadyHasSelectAll && this.options.includeSelectAllOption && this.options.multiple
-                    && $('option', this.$select).length > this.options.includeSelectAllIfMoreThan) {
-
+                && $('option', this.$select).length > this.options.includeSelectAllIfMoreThan) {
                 // Check whether to add a divider after the select all.
                 if (this.options.includeSelectAllDivider) {
                     this.$ul.prepend($(this.options.templates.divider));
@@ -1012,21 +991,19 @@
         /**
          * Builds the filter.
          */
-        buildFilter: function() {
-
+        buildFilter: function () {
             // Build filter if filtering OR case insensitive filtering is enabled and the number of options exceeds (or equals) enableFilterLength.
             if (this.options.enableFiltering || this.options.enableCaseInsensitiveFiltering) {
                 var enableFilterLength = Math.max(this.options.enableFiltering, this.options.enableCaseInsensitiveFiltering);
 
                 if (this.$select.find('option').length >= enableFilterLength) {
-
                     this.$filter = $(this.options.templates.filter);
                     $('input', this.$filter).attr('placeholder', this.options.filterPlaceholder);
 
                     // Adds optional filter clear button
-                    if(this.options.includeFilterClearBtn) {
+                    if (this.options.includeFilterClearBtn) {
                         var clearBtn = $(this.options.templates.filterClearBtn);
-                        clearBtn.on('click', $.proxy(function(event){
+                        clearBtn.on('click', $.proxy(function (event) {
                             clearTimeout(this.searchTimeout);
 
                             this.$filter.find('.multiselect-search').val('');
@@ -1037,31 +1014,29 @@
                             if (this.options.enableClickableOptGroups && this.options.multiple) {
                                 this.updateOptGroups();
                             }
-
                         }, this));
                         this.$filter.find('.input-group').append(clearBtn);
                     }
 
                     this.$ul.prepend(this.$filter);
 
-                    this.$filter.val(this.query).on('click', function(event) {
+                    this.$filter.val(this.query).on('click', function (event) {
                         event.stopPropagation();
-                    }).on('input keydown', $.proxy(function(event) {
+                    }).on('input keydown', $.proxy(function (event) {
                         // Cancel enter key default behaviour
                         if (event.which === 13) {
-                          event.preventDefault();
-                      }
+                            event.preventDefault();
+                        }
 
                         // This is useful to catch "keydown" events after the browser has updated the control.
                         clearTimeout(this.searchTimeout);
 
-                        this.searchTimeout = this.asyncFunction($.proxy(function() {
-
+                        this.searchTimeout = this.asyncFunction($.proxy(function () {
                             if (this.query !== event.target.value) {
                                 this.query = event.target.value;
 
                                 var currentGroup, currentGroupVisible;
-                                $.each($('.multiselect-item', this.$ul), $.proxy(function(index, element) {
+                                $.each($('.multiselect-item', this.$ul), $.proxy(function (index, element) {
                                     var value = $('input', element).length > 0 ? $('input', element).val() : "";
                                     var text = $('label', element).text();
 
@@ -1077,7 +1052,6 @@
                                     }
 
                                     if (value !== this.options.selectAllValue && text) {
-
                                         // By default lets assume that element is not
                                         // interesting for this search.
                                         var showElement = false;
@@ -1131,7 +1105,6 @@
                             }
 
                             this.options.onFiltering(event.target);
-
                         }, this), 300, this);
                     }, this));
                 }
@@ -1141,7 +1114,7 @@
         /**
          * Unbinds the whole plugin.
          */
-        destroy: function() {
+        destroy: function () {
             this.$container.remove();
             this.$select.unwrap();
 
@@ -1214,8 +1187,8 @@
          * @param {Array} selectValues
          * @param {Boolean} triggerOnChange
          */
-        select: function(selectValues, triggerOnChange) {
-            if(!$.isArray(selectValues)) {
+        select: function (selectValues, triggerOnChange) {
+            if (!$.isArray(selectValues)) {
                 selectValues = [selectValues];
             }
 
@@ -1229,7 +1202,7 @@
                 var $option = this.getOptionByValue(value);
                 var $checkbox = this.getInputByValue(value);
 
-                if($option === undefined || $checkbox === undefined) {
+                if ($option === undefined || $checkbox === undefined) {
                     continue;
                 }
 
@@ -1280,8 +1253,8 @@
          * @param {Array} deselectValues
          * @param {Boolean} triggerOnChange
          */
-        deselect: function(deselectValues, triggerOnChange) {
-            if(!$.isArray(deselectValues)) {
+        deselect: function (deselectValues, triggerOnChange) {
+            if (!$.isArray(deselectValues)) {
                 deselectValues = [deselectValues];
             }
 
@@ -1295,7 +1268,7 @@
                 var $option = this.getOptionByValue(value);
                 var $checkbox = this.getInputByValue(value);
 
-                if($option === undefined || $checkbox === undefined) {
+                if ($option === undefined || $checkbox === undefined) {
                     continue;
                 }
 
@@ -1329,26 +1302,25 @@
          * @param {Boolean} triggerOnSelectAll
          */
         selectAll: function (justVisible, triggerOnSelectAll) {
-
             var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
             var allLis = $(".multiselect-item:not(.dropdown-divider):not(.disabled):not(.multiselect-group)", this.$ul);
             var visibleLis = $(".multiselect-item:not(.dropdown-divider):not(.disabled):not(.multiselect-group):not(.multiselect-filter-hidden):not(.multiselect-collapisble-hidden)", this.$ul).filter(':visible');
 
-            if(justVisible) {
-                $('input:enabled' , visibleLis).prop('checked', true);
+            if (justVisible) {
+                $('input:enabled', visibleLis).prop('checked', true);
                 visibleLis.addClass(this.options.selectedClass);
 
-                $('input:enabled' , visibleLis).each($.proxy(function(index, element) {
+                $('input:enabled', visibleLis).each($.proxy(function (index, element) {
                     var value = $(element).val();
                     var option = this.getOptionByValue(value);
                     $(option).prop('selected', true);
                 }, this));
             }
             else {
-                $('input:enabled' , allLis).prop('checked', true);
+                $('input:enabled', allLis).prop('checked', true);
                 allLis.addClass(this.options.selectedClass);
 
-                $('input:enabled' , allLis).each($.proxy(function(index, element) {
+                $('input:enabled', allLis).each($.proxy(function (index, element) {
                     var value = $(element).val();
                     var option = this.getOptionByValue(value);
                     $(option).prop('selected', true);
@@ -1374,26 +1346,25 @@
          * @param {Boolean} justVisible
          */
         deselectAll: function (justVisible, triggerOnDeselectAll) {
-
             var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
             var allLis = $(".multiselect-item:not(.dropdown-divider):not(.disabled):not(.multiselect-group)", this.$ul);
             var visibleLis = $(".multiselect-item:not(.dropdown-divider):not(.disabled):not(.multiselect-group):not(.multiselect-filter-hidden):not(.multiselect-collapisble-hidden)", this.$ul).filter(':visible');
 
-            if(justVisible) {
-                $('input[type="checkbox"]:enabled' , visibleLis).prop('checked', false);
+            if (justVisible) {
+                $('input[type="checkbox"]:enabled', visibleLis).prop('checked', false);
                 visibleLis.removeClass(this.options.selectedClass);
 
-                $('input[type="checkbox"]:enabled' , visibleLis).each($.proxy(function(index, element) {
+                $('input[type="checkbox"]:enabled', visibleLis).each($.proxy(function (index, element) {
                     var value = $(element).val();
                     var option = this.getOptionByValue(value);
                     $(option).prop('selected', false);
                 }, this));
             }
             else {
-                $('input[type="checkbox"]:enabled' , allLis).prop('checked', false);
+                $('input[type="checkbox"]:enabled', allLis).prop('checked', false);
                 allLis.removeClass(this.options.selectedClass);
 
-                $('input[type="checkbox"]:enabled' , allLis).each($.proxy(function(index, element) {
+                $('input[type="checkbox"]:enabled', allLis).each($.proxy(function (index, element) {
                     var value = $(element).val();
                     var option = this.getOptionByValue(value);
                     $(option).prop('selected', false);
@@ -1416,7 +1387,7 @@
          *
          * Rebuilds the dropdown, the filter and the select all option.
          */
-        rebuild: function() {
+        rebuild: function () {
             this.$ul.html('');
 
             // Important to distinguish between radios and checkboxes.
@@ -1448,8 +1419,7 @@
         /**
          * The provided data will be used to build the dropdown.
          */
-        dataprovider: function(dataprovider) {
-
+        dataprovider: function (dataprovider) {
             var groupCounter = 0;
             var $select = this.$select.empty();
 
@@ -1464,7 +1434,7 @@
                         disabled: !!option.disabled
                     });
 
-                    forEach(option.children, function(subOption) { // add children option tags
+                    forEach(option.children, function (subOption) { // add children option tags
                         var attributes = {
                             value: subOption.value,
                             label: subOption.label || subOption.value,
@@ -1474,15 +1444,14 @@
                         };
 
                         //Loop through attributes object and add key-value for each attribute
-                       for (var key in subOption.attributes) {
+                        for (var key in subOption.attributes) {
                             attributes['data-' + key] = subOption.attributes[key];
-                       }
-                         //Append original attributes + new data attributes to option
+                        }
+                        //Append original attributes + new data attributes to option
                         $tag.append($('<option/>').attr(attributes));
                     });
                 }
                 else {
-
                     var attributes = {
                         'value': option.value,
                         'label': option.label || option.value,
@@ -1493,7 +1462,7 @@
                     };
                     //Loop through attributes object and add key-value for each attribute
                     for (var key in option.attributes) {
-                      attributes['data-' + key] = option.attributes[key];
+                        attributes['data-' + key] = option.attributes[key];
                     }
                     //Append original attributes + new data attributes to option
                     $tag = $('<option/>').attr(attributes);
@@ -1510,7 +1479,7 @@
         /**
          * Enable the multiselect.
          */
-        enable: function() {
+        enable: function () {
             this.$select.prop('disabled', false);
             this.$button.prop('disabled', false)
                 .removeClass('disabled');
@@ -1519,7 +1488,7 @@
         /**
          * Disable the multiselect.
          */
-        disable: function() {
+        disable: function () {
             this.$select.prop('disabled', true);
             this.$button.prop('disabled', true)
                 .addClass('disabled');
@@ -1530,7 +1499,7 @@
          *
          * @param {Array} options
          */
-        setOptions: function(options) {
+        setOptions: function (options) {
             this.options = this.mergeOptions(options);
         },
 
@@ -1540,7 +1509,7 @@
          * @param {Array} options
          * @returns {Array}
          */
-        mergeOptions: function(options) {
+        mergeOptions: function (options) {
             return $.extend(true, {}, this.defaults, this.options, options);
         },
 
@@ -1549,24 +1518,24 @@
          *
          * @returns {Boolean}
          */
-        hasSelectAll: function() {
+        hasSelectAll: function () {
             return $('a.multiselect-all', this.$ul).length > 0;
         },
 
         /**
          * Update opt groups.
          */
-        updateOptGroups: function() {
+        updateOptGroups: function () {
             var $groups = $('.multiselect-group', this.$ul)
             var selectedClass = this.options.selectedClass;
 
-            $groups.each(function() {
+            $groups.each(function () {
                 var $options = $(this).nextUntil('.multiselect-group')
                     .not('.multiselect-filter-hidden')
                     .not('.disabled');
 
                 var checked = true;
-                $options.each(function() {
+                $options.each(function () {
                     var $input = $('input', this);
 
                     if (!$input.prop('checked')) {
@@ -1590,13 +1559,13 @@
         /**
          * Updates the select all checkbox based on the currently displayed and selected checkboxes.
          */
-        updateSelectAll: function(notTriggerOnSelectAll) {
+        updateSelectAll: function (notTriggerOnSelectAll) {
             if (this.hasSelectAll()) {
                 // var allBoxes = $(":not(.multiselect-item):not(.multiselect-filter-hidden):not(.multiselect-group):not(.disabled) input:enabled", this.$ul);
                 var allBoxes = $(".dropdown-item:not(.multiselect-group):not(.multiselect-all):not(.disabled) input:enabled", this.$ul);
                 var allBoxesLength = allBoxes.length;
                 var checkedBoxesLength = allBoxes.filter(":checked").length;
-                var selectAllLi  = $("a.multiselect-all", this.$ul);
+                var selectAllLi = $("a.multiselect-all", this.$ul);
                 var selectAllInput = selectAllLi.find("input");
 
                 if (checkedBoxesLength > 0 && checkedBoxesLength === allBoxesLength) {
@@ -1613,7 +1582,7 @@
         /**
          * Update the button text and its title based on the currently selected options.
          */
-        updateButtonText: function() {
+        updateButtonText: function () {
             var options = this.getSelected();
 
             // First update the displayed button text.
@@ -1633,7 +1602,7 @@
          *
          * @returns {jQUery}
          */
-        getSelected: function() {
+        getSelected: function () {
             return $('option', this.$select).filter(":selected");
         },
 
@@ -1644,7 +1613,6 @@
          * @returns {jQuery}
          */
         getOptionByValue: function (value) {
-
             var options = $('option', this.$select);
             var valueToCompare = value.toString();
 
@@ -1663,7 +1631,6 @@
          * @returns {jQuery}
          */
         getInputByValue: function (value) {
-
             var checkboxes = $('.multiselect-item input:not(.multiselect-search)', this.$ul);
             var valueToCompare = value.toString();
 
@@ -1678,25 +1645,25 @@
         /**
          * Used for knockout integration.
          */
-        updateOriginalOptions: function() {
+        updateOriginalOptions: function () {
             this.originalOptions = this.$select.clone()[0].options;
         },
 
-        asyncFunction: function(callback, timeout, self) {
+        asyncFunction: function (callback, timeout, self) {
             var args = Array.prototype.slice.call(arguments, 3);
-            return setTimeout(function() {
+            return setTimeout(function () {
                 callback.apply(self || window, args);
             }, timeout);
         },
 
-        setAllSelectedText: function(allSelectedText) {
+        setAllSelectedText: function (allSelectedText) {
             this.options.allSelectedText = allSelectedText;
             this.updateButtonText();
         }
     };
 
-    $.fn.multiselect = function(option, parameter, extraOptions) {
-        return this.each(function() {
+    $.fn.multiselect = function (option, parameter, extraOptions) {
+        return this.each(function () {
             var data = $(this).data('multiselect');
             var options = typeof option === 'object' && option;
 
@@ -1719,8 +1686,7 @@
 
     $.fn.multiselect.Constructor = Multiselect;
 
-    $(function() {
+    $(function () {
         $("select[data-role=multiselect]").multiselect();
     });
-
 }(window.jQuery);

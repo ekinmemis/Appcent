@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsScatterCategoryLight = function() {
-
-
+var EchartsScatterCategoryLight = function () {
     //
     // Setup module components
     //
 
     // Category scatter chart
-    var _scatterCategoryLightExample = function() {
+    var _scatterCategoryLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsScatterCategoryLight = function() {
         // Define element
         var scatter_category_element = document.getElementById('scatter_category');
 
-
         //
         // Charts configuration
         //
 
         if (scatter_category_element) {
-
             // Initialize chart
             var scatter_category = echarts.init(scatter_category_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsScatterCategoryLight = function() {
 
             // Options
             scatter_category.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -181,16 +174,16 @@ var EchartsScatterCategoryLight = function() {
                         tooltip: {
                             trigger: 'item',
                             formatter: function (params) {
-                                return params.seriesName + ' （'  + 'Category' + params.value[0] + '）<br/>'
-                                + params.value[1] + ', ' 
-                                + params.value[2]; 
+                                return params.seriesName + ' （' + 'Category' + params.value[0] + '）<br/>'
+                                    + params.value[1] + ', '
+                                    + params.value[2];
                             },
                             axisPointer: {
                                 show: true
                             }
                         },
                         symbolSize: function (value) {
-                            return Math.round(value[2]/5);
+                            return Math.round(value[2] / 5);
                         },
                         data: (function () {
                             var d = [];
@@ -199,8 +192,8 @@ var EchartsScatterCategoryLight = function() {
                             while (len++ < 500) {
                                 d.push([
                                     len,
-                                    (Math.random()*30).toFixed(2) - 0,
-                                    (Math.random()*100).toFixed(2) - 0
+                                    (Math.random() * 30).toFixed(2) - 0,
+                                    (Math.random() * 100).toFixed(2) - 0
                                 ]);
                             }
                             return d;
@@ -213,16 +206,16 @@ var EchartsScatterCategoryLight = function() {
                         tooltip: {
                             trigger: 'item',
                             formatter: function (params) {
-                                return params.seriesName + ' （'  + 'Category' + params.value[0] + '）<br/>'
-                                + params.value[1] + ', ' 
-                                + params.value[2]; 
+                                return params.seriesName + ' （' + 'Category' + params.value[0] + '）<br/>'
+                                    + params.value[1] + ', '
+                                    + params.value[2];
                             },
-                            axisPointer:{
+                            axisPointer: {
                                 show: true
                             }
                         },
                         symbolSize: function (value) {
-                            return Math.round(value[2]/5);
+                            return Math.round(value[2] / 5);
                         },
                         data: (function () {
                             var d = [];
@@ -231,8 +224,8 @@ var EchartsScatterCategoryLight = function() {
                             while (len++ < 500) {
                                 d.push([
                                     len,
-                                    (Math.random()*30).toFixed(2) - 0,
-                                    (Math.random()*100).toFixed(2) - 0
+                                    (Math.random() * 30).toFixed(2) - 0,
+                                    (Math.random() * 100).toFixed(2) - 0
                                 ]);
                             }
                             return d;
@@ -242,13 +235,12 @@ var EchartsScatterCategoryLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             scatter_category_element && scatter_category.resize();
         };
 
@@ -258,7 +250,7 @@ var EchartsScatterCategoryLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -266,22 +258,20 @@ var EchartsScatterCategoryLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterCategoryLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsScatterCategoryLight.init();
 });

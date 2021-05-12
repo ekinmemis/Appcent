@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var AnimationsVelocityUi = function() {
-
-
+var AnimationsVelocityUi = function () {
     //
     // Setup module components
     //
 
     // Velocity UI
-    var _componentAnimationVelocityUi = function() {
+    var _componentAnimationVelocityUi = function () {
         if (!$().velocity) {
             console.warn('Warning - velocity.min.js is not loaded.');
             return;
@@ -26,7 +23,6 @@ var AnimationsVelocityUi = function() {
 
         // Run animations
         $('.velocity-animation').on('click', function (e) {
-
             // Get animation class and card
             var animation = $(this).data('animation');
 
@@ -37,12 +33,11 @@ var AnimationsVelocityUi = function() {
 
         // Run transitions
         $('.velocity-transition').on('click', function (e) {
-
             // Get animation class and card
             var transition = $(this).data('transition');
 
             // Add animation class to card element
-            $(this).parents('.card').velocity('transition.' + transition, { 
+            $(this).parents('.card').velocity('transition.' + transition, {
                 stagger: 1000,
                 duration: 1000
             });
@@ -51,27 +46,25 @@ var AnimationsVelocityUi = function() {
         });
 
         // Clear styles after 2 seconds
-        window.setInterval(function(){
+        window.setInterval(function () {
             $('.velocity-transition').parents('.card').removeAttr('style');
         }, 2000);
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentAnimationVelocityUi();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     AnimationsVelocityUi.init();
 });

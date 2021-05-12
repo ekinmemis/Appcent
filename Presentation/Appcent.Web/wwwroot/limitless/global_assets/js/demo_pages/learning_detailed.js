@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var LearningCourseDetailed = function() {
-
-
+var LearningCourseDetailed = function () {
     //
     // Setup module components
     //
 
     // Summernote
-    var _componentSummernote = function() {
+    var _componentSummernote = function () {
         if (!$().summernote) {
             console.warn('Warning - summernote.min.js is not loaded.');
             return;
@@ -29,7 +26,7 @@ var LearningCourseDetailed = function() {
     };
 
     // Schedule
-    var _componentFullCalendar = function() {
+    var _componentFullCalendar = function () {
         if (typeof FullCalendar == 'undefined') {
             console.warn('Warning - Fullcalendar files are not loaded.');
             return;
@@ -117,9 +114,9 @@ var LearningCourseDetailed = function() {
         var scheduleElement = document.querySelector('.schedule');
 
         // Initialize
-        if(scheduleElement) {
+        if (scheduleElement) {
             var scheduleInit = new FullCalendar.Calendar(scheduleElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -137,23 +134,21 @@ var LearningCourseDetailed = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSummernote();
             _componentFullCalendar();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     LearningCourseDetailed.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieBasic = function() {
-
-
+var GooglePieBasic = function () {
     //
     // Setup module components
     //
 
     // Pie chart
-    var _googlePieBasic = function() {
+    var _googlePieBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPie();
 
@@ -37,7 +33,7 @@ var GooglePieBasic = function() {
 
                 // Resize on window resize
                 var resizePieBasic;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieBasic);
                     resizePieBasic = setTimeout(function () {
                         drawPie();
@@ -47,20 +43,19 @@ var GooglePieBasic = function() {
             packages: ['corechart']
         });
 
-        // Chart settings    
+        // Chart settings
         function drawPie() {
-
             // Define charts element
             var pie_chart_element = document.getElementById('google-pie');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
                 ['Watch TV', 2],
-                ['Sleep',    7]
+                ['Sleep', 7]
             ]);
 
             // Options
@@ -70,8 +65,8 @@ var GooglePieBasic = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -86,18 +81,16 @@ var GooglePieBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieBasic();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

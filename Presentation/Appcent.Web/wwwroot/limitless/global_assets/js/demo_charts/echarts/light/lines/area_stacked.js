@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsAreaStackedLight = function() {
-
-
+var EchartsAreaStackedLight = function () {
     //
     // Setup module components
     //
 
     // Stacked area chart
-    var _areaStackedLightExample = function() {
+    var _areaStackedLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsAreaStackedLight = function() {
         // Define element
         var area_stacked_element = document.getElementById('area_stacked');
 
-
         //
         // Charts configuration
         //
 
         if (area_stacked_element) {
-
             // Initialize chart
             var area_stacked = echarts.init(area_stacked_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsAreaStackedLight = function() {
 
             // Options
             area_stacked.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -208,13 +201,12 @@ var EchartsAreaStackedLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             area_stacked_element && area_stacked.resize();
         };
 
@@ -224,7 +216,7 @@ var EchartsAreaStackedLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -232,22 +224,20 @@ var EchartsAreaStackedLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaStackedLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsAreaStackedLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3AreaBasic = function() {
-
-
+var D3AreaBasic = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _areaBasic = function() {
+    var _areaBasic = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,24 +25,20 @@ var D3AreaBasic = function() {
         var element = document.getElementById('d3-area-basic'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 20, left: 40},
+                margin = { top: 5, right: 10, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5,
                 color = '#3182bd';
 
             // Format data
             var parseDate = d3.time.format("%d-%b-%y").parse;
-
-
 
             // Construct scales
             // ------------------------------
@@ -57,8 +50,6 @@ var D3AreaBasic = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -75,9 +66,6 @@ var D3AreaBasic = function() {
                 .scale(y)
                 .orient("left");
 
-
-
-
             // Create chart
             // ------------------------------
 
@@ -89,42 +77,35 @@ var D3AreaBasic = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
 
             // Area
             var area = d3.svg.area()
-                .x(function(d) { return x(d.date); })
+                .x(function (d) { return x(d.date); })
                 .y0(height)
-                .y1(function(d) { return y(d.close); });
-
-
+                .y1(function (d) { return y(d.close); });
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_basic.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_basic.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.date = parseDate(d.date);
                     d.close = +d.close;
                 });
-
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(d3.extent(data, function(d) { return d.date; }));
+                x.domain(d3.extent(data, function (d) { return d.date; }));
 
                 // Vertical
-                y.domain([0, d3.max(data, function(d) { return d.close; })]);
-
+                y.domain([0, d3.max(data, function (d) { return d.close; })]);
 
                 //
                 // Append chart elements
@@ -136,7 +117,6 @@ var D3AreaBasic = function() {
                     .attr("class", "d3-area")
                     .attr("fill", color)
                     .attr("d", area);
-
 
                 // Append axes
                 // ------------------------------
@@ -160,10 +140,7 @@ var D3AreaBasic = function() {
                     .attr("dy", ".71em")
                     .style("text-anchor", "end")
                     .text("Price ($)");
-
             });
-
-
 
             // Resize chart
             // ------------------------------
@@ -176,15 +153,13 @@ var D3AreaBasic = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -195,7 +170,6 @@ var D3AreaBasic = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -204,7 +178,6 @@ var D3AreaBasic = function() {
 
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
-
 
                 // Chart elements
                 // -------------------------
@@ -215,22 +188,20 @@ var D3AreaBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaBasic();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3AreaBasic.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleBubbleGradientChart = function() {
-
-
+var GoogleBubbleGradientChart = function () {
     //
     // Setup module components
     //
 
     // Bubble chart with gradient
-    var _googleBubbleGradientChart = function() {
+    var _googleBubbleGradientChart = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleBubbleGradientChart = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawBubbleGradientChart();
 
@@ -37,7 +33,7 @@ var GoogleBubbleGradientChart = function() {
 
                 // Resize on window resize
                 var resizeBubbleGradientChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeBubbleGradientChart);
                     resizeBubbleGradientChart = setTimeout(function () {
                         drawBubbleGradientChart();
@@ -49,20 +45,19 @@ var GoogleBubbleGradientChart = function() {
 
         // Chart settings
         function drawBubbleGradientChart() {
-
             // Define charts element
             var bubble_gradient_element = document.getElementById('google-bubble-gradient');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['ID', 'X', 'Y', 'Temperature'],
-                ['',   80,  167,      120],
-                ['',   79,  136,      130],
-                ['',   78,  184,      50],
-                ['',   72,  278,      230],
-                ['',   81,  200,      210],
-                ['',   72,  170,      100],
-                ['',   68,  477,      80]
+                ['', 80, 167, 120],
+                ['', 79, 136, 130],
+                ['', 78, 184, 50],
+                ['', 72, 278, 230],
+                ['', 81, 200, 210],
+                ['', 72, 170, 100],
+                ['', 68, 477, 80]
             ]);
 
             // Optinos
@@ -72,7 +67,7 @@ var GoogleBubbleGradientChart = function() {
                 fontSize: 12,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#5ab1ef','#d87a80'
+                    '#5ab1ef', '#d87a80'
                 ],
                 chartArea: {
                     left: '4%',
@@ -90,7 +85,7 @@ var GoogleBubbleGradientChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -101,17 +96,17 @@ var GoogleBubbleGradientChart = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     }
                 },
                 bubble: {
-                  textStyle: {
-                    fontSize: 11
-                  },
-                  opacity: 1,
-                  stroke: 'transparent'
+                    textStyle: {
+                        fontSize: 11
+                    },
+                    opacity: 1,
+                    stroke: 'transparent'
                 },
                 colorAxis: {
                     legend: {
@@ -128,18 +123,16 @@ var GoogleBubbleGradientChart = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleBubbleGradientChart();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

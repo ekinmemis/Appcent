@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3SunburstCombined = function() {
-
-
+var D3SunburstCombined = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _sunburstCombined = function() {
+    var _sunburstCombined = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -29,17 +26,13 @@ var D3SunburstCombined = function() {
             width = 400,
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var radius = Math.min(width, height) / 2;
-
-
 
             // Construct scales
             // ------------------------------
@@ -55,8 +48,6 @@ var D3SunburstCombined = function() {
             // Colors
             var color = d3.scale.category20();
 
-
-
             // Create chart
             // ------------------------------
 
@@ -64,9 +55,7 @@ var D3SunburstCombined = function() {
                 .attr("width", width)
                 .attr("height", height)
                 .append("g")
-                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -74,16 +63,14 @@ var D3SunburstCombined = function() {
             // Partition layout
             var partition = d3.layout.partition()
                 .sort(null)
-                .value(function(d) { return 1; });
+                .value(function (d) { return 1; });
 
             // Arc
             var arc = d3.svg.arc()
-                .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
-                .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
-                .innerRadius(function(d) { return Math.max(0, y(d.y)); })
-                .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
-
-
+                .startAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
+                .endAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
+                .innerRadius(function (d) { return Math.max(0, y(d.y)); })
+                .outerRadius(function (d) { return Math.max(0, y(d.y + d.dy)); });
 
             // Load data
             // ------------------------------
@@ -91,7 +78,7 @@ var D3SunburstCombined = function() {
             // Keep track of the node that is currently being displayed as the root.
             var node;
 
-            d3.json("../../../../global_assets/demo_data/d3/sunburst/sunburst_basic.json", function(error, root) {
+            d3.json("../../../../global_assets/demo_data/d3/sunburst/sunburst_basic.json", function (error, root) {
                 node = root;
 
                 // Append sunbirst
@@ -99,25 +86,25 @@ var D3SunburstCombined = function() {
                     .data(partition.nodes)
                     .enter()
                     .append("path")
-                        .attr("class", "d3-sunbirst d3-slice-border")
-                        .attr("d", arc)
-                        .style("stroke-width", 1)
-                        .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-                        .on("click", click)
-                        .each(stash);
+                    .attr("class", "d3-sunbirst d3-slice-border")
+                    .attr("d", arc)
+                    .style("stroke-width", 1)
+                    .style("fill", function (d) { return color((d.children ? d : d.parent).name); })
+                    .on("click", click)
+                    .each(stash);
 
                 // Change data
                 d3.selectAll(".combined-options input").on("change", function change() {
                     var value = this.value === "count"
-                    ? function() { return 1; }
-                    : function(d) { return d.size; };
+                        ? function () { return 1; }
+                        : function (d) { return d.size; };
 
                     // Transition
                     path
                         .data(partition.value(value).nodes)
                         .transition()
-                            .duration(750)
-                            .attrTween("d", arcTweenData);
+                        .duration(750)
+                        .attrTween("d", arcTweenData);
                 });
 
                 // Animate on click
@@ -129,7 +116,6 @@ var D3SunburstCombined = function() {
                 }
             });
 
-
             // Setup for switching data: stash the old values for transition.
             function stash(d) {
                 d.x0 = d.x;
@@ -138,7 +124,7 @@ var D3SunburstCombined = function() {
 
             // When switching data: interpolate the arcs in data space.
             function arcTweenData(a, i) {
-                var oi = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+                var oi = d3.interpolate({ x: a.x0, dx: a.dx0 }, a);
                 function tween(t) {
                     var b = oi(t);
                     a.x0 = b.x;
@@ -149,7 +135,7 @@ var D3SunburstCombined = function() {
                     // If we are on the first arc, adjust the x domain to match the root node
                     // at the current zoom level. (We only need to do this once.)
                     var xd = d3.interpolate(x.domain(), [node.x, node.x + node.dx]);
-                    return function(t) {
+                    return function (t) {
                         x.domain(xd(t));
                         return tween(t);
                     };
@@ -165,31 +151,29 @@ var D3SunburstCombined = function() {
                     yd = d3.interpolate(y.domain(), [d.y, 1]),
                     yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
 
-                return function(d, i) {
+                return function (d, i) {
                     return i
-                    ? function(t) { return arc(d); }
-                    : function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
+                        ? function (t) { return arc(d); }
+                        : function (t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
                 };
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _sunburstCombined();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3SunburstCombined.init();
 });

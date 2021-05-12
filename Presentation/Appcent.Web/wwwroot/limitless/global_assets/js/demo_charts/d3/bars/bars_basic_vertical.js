@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3BarVertical = function() {
-
-
+var D3BarVertical = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _barVertical = function() {
+    var _barVertical = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,20 +25,16 @@ var D3BarVertical = function() {
         var element = document.getElementById('d3-bar-vertical'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 20, left: 40},
+                margin = { top: 5, right: 10, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
-
-
 
             // Construct scales
             // ------------------------------
@@ -57,8 +50,6 @@ var D3BarVertical = function() {
             // Color
             var color = d3.scale.category20c();
 
-
-
             // Create axes
             // ------------------------------
 
@@ -73,8 +64,6 @@ var D3BarVertical = function() {
                 .orient("left")
                 .ticks(10, "%");
 
-
-
             // Create chart
             // ------------------------------
 
@@ -86,30 +75,25 @@ var D3BarVertical = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/bars/bars_basic.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/bars/bars_basic.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.frequency = +d.frequency;
                 });
-
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(data.map(function(d) { return d.letter; }));
+                x.domain(data.map(function (d) { return d.letter; }));
 
                 // Vertical
-                y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
+                y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
 
                 //
                 // Append chart elements
@@ -138,21 +122,18 @@ var D3BarVertical = function() {
                     .style("text-anchor", "end")
                     .text("Frequency");
 
-
                 // Add bars
                 svg.selectAll(".d3-bar")
                     .data(data)
                     .enter()
                     .append("rect")
-                        .attr("class", "d3-bar")
-                        .attr("x", function(d) { return x(d.letter); })
-                        .attr("width", x.rangeBand())
-                        .attr("y", function(d) { return y(d.frequency); })
-                        .attr("height", function(d) { return height - y(d.frequency); })
-                        .style("fill", function(d) { return color(d.letter); });
+                    .attr("class", "d3-bar")
+                    .attr("x", function (d) { return x(d.letter); })
+                    .attr("width", x.rangeBand())
+                    .attr("y", function (d) { return y(d.frequency); })
+                    .attr("height", function (d) { return height - y(d.frequency); })
+                    .style("fill", function (d) { return color(d.letter); });
             });
-
-
 
             // Resize chart
             // ------------------------------
@@ -165,15 +146,13 @@ var D3BarVertical = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -184,7 +163,6 @@ var D3BarVertical = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -194,32 +172,29 @@ var D3BarVertical = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Line path
-                svg.selectAll('.d3-bar').attr("x", function(d) { return x(d.letter); }).attr("width", x.rangeBand());
+                svg.selectAll('.d3-bar').attr("x", function (d) { return x(d.letter); }).attr("width", x.rangeBand());
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barVertical();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3BarVertical.init();
 });

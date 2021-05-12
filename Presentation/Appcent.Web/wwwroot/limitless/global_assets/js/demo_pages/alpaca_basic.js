@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var AlpacaBasic = function() {
-
-
+var AlpacaBasic = function () {
     //
     // Setup module components
     //
 
     // Alpaca examples
-    var _componentAlpaca = function() {
+    var _componentAlpaca = function () {
         if (!$().alpaca) {
             console.warn('Warning - alpaca.min.js is not loaded.');
             return;
         }
-
 
         // Text input
         // ------------------------------
@@ -175,7 +171,7 @@ var AlpacaBasic = function() {
                     }
                 }
             },
-            postRender: function() {
+            postRender: function () {
                 $('.typeahead-rtl').find('.form-control').attr('dir', 'rtl');
             }
         });
@@ -197,7 +193,6 @@ var AlpacaBasic = function() {
             },
             data: 'Jackie Robinson'
         });
-
 
         // Textareas
         // ------------------------------
@@ -254,7 +249,6 @@ var AlpacaBasic = function() {
             }
         });
 
-
         // Selects
         // ------------------------------
 
@@ -284,7 +278,7 @@ var AlpacaBasic = function() {
     };
 
     // Alpaca with Select2
-    var _componentAlpacaSelect2 = function() {
+    var _componentAlpacaSelect2 = function () {
         if (!$().alpaca || !$().select2) {
             console.warn('Warning - alpaca.min.js and/or select2.min.js is not loaded.');
             return;
@@ -302,7 +296,7 @@ var AlpacaBasic = function() {
                 id: 'select2-basic',
                 focus: false
             },
-            postRender: function(control) {
+            postRender: function (control) {
                 $('#select2-basic').select2({
                     minimumResultsForSearch: Infinity
                 });
@@ -321,14 +315,14 @@ var AlpacaBasic = function() {
                 id: 'select2-search',
                 focus: false
             },
-            postRender: function(control) {
+            postRender: function (control) {
                 $('#select2-search').select2();
             }
         });
     };
 
     // Alpaca with Multiselect
-    var _componentAlpacaMultiselect = function() {
+    var _componentAlpacaMultiselect = function () {
         if (!$().alpaca || !$().multiselect) {
             console.warn('Warning - alpaca.min.js and/or bootstrap-multiselect.js is not loaded.');
             return;
@@ -372,13 +366,12 @@ var AlpacaBasic = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentAlpaca();
             _componentAlpacaSelect2();
             _componentAlpacaMultiselect();
@@ -386,10 +379,9 @@ var AlpacaBasic = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     AlpacaBasic.init();
 });

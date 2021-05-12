@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsDailyStatistics = function() {
-
-
+var EchartsDailyStatistics = function () {
     //
     // Setup module components
     //
 
     // Basic bar chart
-    var _dailyStatisticsExample = function() {
+    var _dailyStatisticsExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsDailyStatistics = function() {
         // Define element
         var daily_statistics_element = document.getElementById('daily_statistics');
 
-
         //
         // Charts configuration
         //
 
         if (daily_statistics_element) {
-
             // Initialize chart
             var daily_statistics = echarts.init(daily_statistics_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsDailyStatistics = function() {
 
             // Options
             daily_statistics.setOption({
-
                 // Define colors
-                color: ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80'],
+                color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80'],
 
                 // Global text styles
                 textStyle: {
@@ -68,7 +61,7 @@ var EchartsDailyStatistics = function() {
 
                 // Add legend
                 legend: {
-                    data: ['Clicks','Visits','Sales'],
+                    data: ['Clicks', 'Visits', 'Sales'],
                     itemHeight: 8,
                     itemGap: 20,
                     textStyle: {
@@ -96,7 +89,7 @@ var EchartsDailyStatistics = function() {
                 // Horizontal axis
                 xAxis: [{
                     type: 'category',
-                    data: ['00:00','02:00','04:00','06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00'],
+                    data: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
                     axisLabel: {
                         color: '#333'
                     },
@@ -194,13 +187,12 @@ var EchartsDailyStatistics = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             daily_statistics_element && daily_statistics.resize();
         };
 
@@ -210,7 +202,7 @@ var EchartsDailyStatistics = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -218,22 +210,20 @@ var EchartsDailyStatistics = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _dailyStatisticsExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsDailyStatistics.init();
 });

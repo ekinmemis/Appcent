@@ -6,26 +6,23 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableColumnVisibility = function() {
-
-
+var DatatableColumnVisibility = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableColumnVisibility = function() {
+    var _componentDatatableColumnVisibility = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
             dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -36,7 +33,6 @@ var DatatableColumnVisibility = function() {
             }
         });
 
-        
         // Basic example
         $('.datatable-colvis-basic').DataTable({
             buttons: [
@@ -46,7 +42,6 @@ var DatatableColumnVisibility = function() {
                 }
             ]
         });
-
 
         // Multi-column layout
         $('.datatable-colvis-multi').DataTable({
@@ -60,7 +55,6 @@ var DatatableColumnVisibility = function() {
             ]
         });
 
-
         // Restore column visibility
         $('.datatable-colvis-restore').DataTable({
             buttons: [
@@ -68,7 +62,7 @@ var DatatableColumnVisibility = function() {
                     extend: 'colvis',
                     text: '<i class="icon-grid7"></i>',
                     className: 'btn bg-teal-400 btn-icon dropdown-toggle',
-                    postfixButtons: [ 'colvisRestore' ]
+                    postfixButtons: ['colvisRestore']
                 }
             ],
             columnDefs: [
@@ -78,7 +72,6 @@ var DatatableColumnVisibility = function() {
                 }
             ]
         });
-
 
         // State saving
         $('.datatable-colvis-state').DataTable({
@@ -97,7 +90,6 @@ var DatatableColumnVisibility = function() {
                 }
             ]
         });
-
 
         // Column groups
         $('.datatable-colvis-group').DataTable({
@@ -129,7 +121,7 @@ var DatatableColumnVisibility = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -143,23 +135,21 @@ var DatatableColumnVisibility = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableColumnVisibility();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableColumnVisibility.init();
 });

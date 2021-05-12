@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsFunnelMultipleOverlayLight = function() {
-
-
+var EchartsFunnelMultipleOverlayLight = function () {
     //
     // Setup module components
     //
 
     // Multiple funnel charts with overlay
-    var _funnelMultipleOverlayLightExample = function() {
+    var _funnelMultipleOverlayLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsFunnelMultipleOverlayLight = function() {
         // Define element
         var funnel_multiple_overlay_element = document.getElementById('funnel_multiple_overlay');
 
-
         //
         // Charts configuration
         //
 
         if (funnel_multiple_overlay_element) {
-
             // Initialize chart
             var funnel_multiple_overlay = echarts.init(funnel_multiple_overlay_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsFunnelMultipleOverlayLight = function() {
 
             // Options
             funnel_multiple_overlay.setOption({
-
                 // Colors
                 color: [
                     'rgba(255, 69, 0, 0.5)',
@@ -91,7 +84,7 @@ var EchartsFunnelMultipleOverlayLight = function() {
                     orient: 'vertical',
                     top: 'center',
                     left: 0,
-                    data: ['Chrome','Opera','Safari','Firefox','IE'],
+                    data: ['Chrome', 'Opera', 'Safari', 'Firefox', 'IE'],
                     itemHeight: 8,
                     itemWidth: 8
                 },
@@ -125,11 +118,11 @@ var EchartsFunnelMultipleOverlayLight = function() {
                             }
                         },
                         data: [
-                            {value: 45, name: 'IE'},
-                            {value: 60, name: 'Firefox'},
-                            {value: 70, name: 'Safari'},
-                            {value: 80, name: 'Opera'},
-                            {value: 100, name: 'Chrome'}
+                            { value: 45, name: 'IE' },
+                            { value: 60, name: 'Firefox' },
+                            { value: 70, name: 'Safari' },
+                            { value: 80, name: 'Opera' },
+                            { value: 100, name: 'Chrome' }
                         ]
                     },
                     {
@@ -161,24 +154,23 @@ var EchartsFunnelMultipleOverlayLight = function() {
                             }
                         },
                         data: [
-                            {value: 30, name: 'IE'},
-                            {value: 48, name: 'Firefox'},
-                            {value: 66, name: 'Safari'},
-                            {value: 69, name: 'Opera'},
-                            {value: 80, name: 'Chrome'}
+                            { value: 30, name: 'IE' },
+                            { value: 48, name: 'Firefox' },
+                            { value: 66, name: 'Safari' },
+                            { value: 69, name: 'Opera' },
+                            { value: 80, name: 'Chrome' }
                         ]
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             funnel_multiple_overlay_element && funnel_multiple_overlay.resize();
         };
 
@@ -188,7 +180,7 @@ var EchartsFunnelMultipleOverlayLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -196,22 +188,20 @@ var EchartsFunnelMultipleOverlayLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _funnelMultipleOverlayLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsFunnelMultipleOverlayLight.init();
 });

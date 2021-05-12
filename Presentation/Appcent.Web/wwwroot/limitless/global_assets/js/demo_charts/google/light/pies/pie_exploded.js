@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieExploded = function() {
-
-
+var GooglePieExploded = function () {
     //
     // Setup module components
     //
 
     // Exploded pie
-    var _googlePieExploded = function() {
+    var _googlePieExploded = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieExploded = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawExplodedPie();
 
@@ -37,7 +33,7 @@ var GooglePieExploded = function() {
 
                 // Resize on window resize
                 var resizePieExploded;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieExploded);
                     resizePieExploded = setTimeout(function () {
                         drawExplodedPie();
@@ -49,7 +45,6 @@ var GooglePieExploded = function() {
 
         // Chart settings
         function drawExplodedPie() {
-
             // Define charts element
             var pie_exploded_element = document.getElementById('google-pie-exploded');
 
@@ -78,10 +73,10 @@ var GooglePieExploded = function() {
                 width: 540,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-                    '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-                    '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-                    '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
                 ],
                 chartArea: {
                     left: 50,
@@ -90,10 +85,10 @@ var GooglePieExploded = function() {
                 },
                 pieSliceText: 'label',
                 slices: {
-                    2: {offset: 0.15},
-                    8: {offset: 0.1},
-                    10: {offset: 0.15},
-                    11: {offset: 0.1}
+                    2: { offset: 0.15 },
+                    8: { offset: 0.1 },
+                    10: { offset: 0.15 },
+                    11: { offset: 0.1 }
                 }
             };
 
@@ -103,18 +98,16 @@ var GooglePieExploded = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieExploded();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

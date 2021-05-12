@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var FileUpload = function() {
-
-
+var FileUpload = function () {
     //
     // Setup module components
     //
 
     // Bootstrap file upload
-    var _componentFileUpload = function() {
+    var _componentFileUpload = function () {
         if (!$().fileinput) {
             console.warn('Warning - fileinput.min.js is not loaded.');
             return;
@@ -75,7 +72,6 @@ var FileUpload = function() {
             indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
         };
 
-
         //
         // Basic example
         //
@@ -94,7 +90,6 @@ var FileUpload = function() {
             previewZoomButtonIcons: previewZoomButtonIcons,
             fileActionSettings: fileActionSettings
         });
-
 
         //
         // Custom layout
@@ -120,7 +115,6 @@ var FileUpload = function() {
             previewZoomButtonIcons: previewZoomButtonIcons,
             fileActionSettings: fileActionSettings
         });
-
 
         //
         // Template modifications
@@ -155,7 +149,6 @@ var FileUpload = function() {
             fileActionSettings: fileActionSettings
         });
 
-
         //
         // Custom file extensions
         //
@@ -177,7 +170,6 @@ var FileUpload = function() {
             fileActionSettings: fileActionSettings
         });
 
-
         //
         // Always display preview
         //
@@ -196,8 +188,8 @@ var FileUpload = function() {
                 '../../../../global_assets/images/demo/images/2.png',
             ],
             initialPreviewConfig: [
-                {caption: 'Jane.jpg', size: 930321, key: 1, url: '{$url}', showDrag: false},
-                {caption: 'Anna.jpg', size: 1218822, key: 2, url: '{$url}', showDrag: false}
+                { caption: 'Jane.jpg', size: 930321, key: 1, url: '{$url}', showDrag: false },
+                { caption: 'Anna.jpg', size: 1218822, key: 2, url: '{$url}', showDrag: false }
             ],
             initialPreviewAsData: true,
             overwriteInitial: false,
@@ -206,7 +198,6 @@ var FileUpload = function() {
             previewZoomButtonIcons: previewZoomButtonIcons,
             fileActionSettings: fileActionSettings
         });
-
 
         //
         // Display preview on load
@@ -226,8 +217,8 @@ var FileUpload = function() {
                 '../../../../global_assets/images/demo/images/2.png'
             ],
             initialPreviewConfig: [
-                {caption: 'Jane.jpg', size: 930321, key: 1, url: '{$url}'},
-                {caption: 'Anna.jpg', size: 1218822, key: 2, url: '{$url}'}
+                { caption: 'Jane.jpg', size: 930321, key: 1, url: '{$url}' },
+                { caption: 'Anna.jpg', size: 1218822, key: 2, url: '{$url}' }
             ],
             initialPreviewAsData: true,
             overwriteInitial: true,
@@ -235,7 +226,6 @@ var FileUpload = function() {
             previewZoomButtonIcons: previewZoomButtonIcons,
             fileActionSettings: fileActionSettings
         });
-
 
         //
         // AJAX upload
@@ -271,13 +261,12 @@ var FileUpload = function() {
             previewZoomButtonIcons: previewZoomButtonIcons
         });
 
-
         //
         // Misc
         //
 
         // Disable/enable button
-        $('#btn-modify').on('click', function() {
+        $('#btn-modify').on('click', function () {
             $btn = $(this);
             if ($btn.text() == 'Disable file input') {
                 $('#file-input-methods').fileinput('disable');
@@ -292,22 +281,20 @@ var FileUpload = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentFileUpload();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     FileUpload.init();
 });

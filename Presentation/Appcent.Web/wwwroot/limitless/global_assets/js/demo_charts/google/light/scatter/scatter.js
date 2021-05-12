@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleScatterBasic = function() {
-
-
+var GoogleScatterBasic = function () {
     //
     // Setup module components
     //
 
     // Scatter chart
-    var _googleScatterBasic = function() {
+    var _googleScatterBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleScatterBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawScatter();
 
@@ -37,7 +33,7 @@ var GoogleScatterBasic = function() {
 
                 // Resize on window resize
                 var resizeScatterBasic;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeScatterBasic);
                     resizeScatterBasic = setTimeout(function () {
                         drawScatter();
@@ -49,27 +45,26 @@ var GoogleScatterBasic = function() {
 
         // Chart settings
         function drawScatter() {
-
             // Define charts element
             var scatter_chart_element = document.getElementById('google-scatter');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Age', 'Weight'],
-                [ 8,      12],
-                [ 4,      6],
-                [ 11,     14],
-                [ 4,      5],
-                [ 3,      3.5],
-                [ 6.5,    7],
-                [ 7,    10],
-                [ 6.5,    12],
-                [ 6,    13],
-                [ 8,    16],
-                [ 12,    17],
-                [ 18,    8],
-                [ 18,    9],
-                [ 16,    12]
+                [8, 12],
+                [4, 6],
+                [11, 14],
+                [4, 5],
+                [3, 3.5],
+                [6.5, 7],
+                [7, 10],
+                [6.5, 12],
+                [6, 13],
+                [8, 16],
+                [12, 17],
+                [18, 8],
+                [18, 9],
+                [16, 12]
             ]);
 
             // Options
@@ -79,8 +74,8 @@ var GoogleScatterBasic = function() {
                 fontSize: 12,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#ffb980','#b6a2de','#5ab1ef','#2ec7c9',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#ffb980', '#b6a2de', '#5ab1ef', '#2ec7c9',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: '5%',
@@ -98,7 +93,7 @@ var GoogleScatterBasic = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee'
                     },
                     minValue: 0,
@@ -115,7 +110,7 @@ var GoogleScatterBasic = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -132,18 +127,16 @@ var GoogleScatterBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleScatterBasic();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

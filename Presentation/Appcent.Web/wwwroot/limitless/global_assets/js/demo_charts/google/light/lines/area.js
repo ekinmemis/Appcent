@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleAreaBasic = function() {
-
-
+var GoogleAreaBasic = function () {
     //
     // Setup module components
     //
 
     // Area chart
-    var _googleAreaBasic = function() {
+    var _googleAreaBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleAreaBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawAreaChart();
 
@@ -37,7 +33,7 @@ var GoogleAreaBasic = function() {
 
                 // Resize on window resize
                 var resizeAreaChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeAreaChart);
                     resizeAreaChart = setTimeout(function () {
                         drawAreaChart();
@@ -49,19 +45,17 @@ var GoogleAreaBasic = function() {
 
         // Chart settings
         function drawAreaChart() {
-
             // Define charts element
             var area_basic_element = document.getElementById('google-area');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Sales', 'Expenses'],
-                ['2004',  1000,      400],
-                ['2005',  1170,      460],
-                ['2006',  660,       1120],
-                ['2007',  1030,      540]
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
             ]);
-
 
             // Options
             var options = {
@@ -93,11 +87,11 @@ var GoogleAreaBasic = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
-                    gridarea:{
+                    gridarea: {
                         count: 10
                     },
                     minValue: 0
@@ -126,18 +120,16 @@ var GoogleAreaBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleAreaBasic();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

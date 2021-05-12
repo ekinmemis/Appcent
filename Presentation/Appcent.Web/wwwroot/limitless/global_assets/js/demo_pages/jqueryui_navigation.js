@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var JqueryUiNavigation = function() {
-
-
+var JqueryUiNavigation = function () {
     //
     // Setup module components
     //
 
     // Accordion
-    var _componentUiAccordion = function() {
+    var _componentUiAccordion = function () {
         if (!$().accordion) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -51,20 +48,20 @@ var JqueryUiNavigation = function() {
         $('#jui-accordion-sortable').accordion({
             header: '> div > span'
         })
-        .sortable({
-            axis: 'y',
-            handle: 'span',
-            stop: function(event, ui) {
-                ui.item.children('span').triggerHandler('focusout');
+            .sortable({
+                axis: 'y',
+                handle: 'span',
+                stop: function (event, ui) {
+                    ui.item.children('span').triggerHandler('focusout');
 
-                // Refresh accordion to handle new order
-                $(this).accordion('refresh');
-            }
-        });
+                    // Refresh accordion to handle new order
+                    $(this).accordion('refresh');
+                }
+            });
     };
 
     // Menu
-    var _componentUiMenu = function() {
+    var _componentUiMenu = function () {
         if (!$().menu) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -87,7 +84,7 @@ var JqueryUiNavigation = function() {
     };
 
     // Tabs
-    var _componentUiTabs = function() {
+    var _componentUiTabs = function () {
         if (!$().tabs) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -106,7 +103,6 @@ var JqueryUiNavigation = function() {
             event: 'mouseover'
         });
 
-
         //
         // Sortable tabs
         //
@@ -117,19 +113,18 @@ var JqueryUiNavigation = function() {
         // Add sortable functionality
         tabs.find('.ui-tabs-nav').sortable({
             containment: '#ui-tabs-sortable-container',
-            stop: function() {
+            stop: function () {
                 tabs.tabs('refresh');
             }
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUiAccordion();
             _componentUiMenu();
             _componentUiTabs();
@@ -137,10 +132,9 @@ var JqueryUiNavigation = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     JqueryUiNavigation.init();
 });

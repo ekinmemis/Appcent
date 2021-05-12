@@ -6,23 +6,18 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var AnimationsCSS3 = function() {
-
-
+var AnimationsCSS3 = function () {
     //
     // Setup module components
     //
 
     // CSS3 animations
-    var _componentAnimationCSS = function() {
-
+    var _componentAnimationCSS = function () {
         // Toggle animations
         $('body').on('click', '.animation', function (e) {
-
             // Get animation class from 'data' attribute
             var animation = $(this).data('animation');
 
@@ -34,22 +29,20 @@ var AnimationsCSS3 = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentAnimationCSS();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     AnimationsCSS3.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsLinesStackedLight = function() {
-
-
+var EchartsLinesStackedLight = function () {
     //
     // Setup module components
     //
 
     // Stacked line chart
-    var _linesStackedLightExample = function() {
+    var _linesStackedLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsLinesStackedLight = function() {
         // Define element
         var line_stacked_element = document.getElementById('line_stacked');
 
-
         //
         // Charts configuration
         //
 
         if (line_stacked_element) {
-
             // Initialize chart
             var line_stacked = echarts.init(line_stacked_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsLinesStackedLight = function() {
 
             // Options
             line_stacked.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -198,13 +191,12 @@ var EchartsLinesStackedLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             line_stacked_element && line_stacked.resize();
         };
 
@@ -214,7 +206,7 @@ var EchartsLinesStackedLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -222,22 +214,20 @@ var EchartsLinesStackedLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesStackedLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsLinesStackedLight.init();
 });

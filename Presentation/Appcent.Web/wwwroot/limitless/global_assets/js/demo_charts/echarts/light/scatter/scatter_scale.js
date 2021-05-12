@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsScatterScaleLight = function() {
-
-
+var EchartsScatterScaleLight = function () {
     //
     // Setup module components
     //
 
     // Scalable scatter chart
-    var _scatterScaleSizeLightExample = function() {
+    var _scatterScaleSizeLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsScatterScaleLight = function() {
         // Define element
         var scatter_scale_element = document.getElementById('scatter_scale');
 
-
         //
         // Charts configuration
         //
 
         if (scatter_scale_element) {
-
             // Initialize chart
             var scatter_scale = echarts.init(scatter_scale_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsScatterScaleLight = function() {
 
             // Options
             scatter_scale.setOption({
-
                 // Main colors
                 color: ['#2ec7c9', '#b6a2de'],
 
@@ -74,7 +67,7 @@ var EchartsScatterScaleLight = function() {
                 // Add tooltip
                 tooltip: {
                     trigger: 'axis',
-                    showDelay : 0,
+                    showDelay: 0,
                     backgroundColor: 'rgba(0,0,0,0.75)',
                     padding: [10, 15],
                     textStyle: {
@@ -183,13 +176,12 @@ var EchartsScatterScaleLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             scatter_scale_element && scatter_scale.resize();
         };
 
@@ -199,7 +191,7 @@ var EchartsScatterScaleLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -207,22 +199,20 @@ var EchartsScatterScaleLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterScaleSizeLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsScatterScaleLight.init();
 });

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3PieTweenAnimation = function() {
-
-
+var D3PieTweenAnimation = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _pieTweenAnimation = function() {
+    var _pieTweenAnimation = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,10 +25,8 @@ var D3PieTweenAnimation = function() {
         var element = document.getElementById('d3-pie-arc-tween'),
             radius = 120;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
@@ -40,7 +35,6 @@ var D3PieTweenAnimation = function() {
 
             // Colors
             var color = "#81C784";
-
 
             // Create chart
             // ------------------------------
@@ -53,8 +47,7 @@ var D3PieTweenAnimation = function() {
                 .attr("width", radius * 2)
                 .attr("height", radius * 2)
                 .append("g")
-                    .attr("transform", "translate(" + radius + "," + radius + ")");
-
+                .attr("transform", "translate(" + radius + "," + radius + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -65,41 +58,38 @@ var D3PieTweenAnimation = function() {
                 .innerRadius(0)
                 .startAngle(0);
 
-
             //
             // Append chart elements
             //
 
             // Add the background arc, from 0 to 100% (τ).
             var background = svg.append("path")
-                .datum({endAngle: τ})
+                .datum({ endAngle: τ })
                 .attr("d", arc)
                 .attr("class", "d3-state-empty");
 
             // Add the foreground arc in orange, currently showing 12.7%.
             var foreground = svg.append("path")
-                .datum({endAngle: .127 * τ})
+                .datum({ endAngle: .127 * τ })
                 .style("fill", color)
                 .attr("d", arc);
 
             // Start a transition to a new random angle
-            setInterval(function() {
-              foreground.transition()
-                  .duration(750)
-                  .call(arcTween, Math.random() * τ);
+            setInterval(function () {
+                foreground.transition()
+                    .duration(750)
+                    .call(arcTween, Math.random() * τ);
             }, 1500);
 
             // Creates a tween on the specified transition's "d" attribute, transitioning
             // any selected arcs from their current angle to the specified new angle.
             function arcTween(transition, newAngle) {
-                transition.attrTween("d", function(d) {
-
+                transition.attrTween("d", function (d) {
                     // Interpolate between the two angles
                     var interpolate = d3.interpolate(d.endAngle, newAngle);
 
                     // Return value of the attrTween
-                    return function(t) {
-
+                    return function (t) {
                         // Calculate the current arc angle based on the transition time, t
                         d.endAngle = interpolate(t);
 
@@ -111,22 +101,20 @@ var D3PieTweenAnimation = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _pieTweenAnimation();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3PieTweenAnimation.init();
 });

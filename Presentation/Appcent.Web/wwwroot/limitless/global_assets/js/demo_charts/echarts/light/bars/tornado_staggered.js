@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsTornadoStaggeredLight = function() {
-
-
+var EchartsTornadoStaggeredLight = function () {
     //
     // Setup module components
     //
 
     // Basic bar chart
-    var _tornadoStaggeredLightExample = function() {
+    var _tornadoStaggeredLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsTornadoStaggeredLight = function() {
         // Define element
         var tornado_staggered_element = document.getElementById('tornado_staggered');
 
-
         //
         // Charts configuration
         //
 
         if (tornado_staggered_element) {
-
             // Initialize chart
             var bars_tornado_staggered = echarts.init(tornado_staggered_element);
-
 
             //
             // Chart config
@@ -54,7 +48,6 @@ var EchartsTornadoStaggeredLight = function() {
 
             // Options
             bars_tornado_staggered.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -87,7 +80,7 @@ var EchartsTornadoStaggeredLight = function() {
                             color: 'rgba(0,0,0,0.025)'
                         }
                     },
-                    formatter: function(params) {
+                    formatter: function (params) {
                         return params[0].seriesName + ': ' + params[0].value + ' €';
                     }
                 },
@@ -116,9 +109,9 @@ var EchartsTornadoStaggeredLight = function() {
                 // Vertical axis
                 yAxis: [{
                     type: 'category',
-                    axisLine: {show: false},
-                    axisLabel: {show: false},
-                    axisTick: {show: false},
+                    axisLine: { show: false },
+                    axisLabel: { show: false },
+                    axisTick: { show: false },
                     data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     splitLine: {
                         show: true,
@@ -153,31 +146,30 @@ var EchartsTornadoStaggeredLight = function() {
                             }
                         },
                         data: [
-                            {value: -680, itemStyle: labelRight},
-                            {value: -300, itemStyle: labelRight},
+                            { value: -680, itemStyle: labelRight },
+                            { value: -300, itemStyle: labelRight },
                             690,
                             900,
-                            {value: -390, itemStyle: labelRight},
+                            { value: -390, itemStyle: labelRight },
                             600,
-                            {value: -120, itemStyle: labelRight},
+                            { value: -120, itemStyle: labelRight },
                             700,
-                            {value: -120, itemStyle: labelRight},
+                            { value: -120, itemStyle: labelRight },
                             900,
                             580,
-                            {value: -720, itemStyle: labelRight}
+                            { value: -720, itemStyle: labelRight }
                         ]
                     }
                 ]
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             tornado_staggered_element && tornado_staggered.resize();
         };
 
@@ -187,7 +179,7 @@ var EchartsTornadoStaggeredLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -195,22 +187,20 @@ var EchartsTornadoStaggeredLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _tornadoStaggeredLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsTornadoStaggeredLight.init();
 });

@@ -6,26 +6,23 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableButtonsPrint = function() {
-
-
+var DatatableButtonsPrint = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableButtonsPrint = function() {
+    var _componentDatatableButtonsPrint = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
             dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -35,7 +32,6 @@ var DatatableButtonsPrint = function() {
                 paginate: { 'first': 'First', 'last': 'Last', 'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
             }
         });
-
 
         // Basic initialization
         $('.datatable-button-print-basic').DataTable({
@@ -48,7 +44,6 @@ var DatatableButtonsPrint = function() {
             ]
         });
 
-
         // Disable auto print
         $('.datatable-button-print-disable').DataTable({
             buttons: [
@@ -60,7 +55,6 @@ var DatatableButtonsPrint = function() {
                 }
             ]
         });
-
 
         // Export options - column selector
         $('.datatable-button-print-columns').DataTable({
@@ -84,7 +78,6 @@ var DatatableButtonsPrint = function() {
                 }
             ]
         });
-
 
         // Export options - row selector
         $('.datatable-button-print-rows').DataTable({
@@ -112,7 +105,7 @@ var DatatableButtonsPrint = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -126,23 +119,21 @@ var DatatableButtonsPrint = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableButtonsPrint();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableButtonsPrint.init();
 });

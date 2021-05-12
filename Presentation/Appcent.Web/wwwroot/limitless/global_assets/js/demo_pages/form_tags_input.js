@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var TagInputs = function() {
-
-
+var TagInputs = function () {
     //
     // Setup module components
     //
 
     // Tokenfield
-    var _componentTokenfield = function() {
+    var _componentTokenfield = function () {
         if (!$().tokenfield) {
             console.warn('Warning - tokenfield.min.js is not loaded.');
             return;
@@ -37,7 +34,6 @@ var TagInputs = function() {
             delimiter: ';'
         });
 
-
         //
         // Primary color
         //
@@ -55,7 +51,6 @@ var TagInputs = function() {
             $(e.relatedTarget).addClass('bg-primary text-white');
         });
 
-
         //
         // Teal color
         //
@@ -72,7 +67,6 @@ var TagInputs = function() {
         $('.tokenfield-teal').on('tokenfield:createdtoken', function (e) {
             $(e.relatedTarget).addClass('bg-teal text-white');
         });
-
 
         //
         // Success color
@@ -92,7 +86,6 @@ var TagInputs = function() {
             $(e.relatedTarget).addClass('bg-success text-white');
         });
 
-
         //
         // Danger color
         //
@@ -111,7 +104,6 @@ var TagInputs = function() {
             $(e.relatedTarget).addClass('bg-danger text-white');
         });
 
-
         //
         // Typeahead support
         //
@@ -119,17 +111,17 @@ var TagInputs = function() {
         // Use Bloodhound engine
         var engine = new Bloodhound({
             local: [
-                {value: 'red'},
-                {value: 'blue'},
-                {value: 'green'} ,
-                {value: 'yellow'},
-                {value: 'violet'},
-                {value: 'brown'},
-                {value: 'purple'},
-                {value: 'black'},
-                {value: 'white'}
+                { value: 'red' },
+                { value: 'blue' },
+                { value: 'green' },
+                { value: 'yellow' },
+                { value: 'violet' },
+                { value: 'brown' },
+                { value: 'purple' },
+                { value: 'black' },
+                { value: 'white' }
             ],
-            datumTokenizer: function(d) {
+            datumTokenizer: function (d) {
                 return Bloodhound.tokenizers.whitespace(d.value);
             },
             queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -146,34 +138,30 @@ var TagInputs = function() {
             }]
         });
 
-
         //
         // Set tokens method
         //
 
-        $('#set-tokens').on('click', function() {
-            $('#set-tokens-field').tokenfield('setTokens', ['blue','red','white']);
+        $('#set-tokens').on('click', function () {
+            $('#set-tokens-field').tokenfield('setTokens', ['blue', 'red', 'white']);
         });
-
 
         //
         // Get tokens method
         //
 
-        $('#get-tokens').on('click', function() {
+        $('#get-tokens').on('click', function () {
             var tokens = $('#get-tokens-field').tokenfield('getTokensList');
             alert(tokens);
         });
-
 
         //
         // Create tokens method
         //
 
-        $('#create-token').on('click', function() {
+        $('#create-token').on('click', function () {
             $('#create-token-field').tokenfield('createToken', { value: 'new', label: 'New token' });
         });
-
 
         //
         // Disable, enable
@@ -183,15 +171,14 @@ var TagInputs = function() {
         $('.tokenfield-disable').tokenfield();
 
         // Disable on click
-        $('#disable').on('click', function() {
+        $('#disable').on('click', function () {
             $('.tokenfield-disable').tokenfield('disable');
         });
 
         // Enabe on click
-        $('#enable').on('click', function() {
+        $('#enable').on('click', function () {
             $('.tokenfield-disable').tokenfield('enable');
         });
-
 
         //
         // Readonly, writeable
@@ -201,15 +188,14 @@ var TagInputs = function() {
         $('.tokenfield-readonly').tokenfield();
 
         // Readonly on click
-        $('#readonly').on('click', function() {
+        $('#readonly').on('click', function () {
             $('.tokenfield-readonly').tokenfield('readonly');
         });
 
         // Writeable on click
-        $('#writeable').on('click', function() {
+        $('#writeable').on('click', function () {
             $('.tokenfield-readonly').tokenfield('writeable');
         });
-
 
         //
         // Destroy, create
@@ -219,41 +205,39 @@ var TagInputs = function() {
         $('.tokenfield-destroy').tokenfield();
 
         // Destroy on click
-        $('#destroy').on('click', function() {
+        $('#destroy').on('click', function () {
             $('.tokenfield-destroy').removeAttr('data-fouc').tokenfield('destroy');
         });
 
         // Create on click
-        $('#create').on('click', function() {
+        $('#create').on('click', function () {
             $('.tokenfield-destroy').tokenfield();
         });
     };
 
     // Tags input
-    var _componentTagsinput = function() {
+    var _componentTagsinput = function () {
         if (!$().tagsinput) {
             console.warn('Warning - tagsinput.min.js is not loaded.');
             return;
         }
 
         // Display values
-        $('.tags-input, [data-role="tagsinput"], .tagsinput-max-tags, .tagsinput-custom-tag-class').on('change', function(event) {
+        $('.tags-input, [data-role="tagsinput"], .tagsinput-max-tags, .tagsinput-custom-tag-class').on('change', function (event) {
             var $element = $(event.target),
                 $container = $element.parent().parent('.mb-3');
 
             if (!$element.data('tagsinput'))
-            return;
+                return;
 
             var val = $element.val();
             if (val === null)
-            val = "null";
-        
-            $('pre.val > code', $container).html( ($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\"") );
+                val = "null";
+
+            $('pre.val > code', $container).html(($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\""));
             $('pre.items > code', $container).html(JSON.stringify($element.tagsinput('items')));
             Prism.highlightAll();
         }).trigger('change');
-
-
 
         // Basic examples
         // ------------------------------
@@ -261,26 +245,22 @@ var TagInputs = function() {
         // Basic initialization
         $('.tags-input').tagsinput();
 
-
         // Allow dublicates
         $('.tags-input-dublicates').tagsinput({
             allowDuplicates: true
         });
-
 
         // Set maximum allowed tags
         $('.tagsinput-max-tags').tagsinput({
             maxTags: 5
         });
 
-
         // Custom tag class
         $('.tagsinput-custom-tag-class').tagsinput({
-            tagClass: function(item){
+            tagClass: function (item) {
                 return 'bg-success text-white';
             }
         });
-
 
         //
         // Typeahead implementation
@@ -292,9 +272,10 @@ var TagInputs = function() {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             prefetch: {
                 url: '../../../../global_assets/demo_data/tags_input/citynames.json',
-                filter: function(list) {
-                    return $.map(list, function(cityname) {
-                    return { name: cityname }; });
+                filter: function (list) {
+                    return $.map(list, function (cityname) {
+                        return { name: cityname };
+                    });
                 }
             }
         });
@@ -311,7 +292,6 @@ var TagInputs = function() {
                 source: citynames.ttAdapter()
             }
         });
-
 
         //
         // Objects as tags
@@ -345,12 +325,11 @@ var TagInputs = function() {
         });
 
         // Add data
-        elt.tagsinput('add', { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    });
-        elt.tagsinput('add', { "value": 4 , "text": "Washington"  , "continent": "America"   });
-        elt.tagsinput('add', { "value": 7 , "text": "Sydney"      , "continent": "Australia" });
-        elt.tagsinput('add', { "value": 10, "text": "Beijing"     , "continent": "Asia"      });
-        elt.tagsinput('add', { "value": 13, "text": "Cairo"       , "continent": "Africa"    });
-
+        elt.tagsinput('add', { "value": 1, "text": "Amsterdam", "continent": "Europe" });
+        elt.tagsinput('add', { "value": 4, "text": "Washington", "continent": "America" });
+        elt.tagsinput('add', { "value": 7, "text": "Sydney", "continent": "Australia" });
+        elt.tagsinput('add', { "value": 10, "text": "Beijing", "continent": "Asia" });
+        elt.tagsinput('add', { "value": 13, "text": "Cairo", "continent": "Africa" });
 
         //
         // Categorize tags
@@ -374,13 +353,13 @@ var TagInputs = function() {
 
         // Initialize
         elt2.tagsinput({
-            tagClass: function(item) {
+            tagClass: function (item) {
                 switch (item.continent) {
-                    case 'Europe'   : return 'text-white bg-indigo-400';
-                    case 'America'  : return 'text-white bg-danger';
+                    case 'Europe': return 'text-white bg-indigo-400';
+                    case 'America': return 'text-white bg-danger';
                     case 'Australia': return 'text-white bg-success';
-                    case 'Africa'   : return 'text-white bg-primary';
-                    case 'Asia'     : return 'text-white bg-pink-400';
+                    case 'Africa': return 'text-white bg-primary';
+                    case 'Asia': return 'text-white bg-pink-400';
                 }
             },
             itemValue: 'value',
@@ -393,12 +372,11 @@ var TagInputs = function() {
         });
 
         // Add data
-        elt2.tagsinput('add', { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    });
-        elt2.tagsinput('add', { "value": 4 , "text": "Washington"  , "continent": "America"   });
-        elt2.tagsinput('add', { "value": 7 , "text": "Sydney"      , "continent": "Australia" });
-        elt2.tagsinput('add', { "value": 10, "text": "Beijing"     , "continent": "Asia"      });
-        elt2.tagsinput('add', { "value": 13, "text": "Cairo"       , "continent": "Africa"    });
-
+        elt2.tagsinput('add', { "value": 1, "text": "Amsterdam", "continent": "Europe" });
+        elt2.tagsinput('add', { "value": 4, "text": "Washington", "continent": "America" });
+        elt2.tagsinput('add', { "value": 7, "text": "Sydney", "continent": "Australia" });
+        elt2.tagsinput('add', { "value": 10, "text": "Beijing", "continent": "Asia" });
+        elt2.tagsinput('add', { "value": 13, "text": "Cairo", "continent": "Africa" });
 
         //
         // Methods
@@ -414,52 +392,50 @@ var TagInputs = function() {
         });
 
         // Add values
-        tagsMethods.tagsinput('add', {id: 1, text: 'Amsterdam'});
-        tagsMethods.tagsinput('add', {id: 2, text: 'Washington'});
-        tagsMethods.tagsinput('add', {id: 3, text: 'Sydney'});
+        tagsMethods.tagsinput('add', { id: 1, text: 'Amsterdam' });
+        tagsMethods.tagsinput('add', { id: 2, text: 'Washington' });
+        tagsMethods.tagsinput('add', { id: 3, text: 'Sydney' });
 
         // "Add" methos
-        $('.add-tag-button').on('click', function() {
-            $('.tagsinput-add-tag').tagsinput('add', {id: 4, text: 'Beijing'});
+        $('.add-tag-button').on('click', function () {
+            $('.tagsinput-add-tag').tagsinput('add', { id: 4, text: 'Beijing' });
             $(this).addClass('disabled');
         });
 
         // "Remove" method
-        $('.remove-tag-button').on('click', function() {
-            $('.tagsinput-remove-tag').tagsinput('remove', {id: 3, text: 'Sydney'});
+        $('.remove-tag-button').on('click', function () {
+            $('.tagsinput-remove-tag').tagsinput('remove', { id: 3, text: 'Sydney' });
             $(this).addClass('disabled');
         });
 
         // "Remove all" method
-        $('.remove-all-tags-button').on('click', function() {
+        $('.remove-all-tags-button').on('click', function () {
             $('.tagsinput-remove-tags').tagsinput('removeAll');
             $(this).addClass('disabled');
         });
 
         // "Destroy" method
-        $('.destroy-tagsinput-button').on('click', function() {
+        $('.destroy-tagsinput-button').on('click', function () {
             $('.tagsinput-destroy').removeAttr('data-fouc').tagsinput('destroy');
             $(this).addClass('disabled');
         });
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentTokenfield();
             _componentTagsinput();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     TagInputs.init();
 });

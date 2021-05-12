@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleAreaStacked = function() {
-
-
+var GoogleAreaStacked = function () {
     //
     // Setup module components
     //
 
     // Stacked area chart
-    var _googleAreaStacked = function() {
+    var _googleAreaStacked = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleAreaStacked = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawAreaStackedChart();
 
@@ -37,7 +33,7 @@ var GoogleAreaStacked = function() {
 
                 // Resize on window resize
                 var resizeAreaStacked;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeAreaStacked);
                     resizeAreaStacked = setTimeout(function () {
                         drawAreaStackedChart();
@@ -49,17 +45,16 @@ var GoogleAreaStacked = function() {
 
         // Chart settings
         function drawAreaStackedChart() {
-
             // Define charts element
             var area_stacked_element = document.getElementById('google-area-stacked');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Cars', 'Trucks', 'Drones', 'Segways'],
-                ['2013',  870,  460, 310, 220],
-                ['2014',  460,   720, 220, 460],
-                ['2015',  930,  640, 340, 330],
-                ['2016',  1000,  400, 180, 500]
+                ['2013', 870, 460, 310, 220],
+                ['2014', 460, 720, 220, 460],
+                ['2015', 930, 640, 340, 330],
+                ['2016', 1000, 400, 180, 500]
             ]);
 
             // Options
@@ -94,11 +89,11 @@ var GoogleAreaStacked = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
-                    gridarea:{
+                    gridarea: {
                         count: 10
                     },
                     minValue: 0
@@ -129,18 +124,16 @@ var GoogleAreaStacked = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleAreaStacked();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

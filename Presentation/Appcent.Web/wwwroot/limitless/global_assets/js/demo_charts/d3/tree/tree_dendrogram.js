@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3TreeDendrogram = function() {
-
-
+var D3TreeDendrogram = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _treeDendrogram = function() {
+    var _treeDendrogram = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,23 +25,19 @@ var D3TreeDendrogram = function() {
         var element = document.getElementById('d3-tree-dendrogram'),
             height = 800;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 0, right: 0, bottom: 0, left: 40},
+                margin = { top: 0, right: 0, bottom: 0, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
             // Colors
             var color = '#2196F3';
-
-
 
             // Create chart
             // ------------------------------
@@ -57,9 +50,7 @@ var D3TreeDendrogram = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
@@ -70,18 +61,14 @@ var D3TreeDendrogram = function() {
 
             // Diagonal projection
             var diagonal = d3.svg.diagonal()
-                .projection(function(d) { return [d.y, d.x]; });
-
-
+                .projection(function (d) { return [d.y, d.x]; });
 
             // Load data
             // ------------------------------
 
-            d3.json("../../../../global_assets/demo_data/d3/tree/tree_data_dendrogram.json", function(error, root) {
-
+            d3.json("../../../../global_assets/demo_data/d3/tree/tree_data_dendrogram.json", function (error, root) {
                 var nodes = cluster.nodes(root),
                     links = cluster.links(nodes);
-
 
                 // Links
                 // ------------------------------
@@ -95,10 +82,9 @@ var D3TreeDendrogram = function() {
                     .data(links)
                     .enter()
                     .append("path")
-                        .attr("class", "d3-tree-link d3-line-connect")
-                        .style("stroke-width", 1.5)
-                        .attr("d", diagonal);
-
+                    .attr("class", "d3-tree-link d3-line-connect")
+                    .style("stroke-width", 1.5)
+                    .attr("d", diagonal);
 
                 // Nodes
                 // ------------------------------
@@ -112,8 +98,8 @@ var D3TreeDendrogram = function() {
                     .data(nodes)
                     .enter()
                     .append("g")
-                        .attr("class", "d3-tree-node")
-                        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+                    .attr("class", "d3-tree-node")
+                    .attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; })
 
                 // Append node circles
                 node.append("circle")
@@ -125,13 +111,11 @@ var D3TreeDendrogram = function() {
                 // Append node text
                 var text = node.append("text")
                     .attr("class", "d3-text")
-                    .attr("dx", function(d) { return d.children ? -10 : 10; })
+                    .attr("dx", function (d) { return d.children ? -10 : 10; })
                     .attr("dy", 4)
-                    .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+                    .style("text-anchor", function (d) { return d.children ? "end" : "start"; })
                     .style("font-size", 12)
-                    .text(function(d) { return d.name; });
-
-
+                    .text(function (d) { return d.name; });
 
                 // Resize chart
                 // ------------------------------
@@ -143,18 +127,16 @@ var D3TreeDendrogram = function() {
                 var sidebarToggle = document.querySelector('.sidebar-control');
                 sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
-
                 // Resize function
-                // 
+                //
                 // Since D3 doesn't support SVG resize by default,
-                // we need to manually specify parts of the graph that need to 
+                // we need to manually specify parts of the graph that need to
                 // be updated on window resize
                 function resize() {
-
                     // Layout variables
                     width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
-                    nodes = cluster.nodes(root),
-                    links = cluster.links(nodes);
+                        nodes = cluster.nodes(root),
+                        links = cluster.links(nodes);
 
                     // Layout
                     // -------------------------
@@ -165,10 +147,8 @@ var D3TreeDendrogram = function() {
                     // Width of appended group
                     svg.attr("width", width + margin.left + margin.right);
 
-
                     // Tree size
                     cluster.size([height, width - 180]);
-
 
                     // Chart elements
                     // -------------------------
@@ -177,28 +157,26 @@ var D3TreeDendrogram = function() {
                     svg.selectAll(".d3-tree-link").attr("d", diagonal)
 
                     // Node paths
-                    svg.selectAll(".d3-tree-node").attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+                    svg.selectAll(".d3-tree-node").attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; });
                 }
             });
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _treeDendrogram();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3TreeDendrogram.init();
 });

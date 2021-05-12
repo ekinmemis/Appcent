@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleLineBasic = function() {
-
-
+var GoogleLineBasic = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleLineBasic = function() {
+    var _googleLineBasic = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleLineBasic = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawLineChart();
 
@@ -37,7 +33,7 @@ var GoogleLineBasic = function() {
 
                 // Resize on window resize
                 var resizeLineBasic;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeLineBasic);
                     resizeLineBasic = setTimeout(function () {
                         drawLineChart();
@@ -49,17 +45,16 @@ var GoogleLineBasic = function() {
 
         // Chart settings
         function drawLineChart() {
-
             // Define charts element
             var line_chart_element = document.getElementById('google-line');
 
             // Data
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Sales', 'Expenses'],
-                ['2004',  1000,      400],
-                ['2005',  1170,      460],
-                ['2006',  660,       1120],
-                ['2007',  1030,      540]
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
             ]);
 
             // Options
@@ -92,7 +87,7 @@ var GoogleLineBasic = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -122,21 +117,18 @@ var GoogleLineBasic = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleLineBasic();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
 GoogleLineBasic.init();
-

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapFusionTable = function() {
-
-
+var GoogleMapFusionTable = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapFusionTable = function() {
+    var _googleMapFusionTable = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -26,7 +23,6 @@ var GoogleMapFusionTable = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_fusion_table_element = document.getElementById('map_layer_fusion_tables');
 
@@ -56,22 +52,20 @@ var GoogleMapFusionTable = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapFusionTable();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapFusionTable.init();
 });

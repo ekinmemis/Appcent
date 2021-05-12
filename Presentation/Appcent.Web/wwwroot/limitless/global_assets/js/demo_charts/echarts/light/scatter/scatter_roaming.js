@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsScatterRoamingLight = function() {
-
-
+var EchartsScatterRoamingLight = function () {
     //
     // Setup module components
     //
 
     // Scatter roaming chart
-    var _scatterRoamingLightExample = function() {
+    var _scatterRoamingLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsScatterRoamingLight = function() {
         // Define element
         var scatter_roaming_element = document.getElementById('scatter_roaming');
 
-
         //
         // Charts configuration
         //
 
         if (scatter_roaming_element) {
-
             // Initialize chart
             var scatter_roaming = echarts.init(scatter_roaming_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsScatterRoamingLight = function() {
 
             // Options
             scatter_roaming.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -160,10 +153,10 @@ var EchartsScatterRoamingLight = function() {
                             var len = 500;
                             var value;
                             while (len--) {
-                                value = (Math.random()*100).toFixed(2) - 0;
+                                value = (Math.random() * 100).toFixed(2) - 0;
                                 d.push([
-                                    (Math.random()*value + value).toFixed(2) - 0,
-                                    (Math.random()*value).toFixed(2) - 0,
+                                    (Math.random() * value + value).toFixed(2) - 0,
+                                    (Math.random() * value).toFixed(2) - 0,
                                     value
                                 ]);
                             }
@@ -174,13 +167,12 @@ var EchartsScatterRoamingLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             scatter_roaming_element && scatter_roaming.resize();
         };
 
@@ -190,7 +182,7 @@ var EchartsScatterRoamingLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -198,22 +190,20 @@ var EchartsScatterRoamingLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _scatterRoamingLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsScatterRoamingLight.init();
 });

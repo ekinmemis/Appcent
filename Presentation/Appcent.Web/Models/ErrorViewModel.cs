@@ -1,5 +1,3 @@
-using System;
-
 namespace Appcent.Web.Models
 {
     public class ErrorViewModel

@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsBarsFloatingLight = function() {
-
-
+var EchartsBarsFloatingLight = function () {
     //
     // Setup module components
     //
 
     // Floating bar chart
-    var _barsFloatingLightExample = function() {
+    var _barsFloatingLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsBarsFloatingLight = function() {
         // Define element
         var bars_float_element = document.getElementById('bars_float');
 
-
         //
         // Charts configuration
         //
 
         if (bars_float_element) {
-
             // Initialize chart
             var bars_float = echarts.init(bars_float_element);
-
 
             //
             // Chart config
@@ -49,7 +43,7 @@ var EchartsBarsFloatingLight = function() {
                     color: 'transparent'
                 }
             };
-            var dataStyle = { 
+            var dataStyle = {
                 normal: {
                     barBorderRadius: 3,
                     label: {
@@ -65,7 +59,6 @@ var EchartsBarsFloatingLight = function() {
 
             // Options
             bars_float.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -86,7 +79,7 @@ var EchartsBarsFloatingLight = function() {
 
                 // Add legend
                 legend: {
-                    data: ['GML', 'PYP','WTC', 'ZTW'],
+                    data: ['GML', 'PYP', 'WTC', 'ZTW'],
                     itemHeight: 8,
                     itemGap: 20,
                     textStyle: {
@@ -220,13 +213,12 @@ var EchartsBarsFloatingLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             bars_float_element && bars_float.resize();
         };
 
@@ -236,7 +228,7 @@ var EchartsBarsFloatingLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -244,22 +236,20 @@ var EchartsBarsFloatingLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barsFloatingLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsBarsFloatingLight.init();
 });

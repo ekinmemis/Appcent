@@ -6,26 +6,23 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var DatatableButtonsFlash = function() {
-
-
+var DatatableButtonsFlash = function () {
     //
     // Setup module components
     //
 
     // Basic Datatable examples
-    var _componentDatatableButtonsFlash = function() {
+    var _componentDatatableButtonsFlash = function () {
         if (!$().DataTable) {
             console.warn('Warning - datatables.min.js is not loaded.');
             return;
         }
 
         // Setting datatable defaults
-        $.extend( $.fn.dataTable.defaults, {
+        $.extend($.fn.dataTable.defaults, {
             autoWidth: false,
             dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
@@ -36,7 +33,6 @@ var DatatableButtonsFlash = function() {
             }
         });
 
-
         // Basic initialization
         $('.datatable-button-flash-basic').DataTable({
             buttons: {
@@ -46,14 +42,13 @@ var DatatableButtonsFlash = function() {
                     }
                 },
                 buttons: [
-                    {extend: 'copyFlash'},
-                    {extend: 'csvFlash'},
-                    {extend: 'excelFlash'},
-                    {extend: 'pdf'}
+                    { extend: 'copyFlash' },
+                    { extend: 'csvFlash' },
+                    { extend: 'excelFlash' },
+                    { extend: 'pdf' }
                 ]
             }
         });
-
 
         // Custom file name
         $('.datatable-button-flash-name').DataTable({
@@ -76,7 +71,6 @@ var DatatableButtonsFlash = function() {
             }
         });
 
-
         // Custom message
         $('.datatable-button-flash-message').DataTable({
             buttons: [
@@ -88,7 +82,6 @@ var DatatableButtonsFlash = function() {
                 }
             ]
         });
-
 
         // File size and orientation
         $('.datatable-button-flash-size').DataTable({
@@ -105,7 +98,7 @@ var DatatableButtonsFlash = function() {
     };
 
     // Select2 for length menu styling
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -119,23 +112,21 @@ var DatatableButtonsFlash = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDatatableButtonsFlash();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DatatableButtonsFlash.init();
 });

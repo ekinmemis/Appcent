@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsEcommerceCustomers = function() {
-
-
+var EchartsEcommerceCustomers = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _customersExample = function() {
+    var _customersExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsEcommerceCustomers = function() {
         // Define element
         var customers_chart_element = document.getElementById('customers_chart');
 
-
         //
         // Charts configuration
         //
 
         if (customers_chart_element) {
-
             // Initialize chart
             var customers_chart = echarts.init(customers_chart_element);
-
 
             //
             // Chart config
@@ -44,9 +38,8 @@ var EchartsEcommerceCustomers = function() {
 
             // Options
             customers_chart.setOption({
-
                 // Define colors
-                color: ['#EF5350', '#03A9F4','#4CAF50'],
+                color: ['#EF5350', '#03A9F4', '#4CAF50'],
 
                 // Global text styles
                 textStyle: {
@@ -68,7 +61,7 @@ var EchartsEcommerceCustomers = function() {
 
                 // Add legend
                 legend: {
-                    data: ['New customers','Returned customers','Orders'],
+                    data: ['New customers', 'Returned customers', 'Orders'],
                     itemHeight: 8,
                     itemGap: 20,
                     textStyle: {
@@ -96,7 +89,7 @@ var EchartsEcommerceCustomers = function() {
                 // Horizontal axis
                 xAxis: [{
                     type: 'category',
-                    data: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                    data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     axisLabel: {
                         color: '#333'
                     },
@@ -203,13 +196,12 @@ var EchartsEcommerceCustomers = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             customers_chart_element && customers_chart.resize();
         };
 
@@ -219,7 +211,7 @@ var EchartsEcommerceCustomers = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -227,22 +219,20 @@ var EchartsEcommerceCustomers = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _customersExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsEcommerceCustomers.init();
 });

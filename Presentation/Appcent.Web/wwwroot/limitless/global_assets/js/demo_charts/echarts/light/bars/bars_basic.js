@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsBarsBasicLight = function() {
-
-
+var EchartsBarsBasicLight = function () {
     //
     // Setup module components
     //
 
     // Basic bar chart
-    var _barsBasicLightExample = function() {
+    var _barsBasicLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsBarsBasicLight = function() {
         // Define element
         var bars_basic_element = document.getElementById('bars_basic');
 
-
         //
         // Charts configuration
         //
 
         if (bars_basic_element) {
-
             // Initialize chart
             var bars_basic = echarts.init(bars_basic_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsBarsBasicLight = function() {
 
             // Options
             bars_basic.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -114,7 +107,7 @@ var EchartsBarsBasicLight = function() {
                 // Vertical axis
                 yAxis: [{
                     type: 'category',
-                    data: ['Germany','France','Spain','Netherlands','Belgium'],
+                    data: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium'],
                     axisLabel: {
                         color: '#333'
                     },
@@ -163,13 +156,12 @@ var EchartsBarsBasicLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             bars_basic_element && bars_basic.resize();
         };
 
@@ -179,7 +171,7 @@ var EchartsBarsBasicLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -187,22 +179,20 @@ var EchartsBarsBasicLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barsBasicLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsBarsBasicLight.init();
 });

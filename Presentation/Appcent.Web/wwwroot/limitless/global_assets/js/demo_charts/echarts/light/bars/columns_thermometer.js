@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsColumnsThermometerLight = function() {
-
-
+var EchartsColumnsThermometerLight = function () {
     //
     // Setup module components
     //
 
     // Thermometer column chart
-    var _columnsThermometerLightExample = function() {
+    var _columnsThermometerLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsColumnsThermometerLight = function() {
         // Define element
         var columns_thermometer_element = document.getElementById('columns_thermometer');
 
-
         //
         // Charts configuration
         //
 
         if (columns_thermometer_element) {
-
             // Initialize chart
             var columns_thermometer = echarts.init(columns_thermometer_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsColumnsThermometerLight = function() {
 
             // Options
             var columns_thermometer_options = {
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -88,8 +81,8 @@ var EchartsColumnsThermometerLight = function() {
                     },
                     formatter: function (params) {
                         return params[0].name + '<br/>'
-                        + params[0].seriesName + ': ' + params[0].value + '<br/>'
-                        + params[1].seriesName + ': ' + (params[1].value + params[0].value);
+                            + params[0].seriesName + ': ' + params[0].value + '<br/>'
+                            + params[1].seriesName + ': ' + (params[1].value + params[0].value);
                     }
                 },
 
@@ -169,7 +162,7 @@ var EchartsColumnsThermometerLight = function() {
                                 barBorderColor: '#FF7043',
                                 barBorderWidth: 6,
                                 label: {
-                                    show: true, 
+                                    show: true,
                                     position: 'top',
                                     formatter: function (params) {
                                         for (var i = 0, l = columns_thermometer_options.xAxis[0].data.length; i < l; i++) {
@@ -184,7 +177,7 @@ var EchartsColumnsThermometerLight = function() {
                                 }
                             }
                         },
-                        data: [40, 80, 50, 80,80, 70, 60, 90, 120]
+                        data: [40, 80, 50, 80, 80, 70, 60, 90, 120]
                     }
                 ]
             };
@@ -193,13 +186,12 @@ var EchartsColumnsThermometerLight = function() {
             columns_thermometer.setOption(columns_thermometer_options);
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_thermometer_element && columns_thermometer.resize();
         };
 
@@ -209,7 +201,7 @@ var EchartsColumnsThermometerLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -217,22 +209,20 @@ var EchartsColumnsThermometerLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _columnsThermometerLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsColumnsThermometerLight.init();
 });

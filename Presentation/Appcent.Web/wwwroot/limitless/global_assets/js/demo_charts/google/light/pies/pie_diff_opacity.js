@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GooglePieDiffOpacity = function() {
-
-
+var GooglePieDiffOpacity = function () {
     //
     // Setup module components
     //
 
     // Pie with opacity
-    var _googlePieDiffOpacity = function() {
+    var _googlePieDiffOpacity = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GooglePieDiffOpacity = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawPieDiffOpacity();
 
@@ -37,7 +33,7 @@ var GooglePieDiffOpacity = function() {
 
                 // Resize on window resize
                 var resizePieDiffOpacity;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizePieDiffOpacity);
                     resizePieDiffOpacity = setTimeout(function () {
                         drawPieDiffOpacity();
@@ -49,7 +45,6 @@ var GooglePieDiffOpacity = function() {
 
         // Chart settings
         function drawPieDiffOpacity() {
-
             // Define charts element
             var pie_diff_opacity_element = document.getElementById('google-pie-diff-opacity');
 
@@ -76,8 +71,8 @@ var GooglePieDiffOpacity = function() {
                 width: 500,
                 backgroundColor: 'transparent',
                 colors: [
-                    '#2ec7c9','#b6a2de','#5ab1ef','#ffb980',
-                    '#d87a80','#8d98b3','#e5cf0d','#97b552'
+                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980',
+                    '#d87a80', '#8d98b3', '#e5cf0d', '#97b552'
                 ],
                 chartArea: {
                     left: 50,
@@ -102,18 +97,16 @@ var GooglePieDiffOpacity = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googlePieDiffOpacity();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

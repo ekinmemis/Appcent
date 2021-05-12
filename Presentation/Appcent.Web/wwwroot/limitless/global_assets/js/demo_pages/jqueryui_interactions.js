@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var JqueryUiInteractions = function() {
-
-
+var JqueryUiInteractions = function () {
     //
     // Setup module components
     //
 
     // Draggable
-    var _componentUiDraggable = function() {
+    var _componentUiDraggable = function () {
         if (!$().draggable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -28,7 +25,6 @@ var JqueryUiInteractions = function() {
         $('.draggable-element').draggable({
             containment: '#draggable-default-container'
         });
-
 
         //
         // Constrain movement
@@ -50,7 +46,6 @@ var JqueryUiInteractions = function() {
             containment: '#draggable-containment-container',
             axis: 'x'
         });
-     
 
         //
         // Revert position
@@ -76,7 +71,6 @@ var JqueryUiInteractions = function() {
             revertDuration: 1500
         });
 
-
         //
         // Cursors
         //
@@ -88,42 +82,40 @@ var JqueryUiInteractions = function() {
         });
 
         // Crosshair cursor
-        $( '#draggable-cursor-crosshair' ).draggable({
+        $('#draggable-cursor-crosshair').draggable({
             containment: '#draggable-cursor-container',
             cursor: 'crosshair'
         });
 
         // Bottom cursor
-        $( '#draggable-cursor-bottom' ).draggable({
+        $('#draggable-cursor-bottom').draggable({
             containment: '#draggable-cursor-container',
             cursorAt: {
                 bottom: 0
             }
         });
 
-
         //
         // Handles
         //
 
         // Text
-        $( '#draggable-handle-text' ).draggable({
+        $('#draggable-handle-text').draggable({
             containment: '#draggable-handle-container',
             handle: 'span'
         });
 
         // Icon
-        $( '#draggable-handle-icon' ).draggable({
+        $('#draggable-handle-icon').draggable({
             containment: '#draggable-handle-container',
             handle: '.handle-icon'
         });
 
         // Exception
-        $( '#draggable-handle-exception' ).draggable({
+        $('#draggable-handle-exception').draggable({
             containment: '#draggable-handle-container',
             cancel: 'span'
         });
-
 
         //
         // Events
@@ -135,20 +127,19 @@ var JqueryUiInteractions = function() {
             $stop_counter = $('#draggable-event-stop'),
             counts = [0, 0, 0];
 
-
         // Start event
         $start_counter.draggable({
             containment: '#draggable-events-container',
-            start: function() {
+            start: function () {
                 counts[0]++;
-                updateCounterStatus( $start_counter, counts[0]);
+                updateCounterStatus($start_counter, counts[0]);
             }
         });
 
         // Drag event
         $drag_counter.draggable({
             containment: '#draggable-events-container',
-            drag: function() {
+            drag: function () {
                 counts[1]++;
                 updateCounterStatus($drag_counter, counts[1]);
             }
@@ -157,25 +148,24 @@ var JqueryUiInteractions = function() {
         // Stop event
         $stop_counter.draggable({
             containment: '#draggable-events-container',
-            stop: function() {
+            stop: function () {
                 counts[2]++;
                 updateCounterStatus($stop_counter, counts[2]);
             }
         });
 
         // Update counter text
-        function updateCounterStatus( $event_counter, new_count ) {
-            $( '.event-count', $event_counter ).text( new_count );
+        function updateCounterStatus($event_counter, new_count) {
+            $('.event-count', $event_counter).text(new_count);
         }
     };
 
     // Droppable
-    var _componentUiDroppable = function() {
+    var _componentUiDroppable = function () {
         if (!$().draggable || !$().droppable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
         }
-
 
         //
         // Basic functionality
@@ -188,11 +178,10 @@ var JqueryUiInteractions = function() {
 
         // Drop
         $('#droppable-basic-target').droppable({
-            drop: function(event, ui) {
+            drop: function (event, ui) {
                 $(this).addClass('bg-success-400 border-success-400 text-white').html('<span>Dropped!</span>');
             }
         });
-
 
         //
         // Accept drop
@@ -206,11 +195,10 @@ var JqueryUiInteractions = function() {
         // Drop
         $('#droppable-accept-target').droppable({
             accept: '#droppable-accept-yes',
-            drop: function(event, ui) {
+            drop: function (event, ui) {
                 $(this).addClass('bg-success-400 border-success-400 text-white').html('<span>Dropped!</span>');
             }
         });
-
 
         //
         // Revert draggable position
@@ -227,14 +215,13 @@ var JqueryUiInteractions = function() {
             containment: '#droppable-revert-container',
             revert: 'invalid'
         });
-     
+
         // Drop
         $('#droppable-revert-target').droppable({
-            drop: function(event, ui) {
+            drop: function (event, ui) {
                 $(this).addClass('bg-success-400 border-success-400 text-white').html('<span>Dropped!</span>');
             }
         });
-
 
         //
         // Visual feedback
@@ -250,7 +237,7 @@ var JqueryUiInteractions = function() {
             containment: '#droppable-visual-container',
             accept: '#droppable-visual-element',
             activeClass: 'bg-slate border-slate text-white',
-            drop: function(event, ui) {
+            drop: function (event, ui) {
                 $(this).addClass('bg-success-400 border-success-400 text-white').html('<span>Dropped!</span>');
             }
         });
@@ -259,14 +246,14 @@ var JqueryUiInteractions = function() {
         $('#droppable-visual-target-hover').droppable({
             containment: '#droppable-visual-container',
             hoverClass: 'bg-blue border-blue text-white',
-            drop: function(event, ui) {
+            drop: function (event, ui) {
                 $(this).addClass('bg-teal-400 border-teal-400 text-white').html('<span>Dropped!</span>');
             }
         });
     };
 
     // Resizable
-    var _componentUiResizable = function() {
+    var _componentUiResizable = function () {
         if (!$().resizable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -306,7 +293,7 @@ var JqueryUiInteractions = function() {
     };
 
     // Selectable
-    var _componentUiSelectable = function() {
+    var _componentUiSelectable = function () {
         if (!$().selectable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -317,9 +304,9 @@ var JqueryUiInteractions = function() {
 
         // Serialize
         $('#selectable-serialize').selectable({
-            stop: function() {
+            stop: function () {
                 var result = $('#select-result').empty();
-                $('.ui-selected', this).each(function() {
+                $('.ui-selected', this).each(function () {
                     var index = $('#selectable-serialize li').index(this);
                     result.append(' #' + (index + 1));
                 });
@@ -328,7 +315,7 @@ var JqueryUiInteractions = function() {
     };
 
     // Sortable
-    var _componentUiSortable = function() {
+    var _componentUiSortable = function () {
         if (!$().sortable) {
             console.warn('Warning - jQuery UI components are not loaded.');
             return;
@@ -338,22 +325,19 @@ var JqueryUiInteractions = function() {
         $('#sortable-list-basic').sortable();
         $('#sortable-list-basic').disableSelection();
 
-
         // Placeholder
         $('#sortable-list-placeholder').sortable({
             placeholder: 'sortable-placeholder',
-            start: function(e, ui){
+            start: function (e, ui) {
                 ui.placeholder.height(ui.item.outerHeight());
             }
         });
         $('#sortable-list-placeholder').disableSelection();
 
-
         // Connected lists
         $('#sortable-list-first, #sortable-list-second').sortable({
             connectWith: '.selectable-demo-connected'
         }).disableSelection();
-
 
         //
         // Include/exclude items
@@ -373,13 +357,12 @@ var JqueryUiInteractions = function() {
         $('#sortable-list-specify li, #sortable-list-cancel li').disableSelection();
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentUiDraggable();
             _componentUiDroppable();
             _componentUiResizable();
@@ -389,10 +372,9 @@ var JqueryUiInteractions = function() {
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     JqueryUiInteractions.init();
 });

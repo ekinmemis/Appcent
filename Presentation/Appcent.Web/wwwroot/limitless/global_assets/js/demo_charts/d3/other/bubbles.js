@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3Bubbles = function() {
-
-
+var D3Bubbles = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _bubbles = function() {
+    var _bubbles = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,10 +25,8 @@ var D3Bubbles = function() {
         var element = document.getElementById('d3-bubbles'),
             diameter = 700;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
@@ -42,8 +37,6 @@ var D3Bubbles = function() {
             var bubble_colors = d3.scale.category10(),
                 bubble_text_color = '#fff'
 
-
-
             // Create chart
             // ------------------------------
 
@@ -52,8 +45,6 @@ var D3Bubbles = function() {
                 .attr("height", diameter)
                 .attr("class", "bubble");
 
-
-
             // Create chart
             // ------------------------------
 
@@ -61,14 +52,12 @@ var D3Bubbles = function() {
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
                 .offset([-5, 0])
-                .html(function(d) {
+                .html(function (d) {
                     return d.className + ": " + format(d.value);;
                 });
 
             // Initialize tooltip
             svg.call(tip);
-
-
 
             // Construct chart layout
             // ------------------------------
@@ -79,14 +68,10 @@ var D3Bubbles = function() {
                 .size([diameter, diameter])
                 .padding(1.5);
 
-
-
             // Load data
             // ------------------------------
 
-            d3.json("../../../../global_assets/demo_data/d3/other/bubble.json", function(error, root) {
-
-
+            d3.json("../../../../global_assets/demo_data/d3/other/bubble.json", function (error, root) {
                 //
                 // Append chart elements
                 //
@@ -94,16 +79,16 @@ var D3Bubbles = function() {
                 // Bind data
                 var node = svg.selectAll(".d3-bubbles-node")
                     .data(bubble.nodes(classes(root))
-                    .filter(function(d) { return !d.children; }))
+                        .filter(function (d) { return !d.children; }))
                     .enter()
                     .append("g")
-                        .attr("class", "d3-bubbles-node")
-                        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                    .attr("class", "d3-bubbles-node")
+                    .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
                 // Append circles
                 node.append("circle")
-                    .attr("r", function(d) { return d.r; })
-                    .style("fill", function(d) { return bubble_colors(d.packageName); })
+                    .attr("r", function (d) { return d.r; })
+                    .style("fill", function (d) { return bubble_colors(d.packageName); })
                     .on('mouseover', tip.show)
                     .on('mouseout', tip.hide);
 
@@ -113,41 +98,38 @@ var D3Bubbles = function() {
                     .style("fill", bubble_text_color)
                     .style("font-size", 12)
                     .style("text-anchor", "middle")
-                    .text(function(d) { return d.className.substring(0, d.r / 3); });
+                    .text(function (d) { return d.className.substring(0, d.r / 3); });
             });
-
 
             // Returns a flattened hierarchy containing all leaf nodes under the root.
             function classes(root) {
                 var classes = [];
 
                 function recurse(name, node) {
-                    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-                    else classes.push({packageName: name, className: node.name, value: node.size});
+                    if (node.children) node.children.forEach(function (child) { recurse(node.name, child); });
+                    else classes.push({ packageName: name, className: node.name, value: node.size });
                 }
 
                 recurse(null, root);
-                return {children: classes};
+                return { children: classes };
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _bubbles();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3Bubbles.init();
 });

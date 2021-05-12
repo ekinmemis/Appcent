@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsBarsLineLight = function() {
-
-
+var EchartsBarsLineLight = function () {
     //
     // Setup module components
     //
 
     // Bar chart with line
-    var _barsLineBarsExample = function() {
+    var _barsLineBarsExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsBarsLineLight = function() {
         // Define element
         var bars_mix_element = document.getElementById('bars_mix');
 
-
         //
         // Charts configuration
         //
 
         if (bars_mix_element) {
-
             // Initialize chart
             var bars_mix = echarts.init(bars_mix_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsBarsLineLight = function() {
 
             // Options
             bars_mix.setOption({
-
                 // Global text styles
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -176,13 +169,12 @@ var EchartsBarsLineLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             bars_mix_element && bars_mix.resize();
         };
 
@@ -192,7 +184,7 @@ var EchartsBarsLineLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -200,22 +192,20 @@ var EchartsBarsLineLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _barsLineBarsExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsBarsLineLight.init();
 });

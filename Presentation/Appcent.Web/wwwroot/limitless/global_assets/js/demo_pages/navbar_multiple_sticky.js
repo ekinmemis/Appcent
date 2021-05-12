@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var NavbarMultipleSticky = function() {
-
-
+var NavbarMultipleSticky = function () {
     //
     // Setup module components
     //
 
     // Sticky.js
-    var _componentSticky = function() {
+    var _componentSticky = function () {
         if (!$().stick_in_parent) {
             console.warn('Warning - sticky.min.js is not loaded.');
             return;
@@ -28,22 +25,20 @@ var NavbarMultipleSticky = function() {
         $('.navbar-sticky').stick_in_parent();
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSticky();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     NavbarMultipleSticky.init();
 });

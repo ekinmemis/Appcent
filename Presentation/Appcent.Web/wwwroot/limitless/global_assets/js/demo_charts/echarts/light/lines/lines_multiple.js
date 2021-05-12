@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsLinesMultipleLight = function() {
-
-
+var EchartsLinesMultipleLight = function () {
     //
     // Setup module components
     //
 
     // Line multiples
-    var _linesMultipleLightExample = function() {
+    var _linesMultipleLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsLinesMultipleLight = function() {
         // Define element
         var line_multiple_element = document.getElementById('line_multiple');
 
-
         //
         // Charts configuration
         //
 
         if (line_multiple_element) {
-
             // Initialize chart
             var line_multiple = echarts.init(line_multiple_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsLinesMultipleLight = function() {
 
             // Options
             line_multiple.setOption({
-
                 // Define colors
                 color: ['#f17a52', '#03A9F4'],
 
@@ -154,7 +147,7 @@ var EchartsLinesMultipleLight = function() {
                                 color: ['rgba(250,250,250,0.1)', 'rgba(0,0,0,0.01)']
                             }
                         },
-                        data: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     },
                     {
                         gridIndex: 1,
@@ -185,7 +178,7 @@ var EchartsLinesMultipleLight = function() {
                                 color: ['rgba(250,250,250,0.1)', 'rgba(0,0,0,0.01)']
                             }
                         },
-                        data: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     }
                 ],
 
@@ -250,7 +243,7 @@ var EchartsLinesMultipleLight = function() {
                                 borderWidth: 2
                             }
                         },
-                        data: [63,88,25,65,30,85,57,90,76,19,74,39],
+                        data: [63, 88, 25, 65, 30, 85, 57, 90, 76, 19, 74, 39],
                     },
                     {
                         name: 'Londinium',
@@ -264,19 +257,18 @@ var EchartsLinesMultipleLight = function() {
                                 borderWidth: 2
                             }
                         },
-                        data: [60,30,49,72,49,82,90,29,48,20,49,39],
+                        data: [60, 30, 49, 72, 49, 82, 90, 29, 48, 20, 49, 39],
                     }
                 ]
             });
         }
-
 
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             line_multiple_element && line_multiple.resize();
         };
 
@@ -286,7 +278,7 @@ var EchartsLinesMultipleLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -294,22 +286,20 @@ var EchartsLinesMultipleLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _linesMultipleLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsLinesMultipleLight.init();
 });

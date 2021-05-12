@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleMapDrawingRectangles = function() {
-
-
+var GoogleMapDrawingRectangles = function () {
     //
     // Setup module components
     //
 
     // Line chart
-    var _googleMapDrawingRectangles = function() {
+    var _googleMapDrawingRectangles = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Maps library is not loaded.');
             return;
@@ -26,7 +23,6 @@ var GoogleMapDrawingRectangles = function() {
 
         // Initialize
         function initialize() {
-
             // Define map element
             var map_drawing_rectangles_element = document.getElementById('map_drawing_rectangle');
 
@@ -59,22 +55,20 @@ var GoogleMapDrawingRectangles = function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleMapDrawingRectangles();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     GoogleMapDrawingRectangles.init();
 });

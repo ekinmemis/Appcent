@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var D3AreaStacked = function() {
-
-
+var D3AreaStacked = function () {
     //
     // Setup module components
     //
 
     // Chart
-    var _areaStacked = function() {
+    var _areaStacked = function () {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;
@@ -28,16 +25,14 @@ var D3AreaStacked = function() {
         var element = document.getElementById('d3-area-stacked'),
             height = 400;
 
-
         // Initialize chart only if element exsists in the DOM
-        if(element) {
-
+        if (element) {
             // Basic setup
             // ------------------------------
 
             // Define main variables
             var d3Container = d3.select(element),
-                margin = {top: 5, right: 10, bottom: 20, left: 40},
+                margin = { top: 5, right: 10, bottom: 20, left: 40 },
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
                 height = height - margin.top - margin.bottom - 5;
 
@@ -47,7 +42,6 @@ var D3AreaStacked = function() {
 
             // Colors
             var color = d3.scale.category20();
-
 
             // Construct scales
             // ------------------------------
@@ -59,8 +53,6 @@ var D3AreaStacked = function() {
             // Vertical
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-
 
             // Create axes
             // ------------------------------
@@ -78,8 +70,6 @@ var D3AreaStacked = function() {
                 .orient("left")
                 .tickFormat(formatPercent);
 
-
-
             // Create chart
             // ------------------------------
 
@@ -91,61 +81,51 @@ var D3AreaStacked = function() {
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             // Construct chart layout
             // ------------------------------
 
             // Area
             var area = d3.svg.area()
-                .x(function(d) { return x(d.date); })
-                .y0(function(d) { return y(d.y0); })
-                .y1(function(d) { return y(d.y0 + d.y); });
+                .x(function (d) { return x(d.date); })
+                .y0(function (d) { return y(d.y0); })
+                .y1(function (d) { return y(d.y0 + d.y); });
 
             // Stack
             var stack = d3.layout.stack()
-                .values(function(d) { return d.values; });
-
-
-
-
+                .values(function (d) { return d.values; });
 
             // Load data
             // ------------------------------
 
-            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_stacked.tsv", function(error, data) {
-
+            d3.tsv("https://demo.interface.club/limitless/demo/Template/global_assets/demo_data/d3/lines/lines_stacked.tsv", function (error, data) {
                 // Pull out values
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.date = parseDate(d.date);
                 });
-
 
                 // Set color domains
                 // ------------------------------
 
                 // Filter by date
-                color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+                color.domain(d3.keys(data[0]).filter(function (key) { return key !== "date"; }));
 
                 // Set colors
-                var browsers = stack(color.domain().map(function(name) {
+                var browsers = stack(color.domain().map(function (name) {
                     return {
                         name: name,
-                        values: data.map(function(d) {
-                            return {date: d.date, y: d[name] / 100};
+                        values: data.map(function (d) {
+                            return { date: d.date, y: d[name] / 100 };
                         })
                     };
                 }));
-
 
                 // Set input domains
                 // ------------------------------
 
                 // Horizontal
-                x.domain(d3.extent(data, function(d) { return d.date; }));
-
+                x.domain(d3.extent(data, function (d) { return d.date; }));
 
                 //
                 // Append chart elements
@@ -156,25 +136,24 @@ var D3AreaStacked = function() {
                     .data(browsers)
                     .enter()
                     .append("g")
-                        .attr("class", "browser");
+                    .attr("class", "browser");
 
                 // Add area
                 browser.append("path")
                     .attr("class", "d3-area")
-                    .attr("d", function(d) { return area(d.values); })
-                    .style("fill", function(d) { return color(d.name); });
+                    .attr("d", function (d) { return area(d.values); })
+                    .style("fill", function (d) { return color(d.name); });
 
                 // Add text
                 browser.append("text")
-                    .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-                    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
+                    .datum(function (d) { return { name: d.name, value: d.values[d.values.length - 1] }; })
+                    .attr("transform", function (d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
                     .attr("class", "d3-browsers")
                     .attr("x", -15)
                     .attr("dy", ".35em")
                     .style("fill", "#fff")
                     .style("text-anchor", "end")
-                    .text(function(d) { return d.name; });
-
+                    .text(function (d) { return d.name; });
 
                 // Append axes
                 // ------------------------------
@@ -191,8 +170,6 @@ var D3AreaStacked = function() {
                     .call(yAxis);
             });
 
-
-
             // Resize chart
             // ------------------------------
 
@@ -204,15 +181,13 @@ var D3AreaStacked = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', resize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function resize() {
-
                 // Layout variables
                 width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
-
 
                 // Layout
                 // -------------------------
@@ -223,7 +198,6 @@ var D3AreaStacked = function() {
                 // Width of appended group
                 svg.attr("width", width + margin.left + margin.right);
 
-
                 // Axes
                 // -------------------------
 
@@ -233,35 +207,32 @@ var D3AreaStacked = function() {
                 // Horizontal axis
                 svg.selectAll('.d3-axis-horizontal').call(xAxis);
 
-
                 // Chart elements
                 // -------------------------
 
                 // Line path
-                svg.selectAll('.d3-area').attr("d", function(d) { return area(d.values); });
+                svg.selectAll('.d3-area').attr("d", function (d) { return area(d.values); });
 
                 // Text
-                svg.selectAll('.d3-browsers').attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; });
+                svg.selectAll('.d3-browsers').attr("transform", function (d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; });
             }
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _areaStacked();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     D3AreaStacked.init();
 });

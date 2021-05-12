@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var GoogleAreaStepped = function() {
-
-
+var GoogleAreaStepped = function () {
     //
     // Setup module components
     //
 
     // Stepped area chart
-    var _googleAreaStepped = function() {
+    var _googleAreaStepped = function () {
         if (typeof google == 'undefined') {
             console.warn('Warning - Google Charts library is not loaded.');
             return;
@@ -27,7 +24,6 @@ var GoogleAreaStepped = function() {
         // Initialize chart
         google.charts.load('current', {
             callback: function () {
-
                 // Draw chart
                 drawSteppedAreaChart();
 
@@ -37,7 +33,7 @@ var GoogleAreaStepped = function() {
 
                 // Resize on window resize
                 var resizeSteppedAreaChart;
-                window.addEventListener('resize', function() {
+                window.addEventListener('resize', function () {
                     clearTimeout(resizeSteppedAreaChart);
                     resizeSteppedAreaChart = setTimeout(function () {
                         drawSteppedAreaChart();
@@ -49,17 +45,16 @@ var GoogleAreaStepped = function() {
 
         // Chart settings
         function drawSteppedAreaChart() {
-
             // Define charts element
             var area_stepped_element = document.getElementById('google-area-stepped');
 
             // Data
             var data = google.visualization.arrayToDataTable([
-                ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
-                ['Alfred Hitchcock (1935)', 8.4,         7.9],
-                ['Ralph Thomas (1959)',     6.9,         6.5],
-                ['Don Sharp (1978)',        6.5,         6.4],
-                ['James Hawes (2008)',      4.4,         6.2]
+                ['Director (Year)', 'Rotten Tomatoes', 'IMDB'],
+                ['Alfred Hitchcock (1935)', 8.4, 7.9],
+                ['Ralph Thomas (1959)', 6.9, 6.5],
+                ['Don Sharp (1978)', 6.5, 6.4],
+                ['James Hawes (2008)', 4.4, 6.2]
             ]);
 
             // Options
@@ -94,7 +89,7 @@ var GoogleAreaStepped = function() {
                         color: '#333'
                     },
                     baselineColor: '#ccc',
-                    gridlines:{
+                    gridlines: {
                         color: '#eee',
                         count: 10
                     },
@@ -118,24 +113,22 @@ var GoogleAreaStepped = function() {
                 }
             };
 
-            // Draw chart 
+            // Draw chart
             var stepped_area_chart = new google.visualization.SteppedAreaChart(document.getElementById('google-area-stepped'));
             stepped_area_chart.draw(data, options);
         }
     };
-
 
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _googleAreaStepped();
         }
     }
 }();
-
 
 // Initialize module
 // ------------------------------

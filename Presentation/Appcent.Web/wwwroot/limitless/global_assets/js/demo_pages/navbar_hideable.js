@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var NavbarHideable = function() {
-
-
+var NavbarHideable = function () {
     //
     // Setup module components
     //
 
     // Headroom.js
-    var _componentHeadroom = function() {
+    var _componentHeadroom = function () {
         if (typeof Headroom == 'undefined') {
             console.warn('Warning - headroom.min.js is not loaded.');
             return;
@@ -28,13 +25,11 @@ var NavbarHideable = function() {
         var navbarTop = document.querySelector('.navbar-slide-top'),
             navbarBottom = document.querySelector('.navbar-slide-bottom');
 
-
         //
         // Top navbar
         //
 
         if (navbarTop) {
-
             // Construct an instance of Headroom, passing the element
             var headroomTop = new Headroom(navbarTop, {
                 offset: navbarTop.offsetHeight,
@@ -42,23 +37,20 @@ var NavbarHideable = function() {
                     up: 10,
                     down: 10
                 },
-                onUnpin : function() {
+                onUnpin: function () {
                     $('.headroom').find('.show').removeClass('show');
                 }
             });
 
             // Initialise
-            headroomTop.init(); 
+            headroomTop.init();
         }
-
-
 
         //
         // Bottom navbar
         //
 
         if (navbarBottom) {
-            
             // Construct an instance of Headroom, passing the element
             var headroomBottom = new Headroom(navbarBottom, {
                 offset: navbarBottom.offsetHeight,
@@ -66,7 +58,7 @@ var NavbarHideable = function() {
                     up: 10,
                     down: 10
                 },
-                onUnpin : function() {
+                onUnpin: function () {
                     $('.headroom').find('.show').removeClass('show');
                 }
             });
@@ -76,22 +68,20 @@ var NavbarHideable = function() {
         }
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentHeadroom();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     NavbarHideable.init();
 });

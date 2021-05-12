@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsWaterfallCompositiveLight = function() {
-
-
+var EchartsWaterfallCompositiveLight = function () {
     //
     // Setup module components
     //
 
     // Compositive waterfall chart
-    var _waterfallCompositiveLightExample = function() {
+    var _waterfallCompositiveLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsWaterfallCompositiveLight = function() {
         // Define element
         var columns_compositive_waterfall_element = document.getElementById('columns_compositive_waterfall');
 
-
         //
         // Charts configuration
         //
 
         if (columns_compositive_waterfall_element) {
-
             // Initialize chart
             var columns_compositive_waterfall = echarts.init(columns_compositive_waterfall_element);
-
 
             //
             // Chart config
@@ -44,7 +38,6 @@ var EchartsWaterfallCompositiveLight = function() {
 
             // Options
             columns_compositive_waterfall.setOption({
-
                 // Define colors
                 color: ['#f17a52', '#03A9F4'],
 
@@ -148,7 +141,7 @@ var EchartsWaterfallCompositiveLight = function() {
                                 color: 'rgba(0,0,0,0)'
                             }
                         },
-                        data:[0, 3500, 3000, 2300, 1700, 900, 400, 0]
+                        data: [0, 3500, 3000, 2300, 1700, 900, 400, 0]
                     },
                     {
                         name: 'Cost of living',
@@ -173,13 +166,12 @@ var EchartsWaterfallCompositiveLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             columns_compositive_waterfall_element && columns_compositive_waterfall.resize();
         };
 
@@ -189,7 +181,7 @@ var EchartsWaterfallCompositiveLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -197,22 +189,20 @@ var EchartsWaterfallCompositiveLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _waterfallCompositiveLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsWaterfallCompositiveLight.init();
 });

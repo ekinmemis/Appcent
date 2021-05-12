@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var CKEditor = function() {
-
-
+var CKEditor = function () {
     //
     // Setup module components
     //
 
     // CKEditor
-    var _componentCKEditor = function() {
+    var _componentCKEditor = function () {
         if (typeof CKEDITOR == 'undefined') {
             console.warn('Warning - ckeditor.js is not loaded.');
             return;
         }
-        
 
         // Full featured editor
         // ------------------------------
@@ -32,7 +28,6 @@ var CKEditor = function() {
         CKEDITOR.replace('editor-full', {
             height: 400
         });
-
 
         // Readonly editor
         // ------------------------------
@@ -63,13 +58,12 @@ var CKEditor = function() {
             // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setReadOnly
             editorReadOnly.setReadOnly(isReadOnly);
         }
-        document.getElementById('readOnlyOn').onclick = function() {
+        document.getElementById('readOnlyOn').onclick = function () {
             toggleReadOnly();
         }
-        document.getElementById('readOnlyOff').onclick = function() {
+        document.getElementById('readOnlyOff').onclick = function () {
             toggleReadOnly(false);
         }
-
 
         // Enter key configuration
         // ------------------------------
@@ -79,7 +73,6 @@ var CKEditor = function() {
 
         // Setup editor
         function changeEnter() {
-
             // If an editor instance exists, destroy it first.
             if (editorKey)
                 editorKey.destroy(true);
@@ -96,14 +89,12 @@ var CKEditor = function() {
         changeEnter();
 
         // // Change configuration
-        document.getElementById('xEnter').onchange = function() {
+        document.getElementById('xEnter').onchange = function () {
             changeEnter();
         }
-        document.getElementById('xShiftEnter').onchange = function() {
+        document.getElementById('xShiftEnter').onchange = function () {
             changeEnter();
         }
-
-
 
         // Inline editor
         // ------------------------------
@@ -125,7 +116,7 @@ var CKEditor = function() {
     };
 
     // Select2
-    var _componentSelect2 = function() {
+    var _componentSelect2 = function () {
         if (!$().select2) {
             console.warn('Warning - select2.min.js is not loaded.');
             return;
@@ -137,23 +128,21 @@ var CKEditor = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentCKEditor();
             _componentSelect2();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     CKEditor.init();
 });

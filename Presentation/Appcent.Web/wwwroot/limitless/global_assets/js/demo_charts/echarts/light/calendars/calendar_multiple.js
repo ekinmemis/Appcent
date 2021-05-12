@@ -6,19 +6,16 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var EchartsCalendarMultipleLight = function() {
-
-
+var EchartsCalendarMultipleLight = function () {
     //
     // Setup module components
     //
 
     // Multiple calendar chart
-    var _calendarMultipleLightExample = function() {
+    var _calendarMultipleLightExample = function () {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -27,16 +24,13 @@ var EchartsCalendarMultipleLight = function() {
         // Define element
         var calendar_multiple_element = document.getElementById('calendar_multiple');
 
-
         //
         // Charts configuration
         //
 
         if (calendar_multiple_element) {
-
             // Initialize chart
             var calendar_multiple = echarts.init(calendar_multiple_element);
-
 
             //
             // Chart config
@@ -60,7 +54,6 @@ var EchartsCalendarMultipleLight = function() {
 
             // Options
             calendar_multiple.setOption({
-
                 // Add title
                 title: {
                     text: 'Github commits',
@@ -206,13 +199,12 @@ var EchartsCalendarMultipleLight = function() {
             });
         }
 
-
         //
         // Resize charts
         //
 
         // Resize function
-        var triggerChartResize = function() {
+        var triggerChartResize = function () {
             calendar_multiple_element && calendar_multiple.resize();
         };
 
@@ -222,7 +214,7 @@ var EchartsCalendarMultipleLight = function() {
 
         // On window resize
         var resizeCharts;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeCharts);
             resizeCharts = setTimeout(function () {
                 triggerChartResize();
@@ -230,22 +222,20 @@ var EchartsCalendarMultipleLight = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _calendarMultipleLightExample();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EchartsCalendarMultipleLight.init();
 });

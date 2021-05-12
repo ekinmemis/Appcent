@@ -6,24 +6,20 @@
  *
  * ---------------------------------------------------------------------------- */
 
-
 // Setup module
 // ------------------------------
 
-var IonSlider = function() {
-
-
+var IonSlider = function () {
     //
     // Setup module components
     //
 
     // ION range slider examples
-    var _componentIonSlider = function() {
+    var _componentIonSlider = function () {
         if (!$().ionRangeSlider) {
             console.warn('Warning - ion_rangeslider.min.js is not loaded.');
             return;
         }
-
 
         //
         // Basic examples
@@ -79,7 +75,6 @@ var IonSlider = function() {
             to: 3.2,
             step: 0.1
         });
-
 
         //
         // Customizing values
@@ -151,7 +146,6 @@ var IonSlider = function() {
             prettify_separator: ','
         });
 
-
         //
         // Decorating numbers
         //
@@ -189,7 +183,6 @@ var IonSlider = function() {
             prefix: 'Age ',
             max_postfix: '+'
         });
-
 
         // Decorate both values
         $('#ion-decorate-both').ionRangeSlider({
@@ -229,7 +222,6 @@ var IonSlider = function() {
             postfix: ' Gb',
             decorate_both: false
         });
-
 
         //
         // Advanced examples
@@ -297,7 +289,6 @@ var IonSlider = function() {
             grid_snap: true
         });
 
-
         //
         // Manipulations
         //
@@ -335,7 +326,6 @@ var IonSlider = function() {
             drag_interval: true
         });
 
-
         // Lock left handle
         $('#ion-lock-from').ionRangeSlider({
             grid: true,
@@ -369,7 +359,6 @@ var IonSlider = function() {
             from_fixed: true,
             to_fixed: true
         });
-
 
         //
         // Other examples
@@ -413,7 +402,6 @@ var IonSlider = function() {
             grid_num: 10
         });
 
-
         // Moment.js format
         $('#ion-moment-basic').ionRangeSlider({
             grid: true,
@@ -452,22 +440,20 @@ var IonSlider = function() {
         });
     };
 
-
     //
     // Return objects assigned to module
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentIonSlider();
         }
     }
 }();
 
-
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     IonSlider.init();
 });
