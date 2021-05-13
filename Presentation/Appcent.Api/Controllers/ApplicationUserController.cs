@@ -3,10 +3,11 @@
 using Appcent.Api.Filters;
 using Appcent.Api.Models.ApplicationUserModels;
 using Appcent.Core.Domain;
-using Appcent.Services.ApplicationUserService;
+using Appcent.Services.ApplicationUsers;
 
 using AutoMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -28,13 +29,14 @@ namespace Appcent.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login(LoginRequestModel model)
+        [AllowAnonymous]
+        public IActionResult Login(LoginModel model)
         {
             var applicationUser = _applicationUserService.GetApplicationUserByUsernameAndPassword(model.Username, model.Password);
 
             var token = _applicationUserService.GenerateJwtToken(applicationUser, _config.GetSection("Secret").ToString());
-
-            return Ok(token);
+            var response = new LoginResponseModel() { ApplicationUser = applicationUser, Token = token };
+            return Ok(response);
         }
 
         [HttpGet]

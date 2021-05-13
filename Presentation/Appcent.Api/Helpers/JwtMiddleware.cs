@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-using Appcent.Services.ApplicationUserService;
+using Appcent.Services.ApplicationUsers;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

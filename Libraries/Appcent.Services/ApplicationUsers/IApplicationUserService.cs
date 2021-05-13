@@ -4,7 +4,7 @@ using Appcent.Core.Domain;
 
 using Microsoft.AspNetCore.Http;
 
-namespace Appcent.Services.ApplicationUserService
+namespace Appcent.Services.ApplicationUsers
 {
     public interface IApplicationUserService
     {
@@ -21,6 +21,8 @@ namespace Appcent.Services.ApplicationUserService
         void DeleteApplicationUser(ApplicationUser applicationUser);
 
         ApplicationUser GetApplicationUserByUsernameAndPassword(string username, string password);
+
+        ApplicationUser GetApplicationUserByUsername(string username);
 
         string GenerateJwtToken(ApplicationUser applicationUser, string secret);
 

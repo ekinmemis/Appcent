@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Appcent.Services.ApplicationUserService
+namespace Appcent.Services.ApplicationUsers
 {
     public class ApplicationUserService : IApplicationUserService
     {
@@ -129,6 +129,19 @@ namespace Appcent.Services.ApplicationUserService
             var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
             context.Items["User"] = this.GetApplicationUserById(userId);
+        }
+
+        public ApplicationUser GetApplicationUserByUsername(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                return null;
+
+            var query = from c in _applicationUserRepository.Table
+                        orderby c.Id
+                        where c.Username == username
+                        select c;
+            var applicationUser = query.FirstOrDefault();
+            return applicationUser;
         }
     }
 }

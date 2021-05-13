@@ -2,7 +2,7 @@
 
 namespace Appcent.Api.Models.ApplicationUserModels
 {
-    public class LoginRequestModel
+    public class LoginModel
     {
         [Required]
         public string Username { get; set; }

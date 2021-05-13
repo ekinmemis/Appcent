@@ -15,7 +15,7 @@ namespace Appcent.Api.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                ErrorModel errorModel = new ErrorModel();
+                ErrorModel errorModel = new();
                 errorModel.Status = 400;
 
                 IEnumerable<ModelError> modelErrors = context.ModelState.Values.SelectMany(f => f.Errors);

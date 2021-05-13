@@ -9,7 +9,11 @@ namespace Appcent.Data.Mapping.ApplicationUsers
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.HasKey(f => f.Id);
+            builder.ToTable(nameof(ApplicationUser));
+
+            builder.HasKey(applicationUser => applicationUser.Id);
+
+            builder.Property(applicationUser => applicationUser.Username).HasMaxLength(1000);
         }
     }
 }

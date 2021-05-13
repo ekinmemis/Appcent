@@ -1,6 +1,7 @@
-using Appcent.Api.Helpers;
 using Appcent.Data;
+using Appcent.Data.Migrations;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -44,8 +45,6 @@ namespace Appcent.Api
                    .AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader());
-
-            app.UseMiddleware<JwtMiddleware>();
 
             app.UseRouting();
 
