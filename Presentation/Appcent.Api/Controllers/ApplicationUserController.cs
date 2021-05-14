@@ -14,7 +14,6 @@ using Microsoft.Extensions.Configuration;
 namespace Appcent.Api.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
     public class ApplicationUserController : BaseApiController
     {
         private readonly IApplicationUserService _applicationUserService;

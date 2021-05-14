@@ -11,11 +11,11 @@ namespace Appcent.Data
 {
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly EfDataContext _context;
+        private readonly DbContext _context;
 
         private DbSet<TEntity> _entities;
 
-        public EfRepository(EfDataContext context)
+        public EfRepository(DbContext context)
         {
             _context = context;
         }
@@ -73,7 +73,7 @@ namespace Appcent.Data
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
 
-            Entities.Remove(entity);
+            Entities.Update(entity);
             _context.SaveChanges();
         }
 

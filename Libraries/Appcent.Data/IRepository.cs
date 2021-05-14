@@ -37,6 +37,7 @@ namespace Appcent.Data
         Task DeleteAsync(TEntity entity);
 
         IQueryable<TEntity> Table { get; }
+
         IQueryable<TEntity> TableNoTracking { get; }
     }
 }
