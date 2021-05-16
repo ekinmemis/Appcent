@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appcent.Api", "Presentation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6E029CCD-070D-4E47-A2DE-85D6C2E025E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appcent.Core.Test", "Tests\Appcent.Core.Test\Appcent.Core.Test.csproj", "{177436A6-9856-4399-99A5-63C2AFD26D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appcent.Core.Test", "Tests\Appcent.Core.Test\Appcent.Core.Test.csproj", "{177436A6-9856-4399-99A5-63C2AFD26D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appcent.Test", "Tests\Appcent.Test\Appcent.Test.csproj", "{A12525EC-0AAD-40DF-9EA0-4E0EC78614CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appcent.Test", "Tests\Appcent.Test\Appcent.Test.csproj", "{A12525EC-0AAD-40DF-9EA0-4E0EC78614CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appcent.Services.Test", "Tests\Appcent.Services.Test\Appcent.Services.Test.csproj", "{32A114D7-9FCE-4974-B75A-0513B9341C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appcent.Services.Test", "Tests\Appcent.Services.Test\Appcent.Services.Test.csproj", "{32A114D7-9FCE-4974-B75A-0513B9341C12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

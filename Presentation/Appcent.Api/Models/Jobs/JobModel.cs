@@ -6,7 +6,7 @@ namespace Appcent.Api.Models.Jobs
     {
         [Required]
         public string Description { get; set; }
-
+        public int Id { get; set; }
         public int ApplicationUserId { get; set; }
     }
 }

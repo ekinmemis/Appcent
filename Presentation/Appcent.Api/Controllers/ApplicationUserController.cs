@@ -14,7 +14,8 @@ using Microsoft.Extensions.Configuration;
 namespace Appcent.Api.Controllers
 {
     [Route("[controller]")]
-    public class ApplicationUserController : BaseApiController
+    [ApiController]
+    public class ApplicationUserController : ControllerBase
     {
         private readonly IApplicationUserService _applicationUserService;
         private readonly IMapper _mapper;
@@ -28,12 +29,12 @@ namespace Appcent.Api.Controllers
         }
 
         [HttpPost("Login")]
-        [AllowAnonymous]
         public IActionResult Login(LoginModel model)
         {
             var applicationUser = _applicationUserService.GetApplicationUserByUsernameAndPassword(model.Username, model.Password);
 
             var token = _applicationUserService.GenerateJwtToken(applicationUser, _config.GetSection("Secret").ToString());
+            _applicationUserService.AttachUserToContext(HttpContext, token);
             var response = new LoginResponseModel() { ApplicationUser = applicationUser, Token = token };
             return Ok(response);
         }

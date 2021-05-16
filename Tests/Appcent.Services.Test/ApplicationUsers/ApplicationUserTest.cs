@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using Appcent.Core;
 using Appcent.Core.Domain;
 using Appcent.Data;
 using Appcent.Services.ApplicationUsers;
 using Appcent.Tests;
-
-using Castle.Core.Resource;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 using Moq;
 

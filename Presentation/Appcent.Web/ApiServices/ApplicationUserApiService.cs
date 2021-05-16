@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Appcent.Api.Models.ApplicationUserModels;
-using Appcent.Core.Domain;
 
 using Newtonsoft.Json;
 

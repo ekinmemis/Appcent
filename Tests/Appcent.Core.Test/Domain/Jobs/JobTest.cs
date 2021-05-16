@@ -1,7 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Net;
 
 using Appcent.Core.Domain;
 using Appcent.Tests;
@@ -17,6 +15,7 @@ namespace Appcent.Core.Test.Domain.Jobs
         public void Can_clone_user()
         {
             var appUser = new ApplicationUser();
+
             var job = new Job
             {
                 Id = 1,
